@@ -19,11 +19,11 @@ Para inicializar la app debes seguir los siguientes pasos:
 ## 👩‍💻 Autores
 
 - [@AnaBelenBernardez](https://github.com/AnaBelenBernardez) (Scrum Master)
-- Maxi (Developer)
-- Alejandro (Developer)
-- Antía (Developer)
+- [@m4x1-VF](https://github.com/m4x1-VF)(Developer)
+- [@AlejandroPachec](https://github.com/AlejandroPachec) (Developer)
+- [@eysharis](https://github.com/eysharis) (Developer)
 - Juan (Developer)
-- Nair (Developer)
+- [@Nannitta](https://github.com/Nannitta) (Developer)
 - Cristian (Developer)
 
 ## 💻 Tech Stack
