@@ -5,10 +5,11 @@ const {DB_HOST, DB_USER, DB_PASSWORD, DB_NAME} = process.env;
 
 let pool;
 
-const getDB = async () => {
+
+const getPool = async () => {
     if(!pool){
         pool = mysql.createPool({
-            connectionLimit: 10,
+
             host: DB_HOST,
             user: DB_USER,
             password: DB_PASSWORD,
@@ -16,23 +17,24 @@ const getDB = async () => {
         });
     }
 
-    return await pool.getConnection();
+
+    return pool
+
 };
 
 const createDBconnection = async () => {
     if(!pool){
         pool = mysql.createPool({
-            connectionLimit: 10,
             host: DB_HOST,
             user: DB_USER,
             password: DB_PASSWORD
         });
     }
 
-    return await pool.getConnection();
+
+    return pool
 };
 
-module.exports = {
-    getDB,
-    createDBconnection
-}
+
+module.exports = {getPool, createDBconnection};
+
