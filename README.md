@@ -26,7 +26,6 @@ Para inicializar la app debes seguir los siguientes pasos:
 - [@eysharis](https://github.com/eysharis) (Developer)
 - [@Juanalejo01](https://github.com/Juanalejo01) (Developer)
 - [@Nannitta](https://github.com/Nannitta) (Developer)
--  (Developer)
 
 ## 💻 Tech Stack
 
