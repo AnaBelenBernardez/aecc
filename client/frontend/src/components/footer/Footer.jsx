@@ -1,6 +1,10 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from 'next/image';
+import Link from 'next/link';
 import "../../app/globals.css";
+import LinkYoutube from './LinksRRSS/LinkYoutube';
+import LinkFacebook from './LinksRRSS/LinkFacebook';
+import LinkTwitter from './LinksRRSS/LinkTwitter';
+import LinkInstagram from './LinksRRSS/LinkInstagram';
 
 const Footer = () => {
   return (
@@ -11,16 +15,16 @@ const Footer = () => {
         <p className='mb-4'>Rúa Real, 1, 1°, 15003 A Coruña</p>
         <div className='flex justify-center gap-10'>
           <Link href="https://www.facebook.com/contraelcancer.es">
-            <Image src="/icons/facebookIcon.svg" alt="Icono Facebook" width="25" height="25" title="Facebook"/>
+            <LinkFacebook/>
           </Link>
           <Link href="https://twitter.com/ContraCancerEs">
-            <Image src="/icons/twitterIcon.svg" alt="Icono Twiiter" width="25" height="25" title="Twitter"/>
+            <LinkTwitter/>
           </Link>
           <Link href="https://www.instagram.com/contraelcancer.es/">
-            <Image src="/icons/instagramIcon.svg" alt="Icono Instagram" width="25" height="25" title="Instagram"/>
+            <LinkInstagram/>
           </Link>
           <Link href="https://www.youtube.com/user/aecc">
-            <Image src="/icons/youtubeIcon.svg" alt="Icono Youtube" width="25" height="25" title="Youtube"/>
+            <LinkYoutube/>
           </Link>
         </div>
       </section>
@@ -36,7 +40,7 @@ const Footer = () => {
           <a>
             <li>¿Eres voluntario?</li>
           </a>
-          <Link href="https://colabora.contraelcancer.es/empresas/eventos-solidarios" className='hover:text-primaryGreen'>
+          <Link href="https://colabora.contraelcancer.es/empresas/eventos-solidarios" className='hover:text-primaryGreen transition-all duration-300 ease-in-out'>
             <li>Quiero patrocinar un evento</li>
           </Link>
           <a>
@@ -50,7 +54,7 @@ const Footer = () => {
           <a>
             <li>Noticias</li>
           </a>
-          <Link href="https://blog.contraelcancer.es/" className='hover:text-primaryGreen'>
+          <Link href="https://blog.contraelcancer.es/" className='hover:text-primaryGreen transition-all duration-300 ease-in-out'>
             <li>Blog</li>
           </Link>
         </ul>
