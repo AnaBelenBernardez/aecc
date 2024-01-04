@@ -147,7 +147,7 @@ async function createDB() {
 
     await pool.query(
 
-        `INSERT INTO admins (id, admin_name, pwd, create_date) VALUES (DEFAULT, 'admin', 'SHA2(${adminPass}, 512)', DEFAULT)`
+        `INSERT INTO admins (id, admin_name, pwd, create_date) VALUES (DEFAULT, 'admin', SHA2('${adminPass}', 512), DEFAULT)`
     );
 
 

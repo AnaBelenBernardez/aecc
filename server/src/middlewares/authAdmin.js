@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
-const generateError = require('../helpers/generateError');
+//const generateError = require('../helpers/generateError');
 
 const authAdmin = async (req, res, next) => {
   try {
     const { token } = req.headers;
 
     if (!token) {
-      return next(generateError('Acceso limitado a administradores', 401));
+      return next(/* generateError('Acceso limitado a administradores', 401) */);
     }
 
     let tokenInfo;
@@ -14,7 +14,7 @@ const authAdmin = async (req, res, next) => {
     try {
       tokenInfo = await jwt.verify(token, process.env.SECRET);
     } catch {
-      throw generateError('Token incorrecto', 401);
+      throw new Error('Token incorrecto')/* generateError('Token incorrecto', 401); */
     }
 
     req.admin = tokenInfo;

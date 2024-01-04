@@ -2,13 +2,12 @@ const fs = require('fs/promises');
 const path = require('path');
 const sharp = require('sharp');
 const uuid = require('uuid');
-const { UPLOADS_DIR } = require('../config');
-const generateError = require('../helpers/generateError');
+/* const generateError = require('../helpers/generateError'); */
 require('dotenv').config();
 
 async function savePhoto (photo, width) {
 
-  const uploadsPath = path.resolve(__dirname, '../', UPLOADS_DIR);
+  const uploadsPath = path.resolve(__dirname, '../', process.env.UPLOADS_DIR);
 
   try {
     await fs.access(uploadsPath);
@@ -28,7 +27,7 @@ async function savePhoto (photo, width) {
 
     return imageName;
   } catch (error) {
-    throw generateError(error, 500);
+    throw new Error(error.message)/* generateError(error, 500); */
   }
 }
 
