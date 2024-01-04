@@ -62,15 +62,19 @@ async function addEvent (req,res) {
 
         const [newEvent] = await connect.query(
             `
-                INSERT INTO entries (create_date, title, content, location, date_start, date_end, link, id)
-                VALUES (?,?,?,?,?,?,?,?)
+                INSERT INTO events (create_date, title, content, location, date_start, date_end, link, id)
+                VALUES (?,?,?,?,?,?,?,DEFAULT)
             `,
-            [new Date(), title, content, location, date_start, date_end, link, idAdmin] 
+            [new Date(), title, content, location, new Date(date_start), new Date(date_end), link, idAdmin] 
         );
 
         const {insertId} = newEvent; 
+        
+        console.log(req.files)
+        console.log(req)
 
         if(req.files && Object.keys(req.files).length > 0){
+            console.log(req.files)
             for(let photoData of Object.values(req.files)){
                 //puse 400 de width por poner algo, imagino que esto habrá que mirarlo con el front
                 const photoName =  await savePhoto(photoData, 400);
