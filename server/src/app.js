@@ -14,7 +14,7 @@ server.use(cors());
 server.use(express.json());
 
 
-server.use('/admin', teamRouter);
+server.use('/admin', adminRouter);
 server.use('/events', eventsRouter);
 server.use('/experiences', experiencesRouter);
 
