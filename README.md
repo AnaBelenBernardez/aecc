@@ -6,10 +6,12 @@ _La Asociación Española Contra el Cáncer (AECC) de A Coruña desea realizar u
 - Los usuarios pueden:
   - Ver calendario de eventos deportivos.
   - Clickar en un evento y que se le redireccione a la página del mismo para obtener más información.
+  - Obtener más información de la asociación.
 - El usuario admin puede:
-  - Añadir eventos (fotografía, fechas, link con más información).
+  - Añadir eventos (fotografía, fechas, link con más información, ubicación, descripción y título).
   - Modificar eventos.
   - Borrar eventos.
+  - Modificar sus credenciales de acceso.
 
 ## ⚙ Inicialización
 
@@ -19,12 +21,12 @@ Para inicializar la app debes seguir los siguientes pasos:
 ## 👩‍💻 Autores
 
 - [@AnaBelenBernardez](https://github.com/AnaBelenBernardez) (Scrum Master)
-- [@m4x1-VF](https://github.com/m4x1-VF)(Developer)
+- [@m4x1-VF](https://github.com/m4x1-VF) (Developer)
 - [@AlejandroPachec](https://github.com/AlejandroPachec) (Developer)
 - [@eysharis](https://github.com/eysharis) (Developer)
-- Juan (Developer)
+- [@Juanalejo01](https://github.com/Juanalejo01) (Developer)
 - [@Nannitta](https://github.com/Nannitta) (Developer)
-- Cristian (Developer)
+-  (Developer)
 
 ## 💻 Tech Stack
 

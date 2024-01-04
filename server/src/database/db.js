@@ -5,9 +5,11 @@ const {DB_HOST, DB_USER, DB_PASSWORD, DB_NAME} = process.env;
 
 let pool;
 
+
 const getPool = async () => {
     if(!pool){
         pool = mysql.createPool({
+
             host: DB_HOST,
             user: DB_USER,
             password: DB_PASSWORD,
@@ -15,7 +17,9 @@ const getPool = async () => {
         });
     }
 
+
     return pool
+
 };
 
 const createDBconnection = async () => {
@@ -27,8 +31,10 @@ const createDBconnection = async () => {
         });
     }
 
+
     return pool
 };
 
 
 module.exports = {getPool, createDBconnection};
+

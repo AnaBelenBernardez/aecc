@@ -10,6 +10,7 @@ const adminPass = process.env.ADMIN_PASS;
 
 async function createDB() {
 
+
     
     try {
     const pool = await createDBconnection();
@@ -21,6 +22,7 @@ async function createDB() {
     await pool.query(`USE ${dbName}`);
 
     await pool.query(
+
         `
         CREATE TABLE IF NOT EXISTS admins
         (
@@ -32,7 +34,9 @@ async function createDB() {
         `
     );
 
+
     await pool.query(
+
         `
         CREATE TABLE IF NOT EXISTS events
         (
@@ -50,7 +54,9 @@ async function createDB() {
         `
     );
 
+
     await pool.query(
+
         `
         CREATE TABLE IF NOT EXISTS experiences
         (
@@ -61,7 +67,9 @@ async function createDB() {
         `
     );
 
+
     await pool.query(
+
         `
         CREATE TABLE IF NOT EXISTS photos
         (
@@ -74,7 +82,9 @@ async function createDB() {
         `
     );
 
+
     await pool.query(
+
         `
         CREATE TABLE IF NOT EXISTS experiences_photos
         (
@@ -87,7 +97,9 @@ async function createDB() {
         `
     );
 
+
     await pool.query(
+
         `
         CREATE TABLE IF NOT EXISTS news
         (
@@ -101,7 +113,9 @@ async function createDB() {
         `
     );
 
+
     await pool.query(
+
         `
         CREATE TABLE IF NOT EXISTS news
         (
@@ -115,7 +129,9 @@ async function createDB() {
         `
     );
 
+
     await pool.query(
+
         `
             CREATE TABLE IF NOT EXISTS sponsors
             (
@@ -128,12 +144,15 @@ async function createDB() {
         `
     )
 
+
     await pool.query(
+
         `INSERT INTO admins (id, admin_name, pwd, create_date) VALUES (DEFAULT, 'admin', 'SHA2(${adminPass}, 512)', DEFAULT)`
     );
 
 
     console.log(`Si existía una base de datos con el mismo nombre se ha eliminado. Además, se ha creado una nueva base de datos con el nombre "${dbName}" y sus correspondientes tablas.`);
+
 
     process.exit(0);
     
@@ -141,6 +160,7 @@ async function createDB() {
 
         console.log(e);
         process.exit(1);
+
 
     }
 

@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Marathon",
+    "image": "marathon.jpg",
+    "description": "Annual marathon race in A Coruña",
+    "location": "A Coruña"
+  },
+  {
+    "title": "Football Match",
+    "image": "football.jpg",
+    "description": "Friendly football match between local teams",
+    "location": "Santiago de Compostela"
+  },
+  {
+    "title": "Basketball Tournament",
+    "image": "basketball.jpg",
+    "description": "Regional basketball tournament",
+    "location": "A Coruña"
+  },
+  {
+    "title": "Swimming Competition",
+    "image": "swimming.jpg",
+    "description": "Open water swimming competition",
+    "location": "Ferrol"
+  },
+  {
+    "title": "Cycling Race",
+    "image": "cycling.jpg",
+    "description": "Professional cycling race through the city",
+    "location": "Oleiros"
+  },
+  {
+    "title": "Tennis Tournament",
+    "image": "tennis.jpg",
+    "description": "International tennis tournament",
+    "location": "Ribeira"
+  },
+  {
+    "title": "Volleyball Match",
+    "image": "volleyball.jpg",
+    "description": "Local volleyball match",
+    "location": "Cariño"
+  },
+  {
+    "title": "Golf Championship",
+    "image": "golf.jpg",
+    "description": "National golf championship",
+    "location": "A Coruña"
+  },
+  {
+    "title": "Horse Racing",
+    "image": "horse.jpg",
+    "description": "Annual horse racing event",
+    "location": "Bergondo"
+  },
+  {
+    "title": "Sailing Regatta",
+    "image": "sailing.jpg",
+    "description": "International sailing regatta",
+    "location": "Ares"
+  }
+]
