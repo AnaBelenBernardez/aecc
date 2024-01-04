@@ -17,9 +17,9 @@ async function login (req,res){
 
         const [admin] = await pool.query(
             `
-                SELECT id, name
+                SELECT id, admin_name
                 FROM admins
-                WHERE name=? AND pwd=SHA2(?, 512)
+                WHERE admin_name=? AND pwd=SHA2(?, 512)
             `,
             [name, pwd]
         );
@@ -34,7 +34,7 @@ async function login (req,res){
 
         const info = {
             id: admin[0].id,
-            name: admin[0].name
+            name: admin[0].admin_name
         }
 
         const token = jwt.sign(info, process.env.SECRET, {expiresIn: '1d'});
@@ -45,9 +45,8 @@ async function login (req,res){
             message: 'Se ha iniciado la sesión correctamente',
             data: {
                 token,
-                name
+                info
             },
-            info 
         });
     }catch(e){
         console.log(e);
