@@ -1,10 +1,30 @@
 const express = require('express');
 const cors = require('cors');
 
+const fileupload = require('express-fileupload');
+const path = require('path');
 const server = express();
+
+const adminRouter = require('../src/routes/adminRouter');
+const eventsRouter = require('../src/routes/eventsRouter');
+const experiencesRouter = require('../src/routes/experiencesRouter');
+
 
 server.use(cors());
 server.use(express.json());
+server.use(fileupload());
+
+
+server.use('/admin', adminRouter);
+server.use('/events', eventsRouter);
+server.use('/experiences', experiencesRouter);
+
+/* const staticDir = path.join(__dirname,'uploads');
+
+server.use(express.static(staticDir));
+
+createStaticDir(staticDir);  */
+
 
 server.use((err, _req, res, _next) => {
     console.log("ERROR: " + err.message);
