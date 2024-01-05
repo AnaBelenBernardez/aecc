@@ -68,10 +68,7 @@ async function addEvent (req,res) {
             [new Date(), title, content, location, new Date(date_start), new Date(date_end), link, idAdmin] 
         );
 
-        const {insertId} = newEvent; 
-        
-        console.log(req.files)
-        console.log(req)
+        const {insertId} = newEvent;
 
         if(req.files && Object.keys(req.files).length > 0){
             console.log(req.files)
