@@ -87,7 +87,7 @@ export default function Home() {
           En primera persona
         </h3>
       </div>
-      <div className="flex justify-center sm:justify-start">
+      <div className="flex justify-center sm:justify-start sm:mb-16">
         <PersonsCarousel users={carouselUsers} />
       </div>
     </main>
