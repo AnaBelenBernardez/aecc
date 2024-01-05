@@ -9,8 +9,6 @@ async function addEvent (req,res) {
 
         const { title, content, location, date_start, date_end, link } = req.body;
 
-        const idAdmin = req.admin.id; 
-
         if(!title){
 
             return res.status(400).send({
@@ -65,7 +63,7 @@ async function addEvent (req,res) {
                 INSERT INTO events (create_date, title, content, location, date_start, date_end, link, id)
                 VALUES (?,?,?,?,?,?,?,DEFAULT)
             `,
-            [new Date(), title, content, location, new Date(date_start), new Date(date_end), link, idAdmin] 
+            [new Date(), title, content, location, new Date(date_start), new Date(date_end), link] 
         );
 
         const {insertId} = newEvent;
