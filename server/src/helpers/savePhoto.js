@@ -7,6 +7,7 @@ require('dotenv').config();
 
 async function savePhoto (photo, width) {
 
+  //revisar path 
   const uploadsPath = path.resolve(__dirname, '../', process.env.UPLOADS_DIR);
 
   try {
