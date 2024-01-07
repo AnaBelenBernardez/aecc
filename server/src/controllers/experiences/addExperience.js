@@ -5,7 +5,7 @@ const savePhoto = require('../../helpers/savePhoto');
 async function addExperience (req,res) {
     try{
 
-        const connect = await getPool();
+        const pool = await getPool();
 
         const { name, content } = req.body;
 
@@ -27,7 +27,7 @@ async function addExperience (req,res) {
 
 
 
-        const [newExperience] = await connect.query(
+        const [newExperience] = await pool.query(
             `
                 INSERT INTO experiences (name, content, id)
                 VALUES (?,?,DEFAULT)
@@ -38,11 +38,10 @@ async function addExperience (req,res) {
         const {insertId} = newExperience;
 
         if(req.files && Object.keys(req.files).length > 0){
-            console.log(req.files)
             for(let photoData of Object.values(req.files)){
                 //puse 400 de width por poner algo, imagino que esto habrá que mirarlo con el front
                 const photoName =  await savePhoto(photoData, 400);
-                await connect.query(
+                await pool.query(
                     `
                         INSERT INTO experiences_photos (photo, experience_id)
                         VALUES (?,?)
