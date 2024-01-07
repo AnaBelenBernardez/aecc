@@ -7,7 +7,7 @@ async function addEvent (req,res) {
 
         const connect = await getPool();
 
-        const { title, content, location, date_start, date_end, link } = req.body;
+        const { title, content, location, date_start, date_end, link, event_type } = req.body;
 
         if(!title){
 
@@ -57,13 +57,20 @@ async function addEvent (req,res) {
             });
         }
 
+        if(!event_type){
+            return res.status(400).send({
+                status: 'Faltan datos',
+                message: "Es obligatorio introducir el tipo de evento"
+            });
+        }
+
 
         const [newEvent] = await connect.query(
             `
-                INSERT INTO events (create_date, title, content, location, date_start, date_end, link, id)
-                VALUES (?,?,?,?,?,?,?,DEFAULT)
+                INSERT INTO events (create_date, title, content, location, date_start, date_end, link, event_type, id)
+                VALUES (?,?,?,?,?,?,?,?,DEFAULT)
             `,
-            [new Date(), title, content, location, new Date(date_start), new Date(date_end), link] 
+            [new Date(), title, content, location, new Date(date_start), new Date(date_end), link, event_type] 
         );
 
         const {insertId} = newEvent;

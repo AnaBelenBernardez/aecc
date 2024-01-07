@@ -49,6 +49,7 @@ async function createDB() {
             title VARCHAR(100) NOT NULL,
             content VARCHAR(5000) NOT NULL,
             location VARCHAR(200) NOT NULL,
+            event_type ENUM('Carrera', 'Andaina', 'Travesía a nado', 'Pádel') NOT NULL,
             link VARCHAR(500)
         );
         `
