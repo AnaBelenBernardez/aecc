@@ -14,8 +14,8 @@ const Footer = () => {
           src="/logos/CC_Logo_transicion_color_pos.rgb.svg"
           alt="Logo Asociación Española Contra el Cáncer"
           width="150"
-          height="150"
-          className="self-center mb-6"
+          height="47"
+          className="self-center mb-6 lg:self-start"
         />
         <p className="font-extrabold mb-2">Dirección A Coruña</p>
         <p className="mb-4">Rúa Real, 1, 1°, 15003 A Coruña</p>
@@ -37,9 +37,10 @@ const Footer = () => {
       <section className="mb-6">
         <h2 className="font-extrabold mb-2">SOBRE NUESTROS EVENTOS</h2>
         <ul className="flex flex-col gap-2">
-          <a>
+          <Link href="/calendario-e-inscripciones"
+            className="hover:text-primaryGreen transition-all duration-300 ease-in-out">
             <li>Calendario e inscripciones</li>
-          </a>
+          </Link>
           <a>
             <li>Preguntas frecuentes</li>
           </a>

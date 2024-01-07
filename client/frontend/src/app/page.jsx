@@ -1,11 +1,9 @@
 "use client";
 
-import { initialEvents } from "@/mockup/events";
 import { EventsCarousel, PersonsCarousel } from "../components";
 import Image from "next/image";
 import { users } from "@/lib/users";
-
-const events = initialEvents;
+import Calendar from '../components/ui/calendar';
 
 export default function Home() {
   const carouselUsers = users;
@@ -34,11 +32,23 @@ export default function Home() {
       <div className="flex flex-col justify-center gap-5 text-black">
         <EventsCarousel />
         <div className="mt-10 flex justify-center">
-          <button className="border border-primaryGreen rounded-2xl text-sm font-bold px-10 py-2">
+          <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2">
             VER TODOS
           </button>
         </div>
       </div>
+      <section className='pl-8 pr-8 lg:w-full lg:relative'>
+        <div className='flex flex-col'>
+          <h2 className="text-2xl font-bold text-center mb-9 mt-9 sm:text-5xl sm:text-left sm:ml-10">Calendario de eventos</h2>
+          <p className='mb-8 mr-5 ml-5 text-balance lg:w-2/6 lg:ml-10'>Consulta todos los eventos que hemos planificado este
+              año. Desplázate por el calendario y no te pierdas
+              ninguno. <br />
+              Te estamos esperando.
+          </p>
+          <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-8 lg:self-start lg:ml-10">VER TODOS LOS EVENTOS</button>
+        </div>
+        <div className='flex justify-center lg:absolute lg:top-20 lg:right-80 2xl:right-[40rem]'><Calendar/></div>
+      </section>
       <div className="flex sm:w-full sm:ml-32 mt-10">
         <h3 className="text-2xl sm:text-5xl font-bold my-8 ml-2 sm:mb-10">
           Gracias a tu participación...
