@@ -56,6 +56,7 @@ module.exports = {
         secondRed: "#FF3C37",
         secondGray: "#D9DAD9",
         secondLightGray: "#F5F5F5",
+        blueBgSection: "#D2F5F0"
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -5,16 +5,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;700;800&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-  font-family: "Raleway", sans-serif;
+	font-family: "Raleway", sans-serif;
 }
 
 a:hover svg path {
-  transition: all 0.3s ease-in-out;
-  fill: #24c347;
+	transition: all 0.3s ease-in-out;
+	fill: #24c347;
+}
+
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background: #f5f5f5
+		url(https://stockcrowd.s3.amazonaws.com/descargables/aecc/imagenes/dropdown.svg)
+		no-repeat;
+	background-position: 96% 57%;
 }
