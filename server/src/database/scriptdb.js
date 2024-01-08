@@ -63,8 +63,8 @@ async function createDB() {
         CREATE TABLE IF NOT EXISTS experiences
         (
             id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-            name VARCHAR(40) UNIQUE NOT NULL,
-            content VARCHAR(5000) NOT NULL
+            name VARCHAR(40) NOT NULL,
+            content VARCHAR(5000) UNIQUE NOT NULL
         );
         `
     );
@@ -73,7 +73,7 @@ async function createDB() {
     await pool.query(
 
         `
-        CREATE TABLE IF NOT EXISTS photos
+        CREATE TABLE IF NOT EXISTS events_photos
         (
                 id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 photo VARCHAR (500),
@@ -107,23 +107,7 @@ async function createDB() {
         (
             id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
             title VARCHAR(100) NOT NULL,
-            content VARCHAR(5000) NOT NULL,
-            event_id INT UNSIGNED NOT NULL,
-            link VARCHAR(500),
-            FOREIGN KEY (event_id) REFERENCES events(id)
-        );
-        `
-    );
-
-
-    await pool.query(
-
-        `
-        CREATE TABLE IF NOT EXISTS news
-        (
-            id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-            title VARCHAR(100) NOT NULL,
-            content VARCHAR(5000) NOT NULL,
+            content VARCHAR(5000) UNIQUE NOT NULL,
             event_id INT UNSIGNED NOT NULL,
             link VARCHAR(500),
             FOREIGN KEY (event_id) REFERENCES events(id)
@@ -139,8 +123,8 @@ async function createDB() {
             (
                 id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 name VARCHAR(40) UNIQUE NOT NULL,
-                logo VARCHAR (500),
-                description VARCHAR(500) NOT NULL,
+                logo VARCHAR (500) UNIQUE NOT NULL,
+                description VARCHAR(500),
                 link VARCHAR(500)
             )
         `
