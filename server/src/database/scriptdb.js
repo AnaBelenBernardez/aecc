@@ -64,7 +64,7 @@ async function createDB() {
         (
             id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
             name VARCHAR(40) NOT NULL,
-            content VARCHAR(5000) UNIQUE NOT NULL
+            content VARCHAR(5000) NOT NULL
         );
         `
     );
@@ -107,7 +107,7 @@ async function createDB() {
         (
             id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
             title VARCHAR(100) NOT NULL,
-            content VARCHAR(5000) UNIQUE NOT NULL,
+            content VARCHAR(5000) NOT NULL,
             event_id INT UNSIGNED NOT NULL,
             link VARCHAR(500),
             FOREIGN KEY (event_id) REFERENCES events(id)
