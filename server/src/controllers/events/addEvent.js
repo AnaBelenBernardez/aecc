@@ -1,69 +1,27 @@
 const {getPool} = require("../../database/db");
 const savePhoto = require('../../helpers/savePhoto');
+const addEventSchema = require('../../schemas/addEventSchema');
+const generateError = require('../../helpers/generateError');
 
 
-async function addEvent (req,res) {
+async function addEvent (req,res,next) {
     try{
-
+        //! Revisar unique content
         const connect = await getPool();
 
-        const { title, content, location, date_start, date_end, link, event_type } = req.body;
+        const { title, content, location, date_start, date_end, event_type, link } = req.body;
 
-        if(!title){
 
-            return res.status(400).send({
-                status: 'Faltan datos',
-                message: "Es obligatorio introducir un título para el evento"
-            });
-        } 
+        const {error} = addEventSchema.validate(req.body);
 
-        if(!content){
-
-            return res.status(400).send({
-                status: 'Faltan datos',
-                message: "Es obligatorio introducir una breve descripción del evento"
-            });
-        } 
-
-        if(!location){
-
-            return res.status(400).send({
-                status: 'Faltan datos',
-                message: "Es obligatorio introducir una localización para el evento"
-            });
-        } 
-
-        if(!date_start){
-
-            return res.status(400).send({
-                status: 'Faltan datos',
-                message: "Es obligatorio introducir una fecha de inicio para el evento"
-            });
-        } 
-
-        if(!date_end){
-
-            return res.status(400).send({
-                status: 'Faltan datos',
-                message: "Es obligatorio introducir la fecha en la que finaliza el evento"
-            });
-        } 
-        
-
-        if(!link){
-            return res.status(400).send({
-                status: 'Faltan datos',
-                message: "Es obligatorio introducir un link que redireccione a la página del evento"
-            });
+        if (error) {
+            return next(generateError(error.message, 400));
         }
 
-        if(!event_type){
-            return res.status(400).send({
-                status: 'Faltan datos',
-                message: "Es obligatorio introducir el tipo de evento"
-            });
+        if(!req.files){
+            return next(generateError('Es obligario anexar al menos una imagen', 400));
+            
         }
-
 
         const [newEvent] = await connect.query(
             `
@@ -82,7 +40,7 @@ async function addEvent (req,res) {
                 const photoName =  await savePhoto(photoData, 400);
                 await connect.query(
                     `
-                        INSERT INTO photos (photo, event_id)
+                        INSERT INTO events_photos (photo, event_id)
                         VALUES (?,?)
                     `,
                     [photoName, insertId]
@@ -92,7 +50,7 @@ async function addEvent (req,res) {
 
         res.status(200).send({
             status: "OK",
-            message: "Entrada creada correctamente",
+            message: "Evento creado correctamente",
             data: newEvent
         });
     } catch (e){

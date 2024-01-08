@@ -19,12 +19,6 @@ server.use('/admin', adminRouter);
 server.use('/events', eventsRouter);
 server.use('/experiences', experiencesRouter);
 
-/* const staticDir = path.join(__dirname,'uploads');
-
-server.use(express.static(staticDir));
-
-createStaticDir(staticDir);  */
-
 
 server.use((err, _req, res, _next) => {
     console.log("ERROR: " + err.message);
