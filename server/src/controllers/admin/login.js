@@ -1,19 +1,18 @@
 const {getPool} = require('../../database/db');
 const jwt = require('jsonwebtoken');
+const generateError = require('../../helpers/generateError');
+const adminLoginSchema = require('../../schemas/adminLoginSchema');
 
-async function login (req,res){
+async function login (req,res,next) {
     try{
-        const pool = await getPool();
-
         const {name, pwd} = req.body;
 
-        if(!name || !pwd){
+        const { error } = adminLoginSchema.validate(req.body);
+    if (error) {
+        return next(generateError(error.message, 400));
+    }
+        const pool = await getPool();
 
-            return res.status(400).send({
-                status:'Faltan datos.',
-                message: 'Es obligatorio introducir nombre y contraseña'
-            });
-        }
 
         const [admin] = await pool.query(
             `

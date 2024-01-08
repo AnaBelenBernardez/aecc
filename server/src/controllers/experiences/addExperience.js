@@ -4,7 +4,7 @@ const savePhoto = require('../../helpers/savePhoto');
 
 async function addExperience (req,res) {
     try{
-
+        //! Revisar unique content
         const pool = await getPool();
 
         const { name, content } = req.body;
