@@ -4,6 +4,7 @@ import { EventsCarousel, PersonsCarousel } from "../components";
 import Image from "next/image";
 import { users } from "@/lib/users";
 import Calendar from '../components/ui/calendar';
+import Link from 'next/link';
 
 export default function Home() {
   const carouselUsers = users;
@@ -20,7 +21,7 @@ export default function Home() {
             CONSULTA TODOS NUESTROS EVENTOS E INSCRÍBETE
           </p>
           <button className="bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 mt-5">
-            IR A EVENTOS
+          <Link href="/calendario-e-inscripciones">IR A EVENTOS</Link>
           </button>
         </div>
       </div>
@@ -32,9 +33,9 @@ export default function Home() {
       <div>
         <EventsCarousel />
         <div className="mt-10 flex justify-center">
-          <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2">
-            VER TODOS
-          </button>
+            <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2">
+              <Link href="/calendario-e-inscripciones">VER TODOS</Link>
+            </button>
         </div>
       </div>
       <section className='pl-8 pr-8 lg:w-full lg:relative'>
@@ -45,7 +46,9 @@ export default function Home() {
               ninguno. <br />
               Te estamos esperando.
           </p>
-          <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-8 lg:self-start lg:ml-10">VER TODOS LOS EVENTOS</button>
+          <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-8 lg:self-start lg:ml-10">
+          <Link href="/calendario-e-inscripciones">VER TODOS LOS EVENTOS</Link>
+          </button>
         </div>
         <div className='flex justify-center lg:absolute lg:top-20 lg:right-80 2xl:right-[40rem]'><Calendar/></div>
       </section>
@@ -61,6 +64,7 @@ export default function Home() {
             width={120}
             height={120}
             className="border-2 p-6 border-primaryGreen rounded-full"
+            alt='Recaudacion'
           />
           <p className="text-sm mx-5">
             Haces posible que sigamos ofreciendo servicios gratuitos a pacientes
@@ -73,6 +77,7 @@ export default function Home() {
             width={120}
             height={120}
             className="border-2 p-6 border-primaryGreen rounded-full"
+            alt='Recaudacion'
           />
           <p className="text-sm mx-5">
             Contribuyes a reducir el impacto del cáncer en personas en riesgo de
@@ -85,6 +90,7 @@ export default function Home() {
             width={130}
             height={130}
             className="border-2 p-6 border-primaryGreen rounded-full"
+            alt='Participantes'
           />
           <p className="text-sm mx-5">
             Ayudas a más de XXX pacientes de cáncer y sus familiares durante el
