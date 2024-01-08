@@ -27,7 +27,7 @@ export const EventsCarousel = () => {
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.play}
-        className="w-full max-w-sm sm:max-w-7xl"
+        className="max-w-sm sm:max-w-7xl"
       >
         <CarouselContent>
           {Array.from({ length: 5 }).map((_, index) => (

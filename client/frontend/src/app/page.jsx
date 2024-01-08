@@ -31,7 +31,7 @@ export default function Home() {
           Próximos eventos
         </h3>
       </div>
-      <div className="flex flex-col justify-center gap-5 text-black">
+      <div>
         <EventsCarousel />
         <div className="mt-10 flex justify-center">
           <button className="border border-primaryGreen rounded-2xl text-sm font-bold px-10 py-2">
