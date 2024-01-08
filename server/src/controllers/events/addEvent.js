@@ -34,7 +34,6 @@ async function addEvent (req,res,next) {
         const {insertId} = newEvent;
 
         if(req.files && Object.keys(req.files).length > 0){
-            console.log(req.files)
             for(let photoData of Object.values(req.files)){
                 //puse 400 de width por poner algo, imagino que esto habrá que mirarlo con el front
                 const photoName =  await savePhoto(photoData, 400);
