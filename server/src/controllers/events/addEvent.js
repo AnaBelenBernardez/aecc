@@ -37,22 +37,23 @@ async function addEvent (req,res,next) {
 
         if (Array.isArray(photos)) {
             for (const photo of photos) {
-              const photoName = await savePhoto(photo, 500);
-              await pool.query(
+                const photoName = await savePhoto(photo, 500);
+
+                await pool.query(
                 'INSERT INTO events_photos (event_id, photo) VALUES (?, ?)',
                 [insertId, photoName]
-              );
-      
-              insertedPhotos.push(photoName);
+                );
+        
+                insertedPhotos.push(photoName);
             }
-          } else {
-            const photoName = await savePhoto(photos, 500);
-            await pool.query(
-              'INSERT INTO pet_photos (event_id, photo) VALUES (?, ?)',
-              [insertId, photoName]
-            );
-            insertedPhotos.push(photoName);
-          }
+            } else {
+                const photoName = await savePhoto(photos, 500);
+                await pool.query(
+                    'INSERT INTO pet_photos (event_id, photo) VALUES (?, ?)',
+                    [insertId, photoName]
+                );
+                insertedPhotos.push(photoName);
+            }
 
         res.status(200).send({
             status: "OK",
