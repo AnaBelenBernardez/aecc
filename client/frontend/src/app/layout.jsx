@@ -1,8 +1,9 @@
-import { Inter, Raleway } from "next/font/google";
+import { Raleway } from "next/font/google";
 import "./globals.css";
+import Header from '../components/header/Header';
 import Footer from "../components/footer/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+
 const raleway = Raleway({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "700", "800"],
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={raleway.className}>
+        <Header/>
         {children}
         <Footer />
       </body>
