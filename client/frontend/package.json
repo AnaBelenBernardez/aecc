@@ -15,6 +15,7 @@
     "@mui/material": "^5.15.3",
     "@mui/x-date-pickers": "^6.18.7",
     "@radix-ui/react-label": "^2.0.2",
+    
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
@@ -25,6 +26,7 @@
     "embla-carousel-react": "^8.0.0-rc18",
     "lucide-react": "^0.303.0",
     "next": "14.0.4",
+    "next-auth": "^4.24.5",
     "react": "^18",
     "react-day-picker": "^8.10.0",
     "react-dom": "^18",
