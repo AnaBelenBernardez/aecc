@@ -31,7 +31,7 @@ async function getEvent (req,res) {
         const [photos] = await connect.query(
             `
                 SELECT p.id AS "photo_id", p.photo AS "name_photo"
-                FROM photos p
+                FROM events_photos p
                 INNER JOIN events e ON p.event_id=?
                 WHERE p.event_id
                 GROUP BY p.id

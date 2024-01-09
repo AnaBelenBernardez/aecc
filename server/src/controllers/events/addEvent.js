@@ -7,9 +7,11 @@ const generateError = require('../../helpers/generateError');
 async function addEvent (req,res,next) {
     try{
         //! Revisar unique content
-        const connect = await getPool();
+        const insertedPhotos = [];
+        const pool = await getPool();
 
         const { title, content, location, date_start, date_end, event_type, link } = req.body;
+        const photos = req.files?.photo;
 
 
         const {error} = addEventSchema.validate(req.body);
@@ -23,7 +25,7 @@ async function addEvent (req,res,next) {
             
         }
 
-        const [newEvent] = await connect.query(
+        const [newEvent] = await pool.query(
             `
                 INSERT INTO events (create_date, title, content, location, date_start, date_end, link, event_type, id)
                 VALUES (?,?,?,?,?,?,?,?,DEFAULT)
@@ -33,19 +35,24 @@ async function addEvent (req,res,next) {
 
         const {insertId} = newEvent;
 
-        if(req.files && Object.keys(req.files).length > 0){
-            for(let photoData of Object.values(req.files)){
-                //puse 400 de width por poner algo, imagino que esto habrá que mirarlo con el front
-                const photoName =  await savePhoto(photoData, 400);
-                await connect.query(
-                    `
-                        INSERT INTO events_photos (photo, event_id)
-                        VALUES (?,?)
-                    `,
-                    [photoName, insertId]
-                )
+        if (Array.isArray(photos)) {
+            for (const photo of photos) {
+              const photoName = await savePhoto(photo, 500);
+              await pool.query(
+                'INSERT INTO events_photos (event_id, photo) VALUES (?, ?)',
+                [insertId, photoName]
+              );
+      
+              insertedPhotos.push(photoName);
             }
-        }
+          } else {
+            const photoName = await savePhoto(photos, 500);
+            await pool.query(
+              'INSERT INTO pet_photos (event_id, photo) VALUES (?, ?)',
+              [insertId, photoName]
+            );
+            insertedPhotos.push(photoName);
+          }
 
         res.status(200).send({
             status: "OK",
