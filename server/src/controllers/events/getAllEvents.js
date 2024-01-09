@@ -19,11 +19,15 @@ async function getAllEvents (req,res,next){
         let events;
 
         if (eventTypeFilter && locationFilter && dateFilter) {
-            [events] = await pool.query(`SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link
+            [events] = await pool.query(`SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link, GROUP_CONCAT(ep.photo) AS event_photos
             FROM events e
+            LEFT JOIN
+            events_photos AS ep ON e.id = ep.event_id
             WHERE event_type = ? AND location = ?
             AND e.date_start BETWEEN ? AND ?
-            ORDER BY e.date_start DESC`, [eventTypeFilter, locationFilter, minDate, maxDate]);
+            GROUP BY e.id
+            ORDER BY e.date_start DESC
+            `, [eventTypeFilter, locationFilter, minDate, maxDate]);
 
         } else if (eventTypeFilter && locationFilter) {
             [events] = await pool.query(`SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link
