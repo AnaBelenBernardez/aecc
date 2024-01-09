@@ -5,11 +5,15 @@ import { es } from 'date-fns/locale';
 import { parseISO } from 'date-fns';
 import 'react-day-picker/dist/style.css';
 import { initialEvents } from '../../mockup/events';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Calendar = () => {
   let mousePositionX;
   let mousePositionY;
+
+  const calendarRef = useRef(null);
+
+  const [mouseOnAside, setMouseOnAside] = useState(false);
 
   // YYYY-MM-DDTHH:mm:ssZ  --> Formato fecha para que la pueda usar el calendario
   const eventsDate = initialEvents.map((event) => {
@@ -20,7 +24,7 @@ const Calendar = () => {
 
   useEffect(() => {
     window.addEventListener('mouseover', getMousePosition);
-  }, [])
+   }, [])
 
   const formatDate = (date) => {
     return date.toString().split(' ').slice(0, 4).join(' ');
@@ -45,7 +49,7 @@ const Calendar = () => {
     mousePositionY = e.clientY;
 
     document.removeEventListener('mouseover', getMousePosition);
-
+  
     return { x: mousePositionX, y: mousePositionY};
   }
 
@@ -57,6 +61,7 @@ const Calendar = () => {
         for (const event of initialEvents) {
           const eventDate = new Date(event.date);
           if(formatDate(eventDate) === formatDate(calendarDate)) {
+            setMouseOnAside(true);
             addAsideInfo(event);
             const eventCalendarInfo = document.querySelector('#eventInfo');
             eventCalendarInfo.style.left = `${mousePositionX}px`;
@@ -66,6 +71,14 @@ const Calendar = () => {
       };
     };
   };
+
+  const hiddenEventInfo = () => {
+    setMouseOnAside(false);
+    if (!mouseOnAside && calendarRef.current) {
+      const eventCalendarInfo = document.querySelector('#eventInfo');
+      eventCalendarInfo.style.display = "none";
+    }
+  }
 
   const css = `
     .my-selected:not([disabled]) { 
@@ -109,8 +122,9 @@ const Calendar = () => {
         }}
         onDayMouseEnter={showEventInfo}
         onDayTouchStart={showEventInfo}
+        onDayMouseLeave={hiddenEventInfo}
       />
-      <aside id="eventInfo" className='w-80 h-40 shadow-md hidden fixed bg-white'></aside>
+      <aside id="eventInfo" ref={calendarRef} className='w-80 h-40 shadow-md hidden fixed bg-white'></aside>
     </>
   );
 };
