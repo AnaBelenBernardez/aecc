@@ -36,7 +36,7 @@ async function deletePhotoEvent(req,res,next) {
             status: 'OK',
             message: 'Imagen eliminada',
             idPhotoDeleted: idPhoto,
-            idEventOfPhoto: idEntry
+            idEventOfPhoto: idEvent
         });
         
     } catch (e) {

@@ -1,8 +1,9 @@
 const {getPool} = require("../../database/db");
 const savePhoto = require('../../helpers/savePhoto');
+const generateError = require('../../helpers/generateError');
 
 
-async function addExperience (req,res) {
+async function addExperience (req,res,next) {
     try{
         //! Revisar unique content
         const pool = await getPool();
@@ -10,22 +11,12 @@ async function addExperience (req,res) {
         const { name, content } = req.body;
 
         if(!name){
-
-            return res.status(400).send({
-                status: 'Faltan datos',
-                message: "Es obligatorio introducir un título para la experiencia"
-            });
+            return next(generateError('Es obligatorio introducir un título para la experiencia', 400));
         } 
 
         if(!content){
-
-            return res.status(400).send({
-                status: 'Faltan datos',
-                message: "Es obligatorio introducir el contenido de la experiencia"
-            });
+            return next(generateError('Es obligatorio introducir el contenido de la experiencia', 400));
         } 
-
-
 
         const [newExperience] = await pool.query(
             `
