@@ -25,8 +25,8 @@ async function getAllEvents (req,res,next){
         }
 
         if (eventTypeFilter && locationFilter && dateFilter) {
-            const [events] = await pool.query(
-                `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link, GROUP_CONCAT(ep.photo) AS event_photos
+            let [events] = await pool.query(
+                `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link, GROUP_CONCAT(ep.id) AS photos_ids, GROUP_CONCAT(ep.photo) AS event_photos
                 FROM events e
                 LEFT JOIN
                 events_photos AS ep ON e.id = ep.event_id
@@ -37,11 +37,25 @@ async function getAllEvents (req,res,next){
             `, [eventTypeFilter, locationFilter, minDate, maxDate]
             );
 
+            for(let i = 0; i<events.length; i++){
+                if(!events[i].photos_ids.includes(",")){
+                    events[i].photos_ids = new Array(events[i].photos_ids);
+                }else{
+                    events[i].photos_ids = events[i].photos_ids.split(",");
+                }
+    
+                if(!events[i].event_photos.includes(",")){
+                    events[i].event_photos = new Array(events[i].event_photos);
+                }else{
+                    events[i].event_photos = events[i].event_photos.split(",");
+                }
+            }
+
             showEvents.push(events);
 
         }else if (locationFilter && dateFilter) {
-            const [events] = await pool.query(
-                `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link, GROUP_CONCAT(ep.photo) AS event_photos
+            let [events] = await pool.query(
+                `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link, GROUP_CONCAT(ep.id) AS photos_ids, GROUP_CONCAT(ep.photo) AS event_photos
                 FROM events e
                 LEFT JOIN
                 events_photos AS ep ON e.id = ep.event_id
@@ -51,11 +65,25 @@ async function getAllEvents (req,res,next){
                 ORDER BY e.date_start DESC`, [locationFilter, minDate, maxDate]
             );
 
+            for(let i = 0; i<events.length; i++){
+                if(!events[i].photos_ids.includes(",")){
+                    events[i].photos_ids = new Array(events[i].photos_ids);
+                }else{
+                    events[i].photos_ids = events[i].photos_ids.split(",");
+                }
+    
+                if(!events[i].event_photos.includes(",")){
+                    events[i].event_photos = new Array(events[i].event_photos);
+                }else{
+                    events[i].event_photos = events[i].event_photos.split(",");
+                }
+            }
+
             showEvents.push(events);
 
         } else if (dateFilter && eventTypeFilter) {
-            const [events] = await pool.query(
-                `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link, GROUP_CONCAT(ep.photo) AS event_photos
+            let [events] = await pool.query(
+                `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link, GROUP_CONCAT(ep.id) AS photos_ids, GROUP_CONCAT(ep.photo) AS event_photos
                 FROM events e
                 LEFT JOIN
                 events_photos AS ep ON e.id = ep.event_id
@@ -65,11 +93,26 @@ async function getAllEvents (req,res,next){
                 ORDER BY e.date_start DESC`, [eventTypeFilter, minDate, maxDate]
             );
 
+            for(let i = 0; i<events.length; i++){
+                if(!events[i].photos_ids.includes(",")){
+                    events[i].photos_ids = new Array(events[i].photos_ids);
+                }else{
+                    events[i].photos_ids = events[i].photos_ids.split(",");
+                }
+    
+                if(!events[i].event_photos.includes(",")){
+                    events[i].event_photos = new Array(events[i].event_photos);
+                }else{
+                    events[i].event_photos = events[i].event_photos.split(",");
+                }
+            }
+            
+
             showEvents.push(events);
         }else {
         
-            const [events] = await pool.query(
-                `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link, GROUP_CONCAT(ep.photo) AS event_photos
+            let [events] = await pool.query(
+                `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link, GROUP_CONCAT(ep.id) AS photos_ids, GROUP_CONCAT(ep.photo) AS event_photos
                 FROM events e
                 LEFT JOIN
                 events_photos AS ep ON e.id = ep.event_id
@@ -77,6 +120,22 @@ async function getAllEvents (req,res,next){
                 GROUP BY e.id
                 ORDER BY e.date_start DESC`, [minDate, maxDate]
             );
+
+            for(let i = 0; i<events.length; i++){
+                if(!events[i].photos_ids.includes(",")){
+                    events[i].photos_ids = new Array(events[i].photos_ids);
+                }else{
+                    events[i].photos_ids = events[i].photos_ids.split(",");
+                }
+    
+                if(!events[i].event_photos.includes(",")){
+                    events[i].event_photos = new Array(events[i].event_photos);
+                }else{
+                    events[i].event_photos = events[i].event_photos.split(",");
+                }
+            }
+
+            
             showEvents.push(events);
 
         }
