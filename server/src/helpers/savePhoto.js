@@ -2,12 +2,11 @@ const fs = require('fs/promises');
 const path = require('path');
 const sharp = require('sharp');
 const uuid = require('uuid');
-/* const generateError = require('../helpers/generateError'); */
+const generateError = require('../helpers/generateError');
 require('dotenv').config();
 
 async function savePhoto (photo, width) {
 
-  //revisar path 
   const uploadsPath = path.resolve(__dirname, '../', process.env.UPLOADS_DIR);
 
   try {

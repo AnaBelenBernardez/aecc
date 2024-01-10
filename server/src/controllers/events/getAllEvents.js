@@ -11,19 +11,18 @@ async function getAllEvents (req,res,next){
         const locationFilter = req.query?.location;
         const minInterestDate = req.query?.minDate;
         const maxInterestDate = req.query?.maxDate;
+        const showEvents = [];
         const today = new Date();
         const todayPlusOneYear = new Date(new Date().setFullYear(parseInt(new Date().getFullYear())+1));
         let dateFilter = [minInterestDate === undefined ? today : minInterestDate, maxInterestDate === undefined ? todayPlusOneYear : maxInterestDate];
         let [minDate, maxDate] = dateFilter;
-        
+
         if(minDate === today){            
             minDate = `${minDate.getFullYear()}/${minDate.getUTCMonth()+1}/${minDate.getDate()}`;
         }
         if(maxDate === todayPlusOneYear){
             maxDate = `${maxDate.getFullYear()}/${maxDate.getUTCMonth()+1}/${maxDate.getDate()}`;
         }
-        const showEvents = [];
-
 
         if (eventTypeFilter && locationFilter && dateFilter) {
             const [events] = await pool.query(
@@ -42,7 +41,7 @@ async function getAllEvents (req,res,next){
 
         }else if (locationFilter && dateFilter) {
             const [events] = await pool.query(
-                `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link
+                `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link, GROUP_CONCAT(ep.photo) AS event_photos
                 FROM events e
                 LEFT JOIN
                 events_photos AS ep ON e.id = ep.event_id
@@ -56,7 +55,7 @@ async function getAllEvents (req,res,next){
 
         } else if (dateFilter && eventTypeFilter) {
             const [events] = await pool.query(
-                `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link
+                `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link, GROUP_CONCAT(ep.photo) AS event_photos
                 FROM events e
                 LEFT JOIN
                 events_photos AS ep ON e.id = ep.event_id
@@ -70,7 +69,7 @@ async function getAllEvents (req,res,next){
         }else {
         
             const [events] = await pool.query(
-                `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link
+                `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link, GROUP_CONCAT(ep.photo) AS event_photos
                 FROM events e
                 LEFT JOIN
                 events_photos AS ep ON e.id = ep.event_id
