@@ -61,9 +61,9 @@ const Footer = () => {
       <section>
         <h2 className="font-extrabold mb-2">NO TE PIERDAS NADA</h2>
         <ul className="flex flex-col gap-2">
-          <a>
+          <Link href="https://www.contraelcancer.es/es/actualidad/noticias" className="hover:text-primaryGreen transition-all duration-300 ease-in-out">
             <li>Noticias</li>
-          </a>
+          </Link>
           <Link
             href="https://blog.contraelcancer.es/"
             className="hover:text-primaryGreen transition-all duration-300 ease-in-out"

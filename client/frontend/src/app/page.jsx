@@ -20,43 +20,41 @@ export default function Home() {
           <p className="text-xs sm:text-xl font-medium my-5 text-white">
             CONSULTA TODOS NUESTROS EVENTOS E INSCRÍBETE
           </p>
-          <button className="bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 mt-5">
+          <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 mt-5 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
           <Link href="/calendario-e-inscripciones">IR A EVENTOS</Link>
           </button>
         </div>
       </div>
-      <div className="flex sm:w-full sm:ml-32">
-        <h3 className="text-2xl sm:text-5xl font-bold my-8 ml-2 sm:mb-10">
-          Próximos eventos
-        </h3>
-      </div>
+      <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full">
+        Próximos eventos
+      </h3>
       <div>
         <EventsCarousel />
         <div className="mt-10 flex justify-center">
-            <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2">
+            <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 hover:text-secondLightGray hover:bg-primaryGreen">
               <Link href="/calendario-e-inscripciones">VER TODOS</Link>
             </button>
         </div>
       </div>
-      <section className='pl-8 pr-8 lg:w-full lg:relative'>
-        <div className='flex flex-col'>
-          <h2 className="text-2xl font-bold text-center mb-9 mt-9 sm:text-5xl sm:text-left sm:ml-10">Calendario de eventos</h2>
-          <p className='mb-8 mr-5 ml-5 text-balance lg:w-2/6 lg:ml-10'>Consulta todos los eventos que hemos planificado este
+      <section className='flex flex-col w-full md:items-center lg:items-start pl-8 pr-8 lg:relative'>
+        <div className='flex flex-col items-center w-full lg:flex lg:flex-wrap lg:items-start'>
+          <h2 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-12 lg:w-full">
+            Calendario de eventos
+          </h2>
+          <p className='mb-8 mr-5 ml-5 text-balance md:text-center lg:text-left lg:text.left lg:w-2/6 lg:ml-10'>Consulta todos los eventos que hemos planificado este
               año. Desplázate por el calendario y no te pierdas
               ninguno. <br />
               Te estamos esperando.
           </p>
-          <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-8 lg:self-start lg:ml-10">
+          <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-8 lg:self-start lg:ml-10 hover:text-secondLightGray hover:bg-primaryGreen">
           <Link href="/calendario-e-inscripciones">VER TODOS LOS EVENTOS</Link>
           </button>
         </div>
-        <div className='flex justify-center lg:absolute lg:top-20 lg:right-80 2xl:right-[40rem]'><Calendar/></div>
+        <div className='flex justify-center lg:absolute lg:top-16 lg:right-80 2xl:right-[40rem]'><Calendar/></div>
       </section>
-      <div className="flex sm:w-full sm:ml-32 mt-10">
-        <h3 className="text-2xl sm:text-5xl font-bold my-8 ml-2 sm:mb-10">
+        <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
           Gracias a tu participación...
         </h3>
-      </div>
       <div className="grid grid-cols-1 items-center justify-center gap-10 sm:grid-cols-3 container">
         <div className="flex flex-col items-center gap-5">
           <Image
@@ -98,11 +96,9 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <div className="flex sm:w-full sm:ml-32 mt-10">
-        <h3 className="text-2xl sm:text-5xl font-bold my-8 ml-2 sm:mb-10">
+        <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full">
           En primera persona
         </h3>
-      </div>
       <div className="flex justify-center sm:justify-start sm:mb-16">
         <PersonsCarousel users={carouselUsers} />
       </div>

@@ -14,7 +14,8 @@ body {
 	font-family: "Raleway", sans-serif;
 }
 
-a:hover svg path {
+a:hover svg path,
+button:hover {
 	transition: all 0.3s ease-in-out;
 	fill: #24c347;
 }

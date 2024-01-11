@@ -19,7 +19,7 @@ export const CardEvent = ({ title, description, image, location }) => {
           </p>
         </div>
       </div>
-      <button className="bg-primaryGreen rounded-2xl text-sm font-bold px-6 py-2 ml-3 mb-3">
+      <button className="border-2 border-primaryGreen bg-primaryGreen rounded-2xl text-sm font-bold px-6 py-2 ml-3 mb-3 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
         PARTICIPA
       </button>
     </div>
