@@ -8,7 +8,7 @@ import LinkInstagram from "./LinksRRSS/LinkInstagram";
 
 const Footer = () => {
   return (
-    <footer className="w-full https://prod.liveshare.vsengsaas.visualstudio.com/join?FDF07A32B5EB7F964DD759F8F35FD00EE6EBbottom-0 flex flex-col items-center text-center bg-secondLightGray py-8 lg:flex-row lg:items-start lg:justify-around lg:text-left">
+    <footer className="w-full bottom-0 flex flex-col items-center text-center bg-secondLightGray py-8 lg:flex-row lg:items-start lg:justify-around lg:text-left">
       <section className="flex flex-col mb-6">
         <Image
           src="/logos/CC_Logo_transicion_color_pos.rgb.svg"
