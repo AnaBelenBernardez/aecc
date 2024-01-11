@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 
 const fileupload = require('express-fileupload');
-const path = require('path');
 const server = express();
 
 const adminRouter = require('../src/routes/adminRouter');
