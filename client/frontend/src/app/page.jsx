@@ -5,9 +5,14 @@ import Image from "next/image";
 import { users } from "@/lib/users";
 import Calendar from '../components/ui/calendar';
 import Link from 'next/link';
+import SelectInput from '../components/ui/selectInput';
+import DateTimePickerValue from '../components/ui/dateRangePicker';
 
 export default function Home() {
   const carouselUsers = users;
+  const localidades = ['Todas las localidades', 'Malpica de Bergantiños', 'Miño', 'Laracha', 'A Pobra', 'As Pontes'];
+  const categoryEvents = ['Todos los eventos', 'Andainas y Carreras', 'Travesía a nado', 'Torneo de pádel', 'Bicicleta', 'Otras actividades deportivas'];
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center sm:gap-10">
       <div className="bg-[url('/image/eventos-M.webp')] w-full bg-cover bg-center sm:bg-cover h-[380px] sm:h-[480px] bg-no-repeat flex sm:items-center justify-start">
@@ -25,6 +30,17 @@ export default function Home() {
           </button>
         </div>
       </div>
+      <section className='bg-blueBgSection flex flex-col gap-4 px-7 lg:pb-10 md:w-full'>
+        <h2 className="text-lg font-extrabold text-center pt-6 pb-2">Encuentra un evento #contraelcáncer</h2>
+        <div className='flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center'>
+          <div className='flex flex-col gap-4 md:flex-row md:items-center'>
+            <SelectInput text={'Tipo de evento'} eventType={'events'} options={categoryEvents}></SelectInput>
+            <SelectInput text={'Localidades'} eventType={'locations'} options={localidades}></SelectInput>
+          </div>
+          <DateTimePickerValue></DateTimePickerValue>
+          <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">Buscar</button>
+        </div>
+      </section>
       <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full">
         Próximos eventos
       </h3>
