@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Header = () => {
     return (
@@ -16,14 +17,14 @@ const Header = () => {
                 </p>
               </div>
               <div className='my-4'>
-                <a href="" className='lg:mr-7'>Inicio</a>
-                <a href="" className='lg:mr-7'>Calendario e inscripciones</a>
+                <Link href="/" className='hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7'>Inicio</Link>
+                <Link href="/calendario-e-inscripciones" className='hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7'>Calendario e inscripciones</Link>
                 <a href="" className='lg:mr-7'>Galería</a>
                 <a href="" className='lg:mr-7'>FAQ</a>
                 <a href="" className='lg:mr-7'>Voluntarios</a>
                 <a href="" className='lg:mr-7'>Patrocinios</a>
-                <a href="" className='lg:mr-7'>Noticias</a>
-                <a href="" className='lg:mr-7'>Blog</a>
+                <Link href="https://www.contraelcancer.es/es/actualidad/noticias" className='hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7'>Noticias</Link>
+                <a href="https://blog.contraelcancer.es/" className='hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7'>Blog</a>
                 <a href="" className='lg:mr-7'>Contacto</a>
               </div>
             </div>
