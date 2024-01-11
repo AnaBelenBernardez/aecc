@@ -19,7 +19,7 @@ export default function CalendarAndRegistration() {
             <SelectInput text={'Localidades'} eventType={'locations'} options={localidades}></SelectInput>
           </div>
           <DateTimePickerValue></DateTimePickerValue>
-          <button className="bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-6 lg:self-end lg:mb-2">Buscar</button>
+          <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">Buscar</button>
         </div>
       </section>
       <section className='mb-8'>
