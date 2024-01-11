@@ -49,7 +49,7 @@ async function addEvent (req,res,next) {
             } else {
                 const photoName = await savePhoto(photos, 500);
                 await pool.query(
-                    'INSERT INTO pet_photos (event_id, photo) VALUES (?, ?)',
+                    'INSERT INTO events_photos (event_id, photo) VALUES (?, ?)',
                     [insertId, photoName]
                 );
                 insertedPhotos.push(photoName);
