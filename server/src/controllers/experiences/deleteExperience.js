@@ -4,9 +4,10 @@ const deletePhoto = require('../../helpers/deletePhoto');
 
 async function deleteExperience (req,res,next) {
     try {
+        //! ECHAR UN OJO AL MANEJO DE ERRORES
         const pool = await getPool();
 
-        const { id } = req.params;
+        const { idExperience } = req.params;
 
         const [photos] = await pool.query(
             `
@@ -14,16 +15,16 @@ async function deleteExperience (req,res,next) {
                 FROM events_photos
                 WHERE event_id=?
             `,
-            [id]
+            [idExperience]
         );
 
-        await pool.query(`DELETE FROM experiences_photos WHERE experience_id=?`,[id])
+        await pool.query(`DELETE FROM experiences_photos WHERE experience_id=?`,[idExperience])
 
         for(let item of photos){
             await deletePhoto(item.photo);
         }
 
-        await pool.query(`DELETE FROM experiences WHERE id=?`,[id])
+        await pool.query(`DELETE FROM experiences WHERE id=?`,[idExperience])
         
         
 
