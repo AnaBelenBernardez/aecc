@@ -3,6 +3,8 @@ const deletePhoto = require('../../helpers/deletePhoto');
 
 async function deleteEvent (req,res,next) {
     try {
+        //! ECHAR UN OJO AL MANEJO DE ERRORES
+        
         const pool = await getPool();
         const {idEvent} = req.params;
 
@@ -15,10 +17,12 @@ async function deleteEvent (req,res,next) {
             [idEvent]
         );
 
-        await pool.query(`DELETE FROM events_photos WHERE event_id=?`,[idEvent]);
+        if(photos.length > 0){
+            await pool.query(`DELETE FROM events_photos WHERE event_id=?`,[idEvent]);
 
-        for(let item of photos){
-            await deletePhoto(item.photo);
+                    for(let item of photos){
+                        await deletePhoto(item.photo);
+                    }
         }
 
         await pool.query(`DELETE FROM events WHERE id=?`,[idEvent]);
