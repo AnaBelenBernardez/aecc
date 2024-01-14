@@ -1,10 +1,12 @@
-const {getPool} = require('../../database/db');
+const {getPool} = require("../../database/db");
 const deletePhoto = require('../../helpers/deletePhoto');
 
-async function deleteEvent (req,res,next) {
+
+async function deleteExperience (req,res,next) {
     try {
         const pool = await getPool();
-        const {idEvent} = req.params;
+
+        const { id } = req.params;
 
         const [photos] = await pool.query(
             `
@@ -12,25 +14,28 @@ async function deleteEvent (req,res,next) {
                 FROM events_photos
                 WHERE event_id=?
             `,
-            [idEvent]
+            [id]
         );
 
-        await pool.query(`DELETE FROM events_photos WHERE event_id=?`,[idEvent]);
+        await pool.query(`DELETE FROM experiences_photos WHERE experience_id=?`,[id])
 
         for(let item of photos){
             await deletePhoto(item.photo);
         }
 
-        await pool.query(`DELETE FROM events WHERE id=?`,[idEvent]);
+        await pool.query(`DELETE FROM experiences WHERE id=?`,[id])
+        
+        
 
         res.status(200).send({
             status: 'OK',
-            message: `El evento y sus fotos han sido eliminados`
+            message: `La expericia y sus fotos han sido eliminadas`
         });
 
-    } catch (e) {
+    } catch (e){
         console.log(e)
-        next(e);
+        next(e)
     }
 }
-module.exports = deleteEvent;
+
+module.exports = deleteExperience;
