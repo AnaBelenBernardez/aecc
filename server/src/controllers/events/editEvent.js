@@ -1,44 +1,70 @@
 const {getPool} = require("../../database/db");
 const generateError = require('../../helpers/generateError');
+const eventSchema = require('../../schemas/eventSchema');
+const { photoSchema, arrayPhotoSchema } = require('../../schemas/photoSchema');
+const savePhoto = require('../../helpers/savePhoto');
 
 
-async function editEvent (req,res) {
+async function editEvent (req,res,next) {
     try{
 
         const {idEvent} = req.params;
-        const connect = await getPool();
+        const pool = await getPool();
+
+        const insertedPhotos = [];
+
+        const photos = req.files?.photo;
+        let photoErrorSchema;
+        
+        if (!photos || photos.length === 0) {
+            return next(generateError('No has subido ninguna foto del evento', 400));
+        }
+
+        if (photos.length > 400) {
+            return next(generateError('Has subido demasiadas fotos. Máximo 400', 400));
+        }
+
+        if (Array.isArray(photos)) {
+            const { error } = await arrayPhotoSchema.validateAsync(photos);
+            photoErrorSchema = error;
+        } else {
+            await photoSchema.validateAsync(photos);
+        }
+        
+        if (photoErrorSchema) {
+            return next(generateError(errorSchema.details[0].message, 400));
+        }
+        
+        const {error} = eventSchema.validate(req.body);
+        
+        if (error) {
+            return next(generateError(error.message, 400));
+        }
 
         const { title, content, location, date_start, date_end, event_type, link } = req.body;
 
-        if(!title){
-            return next(generateError('El título es obligatorio', 400));
-        }
+        if (Array.isArray(photos)) {
+            for (const photo of photos) {
+                const photoName = await savePhoto(photo, 500);
 
-        if(!content){
-            return next(generateError('El contenido es obligatorio', 400));
-        }
+                await pool.query(
+                'INSERT INTO events_photos (event_id, photo) VALUES (?, ?)',
+                [idEvent, photoName]
+                );
+        
+                insertedPhotos.push(photoName);
+            }
+            } else {
+                const photoName = await savePhoto(photos, 500);
+                await pool.query(
+                    'INSERT INTO events_photos (event_id, photo) VALUES (?, ?)',
+                    [idEvent, photoName]
+                );
+                insertedPhotos.push(photoName);
+            }
 
-        if(!location){
-            return next(generateError('La localizacion es obligatoria', 400));
-        }
 
-        if(!date_start){
-            return next(generateError('La fecha de inicio es obligatoria', 400));
-        }
-
-        if(!date_end){
-            return next(generateError('La fecha de finalización es obligatoria', 400));
-        }
-
-        if(!event_type){
-            return next(generateError('El tipo de evento es obligatorio', 400));
-        }
-
-        if(!link){
-            return next(generateError('El link es obligatorio', 400));
-        } 
-
-        const [editedEvent] = await connect.query(
+        const [editedEvent] = await pool.query(
             `
                 UPDATE events 
                 SET last_update = ?,title = ?, content = ?, location = ?, date_start = ?, date_end = ?, event_type = ?, link = ?, edited = 1
@@ -47,7 +73,7 @@ async function editEvent (req,res) {
             [new Date(), title, content, location, date_start, date_end, event_type, link, idEvent] 
         );
 
-        const [updatedEvent] = await connect.query(
+        const [updatedEvent] = await pool.query(
             `
                 SELECT *
                 FROM events e
@@ -65,6 +91,7 @@ async function editEvent (req,res) {
 
     } catch(e){
         console.log(e);
+        next(e);
     }
 }
 
