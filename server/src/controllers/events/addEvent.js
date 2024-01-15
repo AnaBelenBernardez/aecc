@@ -19,12 +19,11 @@ async function addEvent (req,res,next) {
         
         if (!photos || photos.length === 0) {
             return next(generateError('No has subido ninguna foto del evento', 400));
-          }
-      
-          if (photos.length > 400) {
-            return next(generateError('Has subido demasiadas fotos. Máximo 400', 400));
-          }
+        }
 
+        if (photos.length > 400) {
+            return next(generateError('Has subido demasiadas fotos. Máximo 400', 400));
+        }
 
         if (Array.isArray(photos)) {
             const { error } = await arrayPhotoSchema.validateAsync(photos);
