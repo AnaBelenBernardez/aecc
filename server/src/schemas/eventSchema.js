@@ -1,6 +1,6 @@
 const Joi = require('joi')
 
-const addEventSchema = Joi.object({
+const eventSchema = Joi.object({
     title: Joi.string().min(2).max(100).required().messages({
         'string.empty': 'Tienes que escribir el nombre del evento.',
         'string.min': 'El nombre del evento debe tener mínimo 2 caracteres.',
@@ -42,4 +42,4 @@ const addEventSchema = Joi.object({
   })
 });
 
-module.exports = addEventSchema;
+module.exports = eventSchema;

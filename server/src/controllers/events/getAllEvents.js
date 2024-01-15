@@ -1,6 +1,5 @@
 const {getPool} = require('../../database/db');
 const generateError = require('../../helpers/generateError');
-const { max } = require('../../schemas/addEventSchema');
 
 async function getAllEvents (req,res,next){
     try{

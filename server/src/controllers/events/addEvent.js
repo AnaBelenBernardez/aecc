@@ -1,6 +1,6 @@
 const {getPool} = require("../../database/db");
 const savePhoto = require('../../helpers/savePhoto');
-const addEventSchema = require('../../schemas/addEventSchema');
+const eventSchema = require('../../schemas/eventSchema');
 const generateError = require('../../helpers/generateError');
 const { photoSchema, arrayPhotoSchema } = require('../../schemas/photoSchema');
 
@@ -16,6 +16,7 @@ async function addEvent (req,res,next) {
 
         const photos = req.files?.photo;
         let photoErrorSchema;
+
         
         if (!photos || photos.length === 0) {
             return next(generateError('No has subido ninguna foto del evento', 400));
@@ -36,15 +37,23 @@ async function addEvent (req,res,next) {
             return next(generateError(errorSchema.details[0].message, 400));
         }
         
-        const {error} = addEventSchema.validate(req.body);
+        const {error} = eventSchema.validate(req.body);
         
         if (error) {
             return next(generateError(error.message, 400));
         }
         
-    
+        
         const { title, content, location, date_start, date_end, event_type, link } = req.body;
+       
+        const [previousLink] = await pool.query(
+            'SELECT link FROM events WHERE link = ?',
+            [link]
+          );
 
+        if (previousLink.length > 0) {
+            return next(generateError('Ya existe un evento con este link', 400));
+        }
         const [newEvent] = await pool.query(
             `
                 INSERT INTO events (create_date, title, content, location, date_start, date_end, link, event_type, id)
