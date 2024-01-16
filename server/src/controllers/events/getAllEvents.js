@@ -1,5 +1,6 @@
 const {getPool} = require('../../database/db');
 const generateError = require('../../helpers/generateError');
+const convertPhotosIds = require('../../helpers/convertPhotosIds');
 
 async function getAllEvents (req,res,next){
     try{
@@ -23,6 +24,8 @@ async function getAllEvents (req,res,next){
             maxDate = `${maxDate.getFullYear()}/${maxDate.getUTCMonth()+1}/${maxDate.getDate()}`;
         }
 
+        
+
         if (eventTypeFilter && locationFilter && dateFilter) {
             let [events] = await pool.query(
                 `SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.location, e.event_type, e.link, GROUP_CONCAT(ep.id) AS photos_ids, GROUP_CONCAT(ep.photo) AS event_photos
@@ -36,22 +39,8 @@ async function getAllEvents (req,res,next){
             `, [eventTypeFilter, locationFilter, minDate, maxDate]
             );
 
-            for(let i = 0; i<events.length; i++){
-                if(events[i].photo_ids){
-                    if(!events[i].photos_ids.includes(",")){
-                        events[i].photos_ids = new Array(events[i].photos_ids);
-                    }else{
-                        events[i].photos_ids = events[i].photos_ids.split(",");
-                    }
-
-                    if(!events[i].event_photos.includes(",")){
-                        events[i].event_photos = new Array(events[i].event_photos);
-                    }else{
-                        events[i].event_photos = events[i].event_photos.split(",");
-                    }
-                }
-            }
-
+            convertPhotosIds(events);        
+            
             showEvents.push(events);
 
         }else if (locationFilter && dateFilter) {
@@ -66,21 +55,7 @@ async function getAllEvents (req,res,next){
                 ORDER BY e.date_start DESC`, [locationFilter, minDate, maxDate]
             );
 
-            for(let i = 0; i<events.length; i++){
-                if(events[i].photo_ids){
-                    if(!events[i].photos_ids.includes(",")){
-                        events[i].photos_ids = new Array(events[i].photos_ids);
-                    }else{
-                        events[i].photos_ids = events[i].photos_ids.split(",");
-                    }
-
-                    if(!events[i].event_photos.includes(",")){
-                        events[i].event_photos = new Array(events[i].event_photos);
-                    }else{
-                        events[i].event_photos = events[i].event_photos.split(",");
-                    }
-                }
-            }
+            convertPhotosIds(events);
 
             showEvents.push(events);
 
@@ -96,23 +71,8 @@ async function getAllEvents (req,res,next){
                 ORDER BY e.date_start DESC`, [eventTypeFilter, minDate, maxDate]
             );
 
-            for(let i = 0; i<events.length; i++){
-                if(events[i].photo_ids){
-                    if(!events[i].photos_ids.includes(",")){
-                        events[i].photos_ids = new Array(events[i].photos_ids);
-                    }else{
-                        events[i].photos_ids = events[i].photos_ids.split(",");
-                    }
-
-                    if(!events[i].event_photos.includes(",")){
-                        events[i].event_photos = new Array(events[i].event_photos);
-                    }else{
-                        events[i].event_photos = events[i].event_photos.split(",");
-                    }
-                }
-            }
+            convertPhotosIds(events);
             
-
             showEvents.push(events);
         }else {
         
@@ -126,28 +86,14 @@ async function getAllEvents (req,res,next){
                 ORDER BY e.date_start DESC`, [minDate, maxDate]
             );
 
-            for(let i = 0; i<events.length; i++){
-                if(events[i].photo_ids){
-                    if(!events[i].photos_ids.includes(",")){
-                        events[i].photos_ids = new Array(events[i].photos_ids);
-                    }else{
-                        events[i].photos_ids = events[i].photos_ids.split(",");
-                    }
-
-                    if(!events[i].event_photos.includes(",")){
-                        events[i].event_photos = new Array(events[i].event_photos);
-                    }else{
-                        events[i].event_photos = events[i].event_photos.split(",");
-                    }
-                }
-            }
-
+            convertPhotosIds(events);
             
             showEvents.push(events);
 
         }
 
-        if(!showEvents.length){
+        console.log(showEvents);
+        if(showEvents.length === 0 || showEvents[0].length === 0){
             return next(generateError('Actualmente no hay ningún evento que cumpla con los parámetros seleccionados', 404));
         }
 
@@ -158,6 +104,7 @@ async function getAllEvents (req,res,next){
 
     }catch(e){
         console.log(e);
+        next(e);
     }
 }
 
