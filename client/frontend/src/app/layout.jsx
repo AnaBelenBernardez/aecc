@@ -1,8 +1,8 @@
 import { Raleway } from "next/font/google";
 import "./globals.css";
-import Header from '../components/header/Header';
+import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-
+import { Sidebar } from "../components/sidebar/Sidebar";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -19,7 +19,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={raleway.className}>
-        <Header/>
+        <Header />
+        <Sidebar />
         {children}
         <Footer />
       </body>
