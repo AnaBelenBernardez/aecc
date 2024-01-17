@@ -5,77 +5,11 @@ import { es } from "date-fns/locale";
 import { parseISO } from "date-fns";
 import "react-day-picker/dist/style.css";
 import { initialEvents } from "../../mockup/events";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import useGetAllEvents from '../../hooks/useGetAllEvents';
 
 const Calendar = () => {
-  //let mousePositionX;
-  //let mousePositionY;
-
-  //const calendarRef = useRef(null);
-
-  //const [mouseOnAside, setMouseOnAside] = useState(false);
-
-  // YYYY-MM-DDTHH:mm:ssZ  --> Formato fecha para que la pueda usar el calendario
-
-  /*useEffect(() => {
-    window.addEventListener("mouseover", getMousePosition);
-  }, []);*/
-
-  /* const formatDate = (date) => {
-    return date.toString().split(" ").slice(0, 4).join(" ");
-  };*/
-
-  /*const addAsideInfo = (event) => {
-    const eventCalendarInfo = document.querySelector("#eventInfo");
-    eventCalendarInfo.innerHTML = `
-    <div class="relative h-full w-full items-start p-4 flex flex-col ">
-    <h5 class="font-bold mb-2">${event.title}</h5>
-    <p class="border-2 border-primaryGreen rounded-xl text-xs font-semibold px-2 py-1">${event.location}</p>
-    <a class="text-primaryGreen underline decoration-primaryGreen absolute bottom-4 cursor-pointer">Inscríbete &gt;</a>
-    </div>
-    `;
-    
-    eventCalendarInfo.style.display = "flex";
-    eventCalendarInfo.style.flexDirection = "column";
-  };*/
-
-  /*const getMousePosition = (e) => {
-    mousePositionX = e.clientX;
-    mousePositionY = e.clientY;
-    
-    document.removeEventListener("mouseover", getMousePosition);
-    
-    return { x: mousePositionX, y: mousePositionY };
-  };*/
-
-  /*const showEventInfo = (e) => {
-    window.addEventListener("mouseover", getMousePosition);
-    const calendarDate = formatDate(e);
-    for (const date of eventsDate) {
-      if (formatDate(date) === calendarDate) {
-        for (const event of initialEvents) {
-          const eventDate = new Date(event.date);
-          if (formatDate(eventDate) === formatDate(calendarDate)) {
-            setMouseOnAside(true);
-            addAsideInfo(event);
-            const eventCalendarInfo = document.querySelector("#eventInfo");
-            eventCalendarInfo.style.left = `${mousePositionX}px`;
-            eventCalendarInfo.style.top = `${mousePositionY}px`;
-          }
-        }
-      }
-    }
-  };*/
-
-  /*const hiddenEventInfo = () => {
-    setMouseOnAside(false);
-    if (!mouseOnAside && calendarRef.current) {
-      const eventCalendarInfo = document.querySelector("#eventInfo");
-      eventCalendarInfo.style.display = "none";
-    }
-  };*/
-
   const css = `
   .my-selected:not([disabled]) { 
     font-weight: bold; 
@@ -96,26 +30,37 @@ const Calendar = () => {
     border: 2px solid #24C347;
   }
   `;
-  const eventsDate = initialEvents.map((event) => {
-    return parseISO(event.date);
+
+  const { events, loading, error } = useGetAllEvents();
+  console.log(events);
+
+  const eventsDate = events.map((event) => {
+    return parseISO(event.date_start);
   });
   const today = new Date();
 
   const [selectedDay, setSelectedDay] = useState();
 
   const footer = selectedDay && (
-    <div className="h-24 w-[275px] border-2 border-secondGray absolute bg-white rounded-lg p-2 shadow-xl z-50 ">
+    <div className="h-36 w-[275px] border-2 border-secondGray absolute bg-white rounded-lg p-2 shadow-xl z-50 ">
       <p className="font-bold">{selectedDay.title}</p>
       <p className="font-bold">{selectedDay.location}</p>
-      <Link href="/" className="text-primaryGreen underline">
-        Inscríbete &gt;{" "}
-      </Link>
+      {
+        events.map((event) => {
+          return (
+            <Link href={event.link} className="text-primaryGreen underline absolute bottom-4 cursor-pointer" target='_blank' key={event.id}>
+              Inscríbete &gt;{" "}
+            </Link>
+          )
+        })
+      }
+      
     </div>
   );
 
   const handleDayClick = (day) => {
-    const event = initialEvents.find(
-      (event) => new Date(event.date).toDateString() === day.toDateString()
+    const event = events.find(
+      (event) => new Date(event.date_start).toDateString() === day.toDateString()
     );
     setSelectedDay(event);
   };

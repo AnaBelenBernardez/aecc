@@ -19,7 +19,6 @@ export const EventsCarousel = () => {
   );
 
   const {events, loading, error} = useGetAllEvents();
-  console.log(events); 
   return (
     <div>
       <Carousel
@@ -42,7 +41,7 @@ export const EventsCarousel = () => {
                     <CardEvent
                       title={events[index].title}
                       image={events[index].event_photos[0]}
-                      // description={events[index].content}
+                      description={events[index].content}
                       location={events[index].location}
                       link={events[index].link}
                     />
