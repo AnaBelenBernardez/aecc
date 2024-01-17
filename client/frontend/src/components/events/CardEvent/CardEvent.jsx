@@ -1,10 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 
-export const CardEvent = ({ title, description, image, location }) => {
+export const CardEvent = ({ title, description, image , location, link }) => {
+  const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${image}`
   return (
+    
     <div className="w-96 shadow-xl bg-secondLightGray overflow-hidden fade-in">
       <Image
-        src={image}
+        src={imgSrc}
         alt={title}
         width={384}
         height={233}
@@ -19,9 +22,11 @@ export const CardEvent = ({ title, description, image, location }) => {
           </p>
         </div>
       </div>
-      <button className="border-2 border-primaryGreen bg-primaryGreen rounded-2xl text-sm font-bold px-6 py-2 ml-3 mb-3 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
+      <Link href={link} target='_blank'>
+        <button className="border-2 border-primaryGreen bg-primaryGreen rounded-2xl text-sm font-bold px-6 py-2 ml-3 mb-3 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
         PARTICIPA
       </button>
+      </Link>
     </div>
   );
 };

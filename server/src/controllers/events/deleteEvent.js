@@ -16,7 +16,7 @@ async function deleteEvent (req,res,next) {
             `,
             [idEvent]
         );
-
+    
         if(photos.length > 0){
             await pool.query(`DELETE FROM events_photos WHERE event_id=?`,[idEvent]);
 
