@@ -35,7 +35,6 @@ const LoginPage = () => {
       description: "There was a problem with your request.",
       className: "bg-secondRed text-white ",
     });
-    console.log(data);
   }
 
   return (
@@ -45,9 +44,9 @@ const LoginPage = () => {
           <Image
             src="/logos/CC_Logo_transicion_color_pos.rgb.svg"
             alt="logo"
-            width={200}
-            height={200}
-            className="my-10"
+            width={150}
+            height={150}
+            className="mt-10 mb-6"
           />
           <form
             onSubmit={form.handleSubmit(onSubmit)}

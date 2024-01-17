@@ -7,11 +7,23 @@ import Calendar from '../components/ui/calendar';
 import Link from 'next/link';
 import SelectInput from '../components/ui/selectInput';
 import DateTimePickerValue from '../components/ui/dateRangePicker';
+import useGetAllEvents from '../hooks/useGetAllEvents';
 
 export default function Home() {
+  const { events, loading, error } = useGetAllEvents();
   const carouselUsers = users;
-  const localidades = ['Todas las localidades', 'Malpica de Bergantiños', 'Miño', 'Laracha', 'A Pobra', 'As Pontes'];
-  const categoryEvents = ['Todos los eventos', 'Andainas y Carreras', 'Travesía a nado', 'Torneo de pádel', 'Bicicleta', 'Otras actividades deportivas'];
+  const categoryEvents = [];
+  const locations = [];
+
+  events.forEach((event) => {
+    if (!categoryEvents.includes(event.event_type)) {
+      categoryEvents.push(event.event_type);
+    }
+
+    if (!locations.includes(event.location)) {
+      locations.push(event.location);
+    }
+  });
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
@@ -35,7 +47,7 @@ export default function Home() {
         <div className='flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center'>
           <div className='flex flex-col gap-4 md:flex-row md:items-center'>
             <SelectInput text={'Tipo de evento'} eventType={'events'} options={categoryEvents}></SelectInput>
-            <SelectInput text={'Localidades'} eventType={'locations'} options={localidades}></SelectInput>
+            <SelectInput text={'Localidades'} eventType={'locations'} options={locations}></SelectInput>
           </div>
           <DateTimePickerValue></DateTimePickerValue>
           <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">Buscar</button>
