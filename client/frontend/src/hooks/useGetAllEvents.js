@@ -5,7 +5,7 @@ import { getAllEventsService } from '../service/index';
 const useGetAllEvents = () => {
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error] = useState('');
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const loadEvents = async () => {
@@ -16,6 +16,7 @@ const useGetAllEvents = () => {
                 
                 setEvents(data);
             } catch (error) {
+                setError(error.message);
                 console.log(error.message)
             } finally {
                 setLoading(false);
