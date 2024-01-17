@@ -4,10 +4,15 @@ import SelectInput from '../../components/ui/selectInput';
 import DateTimePickerValue from '../../components/ui/dateRangePicker';
 import { initialEvents } from '../../mockup/events';
 import { CardEvent } from '../../components/events/CardEvent/CardEvent';
+import useGetAllEvents from '../../hooks/useGetAllEvents';
 
 export default function CalendarAndRegistration() {
   const localidades = ['Todas las localidades', 'Malpica de Bergantiños', 'Miño', 'Laracha', 'A Pobra', 'As Pontes'];
   const categoryEvents = ['Todos los eventos', 'Andainas y Carreras', 'Travesía a nado', 'Torneo de pádel', 'Bicicleta', 'Otras actividades deportivas'];
+
+  const { events, loading, error } = useGetAllEvents();
+
+  console.log(events);
 
   return (
     <main>
@@ -26,11 +31,13 @@ export default function CalendarAndRegistration() {
         <h2 className="text-2xl font-bold text-center mb-9 mt-9 sm:text-5xl sm:text-left sm:ml-10">Próximos eventos</h2>
         <ul className='flex flex-wrap gap-10 justify-center'>
           {
-            initialEvents.map((event) => {
+            loading ? null
+            : events.map((event) => {
               return <li key={event.id}><CardEvent title={event.title}
-              image={event.image}
-              description={event.description}
-              location={event.location}></CardEvent></li>
+              image={event.event_photos[0]}
+              description={event.content}
+              location={event.location}
+              link={event.link}></CardEvent></li>
             })
           }
         </ul>

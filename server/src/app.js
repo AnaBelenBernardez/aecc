@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 const fileupload = require('express-fileupload');
 const server = express();
@@ -12,7 +13,7 @@ const experiencesRouter = require('../src/routes/experiencesRouter');
 server.use(cors());
 server.use(express.json());
 server.use(fileupload());
-
+server.use('/uploads', express.static(path.join(__dirname,'uploads')));
 
 server.use('/admin', adminRouter);
 server.use('/events', eventsRouter);
@@ -26,6 +27,8 @@ server.use((err, _req, res, _next) => {
         status: "Error",
         message: `${err.message}`});
 });
+
+
 
 server.use((_req, res) => {
     res.status(404);
