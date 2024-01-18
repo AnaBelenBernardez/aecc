@@ -17,7 +17,6 @@ const useGetAllEvents = () => {
                 setEvents(data);
             } catch (error) {
                 setError(error.message);
-                console.log(error.message)
             } finally {
                 setLoading(false);
             }
@@ -25,7 +24,6 @@ const useGetAllEvents = () => {
 
         loadEvents();
     }, []);
-    console.log(events);
     return { events, loading, error };
 };
 

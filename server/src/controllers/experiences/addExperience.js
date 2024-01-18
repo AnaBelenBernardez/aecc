@@ -1,6 +1,6 @@
 const {getPool} = require("../../database/db");
 const savePhoto = require('../../helpers/savePhoto');
-const addExperienceSchema = require('../../schemas/addExperienceSchema');
+const experienceSchema = require('../../schemas/experienceSchema');
 const generateError = require('../../helpers/generateError');
 const { photoSchema } = require('../../schemas/photoSchema');
 
@@ -15,7 +15,7 @@ async function addExperience (req,res,next) {
 
         
 
-        const {error} = addExperienceSchema.validate(req.body);
+        const {error} = experienceSchema.validate(req.body);
 
 
         if (error) {

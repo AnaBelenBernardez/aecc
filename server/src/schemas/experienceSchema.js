@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const addExperienceSchema = Joi.object({
+const experienceSchema = Joi.object({
   name: Joi.string().min(3).max(40).required().messages({
     'string.empty': 'El nombre de la experiencia no puede estar vacío.',
     'string.min': 'El nombre de la experiencia debe tener más de 3 caracteres.',
@@ -15,4 +15,4 @@ const addExperienceSchema = Joi.object({
   })
 });
 
-module.exports = addExperienceSchema
+module.exports = experienceSchema
