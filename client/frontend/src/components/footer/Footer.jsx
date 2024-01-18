@@ -20,16 +20,16 @@ const Footer = () => {
         <p className="font-extrabold mb-2">Dirección A Coruña</p>
         <p className="mb-4">Rúa Real, 1, 1°, 15003 A Coruña</p>
         <div className="flex justify-center gap-10">
-          <Link href="https://www.facebook.com/contraelcancer.es">
+          <Link href="https://www.facebook.com/contraelcancer.es" target='_blank'>
             <LinkFacebook />
           </Link>
-          <Link href="https://twitter.com/ContraCancerEs">
+          <Link href="https://twitter.com/ContraCancerEs" target='_blank'>
             <LinkTwitter />
           </Link>
-          <Link href="https://www.instagram.com/contraelcancer.es/">
+          <Link href="https://www.instagram.com/contraelcancer.es/" target='_blank'>
             <LinkInstagram />
           </Link>
-          <Link href="https://www.youtube.com/user/aecc">
+          <Link href="https://www.youtube.com/user/aecc" target='_blank'>
             <LinkYoutube />
           </Link>
         </div>
@@ -44,12 +44,16 @@ const Footer = () => {
           <a>
             <li>Preguntas frecuentes</li>
           </a>
-          <a>
+          <Link
+            href="/voluntarios"
+            className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+          >
             <li>¿Eres voluntario?</li>
-          </a>
+          </Link>
           <Link
             href="https://colabora.contraelcancer.es/empresas/eventos-solidarios"
             className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+            target='_blank'
           >
             <li>Quiero patrocinar un evento</li>
           </Link>
@@ -61,12 +65,13 @@ const Footer = () => {
       <section>
         <h2 className="font-extrabold mb-2">NO TE PIERDAS NADA</h2>
         <ul className="flex flex-col gap-2">
-          <Link href="https://www.contraelcancer.es/es/actualidad/noticias" className="hover:text-primaryGreen transition-all duration-300 ease-in-out">
+          <Link href="https://www.contraelcancer.es/es/actualidad/noticias" className="hover:text-primaryGreen transition-all duration-300 ease-in-out" target='_blank'>
             <li>Noticias</li>
           </Link>
           <Link
             href="https://blog.contraelcancer.es/"
             className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+            target='_blank'
           >
             <li>Blog</li>
           </Link>
