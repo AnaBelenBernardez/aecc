@@ -53,7 +53,7 @@ const Header = () => {
                 FAQ
               </Link>
               <Link
-                href="/"
+                href="/voluntarios"
                 className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
               >
                 Voluntarios
@@ -67,12 +67,14 @@ const Header = () => {
               <Link
                 href="https://www.contraelcancer.es/es/actualidad/noticias"
                 className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
+                target='_blank'
               >
                 Noticias
               </Link>
               <a
                 href="https://blog.contraelcancer.es/"
                 className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
+                target='_blank'
               >
                 Blog
               </a>

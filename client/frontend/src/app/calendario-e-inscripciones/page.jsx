@@ -2,7 +2,6 @@
 
 import SelectInput from '../../components/ui/selectInput';
 import DateTimePickerValue from '../../components/ui/dateRangePicker';
-import { initialEvents } from '../../mockup/events';
 import { CardEvent } from '../../components/events/CardEvent/CardEvent';
 import useGetAllEvents from '../../hooks/useGetAllEvents';
 
