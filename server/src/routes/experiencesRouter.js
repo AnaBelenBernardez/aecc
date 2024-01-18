@@ -5,11 +5,12 @@ const getAllExperiences = require('../controllers/experiences/getAllExperiences'
 const deleteExperience = require('../controllers/experiences/deleteExperience');
 const authAdmin = require('../middlewares/authAdmin');
 const experienceExists = require('../middlewares/experienceExists');
+const editExperience = require('../controllers/experiences/editExperience');
 
 
 experiencesRouter.get('/', getAllExperiences);
 experiencesRouter.post('/admin/add', authAdmin, addExperience);
-// experiencesRouter.put('/admin/edit/:idExperience', authAdmin, experienceExists, editExperience);
+experiencesRouter.put('/admin/edit/:idExperience', authAdmin, experienceExists, editExperience);
 experiencesRouter.delete('/admin/delete/:idExperience', authAdmin, experienceExists, deleteExperience);
 
 

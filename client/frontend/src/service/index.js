@@ -6,6 +6,5 @@ export const getAllEventsService = async () => {
   if (!response.ok) {
       throw new Error(data.error);
   }
-  console.log(data.data);
   return data.data;
 };
