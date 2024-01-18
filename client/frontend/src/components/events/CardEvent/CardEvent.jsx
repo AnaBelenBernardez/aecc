@@ -14,8 +14,8 @@ export const CardEvent = ({ title, description, image , location, link }) => {
         className="w-full h-60 block object-cover rounded-xl"
       />
       <div className="mt-2 mx-3">
-        <h2 className="font-bold text-lg h-14 mb-2 overflow-hidden">{title}</h2>
-        <p className='h-24 overflow-hidden'>{description}</p>
+        <h2 className="font-bold text-lg h-14 mb-2 line-clamp-2">{title}</h2>
+        <p className='h-24 line-clamp-4'>{description}</p>
         <div className="flex justify-end mt-3">
           <p className="border-2 border-primaryGreen rounded-xl text-xs font-semibold px-2 py-1">
             {location}
