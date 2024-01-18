@@ -31,50 +31,58 @@ export const Sidebar = () => {
 
             {/*Menu*/}
             <Link
-              href="/"
+              href="/calendario-e-inscripciones"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Calendario e inscripciones</span>
             </Link>
             <Link
               href="/"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Galeria</span>
             </Link>
             <Link
-              href="/"
+              href="/faq"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              onClick={closeMenu}
             >
               <span className="ml-3 text-xl">FAQ</span>
             </Link>
             <Link
               href="/"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Voluntarios</span>
             </Link>
             <Link
               href="/"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Patrocinios</span>
             </Link>
             <Link
-              href="/"
+              href="https://www.contraelcancer.es/es/actualidad/noticias"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Noticias</span>
             </Link>
             <Link
-              href="/"
+              href="https://blog.contraelcancer.es/"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Blog</span>
             </Link>
             <Link
               href="/"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Contacto</span>
             </Link>
