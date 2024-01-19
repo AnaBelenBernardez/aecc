@@ -6,9 +6,9 @@ async function getFaq (req,res,next) {
 
         const {idFaq} = req.params;
 
-        const connect = await getPool();
+        const pool = await getPool();
 
-        const [faq] = await connect.query(
+        const [faq] = await pool.query(
             `
                 SELECT f.id, f.question, f.answer
                 FROM faqs f
@@ -27,6 +27,7 @@ async function getFaq (req,res,next) {
         });
     } catch(e){
         console.log(e);
+        next(e);
     }
 } 
 
