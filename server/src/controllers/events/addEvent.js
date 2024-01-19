@@ -45,11 +45,11 @@ async function addEvent (req,res,next) {
         
         
         const { title, content, location, date_start, date_end, event_type, link } = req.body;
-       
+
         const [previousLink] = await pool.query(
             'SELECT link FROM events WHERE link = ?',
             [link]
-          );
+        );
 
         if (previousLink.length > 0) {
             return next(generateError('Ya existe un evento con este link', 400));
