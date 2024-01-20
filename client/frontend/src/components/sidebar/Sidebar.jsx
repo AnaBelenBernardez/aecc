@@ -31,14 +31,16 @@ export const Sidebar = () => {
 
             {/*Menu*/}
             <Link
-              href="/calendario-e-inscripciones"
+              href="/"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Inicio</span>
             </Link>
             <Link
               href="/calendario-e-inscripciones"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Calendario e inscripciones</span>
             </Link>
