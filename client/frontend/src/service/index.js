@@ -4,7 +4,8 @@ export const getAllEventsService = async () => {
   const data = await response.json();
 
   if (!response.ok) {
-      throw new Error(data.error);
+    throw new Error(data.message); 
   }
+
   return data.data;
 };

@@ -45,8 +45,9 @@ const Footer = () => {
             <li>Preguntas frecuentes</li>
           </a>
           <Link
-            href="/voluntarios"
+            href="https://www.contraelcancer.es/es/colabora/voluntariado"
             className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+            target='_blank'
           >
             <li>¿Eres voluntario?</li>
           </Link>
@@ -57,15 +58,19 @@ const Footer = () => {
           >
             <li>Quiero patrocinar un evento</li>
           </Link>
-          <a>
+          <Link
+            href="https://www.contraelcancer.es/es/sobre-nosotros/donde-estamos"
+            target='_blank'
+            className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+          >
             <li>Contacto</li>
-          </a>
+          </Link>
         </ul>
       </section>
       <section>
         <h2 className="font-extrabold mb-2">NO TE PIERDAS NADA</h2>
         <ul className="flex flex-col gap-2">
-          <Link href="https://www.contraelcancer.es/es/actualidad/noticias" className="hover:text-primaryGreen transition-all duration-300 ease-in-out" target='_blank'>
+          <Link href="/noticias" className="hover:text-primaryGreen transition-all duration-300 ease-in-out">
             <li>Noticias</li>
           </Link>
           <Link

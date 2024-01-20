@@ -53,8 +53,9 @@ const Header = () => {
                 FAQ
               </Link>
               <Link
-                href="/voluntarios"
+                href="https://www.contraelcancer.es/es/colabora/voluntariado"
                 className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
+                target='_blank'
               >
                 Voluntarios
               </Link>
@@ -65,9 +66,8 @@ const Header = () => {
                 Patrocinios
               </Link>
               <Link
-                href="https://www.contraelcancer.es/es/actualidad/noticias"
+                href="/noticias"
                 className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
-                target='_blank'
               >
                 Noticias
               </Link>
@@ -79,8 +79,9 @@ const Header = () => {
                 Blog
               </a>
               <Link
-                href="/"
+                href="https://www.contraelcancer.es/es/sobre-nosotros/donde-estamos"
                 className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
+                target='_blank'
               >
                 Contacto
               </Link>
