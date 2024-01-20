@@ -1,7 +1,6 @@
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import useGetAllEvents from "../../../hooks/useGetAllEvents";
-// import { initialEvents } from "@/mockup/events";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -11,7 +10,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { CardEvent } from "../..";
-// const events = initialEvents;
 
 export const EventsCarousel = () => {
   const plugin = React.useRef(

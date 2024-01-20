@@ -24,6 +24,7 @@ const useGetAllEvents = () => {
 
         loadEvents();
     }, []);
+
     return { events, loading, error };
 };
 

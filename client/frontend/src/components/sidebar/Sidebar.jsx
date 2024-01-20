@@ -33,7 +33,12 @@ export const Sidebar = () => {
             <Link
               href="/calendario-e-inscripciones"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
-              onClick={closeMenu}
+            >
+              <span className="ml-3 text-xl">Inicio</span>
+            </Link>
+            <Link
+              href="/calendario-e-inscripciones"
+              className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
             >
               <span className="ml-3 text-xl">Calendario e inscripciones</span>
             </Link>
@@ -52,7 +57,8 @@ export const Sidebar = () => {
               <span className="ml-3 text-xl">FAQ</span>
             </Link>
             <Link
-              href="/"
+              href="https://www.contraelcancer.es/es/colabora/voluntariado"
+              target="_blank"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
@@ -66,21 +72,22 @@ export const Sidebar = () => {
               <span className="ml-3 text-xl">Patrocinios</span>
             </Link>
             <Link
-              href="https://www.contraelcancer.es/es/actualidad/noticias"
+              href="/"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Noticias</span>
             </Link>
             <Link
-              href="https://blog.contraelcancer.es/"
+              href="/"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Blog</span>
             </Link>
             <Link
-              href="/"
+              href="https://www.contraelcancer.es/es/sobre-nosotros/donde-estamos"
+              target="_blank"
               className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >

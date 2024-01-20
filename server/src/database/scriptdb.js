@@ -47,10 +47,11 @@ async function createDB() {
             date_end DATETIME NOT NULL,
             edited BOOLEAN DEFAULT FALSE,
             title VARCHAR(100) NOT NULL,
-            content VARCHAR(5000) NOT NULL,
+            content VARCHAR(500) NOT NULL,
+            warning BOOLEAN DEFAULT FALSE,
             location ENUM('Abegondo', 'Ames', 'Aranga', 'Ares', 'Arteixo', 'Arzúa', 'Baña, A', 'Bergondo', 'Betanzos', 'Boimorto', 'Boiro', 'Boqueixón', 'Brion', 'Cabana de Bergantiños', 'Cabanas', 'Camariñas', 'Cambre', 'Capela, A', 'Carballo', 'Cariño', 'Carnote', 'Cedeira', 'Cerceda', 'Cerdido', 'Cesuras', 'Corcubión', 'Coristanco', 'Coruña, A', 'Culleredo', 'Curtis', 'Dodro', 'Dumbria', 'Ferrol', 'Fisterra', 'Frades', 'Irixoa', 'Laracha, A', 'Laxe', 'Lousame', 'Malpica de Bergantiños', 'Mañón', 'Mazaricos', 'Melide', 'Mesía', 'Moeche', 'Monfero', 'Mugardos', 'Muros', 'Muxía', 'Narón', 'Neda', 'Negreira', 'Noia', 'Oleiros', 'Ordes', 'Oroso', 'Ortigueira', 'Outes', 'Oza dos Ríos', 'Padrón', 'Pedrouzo, O', 'Ponteceso', 'Pontedeume', 'Pontes de García Rodríguez', 'Poyo, O', 'Ribeira', 'Rois', 'Sada', 'San Sadurniño', 'Santa Comba', 'Santiago de Compostela', 'Santiso', 'Sobrado', 'Somozas, As', 'Teo', 'Toques', 'Tordoia', 'Touro', 'Trazo', 'Val do Dubra', 'Valdoviño', 'Vedra', 'Vilarmaior', 'Vilasantar', 'Vimianzo', 'Zas')
             NOT NULL,
-            event_type ENUM('Carrera', 'Andaina', 'Travesía a nado', 'Pádel', 'Ruta en bicicleta', 'Otros') NOT NULL,
+            event_type ENUM('Andainas y carreras', 'Travesía a nado de Ribeira', 'Torneo Pádel contra el Cáncer', 'A Coruña Bike', 'Otros') NOT NULL,
             link VARCHAR(500)
         );
         `
@@ -64,7 +65,20 @@ async function createDB() {
         (
             id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
             name VARCHAR(40) NOT NULL,
-            content VARCHAR(5000) NOT NULL
+            content VARCHAR(500) NOT NULL
+        );
+        `
+    );
+
+    await pool.query(
+
+        `
+        CREATE TABLE IF NOT EXISTS news
+        (
+            id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+            title VARCHAR(100) NOT NULL,
+            content VARCHAR(1500) NOT NULL,
+            link VARCHAR(500)
         );
         `
     );
@@ -75,11 +89,11 @@ async function createDB() {
         `
         CREATE TABLE IF NOT EXISTS events_photos
         (
-                id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                photo VARCHAR (500),
-                photo_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                event_id INT UNSIGNED NOT NULL,
-                FOREIGN KEY (event_id) REFERENCES events(id)
+            id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+            photo VARCHAR (500),
+            photo_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            event_id INT UNSIGNED NOT NULL,
+            FOREIGN KEY (event_id) REFERENCES events(id)
         );
         `
     );
@@ -90,27 +104,25 @@ async function createDB() {
         `
         CREATE TABLE IF NOT EXISTS experiences_photos
         (
-                id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                photo VARCHAR (500),
-                photo_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                experience_id INT UNSIGNED NOT NULL,
-                FOREIGN KEY (experience_id) REFERENCES experiences(id)
+            id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+            photo VARCHAR (500),
+            photo_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            experience_id INT UNSIGNED NOT NULL,
+            FOREIGN KEY (experience_id) REFERENCES experiences(id)
         );
         `
     );
 
-
     await pool.query(
 
         `
-        CREATE TABLE IF NOT EXISTS news
+        CREATE TABLE IF NOT EXISTS news_photos
         (
             id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-            title VARCHAR(100) NOT NULL,
-            content VARCHAR(5000) NOT NULL,
-            event_id INT UNSIGNED NOT NULL,
-            link VARCHAR(500),
-            FOREIGN KEY (event_id) REFERENCES events(id)
+            photo VARCHAR (1500),
+            photo_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            news_id INT UNSIGNED NOT NULL,
+            FOREIGN KEY (news_id) REFERENCES news(id)
         );
         `
     );
@@ -126,6 +138,18 @@ async function createDB() {
                 logo VARCHAR (500) UNIQUE NOT NULL,
                 description VARCHAR(500),
                 link VARCHAR(500)
+            )
+        `
+    )
+
+    await pool.query(
+
+        `
+            CREATE TABLE IF NOT EXISTS faqs
+            (
+                id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                question VARCHAR(300) UNIQUE NOT NULL,
+                answer VARCHAR(300)
             )
         `
     )
