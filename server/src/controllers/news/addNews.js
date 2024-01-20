@@ -52,10 +52,10 @@ async function addNews (req,res,next){
 
         const [newNews] = await pool.query(
             `
-                INSERT INTO news (title, content)
-                VALUES (?,?)
+                INSERT INTO news (title, content, link)
+                VALUES (?,?,?)
             `,
-            [title, content] 
+            [title, content, link] 
         );
 
         const {insertId} = newNews;
