@@ -47,7 +47,7 @@ const Header = () => {
                 Galería
               </Link>
               <Link
-                href="/"
+                href="/faq"
                 className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
               >
                 FAQ
