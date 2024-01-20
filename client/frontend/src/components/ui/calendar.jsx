@@ -4,7 +4,6 @@ import { DayPicker } from "react-day-picker";
 import { es } from "date-fns/locale";
 import { parseISO } from "date-fns";
 import "react-day-picker/dist/style.css";
-import { initialEvents } from "../../mockup/events";
 import { useState } from "react";
 import Link from "next/link";
 import useGetAllEvents from '../../hooks/useGetAllEvents';
@@ -32,7 +31,6 @@ const Calendar = () => {
   `;
 
   const { events, loading, error } = useGetAllEvents();
-  console.log(events);
 
   const eventsDate = events.map((event) => {
     return parseISO(event.date_start);
