@@ -9,7 +9,6 @@ const deletePhoto = require('../../helpers/deletePhoto');
 async function editSponsor (req,res,next) {
 
     try{
-
         const {idSponsor} = req.params;
         const pool = await getPool();
 
