@@ -7,6 +7,8 @@ const savePhoto = require('../../helpers/savePhoto');
 
 async function editEvent (req,res,next) {
     try{
+        //estamos seguros de que queremos obligarles a subir fotos
+        //cada vez que quieran editar?
 
         const {idEvent} = req.params;
         const pool = await getPool();
@@ -54,14 +56,14 @@ async function editEvent (req,res,next) {
         
                 insertedPhotos.push(photoName);
             }
-            } else {
-                const photoName = await savePhoto(photos, 500);
-                await pool.query(
-                    'INSERT INTO events_photos (event_id, photo) VALUES (?, ?)',
-                    [idEvent, photoName]
-                );
-                insertedPhotos.push(photoName);
-            }
+        } else {
+            const photoName = await savePhoto(photos, 500);
+            await pool.query(
+                'INSERT INTO events_photos (event_id, photo) VALUES (?, ?)',
+                [idEvent, photoName]
+            );
+            insertedPhotos.push(photoName);
+        }
 
 
         const [editedEvent] = await pool.query(
