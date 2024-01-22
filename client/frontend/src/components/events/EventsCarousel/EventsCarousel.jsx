@@ -10,6 +10,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { CardEvent } from "../..";
+import { setLenghtCarrouselFunc } from '../../../lib/helpers';
 
 export const EventsCarousel = () => {
   const plugin = React.useRef(
@@ -19,7 +20,7 @@ export const EventsCarousel = () => {
   const [lengthCarrousel, setLengthCarrousel] = React.useState();
   const {events, loading, error} = useGetAllEvents();
 
-  useEffect(() => {
+  React.useEffect(() => {
     setLengthCarrousel(setLenghtCarrouselFunc(events, 5));
   }, [events]);
 

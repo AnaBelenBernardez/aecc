@@ -32,5 +32,18 @@ export const getAllExperiencesService = async () => {
   if (!response.ok) {
     throw new Error(data.message);
   }
+  
   return data.data;
+}
+
+export const getAllFaqsService = async () => {
+  const response = await fetch(`${backAPI}/faqs`);
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data.data
 }
