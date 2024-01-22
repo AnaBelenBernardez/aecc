@@ -9,13 +9,10 @@ const generateError = require('../../helpers/generateError');
             const pool = await getPool();
             try {
 
-            let [news] = await pool.query
-            (
-                `
-                SELECT *
-                FROM news
-                `
-            )
+                const [news] = await pool.query(`SELECT n.id, n.title, n.content, np.photo, np.photo_date
+                FROM news n
+                LEFT JOIN news_photos np ON n.id = np.news_id;`
+                );
 
             if (!news.length) {
                 return next(generateError('No hay noticias para mostrar', 404));
