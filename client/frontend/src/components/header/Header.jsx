@@ -27,60 +27,60 @@ const Header = () => {
               <p>|</p>
               <p>GAL</p>
             </div>
-            <div className="my-4 hidden lg:block">
+            <div className="my-4 hidden lg:flex lg:gap-7">
               <Link
                 href="/"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
               >
                 Inicio
               </Link>
               <Link
                 href="/calendario-e-inscripciones"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
               >
                 Calendario e inscripciones
               </Link>
               <Link
                 href="/"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
               >
                 Galería
               </Link>
               <Link
                 href="/faq"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
               >
                 FAQ
               </Link>
               <Link
                 href="https://www.contraelcancer.es/es/colabora/voluntariado"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
                 target='_blank'
               >
                 Voluntarios
               </Link>
               <Link
                 href="/"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
               >
                 Patrocinios
               </Link>
               <Link
                 href="/noticias"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
               >
                 Noticias
               </Link>
               <a
                 href="https://blog.contraelcancer.es/"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
                 target='_blank'
               >
                 Blog
               </a>
               <Link
                 href="https://www.contraelcancer.es/es/sobre-nosotros/donde-estamos"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out lg:mr-7"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
                 target='_blank'
               >
                 Contacto

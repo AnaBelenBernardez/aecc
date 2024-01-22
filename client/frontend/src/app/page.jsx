@@ -1,6 +1,6 @@
 "use client";
 
-import { EventsCarousel, PersonsCarousel } from "../components";
+import { EventsCarousel, PersonsCarousel, CardEvent, CardContent, Card } from "../components";
 import Image from "next/image";
 import Calendar from '../components/ui/calendar';
 import Link from 'next/link';
@@ -29,7 +29,12 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
-      <div className="bg-[url('/image/eventos-M.webp')] w-full bg-cover bg-center sm:bg-cover h-[380px] sm:h-[480px] bg-no-repeat flex sm:items-center justify-start">
+      <Link href={'#top'}>
+        <button className='rounded-full bg-primaryGreen w-11 h-11 flex items-center justify-center fixed bottom-12 right-12'>
+          <Image src={'/image/scrollUp.svg'} width={24} height={24} alt='Volver arriba'/>
+        </button>
+      </Link>
+      <div className="bg-[url('/image/eventos-M.webp')] w-full bg-cover bg-center sm:bg-cover h-[380px] sm:h-[480px] bg-no-repeat flex sm:items-center justify-start" id='top'>
         <div className="ml-5 mt-5 sm:ml-32">
           <h1 className="font-bold text-3xl sm:text-6xl text-white">
             A Coruña <span className="text-primaryGreen">en marcha</span>
@@ -58,8 +63,28 @@ export default function Home() {
             </div>
           </section><h3 className="text-2xl font-bold my-8 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
               Próximos eventos
-            </h3><div>
-              <EventsCarousel />
+            </h3>
+              {
+                events.length >= 3 && events
+                  ? <EventsCarousel />
+                  : <div className='flex flex-col gap-10 mb-6 mt-4 lg:flex-row'>
+                    {
+                      events.map((event) => {
+                        return (
+                          <CardEvent
+                          title={event.title}
+                          image={event.event_photos[0]}
+                          description={event.content}
+                          location={event.location}
+                          link={event.link}
+                          warning={event.warning}
+                          />
+                        );
+                      }) 
+                    }
+                  </div>
+              }
+              <div>
               <div className="mt-4 flex justify-center">
                 <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 hover:text-secondLightGray hover:bg-primaryGreen">
                   <Link href="/calendario-e-inscripciones">VER TODOS</Link>
