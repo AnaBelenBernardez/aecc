@@ -16,7 +16,13 @@ export const EventsCarousel = () => {
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
 
+  const [lengthCarrousel, setLengthCarrousel] = React.useState();
   const {events, loading, error} = useGetAllEvents();
+
+  useEffect(() => {
+    setLengthCarrousel(setLenghtCarrouselFunc(events, 5));
+  }, [events]);
+
   return (
     <div>
       <Carousel
@@ -31,7 +37,7 @@ export const EventsCarousel = () => {
       >
         <CarouselContent>
           { loading ? null 
-          : Array.from({ length: 5 }).map((_, index) => (
+          : Array.from({ length: lengthCarrousel }).map((_, index) => (
             <CarouselItem key={index} className="md:basis-2/6 lg:basis-1/3">
               <div className="p-1">
                 <Card>

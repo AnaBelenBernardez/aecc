@@ -4,7 +4,7 @@ import { getAllEventsService } from '../service/index';
 
 const useGetAllEvents = () => {
     const [events, setEvents] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
     useEffect(() => {

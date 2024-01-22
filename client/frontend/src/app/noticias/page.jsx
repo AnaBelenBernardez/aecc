@@ -1,9 +1,12 @@
+"use client"
+
 import Image from 'next/image';
 import Link from 'next/link';
+import useGetAllNews from '../../hooks/useGetAllNews';
 
 const myDate = new Date().toLocaleDateString('es-ES', { month: 'short', day: '2-digit', year: 'numeric' }).toLocaleUpperCase();
 
-const news = [
+/* const news = [
   {
     id: "1",
     title: "La Asociación Española Contra el Cáncer presenta un informe sobre la situación de la investigación oncológica en Galicia",
@@ -52,9 +55,11 @@ const news = [
     link: "https://www.contraelcancer.es/es/actualidad/noticias/inscripciones-abiertas-andaina-solidaria-santiago-compostela-marcha-contra-o-cancro",
     date: `${myDate}`
   }
-]
+] */
 
 const Noticias = () => {
+  const { news, loading, error } = useGetAllNews();
+
   return (
     <main className='flex flex-col gap-2 mx-auto mb-4'>
       <h1 className='font-bold text-primaryGreen text-xl pt-4 pl-6 lg:text-3xl lg:pt-6 lg:pb-6 lg:pl-0'>Noticias</h1>
@@ -62,8 +67,8 @@ const Noticias = () => {
         news.length > 0 
           ? news.map((newItem) => {
               return (
-                <Link href={newItem.link} target='_blank'>
-                  <article key={newItem.id} className='flex justify-between p-8 items-center shadow-md'>
+                <Link href={newItem.link} target='_blank' key={newItem.id}>
+                  <article className='flex justify-between p-8 items-center shadow-md'>
                     <div className='flex items-center'>
                       <p className='w-[52px] text-center flex items-center text-lightPink font-bold'>{newItem.date}</p>
                       <h2 className='font-bold px-6'>{newItem.title}</h2>

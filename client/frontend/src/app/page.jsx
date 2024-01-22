@@ -2,16 +2,16 @@
 
 import { EventsCarousel, PersonsCarousel } from "../components";
 import Image from "next/image";
-import { users } from "@/lib/users";
 import Calendar from '../components/ui/calendar';
 import Link from 'next/link';
 import SelectInput from '../components/ui/selectInput';
 import DateTimePickerValue from '../components/ui/dateRangePicker';
 import useGetAllEvents from '../hooks/useGetAllEvents';
+import useGetAllExperiences from '../hooks/useGetAllExperiences';
 
 export default function Home() {
-  const { events, loading, error } = useGetAllEvents();
-  const carouselUsers = users;
+  const { events } = useGetAllEvents();
+  const { experiences } = useGetAllExperiences();
   const categoryEvents = [];
   const locations = [];
 
@@ -82,7 +82,7 @@ export default function Home() {
               <div className='flex justify-center lg:absolute lg:top-[100px] lg:right-80 2xl:right-[40rem]'><Calendar /></div>
             </section></>
           : <div className='flex items-center gap-6 my-10 px-4 lg:my-0 lg:mt-28'> 
-              <Image src={'/image/noEventsYet.svg'} width={150} height={150}/>
+              <Image src={'/image/noEventsYet.svg'} width={150} height={150} alt='No hay eventos'/>
               <div className='flex flex-col'>
                 <p>Estamos trabajando en nuevos eventos para luchar contra el cáncer.</p>
                 <p>Vuelve pronto y únete a la causa. <span className='font-bold'>#JuntosContraElCáncer</span></p>
@@ -143,9 +143,19 @@ export default function Home() {
         <h3 className="text-2xl font-bold my-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
           En primera persona
         </h3>
-      <div className="flex justify-center sm:justify-start sm:mb-16">
-        <PersonsCarousel users={carouselUsers} />
-      </div>
+        {
+          experiences.length > 0
+            ? <div className="flex lg:justify-center sm:justify-start sm:mb-16 w-[75%]">
+                <PersonsCarousel/>
+              </div>
+            : <div className='flex items-center gap-6 px-4 mb-8 md:w-[708px] lg:mb-24 lg:mt-12'>
+                <Image src={'/image/noExperiencesYet.svg'} height={150} width={150} alt='Todavía no hay experiencias'/>
+                <div className='flex flex-col'>
+                  <p className='text-balance'>Únete a la Asociación Contra el Cáncer compartiendo tu experiencia en nuestros eventos solidarios.</p>
+                  <span className='font-bold'>#CadaHistoriaCuenta.</span> 
+                </div>
+              </div>
+        }
     </main>
   );
 }
