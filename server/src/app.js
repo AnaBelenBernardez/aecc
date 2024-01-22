@@ -10,6 +10,7 @@ const eventsRouter = require('../src/routes/eventsRouter');
 const experiencesRouter = require('../src/routes/experiencesRouter');
 const newsRouter = require('../src/routes/newsRouter');
 const faqsRouter = require('../src/routes/faqsRouter');
+const sponsorsRouter = require('../src/routes/sponsorsRouter');
 
 
 server.use(cors());
@@ -22,6 +23,7 @@ server.use('/events', eventsRouter);
 server.use('/experiences', experiencesRouter);
 server.use('/news', newsRouter);
 server.use('/faqs', faqsRouter);
+server.use('/sponsors', sponsorsRouter);
 
 
 server.use((err, _req, res, _next) => {
