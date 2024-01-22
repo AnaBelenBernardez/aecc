@@ -22,10 +22,8 @@ async function addExperience (req,res,next) {
             return next(generateError(error.message, 400));
         }
 
-        if(!req.files){
-            return next(generateError('Es obligario anexar al menos una imagen', 400));
-        }
-        if(req.files.length > 1){
+
+        if(photos && req.files.length > 1){
             return next(generateError('Sólo es posible anexar una imagen', 400));
         }
 
@@ -40,13 +38,14 @@ async function addExperience (req,res,next) {
 
         const {insertId} = newExperience;
 
-     
+     if (photos) {
             const photoName = await savePhoto(photos, 500);
             await pool.query(
                 'INSERT INTO experiences_photos (experience_id, photo) VALUES (?, ?)',
                 [insertId, photoName]
             );
             insertedPhotos.push(photoName);
+        }
 
         res.status(200).send({
             status: "OK",

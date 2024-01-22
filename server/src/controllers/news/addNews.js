@@ -1,7 +1,7 @@
 const {getPool} = require("../../database/db");
 const generateError = require('../../helpers/generateError');
 const newsSchema = require("../../schemas/newsSchema");
-const { photoSchema, arrayPhotoSchema } = require('../../schemas/photoSchema');
+const { photoSchema } = require('../../schemas/photoSchema');
 const savePhoto = require('../../helpers/savePhoto');
 
 async function addNews (req,res,next){
@@ -10,33 +10,23 @@ async function addNews (req,res,next){
         const pool = await getPool();
 
         const photos = req.files?.photo;
-        let photoErrorSchema;
 
 
-        if (photos && photos.length > 30) {
-            return next(generateError('Has subido demasiadas fotos. Máximo 30', 400));
+        if (photos && photos.length > 1) {
+            return next(generateError('Has subido demasiadas fotos. Máximo una', 400));
         }
 
-        if (Array.isArray(photos)) {
-            const { error } = await arrayPhotoSchema.validateAsync(photos);
-            photoErrorSchema = error;
-        } else {
-            await photoSchema.validateAsync(photos);
-        }
-
-        if (photoErrorSchema) {
-            return next(generateError(errorSchema.details[0].message, 400));
-        }
+       
+        await photoSchema.validateAsync(photos);
+      
         
-
-
         const {error} = newsSchema.validate(req.body);
         
         if (error) {
             return next(generateError(error.message, 400));
         }
 
-        const { title, content, link } = req.body;
+        const { title, content, news_date, link } = req.body;
 
         const [previousNewsContent] = await pool.query(
             `
@@ -52,26 +42,15 @@ async function addNews (req,res,next){
 
         const [newNews] = await pool.query(
             `
-                INSERT INTO news (title, content, link)
-                VALUES (?,?,?)
+                INSERT INTO news (title, content, news_date, link)
+                VALUES (?,?,?,?)
             `,
-            [title, content, link] 
+            [title, content, news_date, link] 
         );
 
         const {insertId} = newNews;
 
-        if (Array.isArray(photos)) {
-            for (const photo of photos) {
-                const photoName = await savePhoto(photo, 500);
-
-                await pool.query(
-                'INSERT INTO news_photos (photo, news_id) VALUES (?, ?)',
-                [photoName, insertId]
-                );
-        
-                insertedPhotos.push(photoName);
-            }
-            } else if (photos) {
+       if (photos) {
                 const photoName = await savePhoto(photos, 500);
                 await pool.query(
                     'INSERT INTO news_photos (photo, news_id) VALUES (?, ?)',

@@ -11,9 +11,10 @@ const generateError = require('../../helpers/generateError')
 
             try{
                 const [news] = await pool.query(`
-                    SELECT n.id, n.title, n.content, n.link
-                    FROM news n
-                    WHERE id = ?
+                SELECT n.id, n.title, n.content, np.photo, np.photo_date
+                FROM news n
+                LEFT JOIN news_photos np ON n.id = np.news_id
+                WHERE n.id = ?
                 ` , [idNews]);
 
                 if(!news.length){
