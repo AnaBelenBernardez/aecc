@@ -49,6 +49,7 @@ export const EventsCarousel = () => {
                       description={events[index].content}
                       location={events[index].location}
                       link={events[index].link}
+                      warning={events[index].warning}
                     />
                   </CardContent>
                 </Card>

@@ -1,11 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export const CardEvent = ({ title, description, image , location, link }) => {
+export const CardEvent = ({ title, description, image , location, link, warning }) => {
   const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${image}`
   return (
-    
-    <div className="w-96 h-[500px] shadow-xl bg-secondLightGray overflow-hidden fade-in">
+    <div className="w-96 h-[500px] shadow-xl bg-secondLightGray overflow-hidden fade-in relative">
+      {
+        warning
+          ? <div className='flex bg-[#FF3C37] py-2 px-4 gap-2 items-center justify-center absolute top-3 left-3 rounded-full'>
+              <Image src={'/image/warning.svg'} width={24} height={24} alt='Aviso'/>
+              <p className='text-white'>Aviso importante</p>
+            </div>
+          : null
+      }
       <Image
         src={imgSrc}
         alt={title}
