@@ -41,9 +41,12 @@ const Footer = () => {
             className="hover:text-primaryGreen transition-all duration-300 ease-in-out">
             <li>Calendario e inscripciones</li>
           </Link>
-          <a>
+          <Link 
+            href="/faq"
+            className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+          >
             <li>Preguntas frecuentes</li>
-          </a>
+          </Link>
           <Link
             href="https://www.contraelcancer.es/es/colabora/voluntariado"
             className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
