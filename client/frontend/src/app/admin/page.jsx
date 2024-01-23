@@ -16,6 +16,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "../../components/ui/toaster";
+import { loginService } from "../../service";
+import { useRouter } from "next/navigation";
+import { useLoginStore } from "../../store";
 
 const LoginPage = () => {
   const form = useForm({
@@ -27,19 +30,28 @@ const LoginPage = () => {
   });
 
   const { toast } = useToast();
+  const router = useRouter();
 
-  function onSubmit(data) {
-    toast({
-      variant: "destructive",
-      title: "Uh oh! Something went wrong.",
-      description: "There was a problem with your request.",
-      className: "bg-secondRed text-white ",
-    });
+  const setToken = useLoginStore((state) => state.setToken);
+
+  async function onSubmit(data) {
+    const userData = await loginService(data.username, data.password);
+    if (userData.status === "No autorizado") {
+      toast({
+        variant: "destructive",
+        title: userData.status,
+        description: userData.message,
+        className: "bg-secondRed text-white ",
+      });
+      return;
+    }
+    setToken(userData.data.token);
+    router.push("/admin/dashboard");
   }
 
   return (
     <main>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center mb-10">
         <Form {...form}>
           <Image
             src="/logos/CC_Logo_transicion_color_pos.rgb.svg"
