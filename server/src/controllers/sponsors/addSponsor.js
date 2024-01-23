@@ -10,7 +10,7 @@ async function addSponsor (req,res,next) {
     try{
         const pool = await getPool();
 
-        const { name, description, link } = req.body;
+        const { name, galician_name, description, galician_description, link } = req.body;
         const logo = req.files?.logo;
 
         const {error} = sponsorSchema.validate(req.body);
@@ -49,9 +49,9 @@ async function addSponsor (req,res,next) {
 
         const [newSponsor] = await pool.query(
             `
-            INSERT INTO sponsors (name, logo, description, link)
-            VALUES (?,?,?,?)`,
-            [name, logoName, description, link]
+            INSERT INTO sponsors (name, galician_name, logo, description, galician_description, link)
+            VALUES (?,?,?,?,?,?)`,
+            [name, galician_name, logoName, description, galician_description, link]
         );
 
         res.status(200).send({
