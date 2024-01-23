@@ -2,11 +2,18 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Burger } from "../../lib/svg";
-import { useUIStore } from "../../store";
+import { Burger, Logout } from "../../lib/svg";
+import { useLoginStore, useUIStore } from "../../store";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const router = useRouter();
+  const token = useLoginStore((state) => state.token);
   const openMenu = useUIStore((state) => state.openSideMenu);
+  const logout = () => {
+    useLoginStore.setState({ token: null });
+    router.push("/admin");
+  };
   return (
     <header>
       <nav className="bg-secondLightGray py-6 relative">
@@ -55,7 +62,7 @@ const Header = () => {
               <Link
                 href="https://www.contraelcancer.es/es/colabora/voluntariado"
                 className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
-                target='_blank'
+                target="_blank"
               >
                 Voluntarios
               </Link>
@@ -74,17 +81,22 @@ const Header = () => {
               <a
                 href="https://blog.contraelcancer.es/"
                 className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
-                target='_blank'
+                target="_blank"
               >
                 Blog
               </a>
               <Link
                 href="https://www.contraelcancer.es/es/sobre-nosotros/donde-estamos"
                 className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
-                target='_blank'
+                target="_blank"
               >
                 Contacto
               </Link>
+              {token && (
+                <button onClick={logout}>
+                  <Logout />
+                </button>
+              )}
             </div>
             <button className="lg:hidden ml-5" onClick={openMenu}>
               <Burger />

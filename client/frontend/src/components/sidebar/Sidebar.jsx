@@ -2,12 +2,20 @@
 
 import clsx from "clsx";
 import Link from "next/link";
-import { useUIStore } from "../../store";
-import { Close } from "../../lib/svg";
+import { useLoginStore, useUIStore } from "../../store";
+import { Close, Logout } from "../../lib/svg";
+import { useRouter } from "next/navigation";
 
 export const Sidebar = () => {
+  const router = useRouter();
   const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen);
   const closeMenu = useUIStore((state) => state.closeSideMenu);
+  const token = useLoginStore((state) => state.token);
+  const logout = () => {
+    useLoginStore.setState({ token: null });
+    router.push("/admin");
+    closeMenu();
+  };
 
   return (
     <>
@@ -16,7 +24,7 @@ export const Sidebar = () => {
           {/*Sidemenu*/}
           <nav
             className={clsx(
-              "fixed p-5 right-0 top-0 w-full h-screen bg-white z-20 shadow-2xl transform transition-all duration-300",
+              "fixed p-5 right-0 top-0 w-full max-h-svh bg-white z-20 shadow-2xl transform transition-all duration-300 flex flex-col justify-center items-center",
               {
                 "translate-x-full": !isSideMenuOpen,
               }
@@ -32,28 +40,28 @@ export const Sidebar = () => {
             {/*Menu*/}
             <Link
               href="/"
-              className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Inicio</span>
             </Link>
             <Link
               href="/calendario-e-inscripciones"
-              className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Calendario e inscripciones</span>
             </Link>
             <Link
               href="/"
-              className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Galeria</span>
             </Link>
             <Link
               href="/faq"
-              className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">FAQ</span>
@@ -61,28 +69,28 @@ export const Sidebar = () => {
             <Link
               href="https://www.contraelcancer.es/es/colabora/voluntariado"
               target="_blank"
-              className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Voluntarios</span>
             </Link>
             <Link
               href="/"
-              className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Patrocinios</span>
             </Link>
             <Link
               href="/"
-              className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Noticias</span>
             </Link>
             <Link
               href="/"
-              className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Blog</span>
@@ -90,11 +98,16 @@ export const Sidebar = () => {
             <Link
               href="https://www.contraelcancer.es/es/sobre-nosotros/donde-estamos"
               target="_blank"
-              className="flex items-center mt-10 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Contacto</span>
             </Link>
+            {token && (
+              <button className="my-5" onClick={logout}>
+                <Logout />
+              </button>
+            )}
           </nav>
         </div>
       )}

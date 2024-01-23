@@ -1,13 +1,13 @@
 "use client";
 
-import { EventsCarousel, PersonsCarousel, CardEvent, CardContent, Card } from "../components";
+import { EventsCarousel, PersonsCarousel } from "../components";
 import Image from "next/image";
 import Calendar from "../components/ui/calendar";
 import Link from "next/link";
 import SelectInput from "../components/ui/selectInput";
 import DateTimePickerValue from "../components/ui/dateRangePicker";
 import useGetAllEvents from "../hooks/useGetAllEvents";
-import useGetAllExperiences from '../hooks/useGetAllExperiences';
+import useGetAllExperiences from "../hooks/useGetAllExperiences";
 
 export default function Home() {
   const { events } = useGetAllEvents();
@@ -29,12 +29,20 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
-      <Link href={'#top'}>
-        <button className='rounded-full bg-primaryGreen w-11 h-11 flex items-center justify-center fixed bottom-12 right-12'>
-          <Image src={'/image/scrollUp.svg'} width={24} height={24} alt='Volver arriba'/>
+      <Link href={"#top"}>
+        <button className="rounded-full bg-primaryGreen w-11 h-11 flex items-center justify-center fixed bottom-12 right-12">
+          <Image
+            src={"/image/scrollUp.svg"}
+            width={24}
+            height={24}
+            alt="Volver arriba"
+          />
         </button>
       </Link>
-      <div className="bg-[url('/image/eventos-M.webp')] w-full bg-cover bg-center sm:bg-cover h-[380px] sm:h-[480px] bg-no-repeat flex sm:items-center justify-start" id='top'>
+      <div
+        className="bg-[url('/image/eventos-M.webp')] w-full bg-cover bg-center sm:bg-cover h-[380px] sm:h-[480px] bg-no-repeat flex sm:items-center justify-start"
+        id="top"
+      >
         <div className="ml-5 mt-5 sm:ml-32">
           <h1 className="font-bold text-3xl sm:text-6xl text-white">
             A Coruña <span className="text-primaryGreen">en marcha</span>
@@ -73,43 +81,57 @@ export default function Home() {
                 Buscar
               </button>
             </div>
-          </section><h3 className="text-2xl font-bold my-8 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
-              Próximos eventos
-            </h3><div>
-              <EventsCarousel />
-              <div className="mt-4 flex justify-center">
-                <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 hover:text-secondLightGray hover:bg-primaryGreen">
-                  <Link href="/calendario-e-inscripciones">VER TODOS</Link>
-                </button>
-              </div>
-            </div><section className='flex flex-col w-full md:items-center lg:items-start pl-8 pr-8 lg:relative'>
-              <div className='flex flex-col items-center w-full lg:flex lg:flex-wrap lg:items-start'>
-                <h2 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-12 lg:w-full lg:mt-20">
-                  Calendario de eventos
-                </h2>
-                <p className='mb-8 mr-5 ml-5 text-balance md:text-center lg:text-left lg:text.left lg:w-2/6 lg:ml-10'>Consulta todos los eventos que hemos planificado este
-                  año. Desplázate por el calendario y no te pierdas
-                  ninguno. <br />
-                  Te estamos esperando.
-                </p>
-                <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-8 lg:self-start lg:ml-10 hover:text-secondLightGray hover:bg-primaryGreen">
-                  <Link href="/calendario-e-inscripciones">VER TODOS LOS EVENTOS</Link>
-                </button>
-              </div>
-              <div className='flex justify-center lg:absolute lg:top-[100px] lg:right-80 2xl:right-[40rem]'><Calendar /></div>
-            </section></>
-          : <div className='flex items-center gap-6 my-10 px-4 lg:my-0 lg:mt-28'> 
-              <Image src={'/image/noEventsYet.svg'} width={150} height={150}/>
-              <div className='flex flex-col'>
-                <p>Estamos trabajando en nuevos eventos para luchar contra el cáncer.</p>
-                <p>Vuelve pronto y únete a la causa. <span className='font-bold'>#JuntosContraElCáncer</span></p>
-              </div>
-            </div>         
-        }
-      
-        <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-32 lg:mb-14">
-          Gracias a tu participación...
-        </h3>
+          </section>
+          <h3 className="text-2xl font-bold my-8 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
+            Próximos eventos
+          </h3>
+          <div>
+            <EventsCarousel />
+            <div className="mt-4 flex justify-center">
+              <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 hover:text-secondLightGray hover:bg-primaryGreen">
+                <Link href="/calendario-e-inscripciones">VER TODOS</Link>
+              </button>
+            </div>
+          </div>
+          <section className="flex flex-col w-full md:items-center lg:items-start pl-8 pr-8 lg:relative">
+            <div className="flex flex-col items-center w-full lg:flex lg:flex-wrap lg:items-start">
+              <h2 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-12 lg:w-full lg:mt-20">
+                Calendario de eventos
+              </h2>
+              <p className="mb-8 mr-5 ml-5 text-balance md:text-center lg:text-left lg:text.left lg:w-2/6 lg:ml-10">
+                Consulta todos los eventos que hemos planificado este año.
+                Desplázate por el calendario y no te pierdas ninguno. <br />
+                Te estamos esperando.
+              </p>
+              <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-8 lg:self-start lg:ml-10 hover:text-secondLightGray hover:bg-primaryGreen">
+                <Link href="/calendario-e-inscripciones">
+                  VER TODOS LOS EVENTOS
+                </Link>
+              </button>
+            </div>
+            <div className="flex justify-center lg:absolute lg:top-[100px] lg:right-80 2xl:right-[40rem]">
+              <Calendar />
+            </div>
+          </section>
+        </>
+      ) : (
+        <div className="flex items-center gap-6 my-10 px-4 lg:my-0 lg:mt-28">
+          <Image src={"/image/noEventsYet.svg"} width={150} height={150} />
+          <div className="flex flex-col">
+            <p>
+              Estamos trabajando en nuevos eventos para luchar contra el cáncer.
+            </p>
+            <p>
+              Vuelve pronto y únete a la causa.{" "}
+              <span className="font-bold">#JuntosContraElCáncer</span>
+            </p>
+          </div>
+        </div>
+      )}
+
+      <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-32 lg:mb-14">
+        Gracias a tu participación...
+      </h3>
       <div className="grid grid-cols-1 items-center justify-center gap-10 sm:grid-cols-3 container">
         <div className="flex flex-col items-center gap-5">
           <div className="w-[120px] h-[120px]">
@@ -157,11 +179,11 @@ export default function Home() {
           </p>
         </div>
       </div>
-        <h3 className="text-2xl font-bold my-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
-          En primera persona
-        </h3>
+      <h3 className="text-2xl font-bold my-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
+        En primera persona
+      </h3>
       <div className="flex justify-center sm:justify-start sm:mb-16">
-        <PersonsCarousel users={carouselUsers} />
+        <PersonsCarousel />
       </div>
     </main>
   );
