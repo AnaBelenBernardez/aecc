@@ -69,7 +69,6 @@ async function createDB() {
         (
             id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
             name VARCHAR(40) NOT NULL,
-            galician_name VARCHAR(40) NOT NULL,
             content VARCHAR(500) NOT NULL,
             galician_content VARCHAR(500) NOT NULL
         );

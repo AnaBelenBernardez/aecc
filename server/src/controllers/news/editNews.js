@@ -38,7 +38,7 @@ async function editNews (req,res,next) {
             return next(generateError(error.message, 400));
         }
 
-        const { title, content, news_date, link } = req.body;
+        const { title, galician_title, content, galician_content, news_date, link } = req.body;
 
         if (Array.isArray(photos)) {
             for (const photo of photos) {
@@ -66,10 +66,10 @@ async function editNews (req,res,next) {
         const [editedNews] = await pool.query(
             `
                 UPDATE news
-                SET  title = ?, content = ?, news_date = ?, link = ?
+                SET  title = ?, galician_title = ?, content = ?, galician_content = ?, news_date = ?, link = ?
                 WHERE id = ?
             `,
-            [title, content, news_date, link, idNews]
+            [title, galician_title, content, galician_content, news_date, link, idNews]
         )
 
         const [updatedNews] = await pool.query(

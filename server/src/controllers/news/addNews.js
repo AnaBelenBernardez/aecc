@@ -26,7 +26,7 @@ async function addNews (req,res,next){
             return next(generateError(error.message, 400));
         }
 
-        const { title, content, news_date, link } = req.body;
+        const { title, galician_title, content, galician_content, news_date, link } = req.body;
 
         const [previousNewsContent] = await pool.query(
             `
@@ -42,10 +42,10 @@ async function addNews (req,res,next){
 
         const [newNews] = await pool.query(
             `
-                INSERT INTO news (title, content, news_date, link)
-                VALUES (?,?,?,?)
+                INSERT INTO news (title, galician_title, content, galician_content, news_date, link)
+                VALUES (?,?,?,?,?,?)
             `,
-            [title, content, news_date, link] 
+            [title, galician_title, content, galician_content, news_date, link] 
         );
 
         const {insertId} = newNews;

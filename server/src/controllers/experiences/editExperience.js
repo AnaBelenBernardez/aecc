@@ -21,12 +21,9 @@ async function editExperience (req,res,next) {
             return next(generateError('Has subido demasiadas fotos. Máximo 400', 400));
         }
 
-        if (Array.isArray(photos)) {
-            const { error } = await arrayPhotoSchema.validateAsync(photos);
-            photoErrorSchema = error;
-        } else if (photos) {
-            await photoSchema.validateAsync(photos);
-        }
+       if (photos) { 
+        await photoSchema.validateAsync(photos) 
+    }
         
         if (photoErrorSchema) {
             return next(generateError(errorSchema.details[0].message, 400));
@@ -38,7 +35,7 @@ async function editExperience (req,res,next) {
             return next(generateError(error.message, 400));
         }
 
-        const { name, content } = req.body;
+        const { name, content, galician_content } = req.body;
 
         if (photos) {
                 const [photoToDelete] = await pool.query('SELECT photo FROM experiences_photos WHERE experience_id = ?', [idExperience])
@@ -57,10 +54,10 @@ async function editExperience (req,res,next) {
         const [editedExperience] = await pool.query(
             `
                 UPDATE experiences 
-                SET name = ?, content = ? 
+                SET name = ?, content = ?, galician_content = ? 
                 WHERE id = ?
             `,
-            [name, content, idExperience] 
+            [name, content, galician_content, idExperience] 
         );
 
         const [updatedExperience] = await pool.query(
