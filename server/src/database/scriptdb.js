@@ -51,6 +51,8 @@ async function createDB() {
             content VARCHAR(500) NOT NULL,
             gallician_content VARCHAR(500) NOT NULL,
             warning BOOLEAN DEFAULT FALSE,
+            warning_content VARCHAR(300),
+            galician_warning_content VARCHAR(300),
             location ENUM('Abegondo', 'Ames', 'Aranga', 'Ares', 'Arteixo', 'Arzúa', 'Baña, A', 'Bergondo', 'Betanzos', 'Boimorto', 'Boiro', 'Boqueixón', 'Brion', 'Cabana de Bergantiños', 'Cabanas', 'Camariñas', 'Cambre', 'Capela, A', 'Carballo', 'Cariño', 'Carnote', 'Cedeira', 'Cerceda', 'Cerdido', 'Cesuras', 'Corcubión', 'Coristanco', 'Coruña, A', 'Culleredo', 'Curtis', 'Dodro', 'Dumbria', 'Ferrol', 'Fisterra', 'Frades', 'Irixoa', 'Laracha, A', 'Laxe', 'Lousame', 'Malpica de Bergantiños', 'Mañón', 'Mazaricos', 'Melide', 'Mesía', 'Moeche', 'Monfero', 'Mugardos', 'Muros', 'Muxía', 'Narón', 'Neda', 'Negreira', 'Noia', 'Oleiros', 'Ordes', 'Oroso', 'Ortigueira', 'Outes', 'Oza dos Ríos', 'Padrón', 'Pedrouzo, O', 'Ponteceso', 'Pontedeume', 'Pontes de García Rodríguez', 'Poyo, O', 'Ribeira', 'Rois', 'Sada', 'San Sadurniño', 'Santa Comba', 'Santiago de Compostela', 'Santiso', 'Sobrado', 'Somozas, As', 'Teo', 'Toques', 'Tordoia', 'Touro', 'Trazo', 'Val do Dubra', 'Valdoviño', 'Vedra', 'Vilarmaior', 'Vilasantar', 'Vimianzo', 'Zas')
             NOT NULL,
             event_type ENUM('Andainas y carreras', 'Travesía a nado de Ribeira', 'Torneo Pádel contra el Cáncer', 'A Coruña Bike', 'Otros') NOT NULL,
@@ -87,26 +89,6 @@ async function createDB() {
             create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
             news_date DATETIME,
             link VARCHAR(500)
-        );
-        `
-    );
-
-    await pool.query(
-
-        `
-        CREATE TABLE IF NOT EXISTS warnings
-        (
-            id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-            title VARCHAR(300) NOT NULL,
-            galician_title VARCHAR(300) NOT NULL,
-            content VARCHAR(1500) NOT NULL,
-            galician_content VARCHAR(1500) NOT NULL,
-            create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            warning_date DATETIME,
-            link VARCHAR(500),
-            warning_photo VARCHAR (500) UNIQUE,
-            event_id INT UNSIGNED NOT NULL,
-            FOREIGN KEY (event_id) REFERENCES events(id)
         );
         `
     );
