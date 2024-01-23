@@ -1,6 +1,6 @@
 "use client";
 
-import { EventsCarousel, PersonsCarousel } from "../components";
+import { EventsCarousel, PersonsCarousel, CardEvent } from "../components";
 import Image from "next/image";
 import Calendar from "../components/ui/calendar";
 import Link from "next/link";
@@ -81,57 +81,56 @@ export default function Home() {
                 Buscar
               </button>
             </div>
-          </section>
-          <h3 className="text-2xl font-bold my-8 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
-            Próximos eventos
-          </h3>
-          <div>
-            <EventsCarousel />
-            <div className="mt-4 flex justify-center">
-              <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 hover:text-secondLightGray hover:bg-primaryGreen">
-                <Link href="/calendario-e-inscripciones">VER TODOS</Link>
-              </button>
-            </div>
-          </div>
-          <section className="flex flex-col w-full md:items-center lg:items-start pl-8 pr-8 lg:relative">
-            <div className="flex flex-col items-center w-full lg:flex lg:flex-wrap lg:items-start">
-              <h2 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-12 lg:w-full lg:mt-20">
-                Calendario de eventos
-              </h2>
-              <p className="mb-8 mr-5 ml-5 text-balance md:text-center lg:text-left lg:text.left lg:w-2/6 lg:ml-10">
-                Consulta todos los eventos que hemos planificado este año.
-                Desplázate por el calendario y no te pierdas ninguno. <br />
-                Te estamos esperando.
-              </p>
-              <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-8 lg:self-start lg:ml-10 hover:text-secondLightGray hover:bg-primaryGreen">
-                <Link href="/calendario-e-inscripciones">
-                  VER TODOS LOS EVENTOS
-                </Link>
-              </button>
-            </div>
-            <div className="flex justify-center lg:absolute lg:top-[100px] lg:right-80 2xl:right-[40rem]">
-              <Calendar />
-            </div>
-          </section>
-        </>
-      ) : (
-        <div className="flex items-center gap-6 my-10 px-4 lg:my-0 lg:mt-28">
-          <Image src={"/image/noEventsYet.svg"} width={150} height={150} />
-          <div className="flex flex-col">
-            <p>
-              Estamos trabajando en nuevos eventos para luchar contra el cáncer.
-            </p>
-            <p>
-              Vuelve pronto y únete a la causa.{" "}
-              <span className="font-bold">#JuntosContraElCáncer</span>
-            </p>
-          </div>
-        </div>
-      )}
-
-      <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-32 lg:mb-14">
-        Gracias a tu participación...
-      </h3>
+          </section><h3 className="text-2xl font-bold my-8 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
+              Próximos eventos
+            </h3>
+            {
+                events.length >= 3 && events
+                  ? <EventsCarousel />
+                  : <div className='flex flex-col gap-10 mb-6 mt-4 lg:flex-row'>
+                    {
+                      events.map((event) => {
+                        return (
+                          <CardEvent
+                          title={event.title}
+                          image={event.event_photos[0]}
+                          description={event.content}
+                          location={event.location}
+                          link={event.link}
+                          warning={event.warning}
+                          />
+                        );
+                      }) 
+                    }
+                  </div>
+              }
+            <section className='flex flex-col w-full md:items-center lg:items-start pl-8 pr-8 lg:relative'>
+              <div className='flex flex-col items-center w-full lg:flex lg:flex-wrap lg:items-start'>
+                <h2 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-12 lg:w-full lg:mt-20">
+                  Calendario de eventos
+                </h2>
+                <p className='mb-8 mr-5 ml-5 text-balance md:text-center lg:text-left lg:text.left lg:w-2/6 lg:ml-10'>Consulta todos los eventos que hemos planificado este
+                  año. Desplázate por el calendario y no te pierdas
+                  ninguno. <br />
+                  Te estamos esperando.
+                </p>
+                <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-8 lg:self-start lg:ml-10 hover:text-secondLightGray hover:bg-primaryGreen">
+                  <Link href="/calendario-e-inscripciones">VER TODOS LOS EVENTOS</Link>
+                </button>
+              </div>
+              <div className='flex justify-center lg:absolute lg:top-[100px] lg:right-80 2xl:right-[40rem]'><Calendar /></div>
+            </section></>
+          : <div className='flex items-center gap-6 my-10 px-4 lg:my-0 lg:mt-28'> 
+              <Image src={'/image/noEventsYet.svg'} width={150} height={150}/>
+              <div className='flex flex-col'>
+                <p>Estamos trabajando en nuevos eventos para luchar contra el cáncer.</p>
+                <p>Vuelve pronto y únete a la causa. <span className='font-bold'>#JuntosContraElCáncer</span></p>
+              </div>
+            </div>         
+        }
+        <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-32 lg:mb-14">
+          Gracias a tu participación...
+        </h3>
       <div className="grid grid-cols-1 items-center justify-center gap-10 sm:grid-cols-3 container">
         <div className="flex flex-col items-center gap-5">
           <div className="w-[120px] h-[120px]">

@@ -9,11 +9,12 @@ const Noticias = () => {
   const { news, loading, error } = useGetAllNews();
   const { events } = useGetAllEvents();
 
-  console.log(news);
+  console.log(events);
   const eventsFilter = events.filter((event) => event.warning === 1).map((event) => {
     return (
       <article key={event.id}>
         <h3>{event.title}</h3>
+        <p>{event.warning_content}</p>
         <Link href={event.link} target='_blank'>
           <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mt-4 mb-4 hover:text-secondLightGray hover:bg-primaryGreen">VER EVENTO</button>
         </Link>
