@@ -9,7 +9,7 @@ const generateError = require('../../helpers/generateError');
             const pool = await getPool();
             try {
 
-                const [news] = await pool.query(`SELECT n.id, n.title, n.content, n.news_date, n.link, np.photo, np.photo_date
+                const [news] = await pool.query(`SELECT n.id, n.title, n.content, n.create_date, n.news_date, n.link, np.photo, np.photo_date
                 FROM news n
                 LEFT JOIN news_photos np ON n.id = np.news_id;`
                 );
