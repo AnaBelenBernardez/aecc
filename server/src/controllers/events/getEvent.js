@@ -10,7 +10,7 @@ async function getEvent (req,res,next) {
 
         const [event] = await connect.query(
             `
-                SELECT e.id, e.date_start, e.date_end, e.title, e.content, e.warning, e.location, e.event_type, e.link, GROUP_CONCAT(ep.id) AS photos_ids, GROUP_CONCAT(ep.photo) AS event_photos, ep.event_id AS event_id_photo
+                SELECT e.id, e.date_start, e.date_end, e.title, e.galician_title, e.content, e.galician_content, e.warning, e.warning_content, e.galician_warning_content, e.location, e.event_type, e.link, GROUP_CONCAT(ep.id) AS photos_ids, GROUP_CONCAT(ep.photo) AS event_photos, ep.event_id AS event_id_photo
                 FROM events e
                 LEFT JOIN
                 events_photos AS ep ON e.id = ep.event_id

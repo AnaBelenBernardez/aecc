@@ -8,8 +8,6 @@ const { photoSchema, arrayPhotoSchema } = require('../../schemas/photoSchema');
 async function addEvent (req,res,next) {
     try{
         //! Revisar unique content
-        //! Cuidado con muchas querys en caso de que adjuntes demasiadas imagenes a la vez
-
 
         const insertedPhotos = [];
         const pool = await getPool();
@@ -44,7 +42,7 @@ async function addEvent (req,res,next) {
         }
         
         
-        const { title, content, location, date_start, date_end, event_type, link } = req.body;
+        const { title, galician_title, content, galician_content, location, date_start, date_end, event_type, link } = req.body;
 
         const [previousLink] = await pool.query(
             'SELECT link FROM events WHERE link = ?',
@@ -52,14 +50,14 @@ async function addEvent (req,res,next) {
         );
 
         if (previousLink.length > 0) {
-            return next(generateError('Ya existe un evento con este link', 400));
+            return next(generateError('Ya existe un evento con este link. Edítalo o elimínalo para evitar contenidos duplicados.', 400));
         }
         const [newEvent] = await pool.query(
             `
-                INSERT INTO events (create_date, title, content, location, date_start, date_end, link, event_type, id)
-                VALUES (?,?,?,?,?,?,?,?,DEFAULT)
+                INSERT INTO events (create_date, title, galician_title, content, galician_content, location, date_start, date_end, link, event_type, id)
+                VALUES (?,?,?,?,?,?,?,?,?,?,DEFAULT)
             `,
-            [new Date(), title, content, location, new Date(date_start), new Date(date_end), link, event_type] 
+            [new Date(), title, galician_title, content, galician_content, location, new Date(date_start), new Date(date_end), link, event_type] 
         );
 
         const {insertId} = newEvent;

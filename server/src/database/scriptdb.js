@@ -49,7 +49,7 @@ async function createDB() {
             title VARCHAR(100) NOT NULL,
             galician_title VARCHAR(100) NOT NULL,
             content VARCHAR(500) NOT NULL,
-            gallician_content VARCHAR(500) NOT NULL,
+            galician_content VARCHAR(500) NOT NULL,
             warning BOOLEAN DEFAULT FALSE,
             warning_content VARCHAR(300),
             galician_warning_content VARCHAR(300),
