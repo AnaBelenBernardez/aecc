@@ -8,9 +8,10 @@ import SelectInput from "../components/ui/selectInput";
 import DateTimePickerValue from "../components/ui/dateRangePicker";
 import useGetAllEvents from "../hooks/useGetAllEvents";
 import useGetAllExperiences from "../hooks/useGetAllExperiences";
+import Loading from '../components/loading/Loading';
 
 export default function Home() {
-  const { events } = useGetAllEvents();
+  const { events , loading } = useGetAllEvents();
   const { experiences } = useGetAllExperiences();
   const categoryEvents = [];
   const locations = [];
@@ -26,6 +27,8 @@ export default function Home() {
       }
     });
   }
+
+  if (loading) return <Loading/>;
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">

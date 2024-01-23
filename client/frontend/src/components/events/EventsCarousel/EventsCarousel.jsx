@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/carousel";
 import { CardEvent } from "../..";
 import { setLenghtCarrouselFunc } from '../../../lib/helpers';
+import Loading from '../../loading/Loading';
 
 export const EventsCarousel = () => {
   const plugin = React.useRef(
@@ -23,6 +24,8 @@ export const EventsCarousel = () => {
   React.useEffect(() => {
     setLengthCarrousel(setLenghtCarrouselFunc(events, 5));
   }, [events]);
+
+  if (loading) return <Loading/>;
 
   return (
     <div>
@@ -37,7 +40,7 @@ export const EventsCarousel = () => {
         className="max-w-sm sm:max-w-7xl"
       >
         <CarouselContent>
-          { loading ? null 
+          { events ? null 
           : Array.from({ length: lengthCarrousel }).map((_, index) => (
             <CarouselItem key={index} className="md:basis-2/6 lg:basis-1/3">
               <div className="p-1">

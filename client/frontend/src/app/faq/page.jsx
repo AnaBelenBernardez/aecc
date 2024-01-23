@@ -3,10 +3,13 @@
 import useGetAllFaqs from '../../hooks/useGetAllFaqs';
 import Image from 'next/image';
 import Link from 'next/link';
+import Loading from '../../components/loading/Loading';
 
 const FaqPage = () => {
   const { faqs, loading, error } = useGetAllFaqs();
 
+  if (loading) return <Loading/>;
+  
   return (
     <main className="mx-10 my-10 flex flex-col gap-5">
       <h1 className="text-4xl sm:text-6xl text-primaryGreen font-semibold">
