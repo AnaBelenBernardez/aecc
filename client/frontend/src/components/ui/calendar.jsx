@@ -7,6 +7,7 @@ import "react-day-picker/dist/style.css";
 import { useState } from "react";
 import Link from "next/link";
 import useGetAllEvents from '../../hooks/useGetAllEvents';
+import Loading from '../loading/Loading';
 
 const Calendar = () => {
   const css = `
@@ -52,7 +53,6 @@ const Calendar = () => {
           )
         })
       }
-      
     </div>
   );
 
@@ -68,6 +68,8 @@ const Calendar = () => {
       setSelectedDay(null);
     }, 5000);
   };
+
+  if (loading) return <Loading/>;
 
   return (
     <>

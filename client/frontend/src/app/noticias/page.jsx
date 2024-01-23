@@ -4,12 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useGetAllNews from '../../hooks/useGetAllNews';
 import useGetAllEvents from '../../hooks/useGetAllEvents';
+import Loading from '../../components/loading/Loading';
 
 const Noticias = () => {
   const { news, loading, error } = useGetAllNews();
   const { events } = useGetAllEvents();
 
-  console.log(events);
   const eventsFilter = events.filter((event) => event.warning === 1).map((event) => {
     return (
       <article key={event.id}>
@@ -21,6 +21,8 @@ const Noticias = () => {
       </article>
     )
   });
+
+  if (loading) return <Loading/>;
 
   return (
     <main className='flex flex-col gap-2 mx-auto mb-4'>

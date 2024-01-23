@@ -6,6 +6,7 @@ import { CardEvent } from '../../components/events/CardEvent/CardEvent';
 import useGetAllEvents from '../../hooks/useGetAllEvents';
 import Image from 'next/image';
 import Link from 'next/link';
+import Loading from '../../components/loading/Loading';
 
 export default function CalendarAndRegistration() {
   const { events, loading, error } = useGetAllEvents();
@@ -22,6 +23,8 @@ export default function CalendarAndRegistration() {
       locations.push(event.location);
     }
   });
+
+  if (loading) return <Loading/>;
 
   return (
     <main className='flex flex-col'>
@@ -42,7 +45,7 @@ export default function CalendarAndRegistration() {
               <h2 className="text-2xl font-bold text-center mb-9 mt-9 sm:text-5xl sm:text-left sm:ml-10">Próximos eventos</h2>
               <ul className='flex flex-wrap gap-10 justify-center'>
                 {
-                  loading ? null
+                  loading ? <Loading/>
                   : events.map((event) => {
                     return <li key={event.id}><CardEvent title={event.title}
                     image={event.event_photos[0]}

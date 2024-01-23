@@ -14,6 +14,7 @@ import {
 import { CardPerson } from "../..";
 import { setLenghtCarrouselFunc } from '../../../lib/helpers';
 import { useEffect } from 'react';
+import Loading from '../../loading/Loading';
 
 export const PersonsCarousel = () => {
   const plugin = React.useRef(
@@ -27,6 +28,8 @@ export const PersonsCarousel = () => {
     setLengthCarrousel(setLenghtCarrouselFunc(experiences, 3));
   }, [experiences]);
 
+  if (loading) return <Loading/>;
+
   return (
     <Carousel
       opts={{
@@ -39,7 +42,7 @@ export const PersonsCarousel = () => {
       className="w-full max-w-sm md:max-w-4xl lg:max-w-7xl"
     >
       <CarouselContent>
-        { loading ? null 
+        { loading ? <Loading/> 
         : Array.from({ length: lengthCarrousel }).map((_, index) => (
           <CarouselItem key={index}>
             <div className="p-1">
