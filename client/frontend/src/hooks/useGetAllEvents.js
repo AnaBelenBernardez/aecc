@@ -1,31 +1,32 @@
-import { useState, useEffect } from 'react';
-import { getAllEventsService } from '../service/index';
+"use client";
 
+import { useState, useEffect } from "react";
+import { getAllEventsService } from "../service/index";
 
 const useGetAllEvents = () => {
-    const [events, setEvents] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-    useEffect(() => {
-        const loadEvents = async () => {
-            try {
-                setLoading(true);
+  useEffect(() => {
+    const loadEvents = async () => {
+      try {
+        setLoading(true);
 
-                const data = await getAllEventsService();
-                
-                setEvents(data);
-            } catch (error) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
+        const data = await getAllEventsService();
 
-        loadEvents();
-    }, []);
+        setEvents(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    return { events, loading, error };
+    loadEvents();
+  }, []);
+
+  return { events, loading, error };
 };
 
 export default useGetAllEvents;

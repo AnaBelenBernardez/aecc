@@ -2,11 +2,11 @@
 
 import { EventsCarousel, PersonsCarousel, CardEvent, CardContent, Card } from "../components";
 import Image from "next/image";
-import Calendar from '../components/ui/calendar';
-import Link from 'next/link';
-import SelectInput from '../components/ui/selectInput';
-import DateTimePickerValue from '../components/ui/dateRangePicker';
-import useGetAllEvents from '../hooks/useGetAllEvents';
+import Calendar from "../components/ui/calendar";
+import Link from "next/link";
+import SelectInput from "../components/ui/selectInput";
+import DateTimePickerValue from "../components/ui/dateRangePicker";
+import useGetAllEvents from "../hooks/useGetAllEvents";
 import useGetAllExperiences from '../hooks/useGetAllExperiences';
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
       if (!categoryEvents.includes(event.event_type)) {
         categoryEvents.push(event.event_type);
       }
-  
+
       if (!locations.includes(event.location)) {
         locations.push(event.location);
       }
@@ -45,46 +45,38 @@ export default function Home() {
             CONSULTA TODOS NUESTROS EVENTOS E INSCRÍBETE
           </p>
           <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 mt-5 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
-          <Link href="/calendario-e-inscripciones">IR A EVENTOS</Link>
+            <Link href="/calendario-e-inscripciones">IR A EVENTOS</Link>
           </button>
         </div>
       </div>
-      {
-        events.length > 0
-          ? <><section className='bg-blueBgSection flex flex-col gap-4 px-7 lg:pb-10 md:w-full lg:h-80 lg:justify-center'>
-            <h2 className="text-lg font-extrabold text-center pt-6 pb-2">Encuentra un evento #contraelcáncer</h2>
-            <div className='flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center'>
-              <div className='flex flex-col gap-4 md:flex-row md:items-center'>
-                <SelectInput text={'Tipo de evento'} eventType={'events'} options={categoryEvents}></SelectInput>
-                <SelectInput text={'Localidades'} eventType={'locations'} options={locations}></SelectInput>
+      {events.length > 0 ? (
+        <>
+          <section className="bg-blueBgSection flex flex-col gap-4 px-7 lg:pb-10 md:w-full lg:h-80 lg:justify-center">
+            <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
+              Encuentra un evento #contraelcáncer
+            </h2>
+            <div className="flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center">
+              <div className="flex flex-col gap-4 md:flex-row md:items-center">
+                <SelectInput
+                  text={"Tipo de evento"}
+                  eventType={"events"}
+                  options={categoryEvents}
+                ></SelectInput>
+                <SelectInput
+                  text={"Localidades"}
+                  eventType={"locations"}
+                  options={locations}
+                ></SelectInput>
               </div>
               <DateTimePickerValue></DateTimePickerValue>
-              <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">Buscar</button>
+              <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
+                Buscar
+              </button>
             </div>
           </section><h3 className="text-2xl font-bold my-8 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
               Próximos eventos
-            </h3>
-              {
-                events.length >= 3 && events
-                  ? <EventsCarousel />
-                  : <div className='flex flex-col gap-10 mb-6 mt-4 lg:flex-row'>
-                    {
-                      events.map((event) => {
-                        return (
-                          <CardEvent
-                          title={event.title}
-                          image={event.event_photos[0]}
-                          description={event.content}
-                          location={event.location}
-                          link={event.link}
-                          warning={event.warning}
-                          />
-                        );
-                      }) 
-                    }
-                  </div>
-              }
-              <div>
+            </h3><div>
+              <EventsCarousel />
               <div className="mt-4 flex justify-center">
                 <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 hover:text-secondLightGray hover:bg-primaryGreen">
                   <Link href="/calendario-e-inscripciones">VER TODOS</Link>
@@ -107,7 +99,7 @@ export default function Home() {
               <div className='flex justify-center lg:absolute lg:top-[100px] lg:right-80 2xl:right-[40rem]'><Calendar /></div>
             </section></>
           : <div className='flex items-center gap-6 my-10 px-4 lg:my-0 lg:mt-28'> 
-              <Image src={'/image/noEventsYet.svg'} width={150} height={150} alt='No hay eventos'/>
+              <Image src={'/image/noEventsYet.svg'} width={150} height={150}/>
               <div className='flex flex-col'>
                 <p>Estamos trabajando en nuevos eventos para luchar contra el cáncer.</p>
                 <p>Vuelve pronto y únete a la causa. <span className='font-bold'>#JuntosContraElCáncer</span></p>
@@ -120,13 +112,13 @@ export default function Home() {
         </h3>
       <div className="grid grid-cols-1 items-center justify-center gap-10 sm:grid-cols-3 container">
         <div className="flex flex-col items-center gap-5">
-          <div className='w-[120px] h-[120px]'>
+          <div className="w-[120px] h-[120px]">
             <Image
               src="/image/Recaudacion@2x_2.png"
               width={120}
               height={120}
               className="border-2 p-6 border-primaryGreen rounded-full object-contain w-[120px] h-[120px]"
-              alt='Recaudacion'
+              alt="Recaudacion"
             />
           </div>
           <p className="text-sm mx-5">
@@ -135,13 +127,13 @@ export default function Home() {
           </p>
         </div>
         <div className="flex flex-col items-center gap-5">
-          <div className='w-[120px] h-[120px]'>
+          <div className="w-[120px] h-[120px]">
             <Image
               src="/image/Recaudacion@2x_2.png"
               width={120}
               height={120}
               className="border-2 p-6 border-primaryGreen rounded-full object-contain w-[120px] h-[120px]"
-              alt='Recaudacion'
+              alt="Recaudacion"
             />
           </div>
           <p className="text-sm mx-5">
@@ -150,13 +142,13 @@ export default function Home() {
           </p>
         </div>
         <div className="flex flex-col items-center gap-5">
-          <div className='w-[120px] h-[120px]'>
+          <div className="w-[120px] h-[120px]">
             <Image
               src="/image/Participantes@2x_2.png"
               width={120}
               height={120}
               className="border-2 p-6 border-primaryGreen rounded-full object-contain w-[120px] h-[120px]"
-              alt='Participantes'
+              alt="Participantes"
             />
           </div>
           <p className="text-sm mx-5">
@@ -168,19 +160,9 @@ export default function Home() {
         <h3 className="text-2xl font-bold my-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
           En primera persona
         </h3>
-        {
-          experiences.length > 0
-            ? <div className="flex lg:justify-center sm:justify-start sm:mb-16 w-[75%]">
-                <PersonsCarousel/>
-              </div>
-            : <div className='flex items-center gap-6 px-4 mb-8 md:w-[708px] lg:mb-24 lg:mt-12'>
-                <Image src={'/image/noExperiencesYet.svg'} height={150} width={150} alt='Todavía no hay experiencias'/>
-                <div className='flex flex-col'>
-                  <p className='text-balance'>Únete a la Asociación Contra el Cáncer compartiendo tu experiencia en nuestros eventos solidarios.</p>
-                  <span className='font-bold'>#CadaHistoriaCuenta.</span> 
-                </div>
-              </div>
-        }
+      <div className="flex justify-center sm:justify-start sm:mb-16">
+        <PersonsCarousel users={carouselUsers} />
+      </div>
     </main>
   );
 }
