@@ -11,7 +11,6 @@ const experiencesRouter = require('../src/routes/experiencesRouter');
 const newsRouter = require('../src/routes/newsRouter');
 const faqsRouter = require('../src/routes/faqsRouter');
 const sponsorsRouter = require('../src/routes/sponsorsRouter');
-const warningsRouter = require('../src/routes/warningsRouter');
 
 
 server.use(cors());
@@ -25,7 +24,6 @@ server.use('/experiences', experiencesRouter);
 server.use('/news', newsRouter);
 server.use('/faqs', faqsRouter);
 server.use('/sponsors', sponsorsRouter);
-server.use('/warnings', warningsRouter);
 
 
 server.use((err, _req, res, _next) => {
