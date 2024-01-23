@@ -10,7 +10,7 @@ async function addExperience (req,res,next) {
         const insertedPhotos = [];
         const pool = await getPool();
 
-        const { name, content } = req.body;
+        const { name, content, galician_content } = req.body;
         const photos = req.files?.photo;
 
         
@@ -31,9 +31,9 @@ async function addExperience (req,res,next) {
 
         const [newExperience] = await pool.query(
             `
-            INSERT INTO experiences (name, content)
-            VALUES (?,?)`,
-            [name, content]
+            INSERT INTO experiences (name, content, galician_content)
+            VALUES (?,?,?)`,
+            [name, content, galician_content]
         );
 
         const {insertId} = newExperience;

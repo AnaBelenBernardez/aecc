@@ -12,6 +12,12 @@ const experienceSchema = Joi.object({
     'string.min': 'La descripción de la experiencia tiene que tener más de 3 caracteres.',
     'string.max': 'La descripción no puede tener más de 500 caracteres.',
     'any.required': 'La descripción de la experiencia es obligatoria.'
+  }),
+  galician_content: Joi.string().min(3).max(500).required().messages({
+    'string.empty': 'La descripción es obligatoria',
+    'string.min': 'La descripción de la experiencia tiene que tener más de 3 caracteres.',
+    'string.max': 'La descripción no puede tener más de 500 caracteres.',
+    'any.required': 'La descripción de la experiencia es obligatoria.'
   })
 });
 
