@@ -24,7 +24,6 @@ Para inicializar la app debes seguir los siguientes pasos:
 - [@m4x1-VF](https://github.com/m4x1-VF) (Developer)
 - [@AlejandroPachec](https://github.com/AlejandroPachec) (Developer)
 - [@eysharis](https://github.com/eysharis) (Developer)
-- [@Juanalejo01](https://github.com/Juanalejo01) (Developer)
 - [@Nannitta](https://github.com/Nannitta) (Developer)
 
 ## 💻 Tech Stack
