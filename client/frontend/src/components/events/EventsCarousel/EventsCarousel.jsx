@@ -40,7 +40,7 @@ export const EventsCarousel = () => {
         className="max-w-sm sm:max-w-7xl"
       >
         <CarouselContent>
-          { events ? null 
+          { !events ? null 
           : Array.from({ length: lengthCarrousel }).map((_, index) => (
             <CarouselItem key={index} className="md:basis-2/6 lg:basis-1/3">
               <div className="p-1">
