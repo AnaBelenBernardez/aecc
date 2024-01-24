@@ -48,7 +48,7 @@ const Header = () => {
                 Calendario e inscripciones
               </Link>
               <Link
-                href="/"
+                href="/galeria"
                 className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
               >
                 Galería
