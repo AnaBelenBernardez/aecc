@@ -1,5 +1,6 @@
 const {getPool} = require('../../database/db');
 const generateError = require('../../helpers/generateError');
+const changePwdSchema = require('../../schemas/changePwdSchema');
 
 async function changePwd (req,res, next){
     try{
@@ -14,8 +15,10 @@ async function changePwd (req,res, next){
             return next(generateError('No estás autorizado para realizar este cambio de contraseña', 401));
         }
 
-        if(!oldPwd || !newPwd){
-            return next(generateError('Es necesario introducir la contraseña actual y la nueva contraseña', 400));
+        const {error} = changePwdSchema.validate(req.body);
+        
+        if(error){
+            return next(generateError(error.message, 400));
         }
 
         const [admin] = await pool.query(
