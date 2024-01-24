@@ -43,7 +43,15 @@ async function editEvent (req,res,next) {
         }
         
         if(req.files){
-            if ((photos.length + duplicateEvent[0].photos_ids.length) > 400){
+            const [countIdPhotos] = await pool.query(
+                `
+                SELECT COUNT(id) AS totalNumOfPhotos
+                FROM events_photos
+                WHERE event_id = ?
+                `, [idEvent]
+            );
+
+            if ((photos.length + countIdPhotos[0].totalNumOfPhotos) > 400){
                 return next(generateError('Has subido demasiadas fotos. Máximo 400', 400));
             }
 
