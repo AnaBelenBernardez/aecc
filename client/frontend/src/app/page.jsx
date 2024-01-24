@@ -43,7 +43,7 @@ export default function Home() {
         </button>
       </Link>
       <div
-        className="bg-[url('/image/eventos-M.webp')] w-full bg-cover bg-center sm:bg-cover h-[380px] sm:h-[480px] bg-no-repeat flex sm:items-center justify-start"
+        className="bg-[url('/image/eventos-M.jpg')] w-full bg-cover bg-center sm:bg-cover h-[380px] sm:h-[480px] bg-no-repeat flex sm:items-center justify-start"
         id="top"
       >
         <div className="ml-5 mt-5 sm:ml-32">
