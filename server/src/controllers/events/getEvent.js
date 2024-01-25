@@ -53,10 +53,11 @@ async function getEvent (req,res,next) {
             `,[idEvent]
         );
 
+        event.push(photos);
 
         res.status(200).send({
             status: "OK",
-            data: event, photos
+            data: event
         });
     } catch(e){
         console.log(e);
