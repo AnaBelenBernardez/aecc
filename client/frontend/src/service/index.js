@@ -77,3 +77,21 @@ export const loginService = async (name, pwd) => {
 
   return data;
 };
+
+export const deleteNewService = async (id, token) => {
+  const response = await fetch(`${backAPI}/news/admin/delete/${id}`, {
+    method: "DELETE",
+    headers: {
+      token: token
+    }
+  }
+  );
+
+  const data = response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
+};

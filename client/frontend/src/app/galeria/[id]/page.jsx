@@ -23,7 +23,7 @@ const EventPhotos = () => {
                 return (
                   <div
                     key={i}
-                    className={`row-span-1 bg-red-500 
+                    className={`row-span-1 
                     ${i===2||i===5||i===8||i===16||i===20||i===26||i===30||i===33||i===40||i===46||i===50||i===56||i===60||i===63||i===70||i===76||i===80
                       ||i===86||i===90||i===96||i===100||i===106||i===110||i===113||i===120||i===126||i===130||i===136||i===140||i===146||i===150||i===156
                       ||i===160||i===163||i===170||i===176||i===180||i===186||i===190||i===196||i===200||i===206||i===210||i===216||i===220||i===226||i===230
@@ -32,7 +32,7 @@ const EventPhotos = () => {
                       ||i===386||i===390||i===396||i === 398 || i=== 400 ? "col-span-2 row-span-2" : ""}`}
                   >
                     <Link href={imgSrc} target='_blank'>
-                      <img src={imgSrc} className='w-full h-full object-cover'/>
+                      <img src={imgSrc} className='w-full h-full object-cover grayscale hover:grayscale-0 transition-all ease-in-out duration-1000 rounded-xl'/>
                     </Link>
                   </div>
                 )
