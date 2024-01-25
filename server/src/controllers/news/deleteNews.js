@@ -25,6 +25,7 @@ async function deleteNews (req,res,next) {
         }
 
         await pool.query(`DELETE FROM news WHERE id=?`,[idNews]);
+        deletePhoto(photos[0].photo);
 
         res.status(200).send({
             status: 'OK',
