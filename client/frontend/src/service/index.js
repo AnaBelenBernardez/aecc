@@ -12,6 +12,18 @@ export const getAllEventsService = async () => {
   return data.data;
 };
 
+export const getEventService = async (id) => {
+  const response = await fetch(`${backAPI}/events/${id}`);
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data.data[0]
+}
+
 export const getAllNewsService = async () => {
   const response = await fetch(`${backAPI}/news`);
 

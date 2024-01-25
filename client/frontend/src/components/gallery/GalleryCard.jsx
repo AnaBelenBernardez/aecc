@@ -1,13 +1,14 @@
 import Image from "next/image";
 import { Location } from "../../lib/svg";
 
-export const GalleryCard = ({ title, location }) => {
+export const GalleryCard = ({ title, location, image }) => {
+  const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${image}`
   return (
     <div className="max-w-sm mx-auto relative shadow-md rounded-lg cursor-pointer">
       <Image
-        src="/image/usuario1.png"
+        src={imgSrc}
         alt="nature"
-        className="w-full h-auto object-cover rounded-lg"
+        className="w-[300px] h-[300px] object-cover rounded-lg"
         width={500}
         height={500}
       />
