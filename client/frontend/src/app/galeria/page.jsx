@@ -12,7 +12,7 @@ const GalleryPage = () => {
   if (loading) return <Loading/>;
 
   return (
-    <main className="flex flex-col items-center justify-center gap-4 md:flex-row md:flex-wrap">
+    <main className="flex flex-col items-center justify-center gap-4 md:flex-row md:flex-wrap my-4 lg:mx-10 lg:my-8">
       {
         events.length > 0 
           ? events.map((event) => {

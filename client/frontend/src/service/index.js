@@ -117,3 +117,20 @@ export const editFaqService = async (question, galician_question, answer, galici
   return data.data[0];
 }
 
+
+
+export const addNewService = async (token) => {
+  const response = await fetch(`${backAPI}/news/admin/add`, {
+    method: 'POST',
+    headers : {
+      "Content-type": "multipart/form-data",
+      token: token
+    },
+  })
+
+  const data = response.json();
+
+  if(!response.ok) {
+    throw new Error(data.message);
+  }
+}
