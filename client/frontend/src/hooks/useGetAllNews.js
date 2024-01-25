@@ -6,25 +6,29 @@ const useGetAllNews = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const loadNews = async () => {
-      try {
-        setLoading(true);
+  const loadNews = async () => {
+    try {
+      setLoading(true);
 
-        const data = await getAllNewsService();
+      const data = await getAllNewsService();
 
-        setNews(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
+      setNews(data);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
+  }
 
+  useEffect(() => {
     loadNews();
   }, []);
 
-  return { news, loading, error };
+  const refetch = () => {
+    loadNews();
+  };
+
+  return { news, loading, error, refetch };
 }
 
 export default useGetAllNews;

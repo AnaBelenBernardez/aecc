@@ -15,6 +15,7 @@ import {
 } from "../../../lib/svg";
 import { useLoginStore } from "../../../store";
 import { useRouter } from "next/navigation";
+import Link from 'next/link';
 
 const DashboardPage = () => {
   const router = useRouter();
@@ -49,9 +50,11 @@ const DashboardPage = () => {
             <DashboardCard title={"Patrocinadores"}>
               <Publicity />
             </DashboardCard>
-            <DashboardCard title={"Noticias"}>
-              <News />
-            </DashboardCard>
+            <Link href={'/admin/dashboard/news'}>
+              <DashboardCard title={"Noticias"}>
+                <News />
+              </DashboardCard>
+            </Link>
             <DashboardCard title={"Blog"}>
               <Blog />
             </DashboardCard>
