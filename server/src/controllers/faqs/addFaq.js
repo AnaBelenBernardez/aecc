@@ -12,7 +12,7 @@ async function addFaq (req,res,next){
             return next(generateError(error.message, 400));
         }
 
-        const { question, answer } = req.body;
+        const { question, galician_question, answer, galician_answer } = req.body;
 
         const [faqQuestion] = await pool.query(
             `
@@ -28,10 +28,10 @@ async function addFaq (req,res,next){
 
         const [newFaq] = await pool.query(
             `
-                INSERT INTO faqs (question, answer)
-                VALUES (?,?)
+                INSERT INTO faqs (question, galician_question, answer, galician_answer)
+                VALUES (?,?,?,?)
             `,
-            [question, answer] 
+            [question, galician_question, answer, galician_answer] 
         );
 
         res.status(200).send({

@@ -95,3 +95,25 @@ export const deleteNewService = async (id, token) => {
 
   return data;
 };
+
+
+export const editFaqService = async (question, galician_question, answer, galician_answer, idFaq, token) =>{
+
+  const response = await fetch(`${backAPI}/faqs/admin/edit/${idFaq}`,{
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      token: token,
+    },
+    body: JSON.stringify({question, galician_question, answer, galician_answer}),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data.data[0];
+}
+

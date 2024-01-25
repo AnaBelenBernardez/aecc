@@ -14,7 +14,7 @@ async function editFaq (req,res,next) {
             return next(generateError(error.message, 400));
         }
 
-        const { question, answer } = req.body;
+        const { question, galician_question, answer, galician_answer } = req.body;
 
         const [faqQuestion] = await pool.query(
             `
@@ -24,17 +24,17 @@ async function editFaq (req,res,next) {
             `, [question]
         );
 
-        if(faqQuestion.length && faqQuestion[0].id !== parseInt(idFaq)){
-            return next(generateError('Ya existe esa pregunta en las FAQs, edítala o elimínala para evitar contenidos duplicados', 400));
+        if(faqQuestion.length){
+            if(faqQuestion[0].id !== parseInt(idFaq)) return next(generateError('Ya existe esa pregunta en las FAQs, edítala o elimínala para evitar contenidos duplicados', 400));
         }
 
         const [editedFaq] = await pool.query(
             `
                 UPDATE faqs 
-                SET question = ?, answer = ?
+                SET question = ?, galician_question = ?, answer = ?, galician_answer = ?
                 WHERE id = ?
             `,
-            [question, answer, idFaq] 
+            [question, galician_question, answer, galician_answer, idFaq] 
         );
 
         const [updatedFaq] = await pool.query(
