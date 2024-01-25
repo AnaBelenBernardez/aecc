@@ -32,7 +32,7 @@ async function getEvent (req,res,next) {
             event[0].event_photos = event[0].event_photos.split(",");
         } */
 
-        const [event] = await pool.query(
+        let [event] = await pool.query(
             `
                 SELECT id, date_start, date_end, title, galician_title, content, galician_content, warning, warning_content, galician_warning_content, location, event_type, link
                 FROM events
@@ -45,7 +45,7 @@ async function getEvent (req,res,next) {
             return next(generateError('No se ha podido encontrar el evento', 404));
         }
 
-        const [photos] = await pool.query(
+        const [event_photos] = await pool.query(
             `
                 SELECT *
                 FROM events_photos
@@ -53,7 +53,7 @@ async function getEvent (req,res,next) {
             `,[idEvent]
         );
 
-        event.push(photos);
+        event[0].event_photos = event_photos;
 
         res.status(200).send({
             status: "OK",
