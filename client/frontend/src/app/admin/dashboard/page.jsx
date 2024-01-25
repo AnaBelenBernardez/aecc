@@ -17,6 +17,7 @@ import { useLoginStore } from "../../../store";
 import { useRouter } from "next/navigation";
 import Link from 'next/link';
 
+
 const DashboardPage = () => {
   const router = useRouter();
   const token = useLoginStore((state) => state.token);
@@ -42,7 +43,7 @@ const DashboardPage = () => {
               <User />
             </DashboardCard>
             <DashboardCard title={"FAQ"}>
-              <Faq />
+              <Link href="/admin/dashboard/faqs"><Faq /></Link>
             </DashboardCard>
             <DashboardCard title={"Voluntarios"}>
               <Volunteers />
