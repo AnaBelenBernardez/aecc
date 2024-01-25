@@ -5,7 +5,10 @@ import useGetAllNews from '../../../../hooks/useGetAllNews';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useLoginStore } from '../../../../store';
-import { deleteNewService } from '../../../../service';
+import { addNewService, deleteNewService } from '../../../../service';
+import { useState } from 'react';
+import DeleteNewModal from '../../../../components/modals/news/deleteNewModal';
+import AddNewModal from '../../../../components/modals/news/AddNewModal';
 
 const dashboardNews = () => {
   const router = useRouter();
@@ -15,19 +18,39 @@ const dashboardNews = () => {
   }
 
   const { news, loading, error, refetch } = useGetAllNews();
+  const [deleteModalOpen, setDeleteModalOpen] = useState();
+  const [idNewOpen, setIdNewOpen] = useState();
+  const [addNewModalOpen, setAddNewModalOpen] = useState();
 
-  const handleClickDelete = async (id, token) => {
-    await deleteNewService(id, token);
-    refetch();
+  const openModalDelete = async (idNew) => {
+    setIdNewOpen(idNew);
+    setDeleteModalOpen(true);
   }
+
+  const openModalAddNew = async () => {
+    setAddNewModalOpen(true);
+  }
+
+  const handleClickAddNew = async () => {
+    await addNewService();
+    setAddNewModalOpen(false);
+  }
+
+  const handleClickDelete = async () => {
+    await deleteNewService(idNewOpen, token);
+    refetch();
+    setDeleteModalOpen(false);
+  };
 
   if (loading) return <Loading/>;
 
   return (
     <main className='flex flex-col my-4 px-4'>
-      <button className='self-end border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'>
+      <button onClick={openModalAddNew} className='self-end border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'>
         AÑADIR NOTICIA
       </button>
+      { addNewModalOpen && <AddNewModal/> }
+      { deleteModalOpen && <DeleteNewModal handleClickDelete={handleClickDelete} setDeleteModalOpen={setDeleteModalOpen} /> }
       {
         news.length > 0
           ? news.map((newItem) => {
@@ -50,10 +73,12 @@ const dashboardNews = () => {
                 }
               </div>
               <div className='self-end flex gap-4'>
-                <button>
+                <button className='flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen'>
+                  <Image src={'/icons/editIcon.svg'} width={24} height={24} alt='Icono de editar'/>
                   EDITAR
                 </button>
-                <button onClick={() => handleClickDelete(newItem.id, token)}>
+                <button onClick={() => openModalDelete(newItem.id)} className='flex gap-4 items-center justify-center border border-secondRed py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-secondRed'>
+                  <Image src={'/icons/deleteIcon.svg'} width={24} height={24} alt='Icono de eliminar'/>
                   ELIMINAR
                 </button>
               </div>
