@@ -1,17 +1,38 @@
+"use client"
+
 import { GalleryCard } from "../../components";
+import useGetAllEvents from '../../hooks/useGetAllEvents';
+import Loading from '../../components/loading/Loading';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const GalleryPage = () => {
+  const { events, loading, error } = useGetAllEvents();
+
+  if (loading) return <Loading/>;
+
   return (
-    <div className="container mx-auto p-4 lg:h-screen flex items-center justify-center">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <GalleryCard title={"Evento 1"} location={"Ferrol"} />
-        <GalleryCard title={"Evento 2"} location={"Ferrol"} />
-        <GalleryCard title={"Evento 3"} location={"Ferrol"} />
-        <GalleryCard title={"Evento 4"} location={"Ferrol"} />
-        <GalleryCard title={"Evento 5"} location={"Ferrol"} />
-        <GalleryCard title={"Evento 6"} location={"Ferrol"} />
-      </div>
-    </div>
+    <main className="flex flex-col items-center justify-center gap-4 md:flex-row md:flex-wrap">
+      {
+        events.length > 0 
+          ? events.map((event) => {
+            return (
+              <Link href={`/galeria/${event.id}`}>
+                <GalleryCard title={event.title} location={event.location} image={event.event_photos[0]}/>
+              </Link>
+            )
+          })
+          : <div className='flex flex-col gap-6 items-center px-6 my-6 lg:flex-row'>
+              <Image src={'/image/noPhotosYet.svg'} width={150} height={150} alt='Todavía no hay ninguna foto'/>
+              <div>
+                <Link href={'/'} className='flex flex-col items-center'>
+                  <p className='md:w-3/4 md:mb-4'>Actualmente, no hay eventos en la galería. ¡Estamos preparando nuevas oportunidades solidarias!</p>
+                  <button className='border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mt-2 hover:text-secondLightGray hover:bg-primaryGreen'>VOLVER AL INICIO</button>
+                </Link>
+              </div>
+            </div>
+      }
+    </main>
   );
 };
 
