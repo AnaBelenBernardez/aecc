@@ -134,13 +134,23 @@ export const deleteFaqService = async (id, token) => {
   return data;
 };
 
-export const addNewService = async (token) => {
+export const addNewService = async (token, formValues) => {
+  const addNewForm = new FormData();
+  console.log(formValues.photo[0][0]);
+
+  addNewForm.append('title', formValues.title);
+  addNewForm.append('content', formValues.content);
+  addNewForm.append('link', formValues.link);
+  addNewForm.append('galician_title', formValues.galician_title);
+  addNewForm.append('galician_content', formValues.galician_content);
+  addNewForm.append('photo', formValues.photo[0][0]);
+
   const response = await fetch(`${backAPI}/news/admin/add`, {
     method: 'POST',
     headers : {
-      "Content-type": "multipart/form-data",
       token: token
     },
+    body: addNewForm
   })
 
   const data = response.json();
