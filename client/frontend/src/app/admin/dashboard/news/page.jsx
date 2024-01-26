@@ -5,7 +5,7 @@ import useGetAllNews from '../../../../hooks/useGetAllNews';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useLoginStore } from '../../../../store';
-import { addNewService, deleteNewService } from '../../../../service';
+import { deleteNewService } from '../../../../service';
 import { useState } from 'react';
 import DeleteNewModal from '../../../../components/modals/news/deleteNewModal';
 import AddNewModal from '../../../../components/modals/news/AddNewModal';
@@ -27,20 +27,15 @@ const dashboardNews = () => {
     setDeleteModalOpen(true);
   }
 
-  const openModalAddNew = async () => {
-    setAddNewModalOpen(true);
-  }
-
-  const handleClickAddNew = async () => {
-    await addNewService();
-    setAddNewModalOpen(false);
-  }
-
   const handleClickDelete = async () => {
     await deleteNewService(idNewOpen, token);
     refetch();
     setDeleteModalOpen(false);
   };
+
+  const openModalAddNew = async () => {
+    setAddNewModalOpen(true);
+  }
 
   if (loading) return <Loading/>;
 
@@ -49,7 +44,7 @@ const dashboardNews = () => {
       <button onClick={openModalAddNew} className='self-end border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'>
         AÑADIR NOTICIA
       </button>
-      { addNewModalOpen && <AddNewModal/> }
+      { addNewModalOpen && <AddNewModal setAddNewModalOpen={setAddNewModalOpen} token={token}/> }
       { deleteModalOpen && <DeleteNewModal handleClickDelete={handleClickDelete} setDeleteModalOpen={setDeleteModalOpen} /> }
       {
         news.length > 0
