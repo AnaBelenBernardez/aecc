@@ -117,7 +117,22 @@ export const editFaqService = async (question, galician_question, answer, galici
   return data.data[0];
 }
 
+export const deleteFaqService = async (id, token) => {
+  const response = await fetch(`${backAPI}/faqs/admin/delete/${id}`, {
+    method: "DELETE",
+    headers: {
+      token: token
+    }
+  });
 
+  const data = response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
 
 export const addNewService = async (token) => {
   const response = await fetch(`${backAPI}/news/admin/add`, {
