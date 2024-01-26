@@ -6,11 +6,8 @@ import {
   Photos,
   User,
   Faq,
-  Volunteers,
   Publicity,
-  News,
-  Blog,
-  Contact,
+  News, 
   Logout,
 } from "../../../lib/svg";
 import { useLoginStore } from "../../../store";
@@ -45,9 +42,6 @@ const DashboardPage = () => {
             <DashboardCard title={"FAQ"}>
               <Link href="/admin/dashboard/faqs"><Faq /></Link>
             </DashboardCard>
-            <DashboardCard title={"Voluntarios"}>
-              <Volunteers />
-            </DashboardCard>
             <DashboardCard title={"Patrocinadores"}>
               <Publicity />
             </DashboardCard>
@@ -56,12 +50,11 @@ const DashboardPage = () => {
                 <News />
               </DashboardCard>
             </Link>
-            <DashboardCard title={"Blog"}>
-              <Blog />
-            </DashboardCard>
-            <DashboardCard title={"Contacto"}>
-              <Contact />
-            </DashboardCard>
+            <Link href={'/admin/dashboard/experiences'}>
+              <DashboardCard title={"Experiencias"}>
+                <News />
+              </DashboardCard>
+            </Link>
           </div>
         </section>
       )}
