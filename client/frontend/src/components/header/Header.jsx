@@ -19,7 +19,6 @@ const Header = () => {
       <nav className="bg-secondLightGray pt-6 pb-2 relative">
         <div className="container mx-auto flex">
           <div className="flex-grow self-center">
-            <Link href="/">
             <Image
               src="/logos/CC_Logo_transicion_color_pos.rgb.svg"
               alt="Logo Asociación Española Contra el Cáncer"
@@ -27,7 +26,6 @@ const Header = () => {
               height="150"
               className="self-center"
             />
-            </Link>
           </div>
 
           <div className="flex lg:flex-col lg:items-end items-center justify-center">
@@ -51,57 +49,57 @@ const Header = () => {
             <div className="my-4 hidden lg:flex lg:gap-7">
               <Link
                 href="/"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
               >
                 Inicio
               </Link>
               <Link
                 href="/calendario-e-inscripciones"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
               >
                 Calendario e inscripciones
               </Link>
               <Link
                 href="/galeria"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
               >
                 Galería
               </Link>
               <Link
                 href="/faq"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
               >
                 FAQ
               </Link>
               <Link
                 href="https://www.contraelcancer.es/es/colabora/voluntariado"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
                 target="_blank"
               >
                 Voluntarios
               </Link>
               <Link
                 href="/"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
               >
                 Patrocinios
               </Link>
               <Link
                 href="/noticias"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
               >
                 Noticias
               </Link>
               <a
                 href="https://blog.contraelcancer.es/"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
                 target="_blank"
               >
                 Blog
               </a>
               <Link
                 href="https://www.contraelcancer.es/es/sobre-nosotros/donde-estamos"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
                 target="_blank"
               >
                 Contacto
