@@ -34,7 +34,7 @@ const FaqAdminPage = () => {
 			faqsList.length > 0 ? 
 			faqsList.map((faq) => {
 					return (
-							<li key={faq.id} className='list-decimal list-inside marker:text-primaryGreen marker:text-4xl marker:font-bold md:marker:text-5xl'>
+							<li key={faq.id} className='marker:text-primaryGreen marker:text-4xl marker:font-bold md:marker:text-5xl'>
 								{
 									clickedEdit && faqId === faq.id ?
 										<EditFaq currentFaq={faq} faqsList={faqsList} setFaqsList={setFaqsList} faqId={faqId} setClickedEdit={setClickedEdit}/>

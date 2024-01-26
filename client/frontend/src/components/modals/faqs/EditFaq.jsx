@@ -38,7 +38,6 @@ async function handleSubmit(e){
 
     const defaultValueFaq = faqsList.find((faq) => faq.id === parseInt(faqId));
 
-
     if(!question || question.length === 0){
         setQuestion(defaultValueFaq.question);
     }
@@ -71,32 +70,36 @@ async function handleSubmit(e){
     }
 }
   return (
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-            <ul>
-                <li>
-                    Castellano
-                    <label htmlFor='question'>
-                        <input onChange={handleChange} type="text" name="question" id="question" required minLength={5} maxLength={300} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" defaultValue={currentFaq.question}></input>
-                    </label>
-                    <label htmlFor='answer'>
-                        <input onChange={handleChange} type="text" name="answer" id="answer" required minLength={5} maxLength={300} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" defaultValue={currentFaq.answer}></input>
-                    </label>
-                </li>
-                <li>
-                    Gallego
-                    <label htmlFor='galician_question'>
-                        <input onChange={handleChange} type="text" name="galician_question" id="question" required minLength={5} maxLength={300} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" defaultValue={currentFaq.galician_question}></input>
-                    </label>
-                    <label htmlFor='galician_answer'>
-                        <input onChange={handleChange} type="text" name="galician_answer" id="galician_answer" required minLength={5} maxLength={300} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" defaultValue={currentFaq.galician_answer}></input>
-                    </label>
-                </li>
-            </ul>
-        </fieldset>
-        {errorEdit && <p>{errorEdit}</p>}
-        <button type="submit">Guardar cambios</button>
-      </form>
+    <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
+      <div className='w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center'>
+        <form onSubmit={handleSubmit}>
+          <fieldset>
+              <ul>
+                  <li>
+                      Castellano
+                      <label htmlFor='question'>
+                          <input onChange={handleChange} type="text" name="question" id="question" required minLength={5} maxLength={300} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" defaultValue={currentFaq.question}></input>
+                      </label>
+                      <label htmlFor='answer'>
+                          <input onChange={handleChange} type="text" name="answer" id="answer" required minLength={5} maxLength={300} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" defaultValue={currentFaq.answer}></input>
+                      </label>
+                  </li>
+                  <li>
+                      Gallego
+                      <label htmlFor='galician_question'>
+                          <input onChange={handleChange} type="text" name="galician_question" id="question" required minLength={5} maxLength={300} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" defaultValue={currentFaq.galician_question}></input>
+                      </label>
+                      <label htmlFor='galician_answer'>
+                          <input onChange={handleChange} type="text" name="galician_answer" id="galician_answer" required minLength={5} maxLength={300} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" defaultValue={currentFaq.galician_answer}></input>
+                      </label>
+                  </li>
+              </ul>
+          </fieldset>
+          {errorEdit && <p>{errorEdit}</p>}
+          <button type="submit">Guardar cambios</button>
+        </form>
+      </div>
+    </div>
   )
 }
 
