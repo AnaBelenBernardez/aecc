@@ -29,7 +29,14 @@ const Header = () => {
           </div>
 
           <div className="flex lg:flex-col lg:items-end items-center justify-center">
-            <div className="flex gap-1">
+            <div className="flex gap-2">
+            {token && (
+              <Link href="/admin/dashboard"
+                >
+                  <Image src="/image/dashboard.png" alt="Logo Dashboard" width="25" height="25"></Image>
+                
+              </Link>
+              )}
               <p>ES</p>
               <p>|</p>
               <p>GAL</p>
