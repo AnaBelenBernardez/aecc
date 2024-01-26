@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { addNewService } from '../../../service';
 
-const AddNewModal = ({setAddNewModalOpen, token}) => {
+const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
   const [formValues, setFormValues] = useState({
     title: '',
     content: '',
@@ -33,7 +33,8 @@ const AddNewModal = ({setAddNewModalOpen, token}) => {
 
     try {
       await addNewService(token, formValues);
-      setAddNewModalOpen(false);
+      setAddNewModalOpen(false);      
+      refetch();
     } catch (error) {
       console.error(error.message);
     }
@@ -61,7 +62,7 @@ const AddNewModal = ({setAddNewModalOpen, token}) => {
                 Contenido
                 <textarea 
                   type="text" 
-                  className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4"
+                  className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none"
                   id='content' name='content' cols="20" rows="20"
                   onChange={handleChange}
                 />
@@ -103,7 +104,7 @@ const AddNewModal = ({setAddNewModalOpen, token}) => {
                 Contido
                 <textarea 
                   type="text" 
-                  className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4"
+                  className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none"
                   id='galician_content' name='galician_content' cols="20" rows="20"
                   onChange={handleChange}
                 />
