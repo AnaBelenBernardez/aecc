@@ -31,6 +31,11 @@ const Header = () => {
           <div className="flex lg:flex-col lg:items-end items-center justify-center">
             <div className="flex gap-2">
             {token && (
+                <button onClick={logout}>
+                  <Logout />
+                </button>
+              )}
+            {token && (
               <Link href="/admin/dashboard"
                 >
                   <Image src="/image/dashboard.png" alt="Logo Dashboard" width="25" height="25"></Image>
@@ -99,11 +104,6 @@ const Header = () => {
               >
                 Contacto
               </Link>
-              {token && (
-                <button onClick={logout}>
-                  <Logout />
-                </button>
-              )}
             </div>
             <button className="lg:hidden ml-5" onClick={openMenu}>
               <Burger />
