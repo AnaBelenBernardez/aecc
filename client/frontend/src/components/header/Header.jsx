@@ -16,9 +16,10 @@ const Header = () => {
   };
   return (
     <header>
-      <nav className="bg-secondLightGray py-6 relative">
+      <nav className="bg-secondLightGray pt-6 pb-2 relative">
         <div className="container mx-auto flex">
-          <div className="flex-grow">
+          <div className="flex-grow self-center">
+            <Link href="/">
             <Image
               src="/logos/CC_Logo_transicion_color_pos.rgb.svg"
               alt="Logo Asociación Española Contra el Cáncer"
@@ -26,6 +27,7 @@ const Header = () => {
               height="150"
               className="self-center"
             />
+            </Link>
           </div>
 
           <div className="flex lg:flex-col lg:items-end items-center justify-center">
