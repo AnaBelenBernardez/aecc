@@ -9,6 +9,7 @@ import { deleteNewService } from '../../../../service';
 import { useState } from 'react';
 import DeleteNewModal from '../../../../components/modals/news/deleteNewModal';
 import AddNewModal from '../../../../components/modals/news/AddNewModal';
+import EditNewModal from '../../../../components/modals/news/EditNewModal';
 
 const dashboardNews = () => {
   const router = useRouter();
@@ -18,9 +19,11 @@ const dashboardNews = () => {
   }
 
   const { news, loading, error, refetch } = useGetAllNews();
-  const [deleteModalOpen, setDeleteModalOpen] = useState();
   const [idNewOpen, setIdNewOpen] = useState();
+  const [deleteModalOpen, setDeleteModalOpen] = useState();
   const [addNewModalOpen, setAddNewModalOpen] = useState();
+  const [editNewModalOpen, setEditNewModalOpen] = useState();
+  const [singleNew, setSingleNew] = useState();
 
   const openModalDelete = async (idNew) => {
     setIdNewOpen(idNew);
@@ -37,6 +40,11 @@ const dashboardNews = () => {
     setAddNewModalOpen(true);
   }
 
+  const openModalEdit = async (notice) => {
+    setSingleNew(notice)
+    setEditNewModalOpen(true);
+  }
+
   if (loading) return <Loading/>;
 
   return (
@@ -44,8 +52,9 @@ const dashboardNews = () => {
       <button onClick={openModalAddNew} className='self-end border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'>
         AÑADIR NOTICIA
       </button>
-      { addNewModalOpen && <AddNewModal setAddNewModalOpen={setAddNewModalOpen} token={token}/> }
+      { addNewModalOpen && <AddNewModal setAddNewModalOpen={setAddNewModalOpen} token={token} refetch={refetch}/> }
       { deleteModalOpen && <DeleteNewModal handleClickDelete={handleClickDelete} setDeleteModalOpen={setDeleteModalOpen} /> }
+      {editNewModalOpen && <EditNewModal currentNew={singleNew} setEditNewModalOpen={setEditNewModalOpen} token={token} refetch={refetch}/>}
       {
         news.length > 0
           ? news.map((newItem) => {
@@ -59,7 +68,7 @@ const dashboardNews = () => {
                 </div>
                 {
                   newItem.photo !== null
-                    ? <div className='self-center hidden lg:block'>
+                  ? <div className='self-center hidden lg:block'>
                         <Image src={imgSrc} width={150} height={150} alt='Imagen de la noticia'/>
                       </div>
                     : <div className='self-center hidden lg:block'>
@@ -68,7 +77,7 @@ const dashboardNews = () => {
                 }
               </div>
               <div className='self-end flex gap-4'>
-                <button className='flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen'>
+                <button onClick={() => openModalEdit(newItem)} className='flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen'>
                   <Image src={'/icons/editIcon.svg'} width={24} height={24} alt='Icono de editar'/>
                   EDITAR
                 </button>

@@ -136,7 +136,6 @@ export const deleteFaqService = async (id, token) => {
 
 export const addNewService = async (token, formValues) => {
   const addNewForm = new FormData();
-  console.log(formValues.photo[0][0]);
 
   addNewForm.append('title', formValues.title);
   addNewForm.append('content', formValues.content);
@@ -157,5 +156,35 @@ export const addNewService = async (token, formValues) => {
 
   if(!response.ok) {
     throw new Error(data.message);
+  };
+
+  return data.data
+};
+
+export const editNewService = async (formValues, idNew, token) => {
+  const editNewForm = new FormData();
+  console.log(formValues.photo);
+
+  editNewForm.append('title', formValues.title);
+  editNewForm.append('content', formValues.content);
+  editNewForm.append('link', formValues.link);
+  editNewForm.append('galician_title', formValues.galician_title);
+  editNewForm.append('galician_content', formValues.galician_content);
+  editNewForm.append('photo', formValues.photo);
+
+  const response = await fetch(`${backAPI}/news/admin/edit/${idNew}`, {
+    method: 'PUT',
+    headers : {
+      token: token
+    },
+    body: editNewForm
+  });
+
+  const data = response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
   }
+
+  return data.data
 }

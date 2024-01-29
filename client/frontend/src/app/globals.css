@@ -36,11 +36,13 @@ select {
 	background-position: 96% 57%;
 }
 
-#content {
+#content,
+#galician_content {
 	outline: none;
 	resize: none;
 }
 
-#content:focus {
+#content:focus,
+#galician_content:focus {
 	border-color: rgb(22 163 74);
 }
