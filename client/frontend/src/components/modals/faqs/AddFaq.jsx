@@ -1,65 +1,62 @@
-import React, { useState } from 'react'
-import { editFaqService } from '../../../service';
+"use client"
 
-function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, token}) {
+import { useState } from 'react';
+import { addFaqService } from '../../../service';
 
-  const [question, setQuestion] = useState(currentFaq.question);
-  const [galician_question, setGalicianQuestion] = useState(currentFaq.galician_question);
-  const [answer, setAnswer] = useState(currentFaq.answer);
-  const [galician_answer, setGalicianAnswer] = useState(currentFaq.galician_answer);
+function AddFaq ({setClickedAdd, faqsList, setFaqsList, token}){
+  const [question, setQuestion] = useState("");
+  const [galician_question, setGalicianQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [galician_answer, setGalicianAnswer] = useState("");
   const [errorEdit, setErrorEdit] = useState("");
 
-  function setEditOpen(cancel){
-    setClickedEdit(cancel);
-  }
 
   function handleChange(e){
-      const {name} = e.target;
-      const value = e.target.value;
+    const {name} = e.target;
+    const value = e.target.value;
 
-      switch(name){
-          case 'question':
-              setQuestion(value);
-              break;
-          case 'galician_question':
-              setGalicianQuestion(value);
-              break;
-          case 'answer':
-              setAnswer(value);    
-              break;
-          case 'galician_answer':
-              setGalicianAnswer(value);    
-              break;
-          default: 
-              break;
-      }
+    switch(name){
+        case 'question':
+            setQuestion(value);
+            break;
+        case 'galician_question':
+            setGalicianQuestion(value);
+            break;
+        case 'answer':
+            setAnswer(value);    
+            break;
+        case 'galician_answer':
+            setGalicianAnswer(value);    
+            break;
+        default: 
+            break;
+    }
   }
 
   async function handleSubmit(e){
-      e.preventDefault();
+    e.preventDefault();
 
-      let editedFaq;
+    let newFaq;
 
-      try{
-          editedFaq = await editFaqService(question, galician_question, answer, galician_answer, faqId, token);
-      }catch(e){
-          setErrorEdit(e.message);
-      } finally{
-          setClickedEdit(false);
+    try{
+      newFaq = await addFaqService(question, galician_question, answer, galician_answer, token);
+    }catch(e){
+      setErrorEdit(e.message);
+    } finally{
+      setClickedAdd(false);
 
-          const findFaq = faqsList.find((faq) => faq.id === parseInt(faqId));
-          const indexEditedFaq = faqsList.indexOf(findFaq);
-          const newFaqsList = [...faqsList];
-          newFaqsList.splice(indexEditedFaq, 1, editedFaq);
+      const newFaqsList = [...faqsList];
 
-          setFaqsList(newFaqsList);
-      }
-  }
-  
+      newFaqsList.push(newFaq);
+
+      setFaqsList(newFaqsList);
+    }
+}
+
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
       <div className='w-[90vw] h-[60vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center'>
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
           <fieldset>
               <ul className='flex flex-col gap-6'>
                   <li className='flex flex-col gap-2'>
@@ -70,7 +67,7 @@ function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, toke
                           file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                           focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                           border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                          font-normal not-italic w-full" defaultValue={currentFaq.question}>
+                          font-normal not-italic w-full">
                         </input>
                     </label>
                     <label htmlFor='answer' className='text-sm font-bold'>
@@ -79,7 +76,7 @@ function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, toke
                           file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                           focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                           border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                          font-normal not-italic w-full" defaultValue={currentFaq.answer}>
+                          font-normal not-italic w-full">
                         </input>
                     </label>
                   </li>
@@ -91,7 +88,7 @@ function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, toke
                           file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                           focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                           border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                          font-normal not-italic w-full" defaultValue={currentFaq.galician_question}>
+                          font-normal not-italic w-full">
                         </input>
                     </label>
                     <label htmlFor='galician_answer' className='text-sm font-bold'>
@@ -100,7 +97,7 @@ function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, toke
                           file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                           focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                           border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                          font-normal not-italic w-full" defaultValue={currentFaq.galician_answer}>
+                          font-normal not-italic w-full">
                         </input>
                     </label>
                   </li>
@@ -114,7 +111,7 @@ function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, toke
                     <button 
                       type='button' 
                       className='self-center mt-2 gap-4 w-[157px] h-[42px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray'
-                      onClick={() => setEditOpen(false)}
+                      onClick={() => setClickedAdd(false)}
                     >
                       CANCELAR
                     </button>
@@ -125,6 +122,6 @@ function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, toke
       </div>
     </div>
   )
-}
+};
 
-export default EditFaq
+export default AddFaq;
