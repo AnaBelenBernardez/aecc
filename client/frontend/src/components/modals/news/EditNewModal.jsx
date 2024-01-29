@@ -11,9 +11,9 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, token, refetch}) => {
   }, []);
   
   const urlToFile = async (url, filename) => {
-    console.log(url);
+  
     const response = await fetch(url);
-    console.log(response);
+
     const blob = await response.blob();
     return new File([blob], filename, { type: blob.type });
   };

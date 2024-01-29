@@ -49,57 +49,57 @@ const Header = () => {
             <div className="my-4 hidden lg:flex lg:gap-7">
               <Link
                 href="/"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer pb-0.5"
+                className="hover:text-primaryGreen transition-all duration-500 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-500 cursor-pointer pb-0.5"
               >
                 Inicio
               </Link>
               <Link
                 href="/calendario-e-inscripciones"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer pb-0.5"
+                className="hover:text-primaryGreen transition-all duration-500 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-500 cursor-pointer pb-0.5"
               >
                 Calendario e inscripciones
               </Link>
               <Link
                 href="/galeria"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer pb-0.5"
+                className="hover:text-primaryGreen transition-all duration-500 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-500 cursor-pointer pb-0.5"
               >
                 Galería
               </Link>
               <Link
                 href="/faq"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer pb-0.5"
+                className="hover:text-primaryGreen transition-all duration-500 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-500 cursor-pointer pb-0.5"
               >
                 FAQ
               </Link>
               <Link
                 href="https://www.contraelcancer.es/es/colabora/voluntariado"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer pb-0.5"
+                className="hover:text-primaryGreen transition-all duration-500 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-500 cursor-pointer pb-0.5"
                 target="_blank"
               >
                 Voluntarios
               </Link>
               <Link
                 href="/"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer pb-0.5"
+                className="hover:text-primaryGreen transition-all duration-500 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-500 cursor-pointer pb-0.5"
               >
                 Patrocinios
               </Link>
               <Link
                 href="/noticias"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer pb-0.5"
+                className="hover:text-primaryGreen transition-all duration-500 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-500 cursor-pointer pb-0.5"
               >
                 Noticias
               </Link>
               <a
                 href="https://blog.contraelcancer.es/"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer pb-0.5"
+                className="hover:text-primaryGreen transition-all duration-500 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-500 cursor-pointer pb-0.5"
                 target="_blank"
               >
                 Blog
               </a>
               <Link
                 href="https://www.contraelcancer.es/es/sobre-nosotros/donde-estamos"
-                className="hover:text-primaryGreen transition-all duration-300 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer pb-0.5"
+                className="hover:text-primaryGreen transition-all duration-500 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-500 cursor-pointer pb-0.5"
                 target="_blank"
               >
                 Contacto

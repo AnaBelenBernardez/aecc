@@ -163,14 +163,12 @@ export const addNewService = async (token, formValues) => {
 
 export const editNewService = async (formValues, idNew, token) => {
   const editNewForm = new FormData();
-  console.log(formValues.photo);
-
   editNewForm.append('title', formValues.title);
   editNewForm.append('content', formValues.content);
   editNewForm.append('link', formValues.link);
   editNewForm.append('galician_title', formValues.galician_title);
   editNewForm.append('galician_content', formValues.galician_content);
-  editNewForm.append('photo', formValues.photo);
+  if (Array.isArray(formValues.photo)) {editNewForm.append('photo', formValues.photo[0][0])};
 
   const response = await fetch(`${backAPI}/news/admin/edit/${idNew}`, {
     method: 'PUT',

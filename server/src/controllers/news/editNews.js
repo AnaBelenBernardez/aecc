@@ -3,6 +3,7 @@ const generateError = require('../../helpers/generateError');
 const newsSchema = require('../../schemas/newsSchema');
 const { photoSchema, arrayPhotoSchema } = require('../../schemas/photoSchema');
 const savePhoto = require('../../helpers/savePhoto');
+const deletePhoto = require("../../helpers/deletePhoto");
 
 async function editNews (req,res,next) {
 
@@ -16,7 +17,7 @@ async function editNews (req,res,next) {
         const photos = req.files?.photo;
         let photoErrorSchema;
 
-        if (photos.length > 1) {
+        if (photos && photos.length > 0) {
             return next(generateError('Has subido demasiadas fotos. Máximo 1', 400));
             
         }
@@ -54,6 +55,10 @@ async function editNews (req,res,next) {
             }
 
         } else if (photos) {
+            await pool.query(
+                'DELETE FROM news_photos WHERE news_id = ?',
+                [idNews]
+            )
             const photoName = await savePhoto(photos, 500);
             await pool.query(
                 'INSERT INTO news_photos (news_id, photo) VALUES (?, ?)',
