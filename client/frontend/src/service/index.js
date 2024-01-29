@@ -125,7 +125,7 @@ export const deleteFaqService = async (id, token) => {
     }
   });
 
-  const data = response.json();
+  const data = await response.json();
 
   if (!response.ok) {
     throw new Error(data.message);
@@ -133,6 +133,27 @@ export const deleteFaqService = async (id, token) => {
 
   return data;
 };
+
+export const addFaqService = async(question, galician_question, answer, galician_answer, token) =>{
+
+  const response = await fetch(`${backAPI}/faqs/admin/add`, {
+    method: 'POST',
+    headers : {
+      "Content-Type": "application/json",
+      token: token
+    },
+    body: JSON.stringify({question, galician_question, answer, galician_answer})
+  })
+
+  const data = await response.json();
+
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data.data;
+}
 
 export const addNewService = async (token, formValues) => {
   const addNewForm = new FormData();
