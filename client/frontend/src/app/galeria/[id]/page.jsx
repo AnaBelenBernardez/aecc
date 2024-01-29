@@ -7,9 +7,9 @@ import Link from 'next/link';
 
 const EventPhotos = () => {
   const {id} = useParams();
-  console.log(id);
+
   const { event, loading, error } = useGetEvent(id);
-  console.log(event);
+
 
   if (loading) return <Loading/>;
 

@@ -9,7 +9,6 @@ import Loading from '../../components/loading/Loading';
 const Noticias = () => {
   const { news, loading, error } = useGetAllNews();
   const { events, loading: lodingEvents } = useGetAllEvents();
-  console.log(events);
 
   const eventsFilter = events.filter((event) => event.warning === 1 && new Date(event.date_end) > new Date()).map((event) => {
     return (
