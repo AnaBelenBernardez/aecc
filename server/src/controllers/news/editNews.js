@@ -59,11 +59,13 @@ async function editNews (req,res,next) {
                 'SELECT photo FROM news_photos WHERE news_id = ?',
                 [idNews]
             )
-            await deletePhoto(photoToDelete[0].photo);
-            await pool.query(
-                'DELETE FROM news_photos WHERE news_id = ?',
-                [idNews]
-            )
+            if (photoToDelete.length) {
+               await deletePhoto(photoToDelete[0].photo);
+               await pool.query(
+                   'DELETE FROM news_photos WHERE news_id = ?',
+                   [idNews]
+               )
+            }
             const photoName = await savePhoto(photos, 500);
             await pool.query(
                 'INSERT INTO news_photos (news_id, photo) VALUES (?, ?)',
