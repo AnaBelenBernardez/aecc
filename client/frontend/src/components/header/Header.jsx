@@ -38,8 +38,7 @@ const Header = () => {
             {token && (
               <Link href="/admin/dashboard"
                 >
-                  <Image src="/image/dashboard.png" alt="Logo Dashboard" width="25" height="25"></Image>
-                
+                  <Image src="/image/dashboard.png" alt="Logo Dashboard" width={24} height={24} className='min-w-6 min-h-6'/>
               </Link>
               )}
               <p>ES</p>
