@@ -26,7 +26,7 @@ async function addFaq (req,res,next){
             return next(generateError('Ya existe esa pregunta en las FAQs, edítala o elimínala para evitar contenidos duplicados', 400));
         }
 
-        const [newFaq] = await pool.query(
+        const [faqInfo] = await pool.query(
             `
                 INSERT INTO faqs (question, galician_question, answer, galician_answer)
                 VALUES (?,?,?,?)
@@ -34,10 +34,20 @@ async function addFaq (req,res,next){
             [question, galician_question, answer, galician_answer] 
         );
 
+        const {insertId} = faqInfo;
+
+        const [newFaq] = await pool.query(
+            `
+                SELECT *
+                FROM faqs
+                WHERE id=?
+            `,[insertId]
+        )
+
         res.status(200).send({
             status: "OK",
             message: "Se ha añadido una nueva FAQ correctamente",
-            data: newFaq
+            data: newFaq[0]
         });
 
 
