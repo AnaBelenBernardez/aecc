@@ -48,7 +48,7 @@ const dashboardNews = () => {
   if (loading) return <Loading/>;
 
   return (
-    <main className='flex flex-col my-4 px-4'>
+    <main className='flex flex-col my-4 px-4 items-center'>
       <button onClick={openModalAddNew} className='self-end border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'>
         AÑADIR NOTICIA
       </button>
@@ -60,28 +60,28 @@ const dashboardNews = () => {
           ? news.map((newItem) => {
             const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${newItem.photo}`
             return (
-              <article className='flex flex-col justify-between p-8 items-center shadow-md' key={newItem.title}>
-              <div>
+              <article className='flex flex-col justify-between p-8 items-center shadow-md md:flex-row lg:w-[80%]' key={newItem.title}>
+              <div className='lg:flex lg:w-[70%] lg:justify-evenly'>
                 <div className='flex items-center'>
                   <p className='w-[52px] text-center flex items-center text-lightPink font-bold'>{new Date(newItem.news_date || newItem.create_date).toLocaleDateString('es-ES', { month: 'short', day: '2-digit', year: 'numeric' }).toLocaleUpperCase()}</p>
                   <h2 className='font-bold px-6 line-clamp-2 w-[240px]'>{newItem.title}</h2>
                 </div>
                 {
                   newItem.photo !== null
-                  ? <div className='self-center hidden lg:block'>
-                        <Image src={imgSrc} width={150} height={150} alt='Imagen de la noticia'/>
+                  ? <div className='self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
+                        <Image src={imgSrc} width={150} height={150} alt='Imagen de la noticia' className='lg:max-w-[150px] lg:max-h-[72px] object-cover'/>
                       </div>
-                    : <div className='self-center hidden lg:block'>
-                        <Image src={'/image/newsDefault.png'} width={150} height={150} alt='Imagen de la noticia'/>
+                    : <div className='self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
+                        <Image src={'/image/newsDefault.png'} width={150} height={150} alt='Imagen de la noticia' className='lg:max-w-[150px] lg:max-h-[72px] object-cover'/>
                       </div>
                 }
               </div>
-              <div className='self-end flex gap-4'>
-                <button onClick={() => openModalEdit(newItem)} className='flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen'>
+              <div className='self-end flex gap-4 md:self-center'>
+                <button onClick={() => openModalEdit(newItem)} className='flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0'>
                   <Image src={'/icons/editIcon.svg'} width={24} height={24} alt='Icono de editar'/>
                   EDITAR
                 </button>
-                <button onClick={() => openModalDelete(newItem.id)} className='flex gap-4 items-center justify-center border border-secondRed py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-secondRed'>
+                <button onClick={() => openModalDelete(newItem.id)} className='flex gap-4 items-center justify-center border border-secondRed py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-secondRed md:mt-0'>
                   <Image src={'/icons/deleteIcon.svg'} width={24} height={24} alt='Icono de eliminar'/>
                   ELIMINAR
                 </button>

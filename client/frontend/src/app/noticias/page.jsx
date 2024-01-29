@@ -48,11 +48,11 @@ const Noticias = () => {
                     </div>
                     {
                       newItem.photo !== null
-                        ? <div className='self-center hidden lg:block'>
-                            <Image src={imgSrc} width={150} height={150} alt='Imagen de la noticia'/>
+                        ? <div className='self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
+                            <Image src={imgSrc} width={150} height={72} alt='Imagen de la noticia' className='lg:max-w-[150px] lg:max-h-[72px] object-cover'/>
                           </div>
-                        : <div className='self-center hidden lg:block'>
-                            <Image src={'/image/newsDefault.png'} width={150} height={150} alt='Imagen de la noticia'/>
+                        : <div className='self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
+                            <Image src={'/image/newsDefault.png'} width={150} height={72} alt='Imagen de la noticia' className='lg:max-w-[150px] lg:max-h-[72px] object-cover'/>
                           </div>
                     }
                   </article>
