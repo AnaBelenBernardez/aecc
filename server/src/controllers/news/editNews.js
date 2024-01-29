@@ -55,6 +55,11 @@ async function editNews (req,res,next) {
             }
 
         } else if (photos) {
+            const [photoToDelete] = await pool.query(
+                'SELECT photo FROM news_photos WHERE news_id = ?',
+                [idNews]
+            )
+            await deletePhoto(photoToDelete[0].photo);
             await pool.query(
                 'DELETE FROM news_photos WHERE news_id = ?',
                 [idNews]
