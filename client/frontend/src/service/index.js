@@ -207,3 +207,26 @@ export const editNewService = async (formValues, idNew, token) => {
 
   return data.data
 }
+
+export const changePwd = async (token, formValues) => {
+  const editPwd = new FormData();
+
+  editPwd.append('oldPwd', formValues.oldPwd);
+  editPwd.append('newPwd', formValues.newPwd);
+
+  const response = await fetch(`${backAPI}/admin/update-password/1`, {
+    method: 'PUT',
+    headers: {
+      token: token
+    },
+    body: editPwd
+  });
+
+  const data = response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data.data
+}
