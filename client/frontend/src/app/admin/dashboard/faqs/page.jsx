@@ -59,12 +59,12 @@ const FaqAdminPage = () => {
   };
 
 	return (
-	<main className="mx-10 my-10 flex flex-col gap-5">
-		<h1 className="text-4xl sm:text-6xl text-primaryGreen font-semibold ">
+	<main className="mx-10 my-10 flex flex-col gap-3">
+		<h1 className="text-4xl sm:text-5xl text-primaryGreen font-bold self-center">
 			Gestión de preguntas frecuentes (FAQs)
 		</h1>
-		<div className='flex justify-center items-center p-4'>
-				<button onClick={handleClickAdd} className='self-end border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 lg:self-end lg:mb-2 sticky hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'>
+		<div className='flex p-4 justify-center'>
+				<button onClick={handleClickAdd} className='border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'>
 					AÑADIR FAQ
 				</button>
 		</div>
@@ -75,21 +75,21 @@ const FaqAdminPage = () => {
 			faqsList.length > 0 ? 
 			faqsList.map((faq) => {
 					return (
-							<li key={faq.id} className='w-[90vw] h-[40vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center marker:text-primaryGreen marker:text-4xl marker:font-bold md:marker:text-5xl'>
+							<li key={faq.id} className='flex flex-col justify-between p-8 items-center shadow-md md:flex-row'>
 								{
 									clickedEdit && faqId === faq.id ?
 										<EditFaq currentFaq={faq} faqsList={faqsList} setFaqsList={setFaqsList} faqId={faqId} setClickedEdit={setClickedEdit} token={token}/>
 									:
-										<>
+										<article className="lg:w-[100%]">
 											<div>
-												<span className="text-primaryGreen font-semibold text-2xl uppercase">{faq.question}</span>
-												<p className='pt-4'>{faq.answer}</p>
+												<span className="text-primaryGreen font-semibold text-xl uppercase text-justify">{faq.question}</span>
+												<p className='pt-4 text-justify'>{faq.answer}</p>
 											</div>
-											<div className='self-end flex gap-4'>
+											<div className='self-end flex gap-4 justify-end lg:w-[100%]'>
 												<button onClick={()=>handleClickEdit(faq.id)} className='flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen'><Image src="/icons/editIcon.svg" width={24} height={24} alt="Editar"></Image>EDITAR</button>
 												<button onClick={() => openModalDelete(faq.id)}className='flex gap-4 items-center justify-center border border-secondRed py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-secondRed'><Image src="/icons/deleteIcon.svg" width={24} height={24} alt="Eliminar"></Image>ELIMINAR</button>
 											</div>
-										</>
+										</article>
 								}
 							</li>
 					)
