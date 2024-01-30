@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { addNewService } from '../../../service';
 
 const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
-  const body = document.querySelector('body');
   const [formValues, setFormValues] = useState({
     title: '',
     content: '',

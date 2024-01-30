@@ -36,16 +36,18 @@ const DashboardPage = () => {
             <DashboardCard title={"Galeria"}>
               <Photos />
             </DashboardCard>
-            <DashboardCard title={"Usuario"}>
-              <User />
-            </DashboardCard>
+            <Link href={'/admin/dashboard/usuario'}>
+              <DashboardCard title={"Usuario"}>
+                <User />
+              </DashboardCard>
+            </Link>
             <DashboardCard title={"FAQ"}>
-              <Link href="/admin/dashboard/faqs"><Faq /></Link>
+              <Link href={'/admin/dashboard/faqs'}><Faq /></Link>
             </DashboardCard>
             <DashboardCard title={"Patrocinadores"}>
               <Publicity />
             </DashboardCard>
-            <Link href={'/admin/dashboard/news'}>
+            <Link href={'/admin/dashboard/noticias'}>
               <DashboardCard title={"Noticias"}>
                 <News />
               </DashboardCard>
