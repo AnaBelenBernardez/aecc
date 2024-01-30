@@ -9,12 +9,30 @@ import DateTimePickerValue from "../components/ui/dateRangePicker";
 import useGetAllEvents from "../hooks/useGetAllEvents";
 import useGetAllExperiences from "../hooks/useGetAllExperiences";
 import Loading from '../components/loading/Loading';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const { events , loading } = useGetAllEvents();
   const { experiences } = useGetAllExperiences();
+  const [scroll, setScroll] = useState(false);
   const categoryEvents = [];
   const locations = [];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   if (events.length > 0) {
     events.forEach((event) => {
@@ -32,16 +50,20 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
-      <Link href={"#top"}>
-        <button className="rounded-full bg-primaryGreen w-11 h-11 flex items-center justify-center fixed bottom-12 right-12">
-          <Image
-            src={"/image/scrollUp.svg"}
-            width={24}
-            height={24}
-            alt="Volver arriba"
-          />
-        </button>
-      </Link>
+      {
+        scroll
+          ? <Link href={"#top"}>
+              <button className="rounded-full bg-primaryGreen w-11 h-11 flex items-center justify-center fixed bottom-12 right-12 z-[1]">
+                <Image
+                  src={"/image/scrollUp.svg"}
+                  width={24}
+                  height={24}
+                  alt="Volver arriba"
+                />
+              </button>
+            </Link>
+          : null
+      }
       <div
         className="bg-[url('/image/eventos-M.jpg')] w-full bg-cover bg-center sm:bg-cover h-[380px] sm:h-[480px] bg-no-repeat flex sm:items-center justify-start"
         id="top"

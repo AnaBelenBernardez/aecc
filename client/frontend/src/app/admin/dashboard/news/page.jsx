@@ -51,7 +51,11 @@ const dashboardNews = () => {
   return (
     <main className='flex flex-col my-4 px-4 items-center'>
       <BlockScroll isModalOpen={addNewModalOpen || deleteModalOpen || editNewModalOpen} />
-      <button onClick={openModalAddNew} className='self-end border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'>
+      <button 
+        onClick={openModalAddNew} 
+        className='self-end border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 
+        mb-6 lg:self-end lg:mb-6 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'
+      >
         AÑADIR NOTICIA
       </button>
       { addNewModalOpen && <AddNewModal setAddNewModalOpen={setAddNewModalOpen} token={token} refetch={refetch}/> }
