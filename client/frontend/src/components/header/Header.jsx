@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Burger, Logout } from "../../lib/svg";
 import { useLoginStore, useUIStore } from "../../store";
 import { useRouter } from "next/navigation";
+import dynamic from 'next/dynamic';
 
 const Header = () => {
   const router = useRouter();
@@ -32,7 +33,7 @@ const Header = () => {
             <div className="flex gap-2">
             {token && (
                 <button onClick={logout}>
-                  <Logout />
+                  <Logout/>
                 </button>
               )}
             {token && (
@@ -114,4 +115,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default dynamic(() => Promise.resolve(Header), { ssr: false });;
