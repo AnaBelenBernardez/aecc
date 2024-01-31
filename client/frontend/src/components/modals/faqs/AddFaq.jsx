@@ -55,7 +55,7 @@ function AddFaq ({setClickedAdd, faqsList, setFaqsList, token}){
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='w-[90vw] h-[60vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center'>
+      <div className='w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center md:h-[50vh] lg:h-[60vh]'>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2">
           <fieldset>
               <ul className='flex flex-col gap-6'>

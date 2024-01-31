@@ -10,6 +10,7 @@ import AddFaq from '../../../../components/modals/faqs/AddFaq';
 import { useLoginStore } from '../../../../store';
 import { useRouter } from 'next/navigation';
 import { deleteFaqService } from '../../../../service';
+import BlockScroll from '../../../../components/blockScroll/BlockScroll';
 
 
 const FaqAdminPage = () => {
@@ -60,6 +61,7 @@ const FaqAdminPage = () => {
 
 	return (
 	<main className="mx-10 my-10 flex flex-col gap-3">
+		<BlockScroll isModalOpen={clickedAdd || deleteModalOpen || clickedEdit}/>
 		<h1 className="text-4xl sm:text-5xl text-primaryGreen font-bold self-center">
 			Gestión de preguntas frecuentes (FAQs)
 		</h1>
