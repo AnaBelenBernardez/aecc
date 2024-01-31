@@ -10,11 +10,16 @@ import useGetAllEvents from "../hooks/useGetAllEvents";
 import useGetAllExperiences from "../hooks/useGetAllExperiences";
 import Loading from '../components/loading/Loading';
 import { useEffect, useState } from 'react';
+import { getAllEventsFilterService } from "../service";
 
 export default function Home() {
   const { events , loading } = useGetAllEvents();
   const { experiences } = useGetAllExperiences();
   const [scroll, setScroll] = useState(false);
+  const [typeEvent, setTypeEvent] = useState("");
+  const [locationEvent, setLocationEvent] = useState("");
+  const [eventDateStart, setEventDateStart] = useState();
+  const [eventDateEnd, setEventDateEnd] = useState();
   const categoryEvents = [];
   const locations = [];
 
@@ -33,6 +38,16 @@ export default function Home() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  async function handleSubmit(e){
+    e.preventDefault();
+
+    try{
+      await getAllEventsFilterService(typeEvent, locationEvent, eventDateStart, eventDateEnd)
+    }catch(err){
+      console.log(err.message)
+    }
+  }
 
   if (events.length > 0) {
     events.forEach((event) => {
@@ -84,29 +99,32 @@ export default function Home() {
       </div>
       {events.length > 0 ? 
         <>
-          <section className="bg-blueBgSection flex flex-col gap-4 px-7 lg:pb-10 md:w-full lg:h-80 lg:justify-center">
+          <form onSubmit={handleSubmit} className="bg-blueBgSection flex flex-col gap-4 px-7 lg:pb-10 md:w-full lg:h-80 lg:justify-center">
             <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
               Encuentra un evento #contraelcáncer
             </h2>
             <div className="flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center">
               <div className="flex flex-col gap-4 md:flex-row md:items-center">
                 <SelectInput
+                  setStatus={setTypeEvent}
                   text={"Tipo de evento"}
-                  eventType={"events"}
+                  eventType={"typeEvent"}
                   options={categoryEvents}
                 ></SelectInput>
                 <SelectInput
+                  setStatus={setLocationEvent}
                   text={"Localidades"}
-                  eventType={"locations"}
+                  eventType={"locationEvent"}
                   options={locations}
                 ></SelectInput>
               </div>
-              <DateTimePickerValue></DateTimePickerValue>
-              <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
+              <DateTimePickerValue eventDateEnd={eventDateEnd} setEventDateEnd={setEventDateEnd} setEventDateStart={setEventDateStart} eventDateStart={eventDateStart}></DateTimePickerValue>
+              <button type="submit" className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
                 Buscar
               </button>
             </div>
-          </section><h3 className="text-2xl font-bold my-8 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
+          </form>
+          <h3 className="text-2xl font-bold my-8 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
               Próximos eventos
             </h3>
             {
