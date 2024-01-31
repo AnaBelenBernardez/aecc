@@ -96,6 +96,50 @@ export const deleteNewService = async (id, token) => {
   return data;
 };
 
+export const addExperienceService = async (token, formValues) => {
+  const addExperienceForm = new FormData();
+
+  addExperienceForm.append('name', formValues.name);
+  addExperienceForm.append('content', formValues.content);
+  addExperienceForm.append('galician_content', formValues.galician_content);
+  if (formValues.photo) {
+    addExperienceForm.append('photo', formValues.photo[0][0]);
+  }
+
+  const response = await fetch(`${backAPI}/experiences/admin/add`, {
+    method: 'POST',
+    headers : {
+      token: token
+    },
+    body: addExperienceForm
+  })
+
+  const data = response.json();
+
+  if(!response.ok) {
+    throw new Error(data.message);
+  };
+
+  return data.data
+};
+export const deleteExperienceService = async (id, token) => {
+  const response = await fetch(`${backAPI}/experiences/admin/delete/${id}`, {
+    method: "DELETE",
+    headers: {
+      token: token
+    }
+  }
+  );
+
+  const data = response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+
 
 export const editFaqService = async (question, galician_question, answer, galician_answer, idFaq, token) =>{
 
