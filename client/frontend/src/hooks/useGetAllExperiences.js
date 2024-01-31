@@ -1,12 +1,12 @@
 const { useState, useEffect } = require('react');
 const { getAllExperiencesService } = require('../service');
 
+
 const useGetAllExperiences = () => {
   const [experiences, setExperiences] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  useEffect(() => {
     const loadExperiences = async () => {
       try {
         setLoading(true);
@@ -20,11 +20,15 @@ const useGetAllExperiences = () => {
         setLoading(false);
       }
     }
+    useEffect(() => {
+      loadExperiences();
+    }, []);
+  
+    const refetch = () => {
+      loadExperiences();
+    };
 
-    loadExperiences();
-  }, []);
-
-  return { experiences, loading, error };
+  return { experiences, loading, error, refetch };
 }
 
 export default useGetAllExperiences;
