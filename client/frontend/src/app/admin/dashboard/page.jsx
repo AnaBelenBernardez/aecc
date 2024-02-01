@@ -7,8 +7,7 @@ import {
   User,
   Faq,
   Publicity,
-  News, 
-  Logout,
+  News
 } from "../../../lib/svg";
 import { useLoginStore } from "../../../store";
 import { useRouter } from "next/navigation";

@@ -27,7 +27,6 @@ const DateTimePickerValue = ({eventDateEnd, setEventDateEnd, setEventDateStart, 
               name="eventDateStart"
               views={['year', 'month', 'day']}
               label="Desde"
-              value={eventDateStart}
               format='dd/MM/yy'
               formatDensity='spacious'
               onChange={handleChangeStart}
@@ -38,11 +37,10 @@ const DateTimePickerValue = ({eventDateEnd, setEventDateEnd, setEventDateStart, 
               name="eventDateEnd"
               views={['year', 'month', 'day']}
               label="Hasta"
-              value={eventDateEnd}
               format='dd/MM/yy'
               formatDensity='spacious'
               onChange={handleChangeEnd}
-              /* minDateTime={dateNow} */
+              minDateTime={dateNow} 
               className='bg-[#f5f5f5] w-full md:w-56'
             />
           </div>
