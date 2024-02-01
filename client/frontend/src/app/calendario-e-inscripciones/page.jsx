@@ -35,17 +35,14 @@ export default function CalendarAndRegistration() {
     
   }, [cleanFilter]);
 
-
   useEffect(() => {
     try {
       getAllEventsFilterService(typeEvent, locationEvent, eventDateStart, eventDateEnd).then((res) => {
-        console.log(res);
         setFilteredEvents(res);
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
-    
   }, [typeEvent, locationEvent, eventDateStart, eventDateEnd]);
 
   events.forEach((event) => {

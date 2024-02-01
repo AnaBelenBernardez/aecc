@@ -15,25 +15,21 @@ const SelectInput = ({setStatus, eventType, options, text}) => {
         }
     }
   }
-  console.log(textToDefault);
+
   function handleChange(e){
     const {name} = e.target;
     const value = e.target.value;
     switch(name){
-        case 'typeEvent':
-            setStatus(value);
-            console.log(value)
-            break;
-        case 'locationEvent':
-            setStatus(value);
-            console.log(value)
-            break;
-        default: 
-            break;
+      case 'typeEvent':
+        setStatus(value);
+        break;
+      case 'locationEvent':
+        setStatus(value);
+        break;
+      default: 
+        break;
     }
   }
-  console.log(textToDefault);
-
 
   return (
     <div className='flex flex-col gap-2 md:flex-row md:items-center md:gap-6 lg:flex-col lg:gap-2 lg:items-start'>
