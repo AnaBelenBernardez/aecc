@@ -20,8 +20,10 @@ export default function Home() {
   const [locationEvent, setLocationEvent] = useState("");
   const [eventDateStart, setEventDateStart] = useState();
   const [eventDateEnd, setEventDateEnd] = useState();
+  let [eventsFiltered, setEventsFiltered] = useState();
   const categoryEvents = [];
   const locations = [];
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,9 +45,10 @@ export default function Home() {
     e.preventDefault();
 
     try{
-      await getAllEventsFilterService(typeEvent, locationEvent, eventDateStart, eventDateEnd)
+      const data = await getAllEventsFilterService(typeEvent, locationEvent, eventDateStart, eventDateEnd);
+      setEventsFiltered(data);
     }catch(err){
-      console.log(err.message)
+      console.error(err.message)
     }
   }
 
@@ -128,25 +131,36 @@ export default function Home() {
               Próximos eventos
             </h3>
             {
-                events.length >= 3 && events
-                  ? <EventsCarousel />
-                  : <div className='flex flex-col gap-10 mb-6 mt-4 lg:flex-row'>
-                    {
-                      events.map((event) => {
-                        return (
-                          <CardEvent
+              (eventsFiltered && eventsFiltered.length >= 3) ? 
+                <EventsCarousel /> 
+                : 
+                <div className='flex flex-col gap-10 mb-6 mt-4 lg:flex-row'>
+                  { 
+                    (eventsFiltered && eventsFiltered.length > 0) ? 
+                      eventsFiltered.map((event) => (
+                        <CardEvent
                           title={event.title}
                           image={event.event_photos[0]}
                           description={event.content}
                           location={event.location}
                           link={event.link}
                           warning={event.warning}
-                          />
-                        );
-                      }) 
-                    }
-                  </div>
-              }
+                        />
+                      ))
+                      :
+                      events.map((event) => (
+                        <CardEvent
+                          title={event.title}
+                          image={event.event_photos[0]}
+                          description={event.content}
+                          location={event.location}
+                          link={event.link}
+                          warning={event.warning}
+                        />
+                      )) 
+                  }
+                </div>
+            }
             <section className='flex flex-col w-full md:items-center lg:items-start pl-8 pr-8 lg:relative'>
               <div className='flex flex-col items-center w-full lg:flex lg:flex-wrap lg:items-start'>
                 <h2 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-12 lg:w-full lg:mt-20">

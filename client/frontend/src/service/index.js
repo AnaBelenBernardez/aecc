@@ -278,9 +278,8 @@ export const changePwd = async (token, formValues) => {
 }
 
 export const getAllEventsFilterService = async (typeEvent, locationEvent, eventDateStart, eventDateEnd) =>{
-
   let params = {}
-  console.log(eventDateStart, eventDateEnd);
+  
   if(typeEvent !== "") params.eventType = typeEvent
   if(locationEvent !== "") params.location = locationEvent
   if(eventDateStart !== undefined) {
@@ -297,7 +296,6 @@ export const getAllEventsFilterService = async (typeEvent, locationEvent, eventD
   if (!response.ok) {
     throw new Error(data.message);
   }
-console.log(data.data);
-  return data.data
 
+  return data.data
 }

@@ -7,7 +7,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import {es} from 'date-fns/locale';
 
-const DateTimePickerValue = ({eventDateEnd, setEventDateEnd, setEventDateStart, eventDateStart}) => {
+const DateTimePickerValue = ({ setEventDateEnd, setEventDateStart }) => {
   const dateNow = new Date();
   dateNow.setHours(0, 0, 0, 0);
 
