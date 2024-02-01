@@ -1,3 +1,5 @@
+import formatDate from "../helpers/formatDate";
+
 const backAPI = process.env.NEXT_PUBLIC_BACK_URL;
 
 export const getAllEventsService = async () => {
@@ -271,73 +273,31 @@ export const changePwd = async (token, formValues) => {
   if (!response.ok) {
     throw new Error(data.message);
   }
-
+  
   return data.data
 }
 
 export const getAllEventsFilterService = async (typeEvent, locationEvent, eventDateStart, eventDateEnd) =>{
 
-  let queryParams = "";
-  const minDate = eventDateStart !== undefined ? `${eventDateStart.getFullYear()}/${(eventDateStart.getUTCMonth()+1) < 10 ? "0"+(eventDateStart.getUTCMonth()+1) : eventDateStart.getUTCMonth()+1}/${eventDateStart.getDate()}` : undefined;
-  const maxDate = eventDateEnd !== undefined ?`${eventDateEnd.getFullYear()}/${(eventDateEnd.getUTCMonth()+1) < 10 ? "0"+(eventDateEnd.getUTCMonth()+1) : eventDateEnd.getUTCMonth()+1}/${eventDateEnd.getDate()}` : undefined;
-
-  //aquí tenemos sólo typeEvent
-  if(typeEvent !== "" && locationEvent === "" && eventDateStart === undefined && eventDateEnd === undefined) queryParams = `?eventType=${typeEvent}`;
-
-  //aquí tenemos typeEvent y dateStart
-  if(typeEvent !== "" && locationEvent === "" && eventDateStart !== undefined && eventDateEnd === undefined) queryParams = `?eventType=${typeEvent}&minDate=${minDate}`;
-
-  //aquí tenemos typeEvent y eventDateEnd
-  if(typeEvent !== "" && locationEvent === "" && eventDateStart === undefined && eventDateEnd !== undefined) queryParams = `?eventType=${typeEvent}&maxDate=${maxDate}`;
-
-  //aquí tenemos typeEvent, dateStart y dateEnd
-  if(typeEvent !== "" && locationEvent === "" && eventDateStart !== undefined && eventDateEnd !== undefined) queryParams = `?eventType=${typeEvent}&minDate=${minDate}&maxDate=${maxDate}`;
-
-  //aquí tenemas sólo locationEvent
-  if(locationEvent !== ""  && typeEvent === "" && eventDateStart === undefined && eventDateEnd === undefined) queryParams = `?location=${locationEvent}`;
-
-  //aquí tenemos locationEvent y dateStart
-  if(typeEvent === "" && locationEvent !== "" && eventDateStart !== undefined && eventDateEnd === undefined) queryParams = `?location=${locationEvent}&minDate=${minDate}`;
-
-  //aquí tenemos locationEvent y eventDateEnd
-  if(typeEvent === "" && locationEvent !== "" && eventDateStart === undefined && eventDateEnd !== undefined) queryParams = `?location=${locationEvent}&maxDate=${maxDate}`;
-
-  //aquí tenemos locationEvent, dateStart y dateEnd
-  if(typeEvent === "" && locationEvent !== "" && eventDateStart !== undefined && eventDateEnd !== undefined) queryParams = `?location=${locationEvent}&minDate=${minDate}&maxDate=${maxDate}`;
-
-  //aquí tenemos sólo eventDateStart
-  if(eventDateStart !== undefined && locationEvent === "" && typeEvent === "" && eventDateEnd === undefined) queryParams = `?minDate=${minDate}`
-
-  //aquí tenemos sólo eventDateEnd
-  if(eventDateEnd !== undefined && locationEvent === "" && typeEvent === "" && eventDateStart === undefined) queryParams = `?maxDate=${maxDate}`
-
-  //aquí tenemos sólo las dos fechas
-  if(eventDateEnd !== undefined && locationEvent === "" && typeEvent === "" && eventDateStart !== undefined) queryParams = `?maxDate=${maxDate}&minDate=${minDate}`
-
-  //aquí tenemos typeEvent y locationEvent
-  if(typeEvent !== "" && locationEvent !== "" && eventDateStart === undefined && eventDateEnd === undefined) queryParams = `?eventType=${typeEvent}&location=${locationEvent}`;
-
-  //aquí tenemos typeEvent, locationEvent y eventDateStart
-  if(typeEvent !== "" && locationEvent !== "" && eventDateStart !== undefined && eventDateEnd === undefined) queryParams = `?eventType=${typeEvent}&location=${locationEvent}&minDate=${minDate}`;
-
-  //aquí tenemos typeEvent, locationEvent y eventDateEnd
-  if(typeEvent !== "" && locationEvent !== "" && eventDateStart === undefined && eventDateEnd !== undefined) queryParams = `?eventType=${typeEvent}&location=${locationEvent}&maxDate=${maxDate}`;
-
-  //aquí tenemos todo
-  if(typeEvent !== "" && locationEvent !== "" && eventDateStart !== undefined && eventDateEnd !== undefined) queryParams = `?eventType=${typeEvent}&location=${locationEvent}&minDate=${minDate}&maxDate=${maxDate}`;
-
-  console.log("--------------Query: ", queryParams)
-
-  const response = await fetch(`${backAPI}/events/${queryParams}`);
+  let params = {}
+  console.log(eventDateStart, eventDateEnd);
+  if(typeEvent !== "") params.eventType = typeEvent
+  if(locationEvent !== "") params.location = locationEvent
+  if(eventDateStart !== undefined) {
+    const formatedDateStart = formatDate(eventDateStart);
+    params.minDate = formatedDateStart;}
+  if(eventDateEnd !== undefined) {
+    const formatedDateEnd = formatDate(eventDateEnd);
+    params.maxDate = formatedDateEnd;}
+  
+  const queryParams = new URLSearchParams(params).toString();
+  const response = await fetch(`${backAPI}/events?${queryParams}`);
 
   const data = await response.json();
-
-  console.log(data);
-  console.log(data.data);
   if (!response.ok) {
     throw new Error(data.message);
   }
-
+console.log(data.data);
   return data.data
 
 }
