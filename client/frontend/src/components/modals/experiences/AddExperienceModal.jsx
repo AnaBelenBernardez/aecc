@@ -42,8 +42,8 @@ const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
 console.log(formValues);
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='w-[80vw] h-[80vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12'>
-        <form className='flex flex-col gap-2 overflow-scroll' onSubmit={handleSubmit}>
+      <div className='w-[80vw] h-[85vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12 md:max-h-[83%] '>
+        <form className='flex flex-col gap-2 overflow-scroll md:max-w-[90%] min-w-[90%] self-center' onSubmit={handleSubmit}>
           <h2 className='font-bold text-lg text-primaryGreen'>Formulario en castellano</h2>
             <label htmlFor="name" className='font-bold text-sm'>
               Nombre
@@ -62,7 +62,7 @@ console.log(formValues);
                 Contenido
                 <textarea 
                   type="text" 
-                  className="w-full h-28 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none font-medium"
+                  className="w-full h-24 focus-visible:ring-0 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray border-b-2 border-secondGray resize-none font-medium"
                   id='content' name='content' cols="20" rows="20"
                   onChange={handleChange}
                 />
@@ -73,12 +73,12 @@ console.log(formValues);
                 Contenido en gallego
                 <textarea 
                   type="text" 
-                  className="w-full h-28 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none font-medium"
+                  className="w-full h-24 focus-visible:ring-0 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray border-b-2 border-secondGray resize-none font-medium"
                   id='galician_content' name='galician_content' cols="20" rows="20"
                   onChange={handleChange}
                 />
               </label>
-              <label htmlFor="photo" className="self-start flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0">
+              <label htmlFor="photo" className="lg:self-start flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center">
                <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />AÑADIR
                 <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium" 
                 id="photo" type="file" name='photo' onChange={handleChangeImage}
@@ -89,7 +89,7 @@ console.log(formValues);
               <div className='flex flex-col items-center lg:flex-row lg:self-end lg:gap-4'>
                 <button
                   type='submit'
-                  className='self-center border-2 mt-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 lg:self-end lg:mb-2
+                  className='self-center border-2 mt-2 lg:mt-0 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 lg:self-end
                   hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'
                   onChange={handleChange}
                 >
@@ -97,7 +97,7 @@ console.log(formValues);
                 </button>
                 <button
                   type='button'
-                  className='flex self-center mt-2 gap-4 w-[157px] h-[42px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray'
+                  className='flex self-center mt-2 lg:mt-0 gap-4 w-[157px] h-[42px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray'
                   onClick={() => setAddExperienceModalOpen(false)}
                 >
                   CANCELAR
