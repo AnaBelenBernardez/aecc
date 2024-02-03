@@ -16,7 +16,7 @@ import { setLenghtCarrouselFunc } from '../../../lib/helpers';
 import { useEffect } from 'react';
 import Loading from '../../loading/Loading';
 
-export const PersonsCarousel = () => {
+export const PersonsCarousel = (language) => {
   const plugin = React.useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
@@ -50,7 +50,7 @@ export const PersonsCarousel = () => {
                 <CardContent className="flex items-center justify-center sm:justify-start p-6">
                   <CardPerson
                     name={experiences[index].name}
-                    content={experiences[index].content}
+                    content={language === 'es' ? experiences[index].content : experiences[index].galician_content}
                     image={experiences[index].photo}
                   />
                 </CardContent>

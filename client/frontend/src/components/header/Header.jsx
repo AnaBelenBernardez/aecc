@@ -6,15 +6,22 @@ import { Burger, Logout } from "../../lib/svg";
 import { useLoginStore, useUIStore } from "../../store";
 import { useRouter } from "next/navigation";
 import dynamic from 'next/dynamic';
+import useLanguageStore from '../../store/language/language.store'; 
 
 const Header = () => {
   const router = useRouter();
+  const { language } = useLanguageStore();
   const token = useLoginStore((state) => state.token);
   const openMenu = useUIStore((state) => state.openSideMenu);
   const logout = () => {
     useLoginStore.setState({ token: null });
     router.push("/admin");
   };
+
+
+  const { setLanguage } = useLanguageStore();
+
+
   return (
     <header>
       <nav className="bg-secondLightGray pt-6 pb-2 relative">
@@ -42,9 +49,9 @@ const Header = () => {
                   <Image src="/image/dashboard.png" alt="Logo Dashboard" width={24} height={24} className='min-w-6 min-h-6'/>
               </Link>
               )}
-              <p>ES</p>
-              <p>|</p>
-              <p>GAL</p>
+               <button onClick={() => setLanguage('es')}>ES</button>
+          <p>|</p>
+          <button onClick={() => setLanguage('gal')}>GAL</button>
             </div>
             <div className="my-4 hidden lg:flex lg:gap-7">
               <Link
@@ -57,7 +64,7 @@ const Header = () => {
                 href="/calendario-e-inscripciones"
                 className="hover:text-primaryGreen transition-all duration-500 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-500 cursor-pointer pb-0.5"
               >
-                Calendario e inscripciones
+                {language === 'es' ? 'Calendario e inscripciones' : 'Calendario e inscricións'}
               </Link>
               <Link
                 href="/galeria"
@@ -115,4 +122,4 @@ const Header = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(Header), { ssr: false });;
+export default dynamic(() => Promise.resolve(Header), { ssr: false });
