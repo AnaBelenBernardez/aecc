@@ -11,6 +11,8 @@ import useGetAllExperiences from "../hooks/useGetAllExperiences";
 import Loading from '../components/loading/Loading';
 import { useEffect, useState } from 'react';
 import { getAllEventsFilterService } from "../service";
+import useLanguageStore from '../store/language/language.store';
+
 
 export default function Home() {
   const { events , loading } = useGetAllEvents();
@@ -21,6 +23,7 @@ export default function Home() {
   const [eventDateStart, setEventDateStart] = useState();
   const [eventDateEnd, setEventDateEnd] = useState();
   let [eventsFiltered, setEventsFiltered] = useState();
+  const { language } = useLanguageStore();
   const categoryEvents = [];
   const locations = [];
   
@@ -51,6 +54,8 @@ export default function Home() {
       console.error(err.message)
     }
   }
+
+
 
   if (events.length > 0) {
     events.forEach((event) => {
@@ -90,10 +95,10 @@ export default function Home() {
           <h1 className="font-bold text-3xl sm:text-6xl text-white">
             A Coruña <span className="text-primaryGreen">en marcha</span>
             <br />
-            <span className="text-primaryGreen"> contra el cáncer</span>
+            <span className="text-primaryGreen"> {language === "es" ? "CONTRA EL CÁNCER" : "CONTRA O CANCRO"}</span>
           </h1>
           <p className="text-xs sm:text-xl font-medium my-5 text-white">
-            CONSULTA TODOS NUESTROS EVENTOS E INSCRÍBETE
+            {language === "es" ? "CONSULTA TODOS NUESTROS EVENTOS E INSCRÍBETE" : "CONSULTA TODOS OS NOSOS EVENTOS E INSCRÍBETE"}
           </p>
           <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 mt-5 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
             <Link href="/calendario-e-inscripciones">IR A EVENTOS</Link>
@@ -150,9 +155,9 @@ export default function Home() {
                       :
                       events.map((event) => (
                         <CardEvent
-                          title={event.title}
+                          title={language === "es" ? event.title : event.galician_title}
                           image={event.event_photos[0]}
-                          description={event.content}
+                          description={language === "es" ? event.content : event.galician_content}
                           location={event.location}
                           link={event.link}
                           warning={event.warning}
@@ -166,13 +171,10 @@ export default function Home() {
                 <h2 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-12 lg:w-full lg:mt-20">
                   Calendario de eventos
                 </h2>
-                <p className='mb-8 mr-5 ml-5 text-balance md:text-center lg:text-left lg:text.left lg:w-2/6 lg:ml-10'>Consulta todos los eventos que hemos planificado este
-                  año. Desplázate por el calendario y no te pierdas
-                  ninguno. <br />
-                  Te estamos esperando.
+                <p className='mb-8 mr-5 ml-5 text-balance md:text-center lg:text-left lg:text.left lg:w-2/6 lg:ml-10'>{language === "es" ? "Consulta todos los eventos que hemos planificado este año. Desplázate por el calendario y no te pierdas ninguno." : "Consulta todos os eventos que temos planificados para este ano. Desplázate polo calendario e non perdas ningún"}<br /> {language === "es" ? "¡Te estamos esperando!" : "Esperámoste!"}
                 </p>
                 <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-8 lg:self-start lg:ml-10 hover:text-secondLightGray hover:bg-primaryGreen">
-                  <Link href="/calendario-e-inscripciones">VER TODOS LOS EVENTOS</Link>
+                  <Link href="/calendario-e-inscripciones">{language === "es" ? "VER TODOS LOS EVENTOS" : "VER TODOS OS EVENTOS"}</Link>
                 </button>
               </div>
               <div className='flex justify-center lg:absolute lg:top-[100px] lg:right-80 2xl:right-[40rem]'><Calendar /></div>
@@ -186,7 +188,7 @@ export default function Home() {
             </div>         
         }
         <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-32 lg:mb-14">
-          Gracias a tu participación...
+          {language === "es" ? "Gracias a tu participación..." : "Gracias á túa participación..."}
         </h3>
       <div className="grid grid-cols-1 items-center justify-center gap-10 sm:grid-cols-3 container">
         <div className="flex flex-col items-center gap-5">
@@ -200,8 +202,7 @@ export default function Home() {
             />
           </div>
           <p className="text-sm mx-5">
-            Haces posible que sigamos ofreciendo servicios gratuitos a pacientes
-            de cáncer.
+           {language === "es" ? "Haces posible que sigamos ofreciendo servicios gratuitos a pacientes de cáncer." : "Fas posible que sigamos ofrecendo servizos gratuítos a pacientes de cancro."}  
           </p>
         </div>
         <div className="flex flex-col items-center gap-5">
@@ -215,8 +216,7 @@ export default function Home() {
             />
           </div>
           <p className="text-sm mx-5">
-            Contribuyes a reducir el impacto del cáncer en personas en riesgo de
-            exclusión social.
+          {language === "es" ? "Contribuyes a reducir el impacto del cáncer en personas en riesgo de exclusión social." : "Contribúes a reducir o impacto do cancro en persoas en risco de exclusión social."}
           </p>
         </div>
         <div className="flex flex-col items-center gap-5">
@@ -230,23 +230,23 @@ export default function Home() {
             />
           </div>
           <p className="text-sm mx-5">
-            Ayudas a más de XXX pacientes de cáncer y sus familiares durante el
-            tratamiento oncológico.
+          {language === "es" ? "Ayudas a más de XXX pacientes de cáncer y sus familiares durante el tratamiento oncológico." : "Axudas a máis de XXX pacientes de cancro e os seus familiares durante o tratamento oncolóxico."}
+            
           </p>
         </div>
       </div>
         <h3 className="text-2xl font-bold my-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
-          En primera persona
+          {language === "es" ? "En primera persona" : "En primeira persoa"} 
         </h3>
         {
           experiences.length > 0
             ? <div className="flex lg:justify-center sm:justify-start sm:mb-16 w-[75%]">
-                <PersonsCarousel/>
+                <PersonsCarousel language={language}/>
               </div>
             : <div className='flex items-center gap-6 px-4 mb-8 md:w-[708px] lg:mb-24 lg:mt-12'>
                 <Image src={'/image/noExperiencesYet.svg'} height={150} width={150} alt='Todavía no hay experiencias'/>
                 <div className='flex flex-col'>
-                  <p className='text-balance'>Únete a la Asociación Contra el Cáncer compartiendo tu experiencia en nuestros eventos solidarios.</p>
+                  <p className='text-balance'>{language === "es" ? "Únete a la Asociación Contra el Cáncer compartiendo tu experiencia en nuestros eventos solidarios." : "Únete á Asociación Contra o Cancro compartindo a túa experiencia nos nosos eventos solidarios."}</p>
                   <span className='font-bold'>#CadaHistoriaCuenta.</span> 
                 </div>
               </div>
