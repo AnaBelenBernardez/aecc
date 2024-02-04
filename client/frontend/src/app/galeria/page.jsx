@@ -5,10 +5,12 @@ import useGetAllEvents from '../../hooks/useGetAllEvents';
 import Loading from '../../components/loading/Loading';
 import Link from 'next/link';
 import Image from 'next/image';
+import useLanguageStore from '../../store/language/language.store';
 
 const GalleryPage = () => {
   const { events, loading, error } = useGetAllEvents();
 
+  const { language } = useLanguageStore();
   if (loading) return <Loading/>;
 
   return (
@@ -18,7 +20,7 @@ const GalleryPage = () => {
           ? events.map((event) => {
             return (
               <Link href={`/galeria/${event.id}`}>
-                <GalleryCard title={event.title} location={event.location} image={event.event_photos[0]}/>
+                <GalleryCard title={language === 'es' ? event.title : event.galician_title} location={event.location} image={event.event_photos[0]}/>
               </Link>
             )
           })
@@ -26,8 +28,8 @@ const GalleryPage = () => {
               <Image src={'/image/noPhotosYet.svg'} width={150} height={150} alt='Todavía no hay ninguna foto'/>
               <div>
                 <Link href={'/'} className='flex flex-col items-center'>
-                  <p className='md:w-3/4 md:mb-4'>Actualmente, no hay eventos en la galería. ¡Estamos preparando nuevas oportunidades solidarias!</p>
-                  <button className='border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mt-2 hover:text-secondLightGray hover:bg-primaryGreen'>VOLVER AL INICIO</button>
+                  <p className='md:w-3/4 md:mb-4'>{language === 'es' ? 'Actualmente, no hay eventos en la galería. ¡Estamos preparando nuevas oportunidades solidarias!' : 'Actualmente, non hai eventos na galería. Estamos a preparar novas oportunidades solidarias!'}</p>
+                  <button className='border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mt-2 hover:text-secondLightGray hover:bg-primaryGreen'>{language === 'es' ? 'VOLVER AL INICIO' : 'VOLVER AO COMEZO'}</button>
                 </Link>
               </div>
             </div>

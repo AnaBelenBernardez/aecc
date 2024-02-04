@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Loading from '../../components/loading/Loading';
 import { useEffect, useState } from 'react';
 import { getAllEventsFilterService } from '../../service';
+import useLanguageStore from '../../store/language/language.store';
 
 export default function CalendarAndRegistration() {
   const { events, loading, error } = useGetAllEvents();
@@ -17,8 +18,8 @@ export default function CalendarAndRegistration() {
   const [eventDateStart, setEventDateStart] = useState();
   const [eventDateEnd, setEventDateEnd] = useState();
   const [filteredEvents, setFilteredEvents] = useState(events);
-  const [cleanFilter, setCleanFilter] = useState(false);
-
+  
+  const { language } = useLanguageStore();
   const categoryEvents = [];
   const locations = [];
 
@@ -30,10 +31,6 @@ export default function CalendarAndRegistration() {
     setEventDateStart();
     setEventDateEnd();  
   }
-
-  useEffect(() => {
-    
-  }, [cleanFilter]);
 
   useEffect(() => {
     try {
@@ -61,7 +58,7 @@ export default function CalendarAndRegistration() {
     <main className='flex flex-col'>
       <section className='bg-blueBgSection flex flex-col gap-4 px-7 lg:pb-10'>
       <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
-              Encuentra un evento #contraelcáncer
+              {language === "es" ? "Encuentra un evento #contraelcáncer" : "Atopa un evento #contraelcáncer"}
             </h2>
             <div className="flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center">
               <div className="flex flex-col gap-4 md:flex-row md:items-center">
@@ -80,10 +77,7 @@ export default function CalendarAndRegistration() {
                   onChange={(e) => setLocationEvent(e.target.value)}
                 ></SelectInput>
               </div>
-              <DateTimePickerValue eventDateEnd={eventDateEnd} setEventDateEnd={setEventDateEnd} setEventDateStart={setEventDateStart} eventDateStart={eventDateStart}></DateTimePickerValue>
-            <button type="button" className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen" onClick={handleResetClick}>
-                Limpiar filtros
-              </button>
+              <DateTimePickerValue language={language} eventDateEnd={eventDateEnd} setEventDateEnd={setEventDateEnd} setEventDateStart={setEventDateStart} eventDateStart={eventDateStart}></DateTimePickerValue>
             </div>
       </section>
       {
@@ -94,9 +88,10 @@ export default function CalendarAndRegistration() {
                 {
                   loading ? <Loading/>
                   : filteredEvents && filteredEvents.map((event) => {
-                    return <li key={event.id}><CardEvent title={event.title}
+                    return <li key={event.id}><CardEvent 
+                    title={language === "es" ? event.title : event.galician_title}
                     image={event.event_photos[0]}
-                    description={event.content}
+                    description={language === "es" ? event.content : event.galician_content}
                     location={event.location}
                     link={event.link}></CardEvent></li>
                   })
@@ -107,11 +102,11 @@ export default function CalendarAndRegistration() {
               <div className='flex items-center gap-6 my-10 px-4 lg:my-0 lg:mt-28 lg:justify-center'> 
                 <Image src={'/image/noEventsYet.svg'} width={150} height={150}/>
                 <div className='flex flex-col'>
-                  <p>Estamos trabajando en nuevos eventos para luchar contra el cáncer.</p>
-                  <p>Vuelve pronto y únete a la causa. <span className='font-bold'>#JuntosContraElCáncer</span></p>
+                <p>{language === "es" ? "Estamos trabajando en nuevos eventos para luchar contra el cáncer." : "Estamos traballando en novos eventos para a loita contra o cancro."}.</p>
+                <p>{laguage === "es" ? "Vuelve pronto y únete a la causa." : "Volve pronto e únete á causa."} <span className='font-bold'>#JuntosContraElCáncer</span></p>
                 </div>
               </div>
-              <Link href={'/'} className='self-center'><button className='border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 hover:text-secondLightGray hover:bg-primaryGreen'>VOLVER AL INICIO</button></Link>
+              <Link href={'/'} className='self-center'><button className='border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 hover:text-secondLightGray hover:bg-primaryGreen'>{language === "es" ? "VOLVER AL INICIO" : "VOLVER AO COMEZO"}</button></Link>
             </>
       }
     </main>
