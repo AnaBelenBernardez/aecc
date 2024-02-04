@@ -7,7 +7,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import {es} from 'date-fns/locale';
 
-const DateTimePickerValue = ({ setEventDateEnd, setEventDateStart }) => {
+const DateTimePickerValue = ({ setEventDateEnd, setEventDateStart, language }) => {
   const dateNow = new Date();
   dateNow.setHours(0, 0, 0, 0);
 
@@ -36,7 +36,7 @@ const DateTimePickerValue = ({ setEventDateEnd, setEventDateStart }) => {
             <DateTimePicker
               name="eventDateEnd"
               views={['year', 'month', 'day']}
-              label="Hasta"
+              label={language === 'es' ? 'Hasta' : 'Ata'}
               format='dd/MM/yy'
               formatDensity='spacious'
               onChange={handleChangeEnd}

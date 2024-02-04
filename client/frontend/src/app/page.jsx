@@ -182,8 +182,8 @@ export default function Home() {
           : <div className='flex items-center gap-6 my-10 px-4 lg:my-0 lg:mt-28'> 
               <Image src={'/image/noEventsYet.svg'} width={150} height={150} alt='Todavía no hay eventos'/>
               <div className='flex flex-col'>
-                <p>Estamos trabajando en nuevos eventos para luchar contra el cáncer.</p>
-                <p>Vuelve pronto y únete a la causa. <span className='font-bold'>#JuntosContraElCáncer</span></p>
+                <p>{language === "es" ? "Estamos trabajando en nuevos eventos para luchar contra el cáncer." : "Estamos traballando en novos eventos para a loita contra o cancro."}.</p>
+                <p>{laguage === "es" ? "Vuelve pronto y únete a la causa." : "Volve pronto e únete á causa."} <span className='font-bold'>#JuntosContraElCáncer</span></p>
               </div>
             </div>         
         }
