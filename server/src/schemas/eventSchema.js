@@ -27,11 +27,9 @@ const eventSchema = Joi.object({
     }),
     warning: Joi.number().default(0),
     warning_content: Joi.string().max(300).messages({
-      'string.min': 'El aviso del evento tiene que tener mínimo 5 caracteres.',
       'string.max': 'La descripción no puede tener más de 300 caracteres.'
     }),
     galician_warning_content: Joi.string().max(300).messages({
-      'string.min': 'El aviso del evento en gallego tiene que tener mínimo 5 caracteres.',
       'string.max': 'La descripción en gallego no puede tener más de 300 caracteres.'
     }),
     location: Joi.string().valid('Abegondo', 'Ames', 'Aranga', 'Ares', 'Arteixo', 'Arzúa', 'Baña, A', 'Bergondo', 'Betanzos', 'Boimorto', 'Boiro', 'Boqueixón', 'Brion', 'Cabana de Bergantiños', 'Cabanas', 'Camariñas', 'Cambre', 'Capela, A', 'Carballo', 'Cariño', 'Carnote', 'Cedeira', 'Cerceda', 'Cerdido', 'Cesuras', 'Corcubión', 'Coristanco', 'Coruña, A', 'Culleredo', 'Curtis', 'Dodro', 'Dumbria', 'Ferrol', 'Fisterra', 'Frades', 'Irixoa', 'Laracha, A', 'Laxe', 'Lousame', 'Malpica de Bergantiños', 'Mañón', 'Mazaricos', 'Melide', 'Mesía', 'Miño', 'Moeche', 'Monfero', 'Mugardos', 'Muros', 'Muxía', 'Narón', 'Neda', 'Negreira', 'Noia', 'Oleiros', 'Ordes', 'Oroso', 'Ortigueira', 'Outes', 'Oza dos Ríos', 'Padrón', 'Pedrouzo, O', 'Pobra do Caramiñal', 'Ponteceso', 'Pontedeume', 'Pontes de García Rodríguez', 'Poyo, O', 'Ribeira', 'Rois', 'Sada', 'San Sadurniño', 'Santa Comba', 'Santiago de Compostela', 'Santiso', 'Sobrado', 'Somozas, As', 'Teo', 'Toques', 'Tordoia', 'Touro', 'Trazo', 'Val do Dubra', 'Valdoviño', 'Vedra', 'Vilarmaior', 'Vilasantar', 'Vimianzo', 'Zas').required().messages({
