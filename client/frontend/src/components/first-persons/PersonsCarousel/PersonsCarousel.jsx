@@ -15,12 +15,13 @@ import { CardPerson } from "../..";
 import { setLenghtCarrouselFunc } from '../../../lib/helpers';
 import { useEffect } from 'react';
 import Loading from '../../loading/Loading';
+import { useLanguageStore } from '../../../store/language/language.store';
 
-export const PersonsCarousel = (language) => {
+export const PersonsCarousel = () => {
   const plugin = React.useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
-
+  const language = useLanguageStore((state) => state.language);
   const [lengthCarrousel, setLengthCarrousel] = React.useState();
   const {experiences, loading, error} = useGetAllExperiences();
 
