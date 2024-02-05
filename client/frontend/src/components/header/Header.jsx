@@ -6,11 +6,11 @@ import { Burger, Logout } from "../../lib/svg";
 import { useLoginStore, useUIStore } from "../../store";
 import { useRouter } from "next/navigation";
 import dynamic from 'next/dynamic';
-import useLanguageStore from '../../store/language/language.store'; 
+import { useLanguageStore } from '../../store/language/language.store'; 
 
 const Header = () => {
   const router = useRouter();
-  const { language } = useLanguageStore();
+  
   const token = useLoginStore((state) => state.token);
   const openMenu = useUIStore((state) => state.openSideMenu);
   const logout = () => {
@@ -18,8 +18,10 @@ const Header = () => {
     router.push("/admin");
   };
 
+  const language = useLanguageStore((state) => state.language);
+  const setLanguage = useLanguageStore((state) => state.setLanguage);
 
-  const { setLanguage } = useLanguageStore();
+
 
 
   return (

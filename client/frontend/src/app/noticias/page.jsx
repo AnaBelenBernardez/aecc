@@ -5,12 +5,14 @@ import Link from 'next/link';
 import useGetAllNews from '../../hooks/useGetAllNews';
 import useGetAllEvents from '../../hooks/useGetAllEvents';
 import Loading from '../../components/loading/Loading';
-import useLanguageStore from '../../store/language/language.store';
+import {useLanguageStore} from '../../store/language/language.store';
+import dynamic from 'next/dynamic';
 
 const Noticias = () => {
   const { news, loading, error } = useGetAllNews();
   const { events, loading: lodingEvents } = useGetAllEvents();
-  const { language } = useLanguageStore();
+  const language = useLanguageStore((state) => state.language);
+  const setLanguage = useLanguageStore((state) => state.setLanguage);
 
   const eventsFilter = events.filter((event) => event.warning === 1 && new Date(event.date_end) > new Date()).map((event) => {
     return (
@@ -77,4 +79,4 @@ const Noticias = () => {
   )
 };  
 
-export default Noticias;
+export default dynamic(() => Promise.resolve(Noticias), { ssr: false })

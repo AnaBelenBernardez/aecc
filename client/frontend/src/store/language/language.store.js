@@ -1,19 +1,15 @@
-import {create} from 'zustand';
+import { StateCreator, create } from "zustand";
+import { persist } from "zustand/middleware";
 
-
-const localStorageKey = 'preferredLanguage';
-
-const useLanguageStore = create((set) => {
-  const storedLanguage = localStorage.getItem(localStorageKey);
-
-  return {
-    language: storedLanguage || 'es',
-    setLanguage: (lang) => {
-      set({ language: lang });
-      
-      localStorage.setItem(localStorageKey, lang);
-    },
-  };
+const storeLanguage = (set, get) => ({
+  language: "es", 
+  setLanguage: (language) => set({ language })
 });
 
-export default useLanguageStore;
+// Create a store using zustand's create function
+export const useLanguageStore = create(
+  persist(
+    storeLanguage,
+    { name: "language" }
+  )
+);

@@ -4,10 +4,12 @@ import useGetAllFaqs from '../../hooks/useGetAllFaqs';
 import Image from 'next/image';
 import Link from 'next/link';
 import Loading from '../../components/loading/Loading';
-import useLanguageStore from '../../store/language/language.store';
+import {useLanguageStore} from '../../store/language/language.store';
+import dynamic from 'next/dynamic';
 const FaqPage = () => {
   const { faqs, loading, error } = useGetAllFaqs();
-  const { language } = useLanguageStore();
+  const language = useLanguageStore((state) => state.language);
+  const setLanguage = useLanguageStore((state) => state.setLanguage);
 
   if (loading) return <Loading/>;
   
@@ -44,4 +46,4 @@ const FaqPage = () => {
   );
 };
 
-export default FaqPage;
+export default dynamic(() => Promise.resolve(FaqPage), { ssr: false })
