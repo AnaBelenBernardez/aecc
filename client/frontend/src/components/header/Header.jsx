@@ -51,9 +51,9 @@ const Header = () => {
                   <Image src="/image/dashboard.png" alt="Logo Dashboard" width={24} height={24} className='min-w-6 min-h-6'/>
               </Link>
               )}
-               <button onClick={() => setLanguage('es')}>ES</button>
+               <button onClick={() => setLanguage('es')} className={language === 'es' ? 'text-primaryGreen' : ''}>ES</button>
           <p>|</p>
-          <button onClick={() => setLanguage('gal')}>GAL</button>
+          <button onClick={() => setLanguage('gal')} className={language === 'gal' ? 'text-primaryGreen' : ''}>GAL</button>
             </div>
             <div className="my-4 hidden lg:flex lg:gap-7">
               <Link

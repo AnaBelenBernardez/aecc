@@ -57,7 +57,7 @@ export default function CalendarAndRegistration() {
 
   return (
     <main className='flex flex-col'>
-      <section className='bg-blueBgSection flex flex-col gap-4 px-7 lg:pb-10'>
+      <section className='bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10'>
       <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
               {language === "es" ? "Encuentra un evento #contraelcáncer" : "Atopa un evento #contraelcáncer"}
             </h2>

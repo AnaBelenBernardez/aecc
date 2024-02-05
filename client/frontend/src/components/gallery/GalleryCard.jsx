@@ -8,7 +8,7 @@ export const GalleryCard = ({ title, location, image }) => {
       <Image
         src={imgSrc}
         alt="nature"
-        className="w-[300px] h-[300px] object-cover rounded-xl"
+        className="w-[286px] h-[365px] object-cover object-top rounded-xl"
         width={500}
         height={500}
       />

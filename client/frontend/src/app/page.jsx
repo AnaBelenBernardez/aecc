@@ -145,6 +145,7 @@ export default function Home() {
                       eventsFiltered.map((event) => (
                         <CardEvent
                           title={event.title}
+                          key={event.id}
                           image={event.event_photos[0]}
                           description={event.content}
                           location={event.location}
@@ -157,6 +158,7 @@ export default function Home() {
                         <CardEvent
                           title={language === "es" ? event.title : event.galician_title}
                           image={event.event_photos[0]}
+                          key={event.id}
                           description={language === "es" ? event.content : event.galician_content}
                           location={event.location}
                           link={event.link}
