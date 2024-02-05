@@ -253,6 +253,29 @@ export const editNewService = async (formValues, idNew, token) => {
 
   return data.data
 }
+export const editExperienceService = async (formValues, idExperience, token) => {
+  const editExperienceForm = new FormData();
+  editExperienceForm.append('name', formValues.name);
+  editExperienceForm.append('content', formValues.content);
+  editExperienceForm.append('galician_content', formValues.galician_content);
+  if (Array.isArray(formValues.photo)) {editExperienceForm.append('photo', formValues.photo[0][0])};
+
+  const response = await fetch(`${backAPI}/experiences/admin/edit/${idExperience}`, {
+    method: 'PUT',
+    headers : {
+      token: token
+    },
+    body: editExperienceForm
+  });
+
+  const data = response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data.data
+}
 
 export const changePwd = async (token, formValues) => {
   const editPwd = new FormData();

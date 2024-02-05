@@ -39,7 +39,7 @@ const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
       console.error(error.message);
     }
   }
-console.log(formValues);
+
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
       <div className='w-[80vw] h-[85vh]  bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12 md:max-h-[70%] lg:max-h-[90%]  '>
@@ -78,7 +78,7 @@ console.log(formValues);
                   onChange={handleChange}
                 />
               </label>
-              <label htmlFor="photo" className="lg:self-start flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center">
+              <label htmlFor="photo" className="lg:self-start flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
                <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />AÑADIR
                 <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium" 
                 id="photo" type="file" name='photo' onChange={handleChangeImage}
