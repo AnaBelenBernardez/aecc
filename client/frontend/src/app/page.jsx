@@ -11,7 +11,7 @@ import useGetAllExperiences from "../hooks/useGetAllExperiences";
 import Loading from '../components/loading/Loading';
 import { useEffect, useState } from 'react';
 import { getAllEventsFilterService } from "../service";
-import useLanguageStore from '../store/language/language.store';
+import { useLanguageStore } from '../store/language/language.store';
 
 
 export default function Home() {
@@ -23,7 +23,8 @@ export default function Home() {
   const [eventDateStart, setEventDateStart] = useState();
   const [eventDateEnd, setEventDateEnd] = useState();
   let [eventsFiltered, setEventsFiltered] = useState();
-  const { language } = useLanguageStore();
+  const language = useLanguageStore((state) => state.language);
+  const setLanguage = useLanguageStore((state) => state.setLanguage);
   const categoryEvents = [];
   const locations = [];
   

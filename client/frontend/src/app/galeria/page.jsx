@@ -5,12 +5,15 @@ import useGetAllEvents from '../../hooks/useGetAllEvents';
 import Loading from '../../components/loading/Loading';
 import Link from 'next/link';
 import Image from 'next/image';
-import useLanguageStore from '../../store/language/language.store';
+import {useLanguageStore} from '../../store/language/language.store';
+import dynamic from 'next/dynamic';
+
 
 const GalleryPage = () => {
   const { events, loading, error } = useGetAllEvents();
 
-  const { language } = useLanguageStore();
+  const language = useLanguageStore((state) => state.language);
+  const setLanguage = useLanguageStore((state) => state.setLanguage);
   if (loading) return <Loading/>;
 
   return (
@@ -38,4 +41,4 @@ const GalleryPage = () => {
   );
 };
 
-export default GalleryPage;
+export default dynamic(() => Promise.resolve(GalleryPage), { ssr: false }) ;

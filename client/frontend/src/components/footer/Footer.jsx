@@ -1,3 +1,4 @@
+'use client';
 import Image from "next/image";
 import Link from "next/link";
 import "../../app/globals.css";
@@ -5,8 +6,11 @@ import LinkYoutube from "./LinksRRSS/LinkYoutube";
 import LinkFacebook from "./LinksRRSS/LinkFacebook";
 import LinkTwitter from "./LinksRRSS/LinkTwitter";
 import LinkInstagram from "./LinksRRSS/LinkInstagram";
+import { useLanguageStore } from '../../store/language/language.store';
 
 const Footer = () => {
+  const language = useLanguageStore((state) => state.setLanguage);
+  console.log(language);
   return (
     <footer className="w-full bottom-0 flex flex-col items-center text-center bg-secondLightGray py-8 lg:flex-row lg:items-start lg:justify-around lg:text-left">
       <section className="flex flex-col mb-6">
@@ -35,11 +39,11 @@ const Footer = () => {
         </div>
       </section>
       <section className="mb-6">
-        <h2 className="font-extrabold mb-2">SOBRE NUESTROS EVENTOS</h2>
+        <h2 className="font-extrabold mb-2">{language === 'es' ? 'SOBRE NUESTROS EVENTOS' : 'SOBRE OS NOSOS EVENTOS'}</h2>
         <ul className="flex flex-col gap-2">
           <Link href="/calendario-e-inscripciones"
             className="hover:text-primaryGreen transition-all duration-300 ease-in-out">
-            <li>Calendario e inscripciones</li>
+            <li>{language === 'es' ? 'Calendario e inscripciones' : 'Calendario e inscricións'}</li>
           </Link>
           <Link 
             href="/faq"
@@ -52,14 +56,14 @@ const Footer = () => {
             className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
             target='_blank'
           >
-            <li>¿Eres voluntario?</li>
+            <li>{language === 'es' ? '¿Eres voluntario?' : 'Es voluntario?'}</li>
           </Link>
           <Link
             href="https://colabora.contraelcancer.es/empresas/eventos-solidarios"
             className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
             target='_blank'
           >
-            <li>Quiero patrocinar un evento</li>
+            <li>{language === 'es' ? 'Quiero patrocinar un evento' : 'Quero patrocinar un evento'}</li>
           </Link>
           <Link
             href="https://www.contraelcancer.es/es/sobre-nosotros/donde-estamos"
@@ -71,7 +75,7 @@ const Footer = () => {
         </ul>
       </section>
       <section>
-        <h2 className="font-extrabold mb-2">NO TE PIERDAS NADA</h2>
+        <h2 className="font-extrabold mb-2">{language === 'es' ? 'NO TE PIERDAS NADA' : 'NON TE PERDAS NADA'}</h2>
         <ul className="flex flex-col gap-2">
           <Link href="/noticias" className="hover:text-primaryGreen transition-all duration-300 ease-in-out">
             <li>Noticias</li>

@@ -9,7 +9,7 @@ import Link from 'next/link';
 import Loading from '../../components/loading/Loading';
 import { useEffect, useState } from 'react';
 import { getAllEventsFilterService } from '../../service';
-import useLanguageStore from '../../store/language/language.store';
+import { useLanguageStore } from '../../store/language/language.store';
 
 export default function CalendarAndRegistration() {
   const { events, loading, error } = useGetAllEvents();
@@ -19,7 +19,8 @@ export default function CalendarAndRegistration() {
   const [eventDateEnd, setEventDateEnd] = useState();
   const [filteredEvents, setFilteredEvents] = useState(events);
   
-  const { language } = useLanguageStore();
+  const language = useLanguageStore((state) => state.language);
+  const setLanguage = useLanguageStore((state) => state.setLanguage);
   const categoryEvents = [];
   const locations = [];
 
