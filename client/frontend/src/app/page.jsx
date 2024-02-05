@@ -24,7 +24,6 @@ export default function Home() {
   const [eventDateEnd, setEventDateEnd] = useState();
   let [eventsFiltered, setEventsFiltered] = useState();
   const language = useLanguageStore((state) => state.language);
-  const setLanguage = useLanguageStore((state) => state.setLanguage);
   const categoryEvents = [];
   const locations = [];
   
@@ -110,7 +109,7 @@ export default function Home() {
         <>
           <form onSubmit={handleSubmit} className="bg-blueBgSection flex flex-col gap-4 px-7 lg:pb-10 md:w-full lg:h-80 lg:justify-center">
             <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
-              Encuentra un evento #contraelcáncer
+              {language === "es" ? "Encuentra un evento #contraelcáncer" : "Atopa un evento #contraelcáncer"}
             </h2>
             <div className="flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center">
               <div className="flex flex-col gap-4 md:flex-row md:items-center">
@@ -242,7 +241,7 @@ export default function Home() {
         {
           experiences.length > 0
             ? <div className="flex lg:justify-center sm:justify-start sm:mb-16 w-[75%]">
-                <PersonsCarousel language={language}/>
+                <PersonsCarousel/>
               </div>
             : <div className='flex items-center gap-6 px-4 mb-8 md:w-[708px] lg:mb-24 lg:mt-12'>
                 <Image src={'/image/noExperiencesYet.svg'} height={150} width={150} alt='Todavía no hay experiencias'/>

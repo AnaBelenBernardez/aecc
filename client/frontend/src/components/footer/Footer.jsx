@@ -7,10 +7,10 @@ import LinkFacebook from "./LinksRRSS/LinkFacebook";
 import LinkTwitter from "./LinksRRSS/LinkTwitter";
 import LinkInstagram from "./LinksRRSS/LinkInstagram";
 import { useLanguageStore } from '../../store/language/language.store';
+import dynamic from 'next/dynamic';
 
 const Footer = () => {
-  const language = useLanguageStore((state) => state.setLanguage);
-  console.log(language);
+  const language = useLanguageStore((state) => state.language);
   return (
     <footer className="w-full bottom-0 flex flex-col items-center text-center bg-secondLightGray py-8 lg:flex-row lg:items-start lg:justify-around lg:text-left">
       <section className="flex flex-col mb-6">
@@ -93,4 +93,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default dynamic(() => Promise.resolve(Footer), { ssr: false }) ;
