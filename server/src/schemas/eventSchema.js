@@ -26,11 +26,11 @@ const eventSchema = Joi.object({
       'any.required': 'La descripción del evento en gallego es obligatoria.'
     }),
     warning: Joi.number().default(0),
-    warning_content: Joi.string().min(5).max(300).messages({
+    warning_content: Joi.string().max(300).messages({
       'string.min': 'El aviso del evento tiene que tener mínimo 5 caracteres.',
       'string.max': 'La descripción no puede tener más de 300 caracteres.'
     }),
-    galician_warning_content: Joi.string().min(5).max(300).messages({
+    galician_warning_content: Joi.string().max(300).messages({
       'string.min': 'El aviso del evento en gallego tiene que tener mínimo 5 caracteres.',
       'string.max': 'La descripción en gallego no puede tener más de 300 caracteres.'
     }),
