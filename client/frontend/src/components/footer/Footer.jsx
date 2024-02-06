@@ -8,11 +8,14 @@ import LinkTwitter from "./LinksRRSS/LinkTwitter";
 import LinkInstagram from "./LinksRRSS/LinkInstagram";
 import { useLanguageStore } from '../../store/language/language.store';
 import dynamic from 'next/dynamic';
+import { usePathname } from 'next/navigation'
 
 const Footer = () => {
+  const pathname = usePathname();
+  console.log(pathname);
   const language = useLanguageStore((state) => state.language);
   return (
-    <footer className="w-full bottom-0 flex flex-col items-center text-center bg-secondLightGray py-8 lg:flex-row lg:items-start lg:justify-around lg:text-left">
+    <footer className={`w-full bottom-0 flex flex-col items-center text-center ${pathname.startsWith('/admin/') ? 'hidden' : ''} bg-secondLightGray py-8 lg:flex-row lg:items-start lg:justify-around lg:text-left"`}>
       <section className="flex flex-col mb-6">
         <Image
           src="/logos/CC_Logo_transicion_color_pos.rgb.svg"
