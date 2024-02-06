@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 const EditExperienceModal = ({currentExperience, setEditExperienceModalOpen, token, refetch}) => {
   const [image, setImage] = useState();
+  const [file, setFile] = useState(null)
   
   useEffect(() => {
     convertImg();
@@ -47,6 +48,7 @@ const EditExperienceModal = ({currentExperience, setEditExperienceModalOpen, tok
   };
 
   const handleChangeImage = (e) => {
+    setFile(URL.createObjectURL(e.target.files[0]));
     setFormValues({
       ...formValues,
       [e.target.name]: [e.target.files]
@@ -107,13 +109,14 @@ console.log(formValues.photo);
           {
             currentExperience.photo !== null
             ? <div className='min-w-20 min-h-20 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
-                  <Image src={previousImg} width={150} height={150} alt='Imagen de la noticia' className='rounded-full w-20 h-20'/>
+                  <Image src={file !== null ? file : previousImg} width={150} height={150} alt='Imagen de la noticia' className='rounded-full w-20 h-20'/>
                 </div>
               : <div className='min-w-20 min-h-20 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
                   <Image src={'/image/userDefault.png'} width={150} height={150} alt='Imagen de la noticia' className='rounded-full object-cover w-20 h-20'/>
                 </div>
           }
-          <label htmlFor="photo" className="lg:self-center flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
+                  
+                <label htmlFor="photo" className="lg:self-center flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
                <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />EDITAR FOTO
                 <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium" 
                 id="photo" type="file" name='photo' onChange={handleChangeImage}
@@ -121,15 +124,15 @@ console.log(formValues.photo);
 
               </label>
           </div>
-          <div className='flex flex-col items-center lg:flex-row lg:gap-4 lg:self-end'>
+          <div className='flex flex-col items-center sm:justify-center sm:mb-0 lg:flex-row lg:gap-4 lg:self-end '>
             <button
               type='submit'
-              className='self-center border-2 mt-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 lg:self-end
+              className='self-center md:mt-2 lg:mb-0 sm:mb-2 border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 lg:self-end
             hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'
             >
               GUARDAR CAMBIOS
             </button>
-            <button type='button' className='flex self-center mt-2 mb-4 gap-4 w-[157px] h-[42px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray lg:mb-0'
+            <button type='button' className='flex self-center md:mt-2 sm:mt-2 md:mb-0 sm:mb-0 gap-4 w-[157px] h-[42px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray lg:mb-0'
               onClick={() => setEditExperienceModalOpen(false)}
             >
               CANCELAR
