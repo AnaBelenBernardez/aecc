@@ -27,18 +27,14 @@ const EventPage = () => {
   if (loading) return <Loading />;
 
   return (
-    <section className="flex flex-col gap-2 mx-auto mb-4 lg:w-3/4">
-      <div className="flex items-center justify-between">
-        <h1 className="font-bold text-primaryGreen text-2xl sm:text-4xl lg:text-5xl pt-4 pl-6 lg:pt-6 lg:pb-6 lg:pl-0">
-          Eventos
-        </h1>
+    <main className="flex flex-col my-4 px-4 items-center">
         <button
           onClick={openModal}
-          className=" mr-10 border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-3 sm:py-4 py-2 mt-5 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen"
+          className=" border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 
+          mb-6 lg:mb-6 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen"
         >
           NUEVO EVENTO
         </button>
-      </div>
       <ModalEvents token={token} refetch={refetch} />
       <ModalDeleteEvent token={token} refetch={refetch} />
       <ModalEditEvents token={token} refetch={refetch} event={events} />
@@ -68,7 +64,7 @@ const EventPage = () => {
           </Link>
         </>
       )}
-    </section>
+    </main>
   );
 };
 

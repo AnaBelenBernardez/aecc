@@ -67,12 +67,8 @@ const router = useRouter();
           ? experiences.map((experienceItem) => {
             const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${experienceItem.photo}`
             return (
-              <article className='flex flex-col justify-between p-8 items-center shadow-md md:flex-row lg:w-[80%]' key={experienceItem.name}>
-              <div className='lg:flex lg:w-[70%] lg:justify-evenly'>
-                <div className='flex gap-3 items-center'>
-                  <p className='w-[52px] text-left flex items-center text-lightPink font-bold'>{experienceItem.name}</p>
-                  <h2 className='font-bold px-6 line-clamp-3 w-[240px]'>{experienceItem.content}</h2>
-                </div>
+              <article className='flex flex-col md:justify-between justify-between p-8 items-center shadow-md md:flex-row md:w-[90%] lg:w-[80%]' key={experienceItem.name}>
+                <div className='lg:flex lg:w-[70%] lg:gap-20'>
                 {
                   experienceItem.photo !== null
                   ? <div className='min-w-36 min-h-36 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
@@ -82,6 +78,10 @@ const router = useRouter();
                         <Image src={'/image/userDefault.png'} width={150} height={150} alt='Imagen de la noticia' className='rounded-full object-cover w-36 h-36'/>
                       </div>
                 }
+                  <div className='flex gap-3 sm:gap-1 md:gap-4 items-center'>
+                    <p className='lg:w-[150px] sm:w-[60px] md:w-[80px] text-left flex items-center text-lightPink font-bold'>{experienceItem.name}</p>
+                  <h2 className='font-bold lg:px-6 sm:px-0 line-clamp-3 w-[140px] md:w-[160px] lg:w-[240px]'>{experienceItem.content}</h2>
+                </div>
               </div>
               <div className='self-end flex gap-4 md:self-center'>
                 <button onClick={() => openModalEdit(experienceItem)} className='flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0'>
