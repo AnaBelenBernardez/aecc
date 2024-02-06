@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import SelectInput from '../../components/ui/selectInput';
-import DateTimePickerValue from '../../components/ui/dateRangePicker';
-import { CardEvent } from '../../components/events/CardEvent/CardEvent';
-import useGetAllEvents from '../../hooks/useGetAllEvents';
-import Image from 'next/image';
-import Link from 'next/link';
-import Loading from '../../components/loading/Loading';
-import { useEffect, useState } from 'react';
-import { getAllEventsFilterService } from '../../service';
-import { useLanguageStore } from '../../store/language/language.store';
+import SelectInput from "../../components/ui/selectInput";
+import DateTimePickerValue from "../../components/ui/dateRangePicker";
+import { CardEvent } from "../../components/events/CardEvent/CardEvent";
+import useGetAllEvents from "../../hooks/useGetAllEvents";
+import Image from "next/image";
+import Link from "next/link";
+import Loading from "../../components/loading/Loading";
+import { useEffect, useState } from "react";
+import { getAllEventsFilterService } from "../../service";
+import { useLanguageStore } from "../../store/language/language.store";
 
 export default function CalendarAndRegistration() {
   const { events, loading, error } = useGetAllEvents();
@@ -18,24 +18,29 @@ export default function CalendarAndRegistration() {
   const [eventDateStart, setEventDateStart] = useState();
   const [eventDateEnd, setEventDateEnd] = useState();
   const [filteredEvents, setFilteredEvents] = useState(events);
-  
+
   const language = useLanguageStore((state) => state.language);
   const setLanguage = useLanguageStore((state) => state.setLanguage);
   const categoryEvents = [];
   const locations = [];
 
-  function handleResetClick () {
+  function handleResetClick() {
     setCleanFilter(true);
     setFilteredEvents(events);
     setTypeEvent("");
     setLocationEvent("");
     setEventDateStart();
-    setEventDateEnd();  
+    setEventDateEnd();
   }
 
   useEffect(() => {
     try {
-      getAllEventsFilterService(typeEvent, locationEvent, eventDateStart, eventDateEnd).then((res) => {
+      getAllEventsFilterService(
+        typeEvent,
+        locationEvent,
+        eventDateStart,
+        eventDateEnd
+      ).then((res) => {
         setFilteredEvents(res);
       });
     } catch (error) {
@@ -53,63 +58,100 @@ export default function CalendarAndRegistration() {
     }
   });
 
-  if (loading) return <Loading/>;
+  if (loading) return <Loading />;
 
   return (
-    <main className='flex flex-col'>
-      <section className='bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10'>
-      <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
-              {language === "es" ? "Encuentra un evento #contraelcáncer" : "Atopa un evento #contraelcáncer"}
-            </h2>
-            <div className="flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center">
-              <div className="flex flex-col gap-4 md:flex-row md:items-center">
-                <SelectInput
-                  setStatus={setTypeEvent}
-                  text={"Tipo de evento"}
-                  eventType={"typeEvent"}
-                  options={categoryEvents}
-                  onChange={(e) => setTypeEvent(e.target.value)}
-                ></SelectInput>
-                <SelectInput
-                  setStatus={setLocationEvent}
-                  text={"Localidades"}
-                  eventType={"locationEvent"}
-                  options={locations}
-                  onChange={(e) => setLocationEvent(e.target.value)}
-                ></SelectInput>
-              </div>
-              <DateTimePickerValue language={language} eventDateEnd={eventDateEnd} setEventDateEnd={setEventDateEnd} setEventDateStart={setEventDateStart} eventDateStart={eventDateStart}></DateTimePickerValue>
-            </div>
+    <main className="flex flex-col">
+      <section className="bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10">
+        <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
+          {language === "es"
+            ? "Encuentra un evento #contraelcáncer"
+            : "Atopa un evento #contraelcáncer"}
+        </h2>
+        <div className="flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center">
+            <SelectInput
+              setStatus={setTypeEvent}
+              text={"Tipo de evento"}
+              eventType={"typeEvent"}
+              options={categoryEvents}
+              onChange={(e) => setTypeEvent(e.target.value)}
+            ></SelectInput>
+            <SelectInput
+              setStatus={setLocationEvent}
+              text={"Localidades"}
+              eventType={"locationEvent"}
+              options={locations}
+              onChange={(e) => setLocationEvent(e.target.value)}
+            ></SelectInput>
+          </div>
+          <DateTimePickerValue
+            language={language}
+            eventDateEnd={eventDateEnd}
+            setEventDateEnd={setEventDateEnd}
+            setEventDateStart={setEventDateStart}
+            eventDateStart={eventDateStart}
+          ></DateTimePickerValue>
+        </div>
       </section>
-      {
-        events.length > 0
-          ? <section className='mb-8'>
-              <h2 className="text-2xl font-bold text-center mb-9 mt-9 sm:text-5xl sm:text-left sm:ml-10">Próximos eventos</h2>
-              <ul className='flex flex-wrap gap-10 justify-center'>
-                {
-                  loading ? <Loading/>
-                  : filteredEvents && filteredEvents.map((event) => {
-                    return <li key={event.id}><CardEvent 
-                    title={language === "es" ? event.title : event.galician_title}
-                    image={event.event_photos[0]}
-                    description={language === "es" ? event.content : event.galician_content}
-                    location={event.location}
-                    link={event.link}></CardEvent></li>
-                  })
-                }
-              </ul>
-            </section>
-          : <>
-              <div className='flex items-center gap-6 my-10 px-4 lg:my-0 lg:mt-28 lg:justify-center'> 
-                <Image src={'/image/noEventsYet.svg'} width={150} height={150}/>
-                <div className='flex flex-col'>
-                <p>{language === "es" ? "Estamos trabajando en nuevos eventos para luchar contra el cáncer." : "Estamos traballando en novos eventos para a loita contra o cancro."}.</p>
-                <p>{laguage === "es" ? "Vuelve pronto y únete a la causa." : "Volve pronto e únete á causa."} <span className='font-bold'>#JuntosContraElCáncer</span></p>
-                </div>
-              </div>
-              <Link href={'/'} className='self-center'><button className='border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 hover:text-secondLightGray hover:bg-primaryGreen'>{language === "es" ? "VOLVER AL INICIO" : "VOLVER AO COMEZO"}</button></Link>
-            </>
-      }
+      {events.length > 0 ? (
+        <section className="mb-8">
+          <h2 className="text-2xl font-bold text-center mb-9 mt-9 sm:text-5xl sm:text-left sm:ml-10">
+            Próximos eventos
+          </h2>
+          <ul className="flex flex-wrap gap-10 justify-center">
+            {loading ? (
+              <Loading />
+            ) : (
+              filteredEvents &&
+              filteredEvents.map((event) => {
+                return (
+                  <li key={event.id}>
+                    <CardEvent
+                      title={
+                        language === "es" ? event.title : event.galician_title
+                      }
+                      image={event.event_photos[0]}
+                      description={
+                        language === "es"
+                          ? event.content
+                          : event.galician_content
+                      }
+                      location={event.location}
+                      link={event.link}
+                    ></CardEvent>
+                  </li>
+                );
+              })
+            )}
+          </ul>
+        </section>
+      ) : (
+        <>
+          <div className="flex items-center gap-6 my-10 px-4 lg:my-0 lg:mt-28 lg:justify-center">
+            <Image src={"/image/noEventsYet.svg"} width={150} height={150} />
+            <div className="flex flex-col">
+              <p>
+                {language === "es"
+                  ? "Estamos trabajando en nuevos eventos para luchar contra el cáncer."
+                  : "Estamos traballando en novos eventos para a loita contra o cancro."}
+                .
+              </p>
+              <p>
+                {laguage === "es"
+                  ? "Vuelve pronto y únete a la causa."
+                  : "Volve pronto e únete á causa."}{" "}
+                <span className="font-bold">#JuntosContraElCáncer</span>
+              </p>
+            </div>
+          </div>
+          <Link href={"/"} className="self-center">
+            <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 hover:text-secondLightGray hover:bg-primaryGreen">
+              {language === "es" ? "VOLVER AL INICIO" : "VOLVER AO COMEZO"}
+            </button>
+          </Link>
+        </>
+      )}
     </main>
-  )
+  );
 }

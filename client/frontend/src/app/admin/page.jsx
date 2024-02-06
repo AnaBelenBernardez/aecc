@@ -33,6 +33,7 @@ const LoginPage = () => {
   const router = useRouter();
 
   const setToken = useLoginStore((state) => state.setToken);
+  const setId = useLoginStore((state) => state.setId);
 
   async function onSubmit(data) {
     const userData = await loginService(data.username, data.password);
@@ -46,6 +47,7 @@ const LoginPage = () => {
       return;
     }
     setToken(userData.data.token);
+    setId(userData.data.info.id);
     router.push("/admin/dashboard");
   }
 

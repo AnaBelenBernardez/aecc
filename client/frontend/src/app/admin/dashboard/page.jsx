@@ -8,12 +8,11 @@ import {
   Faq,
   Publicity,
   News,
-  Experiences
+  Experiences,
 } from "../../../lib/svg";
 import { useLoginStore } from "../../../store";
 import { useRouter } from "next/navigation";
-import Link from 'next/link';
-
+import Link from "next/link";
 
 const DashboardPage = () => {
   const router = useRouter();
@@ -31,28 +30,32 @@ const DashboardPage = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-center w-full container">
             <DashboardCard title={"Eventos"}>
-              <CalendarEvent />
+              <Link href="/admin/dashboard/eventos">
+                <CalendarEvent />
+              </Link>
             </DashboardCard>
             <DashboardCard title={"Galeria"}>
               <Photos />
             </DashboardCard>
-            <Link href={'/admin/dashboard/usuario'}>
+            <Link href={"/admin/dashboard/usuario"}>
               <DashboardCard title={"Usuario"}>
                 <User />
               </DashboardCard>
             </Link>
             <DashboardCard title={"FAQ"}>
-              <Link href={'/admin/dashboard/faqs'}><Faq /></Link>
+              <Link href={"/admin/dashboard/faqs"}>
+                <Faq />
+              </Link>
             </DashboardCard>
             <DashboardCard title={"Patrocinadores"}>
               <Publicity />
             </DashboardCard>
-            <Link href={'/admin/dashboard/noticias'}>
+            <Link href={"/admin/dashboard/noticias"}>
               <DashboardCard title={"Noticias"}>
                 <News />
               </DashboardCard>
             </Link>
-            <Link href={'/admin/dashboard/experiences'}>
+            <Link href={"/admin/dashboard/experiences"}>
               <DashboardCard title={"Experiencias"}>
                 <Experiences />
               </DashboardCard>
