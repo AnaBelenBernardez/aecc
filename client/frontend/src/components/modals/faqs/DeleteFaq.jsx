@@ -3,7 +3,7 @@ import Image from 'next/image';
 const DeleteFaq = ({ handleClickDelete, setDeleteModalOpen }) => {
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='w-[90vw] max-h-[40vh] bg-secondLightGray p-4 rounded-xl shadow-xl md:w-[50vh] lg:w-[60vh]'>
+      <div className='w-[90vw] max-h-[50vh] md:w-[90vw] max-h-[40vh] bg-secondLightGray p-4 rounded-xl shadow-xl md:w-[50vh] lg:w-[60vh]'>
           <p className='font-bold text-lg text-balance text-center'>¿Estás seguro de que quieres eliminar esta FAQ?</p>
           <div className='flex flex-col items-center'>
             <button onClick={handleClickDelete} className='flex gap-4 w-[157px] h-[42px] items-center justify-center border border-secondRed py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-secondRed'>
