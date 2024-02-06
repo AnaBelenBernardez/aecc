@@ -23,8 +23,8 @@ export const getEventService = async (id) => {
     throw new Error(data.message);
   }
 
-  return data.data[0]
-}
+  return data.data[0];
+};
 
 export const getAllNewsService = async () => {
   const response = await fetch(`${backAPI}/news`);
@@ -84,10 +84,9 @@ export const deleteNewService = async (id, token) => {
   const response = await fetch(`${backAPI}/news/admin/delete/${id}`, {
     method: "DELETE",
     headers: {
-      token: token
-    }
-  }
-  );
+      token: token,
+    },
+  });
 
   const data = response.json();
 
@@ -101,37 +100,36 @@ export const deleteNewService = async (id, token) => {
 export const addExperienceService = async (token, formValues) => {
   const addExperienceForm = new FormData();
 
-  addExperienceForm.append('name', formValues.name);
-  addExperienceForm.append('content', formValues.content);
-  addExperienceForm.append('galician_content', formValues.galician_content);
+  addExperienceForm.append("name", formValues.name);
+  addExperienceForm.append("content", formValues.content);
+  addExperienceForm.append("galician_content", formValues.galician_content);
   if (formValues.photo) {
-    addExperienceForm.append('photo', formValues.photo[0][0]);
+    addExperienceForm.append("photo", formValues.photo[0][0]);
   }
 
   const response = await fetch(`${backAPI}/experiences/admin/add`, {
-    method: 'POST',
-    headers : {
-      token: token
+    method: "POST",
+    headers: {
+      token: token,
     },
-    body: addExperienceForm
-  })
+    body: addExperienceForm,
+  });
 
   const data = response.json();
 
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error(data.message);
-  };
+  }
 
-  return data.data
+  return data.data;
 };
 export const deleteExperienceService = async (id, token) => {
   const response = await fetch(`${backAPI}/experiences/admin/delete/${id}`, {
     method: "DELETE",
     headers: {
-      token: token
-    }
-  }
-  );
+      token: token,
+    },
+  });
 
   const data = response.json();
 
@@ -142,16 +140,26 @@ export const deleteExperienceService = async (id, token) => {
   return data;
 };
 
-
-export const editFaqService = async (question, galician_question, answer, galician_answer, idFaq, token) =>{
-
-  const response = await fetch(`${backAPI}/faqs/admin/edit/${idFaq}`,{
+export const editFaqService = async (
+  question,
+  galician_question,
+  answer,
+  galician_answer,
+  idFaq,
+  token
+) => {
+  const response = await fetch(`${backAPI}/faqs/admin/edit/${idFaq}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
       token: token,
     },
-    body: JSON.stringify({question, galician_question, answer, galician_answer}),
+    body: JSON.stringify({
+      question,
+      galician_question,
+      answer,
+      galician_answer,
+    }),
   });
 
   const data = await response.json();
@@ -161,14 +169,14 @@ export const editFaqService = async (question, galician_question, answer, galici
   }
 
   return data.data[0];
-}
+};
 
 export const deleteFaqService = async (id, token) => {
   const response = await fetch(`${backAPI}/faqs/admin/delete/${id}`, {
     method: "DELETE",
     headers: {
-      token: token
-    }
+      token: token,
+    },
   });
 
   const data = await response.json();
@@ -180,69 +188,80 @@ export const deleteFaqService = async (id, token) => {
   return data;
 };
 
-export const addFaqService = async(question, galician_question, answer, galician_answer, token) =>{
-
+export const addFaqService = async (
+  question,
+  galician_question,
+  answer,
+  galician_answer,
+  token
+) => {
   const response = await fetch(`${backAPI}/faqs/admin/add`, {
-    method: 'POST',
-    headers : {
+    method: "POST",
+    headers: {
       "Content-Type": "application/json",
-      token: token
+      token: token,
     },
-    body: JSON.stringify({question, galician_question, answer, galician_answer})
-  })
+    body: JSON.stringify({
+      question,
+      galician_question,
+      answer,
+      galician_answer,
+    }),
+  });
 
   const data = await response.json();
-
 
   if (!response.ok) {
     throw new Error(data.message);
   }
 
   return data.data;
-}
+};
 
 export const addNewService = async (token, formValues) => {
   const addNewForm = new FormData();
 
-  addNewForm.append('title', formValues.title);
-  addNewForm.append('content', formValues.content);
-  addNewForm.append('link', formValues.link);
-  addNewForm.append('galician_title', formValues.galician_title);
-  addNewForm.append('galician_content', formValues.galician_content);
-  addNewForm.append('photo', formValues.photo[0][0]);
+  addNewForm.append("title", formValues.title);
+  addNewForm.append("content", formValues.content);
+  addNewForm.append("link", formValues.link);
+  addNewForm.append("galician_title", formValues.galician_title);
+  addNewForm.append("galician_content", formValues.galician_content);
+  addNewForm.append("photo", formValues.photo[0][0]);
 
   const response = await fetch(`${backAPI}/news/admin/add`, {
-    method: 'POST',
-    headers : {
-      token: token
+    method: "POST",
+    headers: {
+      token: token,
     },
-    body: addNewForm
-  })
+    body: addNewForm,
+  });
 
   const data = response.json();
 
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error(data.message);
-  };
+  }
 
-  return data.data
+  return data.data;
 };
 
 export const editNewService = async (formValues, idNew, token) => {
   const editNewForm = new FormData();
-  editNewForm.append('title', formValues.title);
-  editNewForm.append('content', formValues.content);
-  editNewForm.append('link', formValues.link);
-  editNewForm.append('galician_title', formValues.galician_title);
-  editNewForm.append('galician_content', formValues.galician_content);
-  if (Array.isArray(formValues.photo)) {editNewForm.append('photo', formValues.photo[0][0])};
+  editNewForm.append("title", formValues.title);
+  editNewForm.append("content", formValues.content);
+  editNewForm.append("link", formValues.link);
+  editNewForm.append("galician_title", formValues.galician_title);
+  editNewForm.append("galician_content", formValues.galician_content);
+  if (Array.isArray(formValues.photo)) {
+    editNewForm.append("photo", formValues.photo[0][0]);
+  }
 
   const response = await fetch(`${backAPI}/news/admin/edit/${idNew}`, {
-    method: 'PUT',
-    headers : {
-      token: token
+    method: "PUT",
+    headers: {
+      token: token,
     },
-    body: editNewForm
+    body: editNewForm,
   });
 
   const data = response.json();
@@ -251,22 +270,113 @@ export const editNewService = async (formValues, idNew, token) => {
     throw new Error(data.message);
   }
 
-  return data.data
-}
-export const editExperienceService = async (formValues, idExperience, token) => {
+  return data.data;
+};
+
+export const addEvent = async (token, formValues) => {
+  const editNewForm = new FormData();
+  editNewForm.append("title", formValues.title);
+  editNewForm.append("content", formValues.content);
+  editNewForm.append("date_start", formValues.date_start);
+  editNewForm.append("date_end", formValues.date_end);
+  editNewForm.append("location", formValues.location);
+  editNewForm.append("link", formValues.link);
+  editNewForm.append("event_type", formValues.event_type);
+  editNewForm.append("photo", formValues.photo[0]);
+  editNewForm.append("galician_title", formValues.galician_title);
+  editNewForm.append("galician_content", formValues.galician_content);
+  const response = await fetch(`${backAPI}/events/admin/add`, {
+    method: "POST",
+    headers: {
+      token: token,
+    },
+    body: editNewForm,
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+  console.log(data);
+
+  return data;
+};
+
+export const deleteEventService = async (id, token) => {
+  const response = await fetch(`${backAPI}/events/admin/delete/${id}`, {
+    method: "DELETE",
+    headers: {
+      token: token,
+    },
+  });
+
+  const data = response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+
+export const editEventService = async (id, token, formValues) => {
+  const editNewForm = new FormData();
+  editNewForm.append("title", formValues.title);
+  editNewForm.append("content", formValues.content);
+  editNewForm.append("date_start", formValues.date_start);
+  editNewForm.append("date_end", formValues.date_end);
+  editNewForm.append("location", formValues.location);
+  editNewForm.append("link", formValues.link);
+  editNewForm.append("event_type", formValues.event_type);
+  editNewForm.append("warning", Number(formValues.warning));
+  editNewForm.append("warning_content", formValues.warning_content);
+  editNewForm.append("galician_title", formValues.galician_title);
+  editNewForm.append("galician_content", formValues.galician_content);
+  editNewForm.append(
+    "galician_warning_content",
+    formValues.galician_warning_content
+  );
+
+  const response = await fetch(`${backAPI}/events/admin/edit/${id}`, {
+    method: "PUT",
+    headers: {
+      token: token,
+    },
+    body: editNewForm,
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+export const editExperienceService = async (
+  formValues,
+  idExperience,
+  token
+) => {
   const editExperienceForm = new FormData();
-  editExperienceForm.append('name', formValues.name);
-  editExperienceForm.append('content', formValues.content);
-  editExperienceForm.append('galician_content', formValues.galician_content);
-  if (Array.isArray(formValues.photo)) {editExperienceForm.append('photo', formValues.photo[0][0])};
+  editExperienceForm.append("name", formValues.name);
+  editExperienceForm.append("content", formValues.content);
+  editExperienceForm.append("galician_content", formValues.galician_content);
+  if (Array.isArray(formValues.photo)) {
+    editExperienceForm.append("photo", formValues.photo[0][0]);
+  }
 
-  const response = await fetch(`${backAPI}/experiences/admin/edit/${idExperience}`, {
-    method: 'PUT',
-    headers : {
-      token: token
-    },
-    body: editExperienceForm
-  });
+  const response = await fetch(
+    `${backAPI}/experiences/admin/edit/${idExperience}`,
+    {
+      method: "PUT",
+      headers: {
+        token: token,
+      },
+      body: editExperienceForm,
+    }
+  );
 
   const data = response.json();
 
@@ -274,21 +384,21 @@ export const editExperienceService = async (formValues, idExperience, token) => 
     throw new Error(data.message);
   }
 
-  return data.data
-}
+  return data.data;
+};
 
 export const changePwd = async (token, formValues) => {
   const editPwd = new FormData();
 
-  editPwd.append('oldPwd', formValues.oldPwd);
-  editPwd.append('newPwd', formValues.newPwd);
+  editPwd.append("oldPwd", formValues.oldPwd);
+  editPwd.append("newPwd", formValues.newPwd);
 
   const response = await fetch(`${backAPI}/admin/update-password/1`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      token: token
+      token: token,
     },
-    body: editPwd
+    body: editPwd,
   });
 
   const data = response.json();
@@ -296,22 +406,29 @@ export const changePwd = async (token, formValues) => {
   if (!response.ok) {
     throw new Error(data.message);
   }
-  
-  return data.data
-}
 
-export const getAllEventsFilterService = async (typeEvent, locationEvent, eventDateStart, eventDateEnd) =>{
-  let params = {}
-  
-  if(typeEvent !== "") params.eventType = typeEvent
-  if(locationEvent !== "") params.location = locationEvent
-  if(eventDateStart !== undefined) {
+  return data.data;
+};
+
+export const getAllEventsFilterService = async (
+  typeEvent,
+  locationEvent,
+  eventDateStart,
+  eventDateEnd
+) => {
+  let params = {};
+
+  if (typeEvent !== "") params.eventType = typeEvent;
+  if (locationEvent !== "") params.location = locationEvent;
+  if (eventDateStart !== undefined) {
     const formatedDateStart = formatDate(eventDateStart);
-    params.minDate = formatedDateStart;}
-  if(eventDateEnd !== undefined) {
+    params.minDate = formatedDateStart;
+  }
+  if (eventDateEnd !== undefined) {
     const formatedDateEnd = formatDate(eventDateEnd);
-    params.maxDate = formatedDateEnd;}
-  
+    params.maxDate = formatedDateEnd;
+  }
+
   const queryParams = new URLSearchParams(params).toString();
   const response = await fetch(`${backAPI}/events?${queryParams}`);
 
@@ -320,5 +437,5 @@ export const getAllEventsFilterService = async (typeEvent, locationEvent, eventD
     throw new Error(data.message);
   }
 
-  return data.data
-}
+  return data.data;
+};

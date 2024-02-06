@@ -13,6 +13,7 @@ export const Sidebar = () => {
   const token = useLoginStore((state) => state.token);
   const logout = () => {
     useLoginStore.setState({ token: null });
+    useLoginStore.setState({ id: null });
     router.push("/admin");
     closeMenu();
   };

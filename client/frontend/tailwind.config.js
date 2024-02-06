@@ -57,7 +57,7 @@ module.exports = {
         secondGray: "#D9DAD9",
         secondLightGray: "#F5F5F5",
         blueBgSection: "#D2F5F0",
-        lightPink: "#FFB4AF"
+        lightPink: "#FFB4AF",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -80,5 +80,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("tailwindcss-radix")()],
 };

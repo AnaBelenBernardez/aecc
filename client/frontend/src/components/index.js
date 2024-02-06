@@ -4,3 +4,7 @@ export * from "./first-persons/CardPerson/CardPerson";
 export * from "./first-persons/PersonsCarousel/PersonsCarousel";
 export * from "./dashboard/DashboardCard";
 export * from "./gallery/GalleryCard";
+export * from "./dashboard/DashboardCardEvent/DashboardCardEvent";
+export * from "./dashboard/ModalEvents/ModalEvents";
+export * from "./dashboard/FormEvent/FormEvent";
+export * from "./dashboard/ModalEvents/ModalEditEvent";
