@@ -71,7 +71,7 @@ console.log(formValues.photo);
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
       <div className='w-[80vw] h-[85vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:h-[90vh] lg:p-12 md:max-h-[70%] lg:max-h-[90%]'>
-        <form className='flex flex-col gap-2 overflow-scroll md:max-w-[90%] min-w-[90%] self-center md:overflow-hidden lg:overflow-scroll ' onSubmit={handleSubmit}>
+        <form className='flex flex-col gap-2 overflow-auto md:max-w-[90%] min-w-[90%] self-center md:overflow-hidden lg:overflow-auto ' onSubmit={handleSubmit}>
           <h2 className='font-bold text-lg text-primaryGreen'>Formulario en castellano</h2>
           <label htmlFor="name" className='font-bold text-sm'>
             Nombre

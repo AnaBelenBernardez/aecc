@@ -49,7 +49,7 @@ export const ModalEvents = ({ token, refetch }) => {
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
           <div className="w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12">
             <form
-              className="flex flex-col gap-2 overflow-scroll"
+              className="flex flex-col gap-2 overflow-auto"
               onSubmit={handleSubmit(onSubmit)}
             >
               <h2 className="font-bold text-lg text-primaryGreen">
