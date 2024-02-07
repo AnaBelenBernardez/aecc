@@ -4,6 +4,8 @@ import { addEvent } from "../../../service";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import { placeLocation } from "../../../lib/locations";
+import useFilePreview from "../../../hooks/useFilePreview";
+import Image from "next/image";
 
 export const ModalEvents = ({ token, refetch }) => {
   const isModalEventOpen = useModalEventStore(
@@ -15,8 +17,13 @@ export const ModalEvents = ({ token, refetch }) => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
   const { toast } = useToast();
+
+  const photo = watch("photo");
+  const [filePreview] = useFilePreview(photo);
+
   const onSubmit = async (data) => {
     const eventData = await addEvent(token, data);
     try {
@@ -193,13 +200,25 @@ export const ModalEvents = ({ token, refetch }) => {
               )}
               <label className="font-bold text-sm" htmlFor="photo">
                 Foto de portada
-                <input
-                  className="w-full cursor-pointer mt-2 text-sm font-medium"
-                  id="photo"
-                  type="file"
-                  name="photo"
-                  {...register("photo", { required: true })}
-                />
+                <div className="flex flex-col md:flex-row md:items-center  gap-2 w-full mt-2">
+                  {filePreview ? (
+                    <div className="w-28">
+                      <Image
+                        src={filePreview}
+                        alt="preview"
+                        width={100}
+                        height={100}
+                      />
+                    </div>
+                  ) : null}
+                  <input
+                    className="cursor-pointer mt-2 text-sm font-medium"
+                    id="photo"
+                    type="file"
+                    name="photo"
+                    {...register("photo", { required: true })}
+                  />
+                </div>
               </label>
               {errors.photo && (
                 <span className="text-secondRed text-sm">
