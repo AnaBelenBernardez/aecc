@@ -14,6 +14,8 @@ const Noticias = () => {
   const language = useLanguageStore((state) => state.language);
   const setLanguage = useLanguageStore((state) => state.setLanguage);
 
+  console.log(events);
+
   const eventsFilter = events
     .filter(
       (event) => event.warning === 1 && new Date(event.date_end) > new Date()
