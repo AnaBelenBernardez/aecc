@@ -9,7 +9,8 @@ import { useLoginStore } from '../../../../../store';
 import { useState } from 'react';
 import { useRouter } from "next/navigation";
 import BlockScroll from '../../../../../components/blockScroll/BlockScroll';
-import DeletePhotoModal from '../../../../../components/modals/gallery/DeletPhotoModal';
+import DeletePhotoModal from '../../../../../components/modals/gallery/DeletePhotoModal';
+import AddPhotoModal from '../../../../../components/modals/gallery/AddPhotoModal';
 
 const EditEventPhotos = () => {
   const {id} = useParams();
@@ -22,6 +23,7 @@ const EditEventPhotos = () => {
 
   const { event, loading, error, refetch } = useGetEvent(id);
   const [deleteModalOpen, setDeleteModalOpen] = useState();
+  const [addModalOpen, setAddModalOpen] = useState();
   const [idPhotoOpen, setIdPhotoOpen] = useState();
 
   const openModalDelete = async (e, idPhoto) => {
@@ -30,20 +32,35 @@ const EditEventPhotos = () => {
     setDeleteModalOpen(true);
   }
 
+  const openModalAdd = async () => {
+    setAddModalOpen(true);
+  }
+
   if (loading) return <Loading/>;
 
   return (
     <main className='my-4 flex flex-col'>
       <BlockScroll
-        isModalOpen={deleteModalOpen}
+        isModalOpen={deleteModalOpen || addModalOpen}
       />
       {
         event 
           ? <>
               <button
+                onClick={openModalAdd}
                 className='self-center border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 my-6 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'>
                 AÑADIR FOTO
               </button>
+              {
+                addModalOpen && (
+                  <AddPhotoModal
+                    setAddModalOpen={setAddModalOpen}
+                    token={token}
+                    idEvent={id}
+                    refetch={refetch}
+                  />
+                )
+              }
               <div className="flex flex-col lg:grid lg:auto-rows-[240px] lg:grid-cols-4 gap-4 mx-20">
               {event.event_photos.map((photo, i) => {
                 const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${photo.photo}`

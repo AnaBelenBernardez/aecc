@@ -27,27 +27,15 @@ const Header = () => {
       <nav className="bg-secondLightGray pt-6 pb-2 relative">
         <div className="container mx-auto flex">
           <div className="flex-grow self-center">
-            {language === "es" ? (
-              <Link href="/">
-                <Image
-                  src="/logos/CC_Logo_transicion_color_pos.rgb.svg"
-                  alt="Logo Asociación Española Contra el Cáncer"
-                  width="150"
-                  height="150"
-                  className="self-center"
-                />
-              </Link>
-            ) : (
-              <Link href="/">
-                <Image
-                  src="/logos/CC_Logo_transicion_gallego_color_pos.rgb.svg"
-                  alt="Logo Asociación Española Contra el Cáncer"
-                  width="180"
-                  height="180"
-                  className="self-center -my-2 -mx-4"
-                />
-              </Link>
-            )}
+            <Link href="/">
+              <Image
+                src="/logos/CC_Logo_transicion_gallego_color_pos.rgb.svg"
+                alt="Logo Asociación Española Contra el Cáncer"
+                width="180"
+                height="180"
+                className="self-center -my-2 -mx-4"
+              />
+            </Link>
           </div>
 
           <div className="flex lg:flex-col lg:items-end items-center justify-center">

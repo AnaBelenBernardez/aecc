@@ -17,9 +17,9 @@ const Footer = () => {
     <footer className={`w-full bottom-0 flex flex-col items-center text-center ${pathname.startsWith('/admin/') ? 'hidden' : ''} bg-secondLightGray py-8 lg:flex-row lg:items-start lg:justify-around lg:text-left"`}>
       <section className="flex flex-col mb-6">
         <Image
-          src="/logos/CC_Logo_transicion_color_pos.rgb.svg"
+          src="/logos/CC_Logo_transicion_gallego_color_pos.rgb.svg"
           alt="Logo Asociación Española Contra el Cáncer"
-          width="150"
+          width="180"
           height="47"
           className="self-center mb-6 lg:self-start"
         />

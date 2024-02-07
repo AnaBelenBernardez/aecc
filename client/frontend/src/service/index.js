@@ -457,3 +457,27 @@ export const deletePhotoEventService = async (token, idEvent, idPhoto) => {
 
   return data.data;
 };
+
+export const addPhotoEventService = async (token, idEvent, photo) => {
+  const addPhotoForm = new FormData();
+
+  for (const item of photo) {
+    addPhotoForm.append('photo', item);
+  }
+
+  const response = await fetch(`${backAPI}/events/admin/add-photo/${idEvent}`, {
+    method: 'POST',
+    headers: {
+      token: token
+    },
+    body: addPhotoForm
+  })
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data.data;
+}
