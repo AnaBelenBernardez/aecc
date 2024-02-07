@@ -9,7 +9,7 @@ const DeletePhotoModal = ({ setDeleteModalOpen, idPhoto, token, id, refetch }) =
   };
 
   return (
-    <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-10 z-20'>
+    <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-[2]'>
       <div className='w-[70vw] max-h-[40vh] bg-secondLightGray p-4 rounded-xl shadow-xl lg:w-[40vw]'>
           <p className='font-bold text-lg text-balance text-center'>¿Estás seguro de que quieres eliminar esta foto?</p>
           <div className='flex flex-col items-center'>

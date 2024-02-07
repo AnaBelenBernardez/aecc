@@ -61,6 +61,16 @@ const EditEventPhotos = () => {
                   />
                 )
               }
+              {
+                deleteModalOpen && (
+                  <DeletePhotoModal
+                    setDeleteModalOpen={setDeleteModalOpen}
+                    idPhoto={idPhotoOpen}
+                    token={token}
+                    id={id}
+                    refetch={refetch}
+                  />)
+              }
               <div className="flex flex-col lg:grid lg:auto-rows-[240px] lg:grid-cols-4 gap-4 mx-20">
               {event.event_photos.map((photo, i) => {
                 const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${photo.photo}`
@@ -75,21 +85,11 @@ const EditEventPhotos = () => {
                       ||i===310||i===313||i===320||i===326||i===330||i===336||i===340||i===346||i===350||i===356||i===360||i===363||i===370||i===376||i===380
                       ||i===386||i===390||i===396||i === 398 || i=== 400 ? "col-span-2 row-span-2" : ""}`}
                   >
-                    {
-                      deleteModalOpen && (
-                        <DeletePhotoModal
-                          setDeleteModalOpen={setDeleteModalOpen}
-                          idPhoto={idPhotoOpen}
-                          token={token}
-                          id={id}
-                          refetch={refetch}
-                        />)
-                    }
                     <Link href={imgSrc} target='_blank' className='relative'>
                       <button
                         onClick={(e) => openModalDelete(e, photo.id)}  
-                        className='absolute z-10 right-2 top-2 bg-secondRed rounded-full p-2'><Image src={'/icons/deletePhotoIcon.svg'} width={36} height={36} alt='Icono eliminar'/></button>
-                      <img src={imgSrc} className='w-full h-full object-cover grayscale hover:grayscale-0 transition-all ease-in-out duration-1000 rounded-xl' alt='Foto del evento'/>
+                        className='absolute z-[1] right-2 top-2 bg-secondRed rounded-full p-2'><Image src={'/icons/deletePhotoIcon.svg'} width={36} height={36} alt='Icono eliminar'/></button>
+                      <img src={imgSrc} className='w-full h-full object-cover grayscale transition-all ease-in-out duration-1000 rounded-xl' alt='Foto del evento'/>
                     </Link>
                   </div>
                 )
