@@ -96,8 +96,7 @@ console.log(events);
             A Coruña <span className="text-primaryGreen">en marcha</span>
             <br />
             <span className="text-primaryGreen">
-              {" "}
-              {language === "es" ? "CONTRA EL CÁNCER" : "CONTRA O CANCRO"}
+              CONTRA O CANCRO
             </span>
           </h1>
           <p className="text-xs sm:text-xl font-medium my-5 text-white">
