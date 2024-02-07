@@ -13,6 +13,7 @@ export const CardEvent = ({
   return (
     <div className="w-96 h-[500px] shadow-xl bg-secondLightGray overflow-hidden fade-in relative">
       {warning ? (
+        <Link className="cursor-pointer" href="/noticias">
         <div className="flex bg-[#FF3C37] py-2 px-4 gap-2 items-center justify-center absolute top-3 left-3 rounded-full">
           <Image
             src={"/image/warning.svg"}
@@ -22,6 +23,7 @@ export const CardEvent = ({
           />
           <p className="text-white">Aviso importante</p>
         </div>
+        </Link>
       ) : null}
       <Image
         src={imgSrc}

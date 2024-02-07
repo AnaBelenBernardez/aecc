@@ -25,8 +25,7 @@ export default function Home() {
   const language = useLanguageStore((state) => state.language);
   const categoryEvents = [];
   const locations = [];
-console.log(eventsFiltered);
-console.log(events);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
