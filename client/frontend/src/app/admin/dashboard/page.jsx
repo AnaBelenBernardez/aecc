@@ -34,9 +34,11 @@ const DashboardPage = () => {
                 <CalendarEvent />
               </Link>
             </DashboardCard>
-            <DashboardCard title={"Galeria"}>
-              <Photos />
-            </DashboardCard>
+            <Link href={"/admin/dashboard/galeria"}>
+              <DashboardCard title={"Galeria"}>
+                <Photos />
+              </DashboardCard>
+            </Link>
             <Link href={"/admin/dashboard/usuario"}>
               <DashboardCard title={"Usuario"}>
                 <User />

@@ -110,6 +110,44 @@ console.log(events);
           </button>
         </div>
       </div>
+      {
+        language === 'es'
+          ? <>
+              <h3 className="text-2xl font-bold text-center mt-14 md:text-5xl lg:flex lg:pl-16 lg:w-full">¿Qué es En Marcha?</h3>
+              <section className='mb-16 px-7 mt-8'>
+                <p className='pb-4 lg:w-[80%] lg:pl-16'>
+                  <span className='font-bold text-primaryGreen text-lg'>En Marcha</span> es un movimiento que reúne a miles de personas de toda España en torno a una causa común: la lucha contra el cáncer. Un ejemplo de colaboración 
+                  público-privada que se ha convertido en una cita imprescindible, en la que personas de todas las edades y condiciones se mueven por un futuro sin cáncer.
+                </p>
+                <p className='pb-4 lg:w-[80%] lg:pl-16'>
+                  El deporte siempre se ha caracterizado por ponerse al servicio de las más diversas causas solidarias. En el caso de las carreras populares, la travesía a nado 
+                  o el pádel, el componente competitivo queda en un segundo plano para la gran mayoría de los participantes en favor del simple placer de realizar una actividad física en un ambiente festivo.
+                </p>
+                <p className='pb-4 lg:w-[80%] lg:pl-16'>
+                  Los participantes de los eventos <span className='font-bold text-primaryGreen text-lg'>En Marcha</span> no solo colaboran en la lucha contra el cáncer, sino que también cuidan de su salud porque moverse 
+                  importa y más cuando se hace en compañía  y por una buena causa.
+                </p>
+              </section>
+            </>
+          : <>
+              <h3 className="text-2xl font-bold text-center mt-14 md:text-5xl lg:flex lg:pl-16 lg:w-full">¿Que é En Marcha?</h3>
+              <section className='mb-16 px-7 mt-8'>
+                <p className='pb-4 lg:w-[80%] lg:pl-16 text-balance'>
+                  <span className='font-bold text-primaryGreen text-lg'>En Marcha</span> é un movemento que reúne a miles de persoas de toda España arredor dunha causa común: a loita contra o cancro. Un exemplo de colaboración
+                  público-privado que se converteu nun evento imprescindible, no que persoas de todas as idades e condicións avanzan cara a un futuro sen cancro.
+                </p>
+                <p className='pb-4 lg:w-[80%] lg:pl-16 text-balance'>
+                  O deporte sempre se caracterizou por poñerse ao servizo das máis diversas causas solidarias. No caso das carreiras populares, a travesía a natación
+                  ou pádel, a compoñente competitiva pasa a un segundo plano para a gran maioría dos participantes en favor do simple pracer de realizar unha actividade física nun ambiente festivo.
+                </p>
+                <p className='pb-4 lg:w-[80%] lg:pl-16 text-balance'>
+                  Os participantes dos eventos <span className='font-bold text-primaryGreen text-lg'>En Marcha</span> non só colaboran na loita contra o cancro, senón que coidan a súa saúde porque o movemento
+                  importa e máis aínda cando se fai en compañía e por unha boa causa.
+                </p>
+              </section>
+            </>
+      }
+      
       {events.length > 0 ? (
         <>
           <form
@@ -141,12 +179,13 @@ console.log(events);
                 setEventDateEnd={setEventDateEnd}
                 setEventDateStart={setEventDateStart}
                 eventDateStart={eventDateStart}
+                language={language}
               ></DateTimePickerValue>
               <button
                 type="submit"
                 className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen"
               >
-                Buscar
+                BUSCAR
               </button>
             </div>
           </form>

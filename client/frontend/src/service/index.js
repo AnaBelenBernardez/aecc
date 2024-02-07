@@ -88,7 +88,7 @@ export const deleteNewService = async (id, token) => {
     },
   });
 
-  const data = response.json();
+  const data = await response.json();
 
   if (!response.ok) {
     throw new Error(data.message);
@@ -115,7 +115,7 @@ export const addExperienceService = async (token, formValues) => {
     body: addExperienceForm,
   });
 
-  const data = response.json();
+  const data = await response.json();
 
   if (!response.ok) {
     throw new Error(data.message);
@@ -131,7 +131,7 @@ export const deleteExperienceService = async (id, token) => {
     },
   });
 
-  const data = response.json();
+  const data = await response.json();
 
   if (!response.ok) {
     throw new Error(data.message);
@@ -236,7 +236,7 @@ export const addNewService = async (token, formValues) => {
     body: addNewForm,
   });
 
-  const data = response.json();
+  const data = await response.json();
 
   if (!response.ok) {
     throw new Error(data.message);
@@ -264,7 +264,7 @@ export const editNewService = async (formValues, idNew, token) => {
     body: editNewForm,
   });
 
-  const data = response.json();
+  const data = await response.json();
 
   if (!response.ok) {
     throw new Error(data.message);
@@ -311,7 +311,7 @@ export const deleteEventService = async (id, token) => {
     },
   });
 
-  const data = response.json();
+  const data = await response.json();
 
   if (!response.ok) {
     throw new Error(data.message);
@@ -378,7 +378,7 @@ export const editExperienceService = async (
     }
   );
 
-  const data = response.json();
+  const data = await response.json();
 
   if (!response.ok) {
     throw new Error(data.message);
@@ -401,7 +401,7 @@ export const changePwd = async (token, formValues) => {
     body: editPwd,
   });
 
-  const data = response.json();
+  const data = await response.json();
 
   if (!response.ok) {
     throw new Error(data.message);
@@ -433,6 +433,24 @@ export const getAllEventsFilterService = async (
   const response = await fetch(`${backAPI}/events?${queryParams}`);
 
   const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data.data;
+};
+
+export const deletePhotoEventService = async (token, idEvent, idPhoto) => {
+  const response = await fetch(`${backAPI}/events/admin/${idEvent}/delete/photo/${idPhoto}`, {
+    method: 'DELETE',
+    headers : {
+      token: token
+    }
+  });
+
+  const data = response.json();
+
   if (!response.ok) {
     throw new Error(data.message);
   }

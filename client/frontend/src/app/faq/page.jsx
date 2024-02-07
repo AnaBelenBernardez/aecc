@@ -24,7 +24,7 @@ const FaqPage = () => {
             ? faqs.map((faq) => {
                 return (
                   <li key={faq.id} className='list-decimal list-inside marker:text-primaryGreen marker:text-4xl marker:font-bold md:marker:text-5xl'>
-                    <span className="text-primaryGreen font-semibold text-2xl uppercase">{language === 'es' ? faq.question : faq.galician_question}</span>
+                    <span className="text-primaryGreen font-semibold text-2xl">{language === 'es' ? faq.question : faq.galician_question}</span>
                     <p className='pt-4'>{language === 'es' ? faq.answer : faq.galician_answer}</p>
                   </li>
                 )

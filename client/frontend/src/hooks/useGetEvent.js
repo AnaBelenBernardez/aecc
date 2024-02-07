@@ -6,8 +6,7 @@ const useGetEvent = (id) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const loadEvent = async () => {
+  const loadEvent = async () => {
       try {
         setLoading(true);
 
@@ -19,12 +18,17 @@ const useGetEvent = (id) => {
       } finally {
         setLoading(false);
       }
-    }
+  }
 
+  useEffect(() => {
     loadEvent();
   }, []);
 
-  return { event, loading, error };
+  const refetch = () => {
+    loadEvent();
+  };
+
+  return { event, loading, error, refetch };
 }
 
 export default useGetEvent;
