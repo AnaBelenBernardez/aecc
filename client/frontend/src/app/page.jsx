@@ -21,11 +21,12 @@ export default function Home() {
   const [locationEvent, setLocationEvent] = useState("");
   const [eventDateStart, setEventDateStart] = useState();
   const [eventDateEnd, setEventDateEnd] = useState();
-  let [eventsFiltered, setEventsFiltered] = useState();
+  const [eventsFiltered, setEventsFiltered] = useState(events);
   const language = useLanguageStore((state) => state.language);
   const categoryEvents = [];
   const locations = [];
-
+console.log(eventsFiltered);
+console.log(events);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -154,8 +155,8 @@ export default function Home() {
           </h3>
           {eventsFiltered && eventsFiltered.length >= 3 ? (
             <EventsCarousel />
-          ) : (
-            <div className="flex flex-col gap-10 mb-6 mt-4 lg:flex-row">
+            ) : (
+              <div className="flex flex-col gap-10 mb-6 mt-4 lg:flex-row lg:flex-wrap">
               {eventsFiltered && eventsFiltered.length > 0
                 ? eventsFiltered.map((event) => (
                     <CardEvent
@@ -166,25 +167,29 @@ export default function Home() {
                       location={event.location}
                       link={event.link}
                       warning={event.warning}
-                    />
-                  ))
-                : events.map((event) => (
-                    <CardEvent
-                      title={
-                        language === "es" ? event.title : event.galician_title
-                      }
-                      image={event.event_photos[0]}
-                      key={event.id}
-                      description={
-                        language === "es"
-                          ? event.content
-                          : event.galician_content
-                      }
-                      location={event.location}
-                      link={event.link}
-                      warning={event.warning}
-                    />
-                  ))}
+                      />
+                      ))
+                      : 
+                      <EventsCarousel />
+                  //     events.slice(0, 4).map((event) => (
+                  //       <CardEvent
+                  //     title={
+                  //       language === "es" ? event.title : event.galician_title
+                  //     }
+                  //     image={event.event_photos[0]}
+                  //     key={event.id}
+                  //     description={
+                  //       language === "es"
+                  //         ? event.content
+                  //         : event.galician_content
+                  //     }
+                  //     location={event.location}
+                  //     link={event.link}
+                  //     warning={event.warning}
+                  //   />
+                  // )
+                  // )
+                  }
             </div>
           )}
           <section className="flex flex-col w-full md:items-center lg:items-start pl-8 pr-8 lg:relative">

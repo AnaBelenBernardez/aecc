@@ -22,7 +22,7 @@ export const EventsCarousel = () => {
   const {events, loading, error} = useGetAllEvents();
 
   React.useEffect(() => {
-    setLengthCarrousel(setLenghtCarrouselFunc(events, 5));
+    setLengthCarrousel(setLenghtCarrouselFunc(events, 8));
   }, [events]);
 
   if (loading) return <Loading/>;
