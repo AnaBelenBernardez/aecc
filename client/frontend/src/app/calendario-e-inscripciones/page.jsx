@@ -119,6 +119,7 @@ export default function CalendarAndRegistration() {
                       }
                       location={event.location}
                       link={event.link}
+                      warning={event.warning}
                     ></CardEvent>
                   </li>
                 );
