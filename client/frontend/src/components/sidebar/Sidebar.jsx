@@ -54,7 +54,7 @@ export const Sidebar = () => {
               <span className="ml-3 text-xl">Calendario e inscripciones</span>
             </Link>
             <Link
-              href="/"
+              href="/galeria"
               className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
@@ -82,14 +82,15 @@ export const Sidebar = () => {
               <span className="ml-3 text-xl">Patrocinios</span>
             </Link>
             <Link
-              href="/"
+              href="/noticias"
               className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Noticias</span>
             </Link>
             <Link
-              href="/"
+              href="https://blog.contraelcancer.es/"
+              target='_blank'
               className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >

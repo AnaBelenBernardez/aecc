@@ -24,16 +24,15 @@ const DashboardPage = () => {
     <>
       {token && (
         <section>
-          <h1 className="text-5xl font-bold text-center mt-8">
+          <h1 className="text-5xl font-bold text-center mt-7">
             Bienvenido Admin
           </h1>
-
           <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-center w-full container">
-            <DashboardCard title={"Eventos"}>
-              <Link href="/admin/dashboard/eventos">
+            <Link href="/admin/dashboard/eventos">
+              <DashboardCard title={"Eventos"}>
                 <CalendarEvent />
-              </Link>
-            </DashboardCard>
+              </DashboardCard>
+            </Link>
             <Link href={"/admin/dashboard/galeria"}>
               <DashboardCard title={"Galeria"}>
                 <Photos />

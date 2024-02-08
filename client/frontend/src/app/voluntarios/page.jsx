@@ -7,8 +7,8 @@ const Volunteers = () => {
   const language = useLanguageStore((state) => state.language);
 
   return (
-    <div className="mx-auto mb-4 lg:w-3/4">
-      <h1 className="font-bold text-primaryGreen text-xl pt-4 pl-6 lg:text-3xl lg:pt-6 lg:pb-6 lg:pl-0">
+    <div className="mx-auto mb-4 md:w-[90%] lg:w-3/4">
+      <h1 className="font-bold text-primaryGreen text-xl pt-4 mb-4 lg:text-3xl lg:pt-6 lg:pb-6 lg:pl-0 lg:mb-0">
         Voluntarios
       </h1>
       <div className="flex flex-col gap-8 items-center">

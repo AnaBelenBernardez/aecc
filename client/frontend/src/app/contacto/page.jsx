@@ -7,11 +7,11 @@ const Contact = () => {
   const language = useLanguageStore((state) => state.language);
 
   return (
-    <div className="mx-auto mb-4 lg:w-3/4">
-      <h1 className="font-bold text-primaryGreen text-xl pt-4 pl-6 lg:text-3xl lg:pt-6 lg:pb-6 lg:pl-0">
+    <div className="mx-5 mb-4 lg:w-3/4 lg:mx-auto">
+      <h1 className="font-bold text-primaryGreen text-xl py-4 lg:text-3xl lg:pt-6 lg:pb-6 lg:pl-0">
         Contacto
       </h1>
-      <div className="my-4 lg:mb-8">
+      <div className="mb-4 lg:mb-8">
         {language === "es" ? (
           <iframe
             width="640px"

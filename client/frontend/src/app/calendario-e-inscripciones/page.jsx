@@ -90,7 +90,7 @@ export default function CalendarAndRegistration() {
           <h2 className="text-2xl font-bold text-center mb-9 mt-9 sm:text-5xl sm:text-left sm:ml-10">
             Próximos eventos
           </h2>
-          <ul className="flex flex-wrap gap-10 justify-center">
+          <ul className="flex flex-wrap gap-10 justify-center md:gap-4 lg:gap-10">
             {loading ? (
               <Loading />
             ) : (

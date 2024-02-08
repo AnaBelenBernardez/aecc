@@ -77,8 +77,6 @@ export default function Home() {
 
   if (loading) return <Loading />;
 
-  console.log(achievements);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
       {scroll ? (
@@ -155,7 +153,7 @@ export default function Home() {
       
       {events.length > 0 ? (
         <>
-          <section className="bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10">
+          <section className="bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10 lg:w-full">
         <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
           {language === "es"
             ? "Encuentra un evento #contraelcáncer"
@@ -311,7 +309,7 @@ export default function Home() {
         {language === "es" ? "En primera persona" : "En primeira persoa"}
       </h3>
       {experiences.length > 0 ? (
-        <div className="flex lg:justify-center sm:justify-start sm:mb-16 w-[75%]">
+        <div className="flex lg:justify-center justify-start mb-16 w-[75%]">
           <PersonsCarousel />
         </div>
       ) : (

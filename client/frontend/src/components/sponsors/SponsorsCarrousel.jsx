@@ -39,15 +39,15 @@ const SponsorsCarrousel = () => {
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.play}
-        className="max-w-sm sm:max-w-7xl"
+        className="max-w-64 md:max-w-7xl flex items-center"
       >
-        <CarouselContent>
+        <CarouselContent className="lg:flex">
           { !sponsors ? null 
           : Array.from({ length: lengthCarrousel }).map((_, index) => {
             return (
-              <CarouselItem key={index} className="md:basis-2/6 lg:basis-1/3 flex gap-4 min-w-[250px] shrink mx-9">
+              <CarouselItem key={index} className="md:basis-2/6 lg:basis-1/3 flex gap-4 min-w-[250px] shrink mx-5 md:mx-9">
                 <Card className="w-[250px]">
-                  <CardContent className="flex items-center justify-center p-6 w-[250px]">
+                  <CardContent className="flex justify-center p-6 w-[250px]">
                     <SponsorsCard
                       logo={sponsors[index].logo}
                       name={sponsors[index].name}

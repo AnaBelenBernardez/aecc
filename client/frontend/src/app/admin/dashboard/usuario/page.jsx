@@ -39,8 +39,8 @@ const EditUser = () => {
 
   return (
     <main className='flex flex-col items-center justify-center'>
-      <Image src={'/logos/CC_Logo_transicion_color_pos.rgb.svg'} height={150} width={150} className="mt-10 mb-6" alt='Logo de la asociación'/>
-      <div className='w-full h-[400px] bg-secondLightGray rounded-xl my-9 p-8 md:w-[400px]'>
+      <Image src={'/logos/CC_Logo_transicion_color_pos.rgb.svg'} height={150} width={150} className="mt-6 mb-6" alt='Logo de la asociación'/>
+      <div className='w-full h-[400px] bg-secondLightGray rounded-xl mb-9 mt-1 p-8 md:w-[400px]'>
         <form className='flex flex-col items-center justify-center gap-5 h-full' onSubmit={handleSubmit}>
           <label htmlFor="oldPwd" className='text-sm font-semibold'>
             Introduce la contraseña actual
