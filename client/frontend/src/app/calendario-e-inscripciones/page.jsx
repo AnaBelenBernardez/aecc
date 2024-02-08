@@ -20,18 +20,9 @@ export default function CalendarAndRegistration() {
   const [filteredEvents, setFilteredEvents] = useState(events);
 
   const language = useLanguageStore((state) => state.language);
-  const setLanguage = useLanguageStore((state) => state.setLanguage);
   const categoryEvents = [];
   const locations = [];
 
-  function handleResetClick() {
-    setCleanFilter(true);
-    setFilteredEvents(events);
-    setTypeEvent("");
-    setLocationEvent("");
-    setEventDateStart();
-    setEventDateEnd();
-  }
 
   useEffect(() => {
     try {
