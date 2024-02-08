@@ -75,7 +75,7 @@ export const Sidebar = () => {
               <span className="ml-3 text-xl">Voluntarios</span>
             </Link>
             <Link
-              href="/"
+              href="/patrocinios"
               className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
