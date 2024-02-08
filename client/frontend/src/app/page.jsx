@@ -12,10 +12,13 @@ import Loading from "../components/loading/Loading";
 import { useEffect, useState } from "react";
 import { getAllEventsFilterService } from "../service";
 import { useLanguageStore } from "../store/language/language.store";
+import useGetAllSponsors from '../hooks/useGetAllSponsors';
+import SponsorsCarrousel from '../components/sponsors/SponsorsCarrousel';
 
 export default function Home() {
   const { events, loading } = useGetAllEvents();
   const { experiences } = useGetAllExperiences();
+  const { sponsors } = useGetAllSponsors();
   const [scroll, setScroll] = useState(false);
   const [typeEvent, setTypeEvent] = useState("");
   const [locationEvent, setLocationEvent] = useState("");
@@ -282,7 +285,11 @@ export default function Home() {
         Nuestros patrocinadores
       </h3>
       <section>
-        <p>aqui el carrousel</p>
+        {
+          sponsors.length > 0
+            ? <SponsorsCarrousel/>
+            : null
+        }
       </section>
       <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-32 lg:mb-14">
         {language === "es"
