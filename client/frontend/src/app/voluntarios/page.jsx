@@ -11,7 +11,7 @@ const Volunteers = () => {
       <h1 className="font-bold text-primaryGreen text-xl pt-4 pl-6 lg:text-3xl lg:pt-6 lg:pb-6 lg:pl-0">
         Voluntarios
       </h1>
-      <div className="flex flex-col gap-5 items-center">
+      <div className="flex flex-col gap-8 items-center">
         {language === "es" ? (
           <iframe
             width="640px"
@@ -32,7 +32,10 @@ const Volunteers = () => {
           </iframe>
         )}
         <button className="w-80 mb-4 border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
-          <Link href="https://talento.contraelcancer.es/jobs?_ga=2.229474140.1556651381.1704630589-1341541763.1702559712&_gac=1.153648586.1703178197.Cj0KCQiA4Y-sBhC6ARIsAGXF1g4xpShTtR0sJBxL84DCPOi3r5Yxp4L8b5RNz4UegvrMknb6aGAkcKAaAm1IEALw_wcB">
+          <Link
+            href="https://talento.contraelcancer.es/jobs?_ga=2.229474140.1556651381.1704630589-1341541763.1702559712&_gac=1.153648586.1703178197.Cj0KCQiA4Y-sBhC6ARIsAGXF1g4xpShTtR0sJBxL84DCPOi3r5Yxp4L8b5RNz4UegvrMknb6aGAkcKAaAm1IEALw_wcB"
+            target="_blank"
+          >
             {language === "es" ? "VER OFERTAS ABIERTAS" : "VER OFERTAS ABERTAS"}
           </Link>
         </button>
