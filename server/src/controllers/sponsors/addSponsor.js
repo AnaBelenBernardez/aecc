@@ -47,17 +47,28 @@ async function addSponsor (req,res,next) {
             return next(generateError('Ha ocurrido un error almacenando el logo', 500));
         }
 
-        const [newSponsor] = await pool.query(
+        const [infoSponsor] = await pool.query(
             `
             INSERT INTO sponsors (name, galician_name, logo, description, galician_description, link, important)
             VALUES (?,?,?,?,?,?,?)`,
             [name, galician_name, logoName, description, galician_description, link, important]
         );
 
+        const {insertId} = infoSponsor;
+
+        const [newSponsor] = await pool.query(
+            `
+                SELECT *
+                FROM sponsors
+                WHERE id=?
+            `,[insertId]
+        )
+
         res.status(200).send({
             status: "OK",
             message: "Se ha añadido el patrocinio correctamente",
-            data: newSponsor
+            data: newSponsor[0],
+            info: infoSponsor
         });
 
     } catch (e){

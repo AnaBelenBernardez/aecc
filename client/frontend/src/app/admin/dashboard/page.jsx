@@ -50,7 +50,9 @@ const DashboardPage = () => {
               </Link>
             </DashboardCard>
             <DashboardCard title={"Patrocinadores"}>
-              <Publicity />
+              <Link href={"/admin/dashboard/patrocinadores"}>
+                <Publicity />
+              </Link>
             </DashboardCard>
             <Link href={"/admin/dashboard/noticias"}>
               <DashboardCard title={"Noticias"}>

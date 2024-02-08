@@ -28,7 +28,9 @@ const FaqAdminPage = () => {
   }
 
 	useEffect(() =>{
-		setFaqsList(faqs);
+		if(faqs !== undefined){
+			setFaqsList(faqs);
+		}
 	},[faqs])
 
 	if (loading) return <Loading/>;
@@ -84,7 +86,7 @@ const FaqAdminPage = () => {
 									:
 										<article className="lg:w-[100%]">
 											<div>
-												<span className="text-primaryGreen font-semibold text-xl uppercase text-justify">{faq.question}</span>
+												<span className="text-primaryGreen font-semibold text-xl text-justify">{faq.question}</span>
 												<p className='pt-4 text-justify'>{faq.answer}</p>
 											</div>
 											<div className='self-end flex gap-4 justify-end lg:w-[100%]'>
