@@ -104,7 +104,7 @@ const Header = () => {
                 Voluntarios
               </Link>
               <Link
-                href="/"
+                href="/patrocinios"
                 className="hover:text-primaryGreen transition-all duration-500 ease-in-out relative after:bg-primaryGreen after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-500 cursor-pointer pb-0.5"
               >
                 Patrocinios

@@ -82,9 +82,8 @@ const Footer = () => {
             </li>
           </Link>
           <Link
-            href="https://colabora.contraelcancer.es/empresas/eventos-solidarios"
+            href="/patrocinios"
             className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
-            target="_blank"
           >
             <li>
               {language === "es"
