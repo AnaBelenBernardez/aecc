@@ -26,10 +26,11 @@ export default function Home() {
   const [locationEvent, setLocationEvent] = useState("");
   const [eventDateStart, setEventDateStart] = useState();
   const [eventDateEnd, setEventDateEnd] = useState();
-  const [eventsFiltered, setEventsFiltered] = useState(events);
+  const [filteredEvents, setFilteredEvents] = useState(events);
   const language = useLanguageStore((state) => state.language);
   const categoryEvents = [];
   const locations = [];
+  console.log(filteredEvents);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,21 +48,20 @@ export default function Home() {
     };
   }, []);
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-
+  useEffect(() => {
     try {
-      const data = await getAllEventsFilterService(
+      getAllEventsFilterService(
         typeEvent,
         locationEvent,
         eventDateStart,
         eventDateEnd
-      );
-      setEventsFiltered(data);
-    } catch (err) {
-      console.error(err.message);
+      ).then((res) => {
+        setFilteredEvents(res);
+      });
+    } catch (error) {
+      console.error(error);
     }
-  }
+  }, [typeEvent, locationEvent, eventDateStart, eventDateEnd]);
 
   if (events.length > 0) {
     events.forEach((event) => {
@@ -155,85 +155,59 @@ export default function Home() {
       
       {events.length > 0 ? (
         <>
-          <form
-            onSubmit={handleSubmit}
-            className="bg-blueBgSection flex flex-col gap-4 px-7 lg:pb-10 md:w-full lg:h-80 lg:justify-center"
-          >
-            <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
-              {language === "es"
-                ? "Encuentra un evento #contraelcáncer"
-                : "Atopa un evento #contraelcáncer"}
-            </h2>
-            <div className="flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center">
-              <div className="flex flex-col gap-4 md:flex-row md:items-center">
-                <SelectInput
-                  setStatus={setTypeEvent}
-                  text={"Tipo de evento"}
-                  eventType={"typeEvent"}
-                  options={categoryEvents}
-                ></SelectInput>
-                <SelectInput
-                  setStatus={setLocationEvent}
-                  text={"Localidades"}
-                  eventType={"locationEvent"}
-                  options={locations}
-                ></SelectInput>
-              </div>
-              <DateTimePickerValue
-                eventDateEnd={eventDateEnd}
-                setEventDateEnd={setEventDateEnd}
-                setEventDateStart={setEventDateStart}
-                eventDateStart={eventDateStart}
-                language={language}
-              ></DateTimePickerValue>
-              <button
-                type="submit"
-                className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen"
-              >
-                BUSCAR
-              </button>
-            </div>
-          </form>
+          <section className="bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10">
+        <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
+          {language === "es"
+            ? "Encuentra un evento #contraelcáncer"
+            : "Atopa un evento #contraelcáncer"}
+        </h2>
+        <div className="flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center">
+            <SelectInput
+              setStatus={setTypeEvent}
+              text={"Tipo de evento"}
+              eventType={"typeEvent"}
+              options={categoryEvents}
+              onChange={(e) => setTypeEvent(e.target.value)}
+            ></SelectInput>
+            <SelectInput
+              setStatus={setLocationEvent}
+              text={"Localidades"}
+              eventType={"locationEvent"}
+              options={locations}
+              onChange={(e) => setLocationEvent(e.target.value)}
+            ></SelectInput>
+          </div>
+          <DateTimePickerValue
+            language={language}
+            eventDateEnd={eventDateEnd}
+            setEventDateEnd={setEventDateEnd}
+            setEventDateStart={setEventDateStart}
+            eventDateStart={eventDateStart}
+          ></DateTimePickerValue>
+        </div>
+      </section>
           <h3 className="text-2xl font-bold my-8 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
             Próximos eventos
           </h3>
-          {eventsFiltered && eventsFiltered.length >= 3 ? (
-            <EventsCarousel />
+          {filteredEvents && filteredEvents.length >= 3 ? (
+            <EventsCarousel filteredEvents={filteredEvents}/>
             ) : (
               <div className="flex flex-col gap-10 mb-6 mt-4 lg:flex-row lg:flex-wrap">
-              {eventsFiltered && eventsFiltered.length > 0
-                ? eventsFiltered.map((event) => (
+              {filteredEvents && filteredEvents.length > 0
+                ? filteredEvents.map((event) => (
                     <CardEvent
                       title={event.title}
                       key={event.id}
                       image={event.event_photos[0]}
-                      description={event.content}
+                      description={language === "es" ? event.content : event.galician_content}
                       location={event.location}
                       link={event.link}
                       warning={event.warning}
                       />
-                      ))
-                      : 
-                      <EventsCarousel />
-                  //     events.slice(0, 4).map((event) => (
-                  //       <CardEvent
-                  //     title={
-                  //       language === "es" ? event.title : event.galician_title
-                  //     }
-                  //     image={event.event_photos[0]}
-                  //     key={event.id}
-                  //     description={
-                  //       language === "es"
-                  //         ? event.content
-                  //         : event.galician_content
-                  //     }
-                  //     location={event.location}
-                  //     link={event.link}
-                  //     warning={event.warning}
-                  //   />
-                  // )
-                  // )
-                  }
+                      )) 
+                : <EventsCarousel />
+              }
             </div>
           )}
           <section className="flex flex-col w-full md:items-center lg:items-start pl-8 pr-8 lg:relative">
