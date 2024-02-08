@@ -493,3 +493,15 @@ export const getAllSponsorsService = async () => {
 
   return data.data;
 };
+
+export const getAllAchievementsService = async () => {
+  const response = await fetch(`${backAPI}/achievements`);
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data.data;
+};

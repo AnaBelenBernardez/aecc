@@ -14,11 +14,13 @@ import { getAllEventsFilterService } from "../service";
 import { useLanguageStore } from "../store/language/language.store";
 import useGetAllSponsors from '../hooks/useGetAllSponsors';
 import SponsorsCarrousel from '../components/sponsors/SponsorsCarrousel';
+import useGetAllAchievements from '../hooks/useGetAllAchievements';
 
 export default function Home() {
   const { events, loading } = useGetAllEvents();
   const { experiences } = useGetAllExperiences();
   const { sponsors } = useGetAllSponsors();
+  const { achievements } = useGetAllAchievements();
   const [scroll, setScroll] = useState(false);
   const [typeEvent, setTypeEvent] = useState("");
   const [locationEvent, setLocationEvent] = useState("");
@@ -74,6 +76,8 @@ export default function Home() {
   }
 
   if (loading) return <Loading />;
+
+  console.log(achievements);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
@@ -285,7 +289,7 @@ export default function Home() {
         sponsors
           ? <>
               <h3 className="text-2xl font-bold my-8 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mt-20">
-                Nuestros patrocinadores
+                {language === "es" ? "Nuestros patrocinadores" : "Os nosos patrocinadores"}
               </h3>
               <section className='md:mb-14'>
                 <SponsorsCarrousel/>
@@ -293,61 +297,42 @@ export default function Home() {
             </>
           : null
       }
-      <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mb-14">
-        {language === "es"
-          ? "Gracias a tu participación..."
-          : "Gracias á túa participación..."}
-      </h3>
-      <div className="grid grid-cols-1 items-center justify-center gap-10 sm:grid-cols-3 container">
-        <div className="flex flex-col items-center gap-5">
-          <div className="w-[120px] h-[120px]">
-            <Image
-              src="/image/Recaudacion@2x_2.png"
-              width={120}
-              height={120}
-              className="border-2 p-6 border-primaryGreen rounded-full object-contain w-[120px] h-[120px]"
-              alt="Recaudacion"
-            />
-          </div>
-          <p className="text-sm mx-5">
-            {language === "es"
-              ? "Haces posible que sigamos ofreciendo servicios gratuitos a pacientes de cáncer."
-              : "Fas posible que sigamos ofrecendo servizos gratuítos a pacientes de cancro."}
-          </p>
-        </div>
-        <div className="flex flex-col items-center gap-5">
-          <div className="w-[120px] h-[120px]">
-            <Image
-              src="/image/Recaudacion@2x_2.png"
-              width={120}
-              height={120}
-              className="border-2 p-6 border-primaryGreen rounded-full object-contain w-[120px] h-[120px]"
-              alt="Recaudacion"
-            />
-          </div>
-          <p className="text-sm mx-5">
-            {language === "es"
-              ? "Contribuyes a reducir el impacto del cáncer en personas en riesgo de exclusión social."
-              : "Contribúes a reducir o impacto do cancro en persoas en risco de exclusión social."}
-          </p>
-        </div>
-        <div className="flex flex-col items-center gap-5">
-          <div className="w-[120px] h-[120px]">
-            <Image
-              src="/image/Participantes@2x_2.png"
-              width={120}
-              height={120}
-              className="border-2 p-6 border-primaryGreen rounded-full object-contain w-[120px] h-[120px]"
-              alt="Participantes"
-            />
-          </div>
-          <p className="text-sm mx-5">
-            {language === "es"
-              ? "Ayudas a más de XXX pacientes de cáncer y sus familiares durante el tratamiento oncológico."
-              : "Axudas a máis de XXX pacientes de cancro e os seus familiares durante o tratamento oncolóxico."}
-          </p>
-        </div>
-      </div>
+      {
+        achievements
+          ? <>
+              <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mb-14">
+                {language === "es"
+                  ? "Gracias a tu participación..."
+                  : "Grazas á túa participación..."}
+              </h3>
+              <div className="grid grid-cols-1 items-center justify-center gap-10 sm:grid-cols-3 container">
+              {
+                achievements.map((achievement) => {
+                  const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${achievement.icon}`
+                  return (
+                    <div className="flex flex-col items-center gap-5" key={achievement.id}>
+                      <div className="w-[120px] h-[120px]">
+                        <Image
+                          src={imgSrc}
+                          width={120}
+                          height={120}
+                          className="border-2 p-6 border-primaryGreen rounded-full object-contain w-[120px] h-[120px]"
+                          alt="Icono"
+                        />
+                      </div>
+                      <p className="text-sm mx-5">
+                        {language === "es"
+                          ? achievement.description
+                          : achievement.galician_description}
+                      </p>
+                    </div>    
+                  )
+                })
+              }
+              </div>
+            </> 
+          : null
+      }
       <h3 className="text-2xl font-bold my-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
         {language === "es" ? "En primera persona" : "En primeira persoa"}
       </h3>
