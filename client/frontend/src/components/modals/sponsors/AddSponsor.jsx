@@ -62,10 +62,10 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, token}){
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='w-[90vw] h-[90vh] md:h-[60vh] lg:h-[80vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center md:h-[50vh]'>
+      <div className='w-[90vw] h-[90vh] md:h-[60vh] lg:h-[80vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center'>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 overflow-auto md:overflow-hidden lg:overflow-auto">
           <fieldset>
-              <ul className='flex flex-col gap-6'>
+              <ul className='flex flex-col gap-4'>
                   <li className='flex flex-col gap-2'>
                     <h3 className="text-primaryGreen font-bold text-lg">Formulario en castellano</h3>
                     <label htmlFor='name' className='text-sm font-bold'>

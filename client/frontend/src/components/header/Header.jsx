@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="bg-secondLightGray pt-6 pb-2 relative">
+      <nav className="bg-secondLightGray py-6 relative">
         <div className="container mx-auto flex">
           <div className="flex-grow self-center">
             <Link href="/">
@@ -50,22 +50,22 @@ const Header = () => {
                   <Image
                     src="/image/dashboard.png"
                     alt="Logo Dashboard"
-                    width={24}
-                    height={24}
+                    width={25}
+                    height={25}
                     className="min-w-6 min-h-6"
                   />
                 </Link>
               )}
               <button
                 onClick={() => setLanguage("es")}
-                className={language === "es" ? "text-primaryGreen" : ""}
+                className={language === "es" ? "text-primaryGreen hover:text-primaryGreen" : "hover:text-primaryGreen"}
               >
                 ES
               </button>
               <p>|</p>
               <button
                 onClick={() => setLanguage("gal")}
-                className={language === "gal" ? "text-primaryGreen" : ""}
+                className={language === "gal" ? "text-primaryGreen hover:text-primaryGreen" : "hover:text-primaryGreen"}
               >
                 GAL
               </button>

@@ -125,7 +125,7 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, token, refetch}) => {
               id='galician_content' name='galician_content' cols="20" rows="20" defaultValue={formValues.galician_content} onChange={handleChange}
             />
           </label>
-          <div className='flex flex-col items-center lg:flex-row lg:gap-4 lg:self-end'>
+          <div className='flex flex-col items-center lg:flex-row lg:gap-4 lg:self-end lg:mb-2'>
             <button
               type='submit'
               className='self-center border-2 mt-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 lg:self-end

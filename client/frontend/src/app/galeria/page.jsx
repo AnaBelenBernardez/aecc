@@ -22,7 +22,7 @@ const GalleryPage = () => {
         events.length > 0 
           ? events.map((event) => {
             return (
-              <Link href={`/galeria/${event.id}`}>
+              <Link href={`/galeria/${event.id}`} key={event.id}>
                 <GalleryCard title={language === 'es' ? event.title : event.galician_title} location={event.location} image={event.event_photos[0]}/>
               </Link>
             )
