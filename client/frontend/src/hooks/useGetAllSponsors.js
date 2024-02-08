@@ -1,5 +1,7 @@
-const { useState, useEffect } = require('react');
-const { getAllSponsorsService } = require('../service');
+"use client"
+
+import { useState, useEffect } from 'react';
+import { getAllSponsorsService } from '../service/index';
 
 const useGetAllSponsors = () => {
   const [sponsors, setSponsors] = useState();

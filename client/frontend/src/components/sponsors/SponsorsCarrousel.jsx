@@ -27,8 +27,6 @@ const SponsorsCarrousel = () => {
     }
   }, [sponsors]);
 
-  console.log(sponsors);
-
   if (loading) return <Loading/>;
 
   return (
