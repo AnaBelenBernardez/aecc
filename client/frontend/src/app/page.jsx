@@ -281,17 +281,19 @@ export default function Home() {
           </div>
         </div>
       )}
-      <h3 className="text-2xl font-bold my-8 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
-        Nuestros patrocinadores
-      </h3>
-      <section>
-        {
-          sponsors.length > 0
-            ? <SponsorsCarrousel/>
-            : null
-        }
-      </section>
-      <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-32 lg:mb-14">
+      {
+        sponsors
+          ? <>
+              <h3 className="text-2xl font-bold my-8 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mt-20">
+                Nuestros patrocinadores
+              </h3>
+              <section className='md:mb-14'>
+                <SponsorsCarrousel/>
+              </section>
+            </>
+          : null
+      }
+      <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mb-14">
         {language === "es"
           ? "Gracias a tu participación..."
           : "Gracias á túa participación..."}
