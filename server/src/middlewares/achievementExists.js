@@ -6,13 +6,14 @@ const achievementExists = async (req,res,next) => {
 
     try {
         const {idAchievement} = req.params;
+
         pool = await getPool();
 
         const [achievement] = await pool.query(
             `
                 SELECT id
-                FROM sponsors
-                WHERE id=?
+                FROM achievements
+                WHERE id = ?
             `,
             [idAchievement]
         );
