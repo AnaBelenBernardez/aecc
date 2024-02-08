@@ -93,8 +93,7 @@ const Footer = () => {
             </li>
           </Link>
           <Link
-            href="https://www.contraelcancer.es/es/sobre-nosotros/donde-estamos"
-            target="_blank"
+            href="/contacto"
             className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
           >
             <li>Contacto</li>

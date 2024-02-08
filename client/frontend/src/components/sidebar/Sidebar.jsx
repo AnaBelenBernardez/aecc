@@ -96,8 +96,7 @@ export const Sidebar = () => {
               <span className="ml-3 text-xl">Blog</span>
             </Link>
             <Link
-              href="https://www.contraelcancer.es/es/sobre-nosotros/donde-estamos"
-              target="_blank"
+              href="/contacto"
               className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
