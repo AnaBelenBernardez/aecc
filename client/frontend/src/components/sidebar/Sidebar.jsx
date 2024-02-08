@@ -68,8 +68,7 @@ export const Sidebar = () => {
               <span className="ml-3 text-xl">FAQ</span>
             </Link>
             <Link
-              href="https://www.contraelcancer.es/es/colabora/voluntariado"
-              target="_blank"
+              href="/voluntarios"
               className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
