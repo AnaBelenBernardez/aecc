@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { addNewService } from '../../../service';
+import Image from 'next/image';
 
 const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
   const [formValues, setFormValues] = useState({
@@ -12,6 +13,7 @@ const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
     galician_content: '',
     photo: ''
   });
+  const [newPhoto, setNeWPhoto] = useState();
 
   const handleChange = (e) => {
     const newFormValues = e.target.value;
@@ -26,6 +28,7 @@ const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
       ...formValues,
       [e.target.name]: [e.target.files]
     })
+    setNeWPhoto(e.target.files);
   }
 
   const handleSubmit = async (e) => {
@@ -39,6 +42,8 @@ const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
       console.error(error.message);
     }
   }
+
+  console.log(newPhoto);
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
@@ -80,12 +85,22 @@ const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
                   onChange={handleChange}
                 />
               </label>
-              <label className="font-bold text-sm" htmlFor="photo">
-                Foto de la noticia
-                <input className="w-full cursor-pointer mt-2 text-sm font-medium" 
-                id="photo" type="file" name='photo' onChange={handleChangeImage}
-                />
-              </label>
+              <div className='flex gap-6 mt-4 items-center'>
+                <label htmlFor="photo" className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
+                  <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />AÑADIR
+                  <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
+                  id="photo" type="file" name='photo' multiple
+                  onChange={handleChangeImage}
+                  />
+                </label>
+                {
+                  newPhoto
+                    ? <div className='h-[72px] w-[150px]'>
+                        <Image src={URL.createObjectURL(newPhoto[0])} width={150} height={72} alt='Fotos de la noticia' className='h-[72px] w-[150px] object-cover'/>
+                      </div>
+                    : null
+                }
+              </div>
               <h2 className='font-bold text-lg mt-6 text-primaryGreen'>Formulario en gallego</h2>
               <label htmlFor="galician_title" className='font-bold text-sm'>
                 Título
