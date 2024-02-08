@@ -481,3 +481,15 @@ export const addPhotoEventService = async (token, idEvent, photo) => {
 
   return data.data;
 }
+
+export const getAllSponsorsService = async () => {
+  const response = await fetch(`${backAPI}/sponsors`);
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data.data;
+};
