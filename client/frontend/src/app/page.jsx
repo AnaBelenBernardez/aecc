@@ -270,7 +270,7 @@ export default function Home() {
               .
             </p>
             <p>
-              {laguage === "es"
+              {language === "es"
                 ? "Vuelve pronto y únete a la causa."
                 : "Volve pronto e únete á causa."}{" "}
               <span className="font-bold">#JuntosContraElCáncer</span>
@@ -278,6 +278,12 @@ export default function Home() {
           </div>
         </div>
       )}
+      <h3 className="text-2xl font-bold my-8 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
+        Nuestros patrocinadores
+      </h3>
+      <section>
+        <p>aqui el carrousel</p>
+      </section>
       <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-32 lg:mb-14">
         {language === "es"
           ? "Gracias a tu participación..."
