@@ -10,14 +10,23 @@ import {
 } from "@/components/ui/carousel";
 import Loading from '../../components/loading/Loading';
 import useGetAllSponsors from '../../hooks/useGetAllSponsors';
-import Image from 'next/image';
+import SponsorsCard from './SponsorsCard';
+import { setLenghtCarrouselFunc } from '../../lib/helpers';
 
 const SponsorsCarrousel = () => {
   const plugin = React.useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
 
+  const [lengthCarrousel, setLengthCarrousel] = React.useState();
   const { sponsors, loading, error } = useGetAllSponsors();
+
+  React.useEffect(() => {
+    if(sponsors) {
+      setLengthCarrousel(setLenghtCarrouselFunc(sponsors, sponsors.length));
+    }
+  }, [sponsors]);
+
   console.log(sponsors);
 
   if (loading) return <Loading/>;
@@ -36,24 +45,24 @@ const SponsorsCarrousel = () => {
       >
         <CarouselContent>
           { !sponsors ? null 
-          : Array.from({ length: 3 }).map((_, index) => (
-            <CarouselItem key={index} className="md:basis-2/6 lg:basis-1/3">
-              <div className="p-1">
-                <Card>
-                  <CardContent className="flex sm:aspect-square items-center justify-center p-6">
-                    <article>
-                      <div>
-{/*                         <Image src={} width={200} height={100} alt='Logo patrocinadores'/>
- */}                      </div>
-                    </article>
+          : Array.from({ length: lengthCarrousel }).map((_, index) => {
+            return (
+              <CarouselItem key={index} className="md:basis-2/6 lg:basis-1/3 flex gap-4 min-w-[250px] shrink mx-9">
+                <Card className="w-[250px]">
+                  <CardContent className="flex items-center justify-center p-6 w-[250px]">
+                    <SponsorsCard
+                      logo={sponsors[index].logo}
+                      name={sponsors[index].name}
+                      description={sponsors[index].description}
+                      link={sponsors[index].link}
+                      important={sponsors[index].important}
+                    />
                   </CardContent>
                 </Card>
-              </div>
             </CarouselItem>
-          ))}
+            )
+          })}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
       </Carousel>
     </div>
   );
