@@ -139,7 +139,7 @@ export default function CalendarAndRegistration() {
                 .
               </p>
               <p>
-                {laguage === "es"
+                {language === "es"
                   ? "Vuelve pronto y únete a la causa."
                   : "Volve pronto e únete á causa."}{" "}
                 <span className="font-bold">#JuntosContraElCáncer</span>
