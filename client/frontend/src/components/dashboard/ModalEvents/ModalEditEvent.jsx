@@ -289,7 +289,7 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                   {...register("galician_warning_content")}
                 />
               </label>
-              <div className="flex flex-col items-center lg:flex-row lg:self-end lg:gap-4">
+              <div className="mr-2 flex flex-col items-center lg:flex-row lg:self-end lg:gap-4">
                 <button
                   type="submit"
                   className="self-center border-2 mt-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 lg:self-end lg:mb-2
@@ -299,7 +299,7 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                 </button>
                 <button
                   type="button"
-                  className="flex self-center mt-2 gap-4 w-[157px] h-[42px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray"
+                  className="self-center my-2 gap-4 w-[157px] h-[40px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray"
                   onClick={closeModalEdit}
                 >
                   CANCELAR
