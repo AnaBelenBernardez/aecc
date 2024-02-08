@@ -92,6 +92,18 @@ async function createDB() {
         `
     );
 
+    await pool.query(
+        `
+        CREATE TABLE IF NOT EXISTS achievements
+        (
+            id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+            description VARCHAR(200),
+            galician_description VARCHAR(200),
+            icon VARCHAR (500) UNIQUE NOT NULL
+        );
+        `
+    );
+
 
     await pool.query(
 
@@ -148,6 +160,7 @@ async function createDB() {
             logo VARCHAR (500) UNIQUE NOT NULL,
             description VARCHAR(500),
             galician_description VARCHAR(500),
+            important BOOLEAN DEFAULT FALSE,
             link VARCHAR(500)
         )
         `

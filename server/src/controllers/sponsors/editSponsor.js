@@ -28,7 +28,7 @@ async function editSponsor (req,res,next) {
             return next(generateError(error.message, 400));
         }
 
-        const { name, galician_name, description, galician_description, link } = req.body;
+        const { name, galician_name, description, galician_description, link, important } = req.body;
 
         const [duplicateSponsor] = await pool.query(
             `
@@ -59,10 +59,10 @@ async function editSponsor (req,res,next) {
         const [editedSponsor] = await pool.query(
             `
                 UPDATE sponsors
-                SET  name = ?, galician_name = ?, description = ?, galician_description = ?, link = ?
+                SET  name = ?, galician_name = ?, description = ?, galician_description = ?, link = ?, important = ?
                 WHERE id = ?
             `,
-            [name, galician_name, description, galician_description, link, idSponsor]
+            [name, galician_name, description, galician_description, link, important, idSponsor]
         );
 
         const [updatedSponsor] = await pool.query(
