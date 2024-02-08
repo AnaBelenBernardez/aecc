@@ -483,7 +483,7 @@ export const addPhotoEventService = async (token, idEvent, photo) => {
 }
 
 export const getAllSponsorsService = async () => {
-  const response = await fetch(`${backAPI}/sponsors`);
+  const response = await fetch(`${backAPI}/sponsors/`);
 
   const data = await response.json();
 
@@ -494,8 +494,18 @@ export const getAllSponsorsService = async () => {
   return data.data;
 };
 
+<<<<<<< Updated upstream
 export const getAllAchievementsService = async () => {
   const response = await fetch(`${backAPI}/achievements`);
+=======
+export const deleteSponsorService = async (id, token) => {
+  const response = await fetch(`${backAPI}/sponsors/admin/delete/${id}`, {
+    method: "DELETE",
+    headers: {
+      token: token,
+    },
+  });
+>>>>>>> Stashed changes
 
   const data = await response.json();
 
@@ -503,5 +513,28 @@ export const getAllAchievementsService = async () => {
     throw new Error(data.message);
   }
 
+<<<<<<< Updated upstream
   return data.data;
 };
+=======
+  return data;
+};
+
+export const addSponsorService = async (formData, token) =>{
+  const response = await fetch(`${backAPI}/sponsors/admin/add`, {
+    method: "POST",
+    body: formData,
+    headers:{
+      token: token,
+    },
+  });
+  
+  const data = await response.json();
+
+  if(!response.ok){
+    throw new Error(data.message);
+  }
+
+  return data.data;
+}
+>>>>>>> Stashed changes
