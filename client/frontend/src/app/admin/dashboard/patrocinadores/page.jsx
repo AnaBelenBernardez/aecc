@@ -10,6 +10,8 @@ import BlockScroll from '../../../../components/blockScroll/BlockScroll';
 import DeleteSponsor from '../../../../components/modals/sponsors/DeleteSponsor';
 import { deleteSponsorService } from '../../../../service';
 import AddSponsor from '../../../../components/modals/sponsors/AddSponsor';
+import Link from "next/link";
+import EditSponsor from '../../../../components/modals/sponsors/EditSponsor';
 
 
 const SponsorAdminPage = () => {
@@ -82,18 +84,27 @@ const SponsorAdminPage = () => {
 							<li key={sponsor.id} className='flex flex-col justify-between p-4 items-center shadow-md md:flex-row'>
 								{
 									clickedEdit && sponsorId === sponsor.id ?
-                  <p>editar</p>
+                  <EditSponsor currentSponsor={sponsor} sponsorsList={sponsorsList} setSponsorsList={setSponsorsList} sponsorId={sponsorId} setClickedEdit={setClickedEdit} token={token}/>
 									:
 										<article className="lg:w-[100%] flex flex-col justify-items-center">
                       <section className="flex flex-col justify-items-center w-[85vw]">
-                        <Image src={imgSrc} width={150} height={150} alt='Logo del patrocinador' className='rounded object-contain w-300 h-36 self-center'/>
-                        <h3 className="text-primaryGreen font-semibold text-l text-justify">{sponsor.name}</h3>
+												<div className="flex flex-col items-center gap-3 mb-4">
+													<Image src={imgSrc} width={200} height={150} alt='Logo del patrocinador' className='rounded object-contain w-300 h-36 self-center'/>
+													{sponsor.link && <Link href={sponsor.link} target='_blank' className='text-xs border-2 border-primaryGreen text-primaryBlack font-medium rounded-3xl px-5 py-2'>{sponsor.link}</Link>}
+												</div>
+												<div className='flex items-center gap-1'>
+													{
+														sponsor.important === 1 &&
+														<Image src="/icons/importantIcon.svg" width={32} height={32} alt="Patrocinador importante"/>
+													}
+													<h3 className="text-primaryGreen font-semibold text-l text-justify self-end">{sponsor.name}</h3>
+												</div>
                         <p className="line-clamp-3">{sponsor.description}</p>
                       </section>
-											<div className='self-end flex gap-4 justify-end lg:w-[100%]'>
+											<section className='self-end flex gap-4 justify-end lg:w-[100%]'>
 												<button onClick={()=>handleClickEdit(sponsor.id)} className='flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen'><Image src="/icons/editIcon.svg" width={24} height={24} alt="Editar"></Image>EDITAR</button>
 												<button onClick={() => openModalDelete(sponsor.id)}className='flex gap-4 items-center justify-center border border-secondRed py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-secondRed'><Image src="/icons/deleteIcon.svg" width={24} height={24} alt="Eliminar"></Image>ELIMINAR</button>
-											</div>
+											</section>
 										</article>
 								}
 							</li>

@@ -10,8 +10,10 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, token}){
   const [description, setDescription] = useState("");
   const [galician_description, setGalicianDescription] = useState("");
   const [logo, setLogo] = useState("");
+  const [important, setImportant] = useState(0);
+  const [link, setLink] = useState("");
   const [logoPreview, setLogoPreview] = useState("");
-  const [errorEdit, setErrorEdit] = useState("");
+  const [errorAdd, setErrorAdd] = useState("");
 
 
   function handleChange(e){
@@ -34,7 +36,15 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, token}){
         case 'logo':
           setLogo(value);
           setLogoPreview(URL.createObjectURL(value));
+          break;
+        case 'important':
+          setImportant(value);
+          break;
+        case 'link':
+          setLink(value);
+          break;
         default: 
+          setErrorAdd("Ha ocurrido un error obteniendo los datos del formulario.")
           break;
     }
   }
@@ -48,7 +58,7 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, token}){
     try{
       newSponsor = await addSponsorService(data, token);
     }catch(e){
-      setErrorEdit(e.message);
+      setErrorAdd(e.message);
     } finally{
       setClickedAdd(false);
 
@@ -108,6 +118,46 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, token}){
                         </input>
                     </label>
                     </li>
+                    <li className='flex flex-col gap-2 mt-4'>
+                    <label htmlFor='link' className='text-sm font-bold text-primaryGreen'>
+                        Link
+                        <input onChange={handleChange} type="url" name="link" id="link" required minLength={5} maxLength={300} className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
+                          file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
+                          focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
+                          border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
+                          font-normal not-italic w-full text-black">
+                        </input>
+                    </label>
+                    </li>
+                    <li className='flex flex-col md:flex-row md:gap-4 items-center text-sm'>
+                      <h4 className="text-primaryGreen font-bold">¿Es un patrocinador importante?</h4>
+                      <label className='flex items-center gap-1'>
+                        <p>Sí</p>
+                        <input
+                          type="radio"
+                          name="important"
+                          value="1"
+                          className="my-2 h-5 mt-2 bg-background text-sm ring-offset-background 
+                        file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
+                        focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
+                        border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
+                        placeholder:italic placeholder:text-slate-400 font-medium"
+                        />
+                      </label>
+                      <label className='flex items-center gap-1'>
+                        <p>No</p>
+                        <input
+                          type="radio"
+                          name="important"
+                          value="0"
+                          className="my-2 h-5 mt-2 bg-background text-sm ring-offset-background 
+                        file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
+                        focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
+                        border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
+                        placeholder:italic placeholder:text-slate-400 font-medium self-baseline"
+                        />
+                      </label>
+                    </li>
                     <li className='flex flex-col gap-2'>
                       <label htmlFor="logo" className="lg:self-start flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
                         <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='Añadir logo' />AÑADIR
@@ -122,7 +172,7 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, token}){
                         </figure>
                       }
                     </li>
-                  {errorEdit && <li className='flex flex-col gap-2'><p className="text-xs text-secondRed">{errorEdit}</p></li>}
+                  {errorAdd && <li className='flex flex-col gap-2'><p className="text-xs text-secondRed">{errorAdd}</p></li>}
                   <li className='flex flex-col items-center lg:flex-row lg:self-end lg:gap-4'>
                     <button type="submit" className='self-center border-2 mt-4 w-[157px] h-[42px] border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold py-2 px-6 lg:self-end lg:mb-2
                   hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'

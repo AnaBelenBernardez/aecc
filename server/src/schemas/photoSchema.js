@@ -8,7 +8,7 @@ const photoSchema = Joi.object({
   encoding: Joi.string(),
   tempFilePath: Joi.any(),
   truncated: Joi.boolean(),
-  mimetype: Joi.string().valid('application/octet-stream', 'image/jpg', 'image/jpeg', 'image/webp', 'image/png', 'image/webp').required().error(() => generateError('El formato de la foto debe ser JPEG, PNG, WEBP o JPG', 400)),
+  mimetype: Joi.string().valid('application/octet-stream', 'image/jpg', 'image/jpeg', 'image/webp', 'image/png', 'image/webp', 'image/svg').required().error(() => generateError('El formato de la foto debe ser JPEG, PNG, WEBP, SVG o JPG', 400)),
   md5: Joi.string(),
   mv: Joi.func()
 }).messages({

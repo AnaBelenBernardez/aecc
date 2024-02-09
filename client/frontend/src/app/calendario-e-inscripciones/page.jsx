@@ -121,7 +121,7 @@ export default function CalendarAndRegistration() {
       ) : (
         <>
           <div className="flex items-center gap-6 my-10 px-4 lg:my-0 lg:mt-28 lg:justify-center">
-            <Image src={"/image/noEventsYet.svg"} width={150} height={150} />
+            <Image src={"/image/noEventsYet.svg"} width={150} height={150} alt='No hay eventos todavía' />
             <div className="flex flex-col">
               <p>
                 {language === "es"

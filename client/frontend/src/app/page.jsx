@@ -234,7 +234,7 @@ export default function Home() {
           </section>
         </>
       ) : (
-        <div className="flex items-center gap-6 my-10 px-4 lg:my-0 lg:mt-28">
+        <div className="flex items-center gap-6 px-4">
           <Image
             src={"/image/noEventsYet.svg"}
             width={150}

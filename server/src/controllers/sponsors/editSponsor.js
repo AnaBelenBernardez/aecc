@@ -77,7 +77,7 @@ async function editSponsor (req,res,next) {
 
         res.status(200).send({
             status: "OK",
-            data: updatedSponsor,
+            data: updatedSponsor[0],
             infoEdited: editedSponsor
         });
 
