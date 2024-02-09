@@ -15,6 +15,8 @@ import { useLanguageStore } from "../store/language/language.store";
 import useGetAllSponsors from '../hooks/useGetAllSponsors';
 import SponsorsCarrousel from '../components/sponsors/SponsorsCarrousel';
 import useGetAllAchievements from '../hooks/useGetAllAchievements';
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function Home() {
   const { events, loading } = useGetAllEvents();
@@ -30,7 +32,7 @@ export default function Home() {
   const language = useLanguageStore((state) => state.language);
   const categoryEvents = [];
   const locations = [];
-  console.log(filteredEvents);
+  const { toast } = useToast();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,18 +51,20 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    try {
       getAllEventsFilterService(
         typeEvent,
         locationEvent,
         eventDateStart,
         eventDateEnd
-      ).then((res) => {
+      ).catch((err) => {
+        toast({
+          variant: "destructive",
+          title: err.message,
+          className: "bg-secondRed text-white text-lg font-bold"
+        })
+      }).then((res) => {
         setFilteredEvents(res);
       });
-    } catch (error) {
-      console.error(error);
-    }
   }, [typeEvent, locationEvent, eventDateStart, eventDateEnd]);
 
   if (events.length > 0) {
@@ -330,6 +334,7 @@ export default function Home() {
           </div>
         </div>
       )}
+      <Toaster />
     </main>
   );
 }

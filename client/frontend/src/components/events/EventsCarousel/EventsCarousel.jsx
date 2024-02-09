@@ -35,8 +35,7 @@ export const EventsCarousel = ({filteredEvents}) => {
       <Carousel
         opts={{
           align: "start",
-          loop: filteredEvents.length !== events.length ? false : true,
-          
+          loop: filteredEvents?.length !== events.length ? false : true,
         }}
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}

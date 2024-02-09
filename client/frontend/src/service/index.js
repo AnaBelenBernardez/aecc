@@ -298,7 +298,6 @@ export const addEvent = async (token, formValues) => {
   if (!response.ok) {
     throw new Error(data.message);
   }
-  console.log(data);
 
   return data;
 };
