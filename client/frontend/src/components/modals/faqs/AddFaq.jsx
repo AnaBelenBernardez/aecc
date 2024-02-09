@@ -8,7 +8,7 @@ function AddFaq ({setClickedAdd, faqsList, setFaqsList, token}){
   const [galician_question, setGalicianQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [galician_answer, setGalicianAnswer] = useState("");
-  const [errorEdit, setErrorEdit] = useState("");
+  const [errorAdd, setErrorAdd] = useState("");
 
 
   function handleChange(e){
@@ -41,7 +41,7 @@ function AddFaq ({setClickedAdd, faqsList, setFaqsList, token}){
     try{
       newFaq = await addFaqService(question, galician_question, answer, galician_answer, token);
     }catch(e){
-      setErrorEdit(e.message);
+      setErrorAdd(e.message);
     } finally{
       setClickedAdd(false);
 
@@ -55,7 +55,7 @@ function AddFaq ({setClickedAdd, faqsList, setFaqsList, token}){
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='w-[90vw] h-[50vh] md:h-[60vh] lg:h-[65vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center md:h-[50vh] lg:h-[60vh]'>
+      <div className='w-[90vw] h-[90vh] md:h-[60vh] lg:h-[65vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center md:h-[60vh] lg:h-[65vh]'>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 overflow-auto md:overflow-hidden">
           <fieldset>
               <ul className='flex flex-col gap-6'>
@@ -101,7 +101,7 @@ function AddFaq ({setClickedAdd, faqsList, setFaqsList, token}){
                         </input>
                     </label>
                   </li>
-                  {errorEdit && <li className='flex flex-col gap-2'><p className="text-xs text-secondRed">{errorEdit}</p></li>}
+                  {errorAdd && <li className='flex flex-col gap-2'><p className="text-xs text-secondRed">{errorAdd}</p></li>}
                   <li className='flex flex-col items-center lg:flex-row lg:self-end lg:gap-4'>
                     <button type="submit" className='self-center border-2 mt-4 w-[157px] h-[42px] border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold py-2 px-6 lg:self-end lg:mb-2
                   hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'
