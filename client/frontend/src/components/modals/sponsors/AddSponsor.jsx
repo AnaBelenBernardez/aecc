@@ -129,7 +129,7 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, token}){
                         </input>
                     </label>
                     </li>
-                    <li className='flex gap-4 items-center text-sm'>
+                    <li className='flex flex-col md:flex-row md:gap-4 items-center text-sm'>
                       <h4 className="text-primaryGreen font-bold">¿Es un patrocinador importante?</h4>
                       <label className='flex items-center gap-1'>
                         <p>Sí</p>
