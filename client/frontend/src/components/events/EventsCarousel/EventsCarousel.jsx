@@ -22,19 +22,21 @@ export const EventsCarousel = ({filteredEvents}) => {
 
   const [lengthCarrousel, setLengthCarrousel] = React.useState();
   const {events, loading, error} = useGetAllEvents();
-console.log(filteredEvents);
+
   React.useEffect(() => {
     setLengthCarrousel(setLenghtCarrouselFunc(events, 8));
   }, [events]);
 
   if (loading) return <Loading/>;
 
+
   return (
     <div>
       <Carousel
         opts={{
           align: "start",
-          loop: true,
+          loop: filteredEvents.length !== events.length ? false : true,
+          
         }}
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}

@@ -188,7 +188,7 @@ export default function Home() {
           <h3 className="text-2xl font-bold my-8 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
             Próximos eventos
           </h3>
-          {filteredEvents && filteredEvents.length >= 3 ? (
+          {filteredEvents && filteredEvents.length > 3 ? (
             <EventsCarousel filteredEvents={filteredEvents}/>
             ) : (
               <div className="flex flex-col gap-10 mb-6 mt-4 lg:flex-row lg:flex-wrap">
