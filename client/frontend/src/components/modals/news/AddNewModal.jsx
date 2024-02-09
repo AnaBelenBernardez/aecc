@@ -109,10 +109,10 @@ const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
                   onChange={handleChange}
                 />
               </label>
-              <div className='flex flex-col items-center lg:flex-row lg:self-end lg:gap-4'>
+              <div className='flex flex-col items-center lg:flex-row lg:self-end lg:gap-4 lg:mr-2'>
                 <button
                   type='submit'
-                  className='self-center border-2 mt-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 lg:self-end lg:mb-2
+                  className='self-center lg:mb-2 border-2 mt-2 lg:mt-0 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 lg:self-end
                   hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'
                   onChange={handleChange}
                 >
@@ -120,7 +120,7 @@ const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
                 </button>
                 <button
                   type='button'
-                  className='flex self-center mt-2 gap-4 w-[157px] h-[42px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray'
+                  className='flex self-center lg:mb-2 mt-2 lg:mt-0 gap-4 w-[157px] h-[40px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray'
                   onClick={() => setAddNewModalOpen(false)}
                 >
                   CANCELAR

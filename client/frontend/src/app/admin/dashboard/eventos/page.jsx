@@ -11,12 +11,16 @@ import Link from "next/link";
 import { useLoginStore, useModalEventStore } from "../../../../store";
 import { useRouter } from "next/navigation";
 import ModalDeleteEvent from "../../../../components/dashboard/ModalEvents/ModalDeleteEvent";
-
+import BlockScroll from '../../../../components/blockScroll/BlockScroll';
 const EventPage = () => {
   const token = useLoginStore((state) => state.token);
 
   const { events, loading, error, refetch } = useGetAllEvents();
   const openModal = useModalEventStore((state) => state.openModalEvent);
+  const isEditModalOpen = useModalEventStore((state) => state.isModalEditEventOpen);
+  const isDeleteModalOpen = useModalEventStore((state) => state.isModalDeleteEventOpen);
+  const isAddModalEventOpen = useModalEventStore((state) => state.isModalEventOpen);
+
 
   const router = useRouter();
 
@@ -28,6 +32,7 @@ const EventPage = () => {
 
   return (
     <main className="flex flex-col my-4 px-4 items-center">
+      <BlockScroll isModalOpen={isEditModalOpen || isDeleteModalOpen || isAddModalEventOpen}/>
         <button
           onClick={openModal}
           className=" border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 
