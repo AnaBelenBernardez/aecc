@@ -523,7 +523,23 @@ export const deleteSponsorService = async (id, token) => {
   return data.data;
 };
 
+export const editSponsorService = async (formData, token, id) =>{
+  const response = await fetch(`${backAPI}/sponsors/admin/edit/${id}`, {
+    method: "PUT",
+    body: formData,
+    headers:{
+      token: token,
+    },
+  });
+  
+  const data = await response.json();
 
+  if(!response.ok){
+    throw new Error(data.message);
+  }
+
+  return data.data;
+}
 
 export const addSponsorService = async (formData, token) =>{
   const response = await fetch(`${backAPI}/sponsors/admin/add`, {
