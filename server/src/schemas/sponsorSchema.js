@@ -29,7 +29,8 @@ const sponsorSchema = Joi.object({
         'string.min': 'El link del patrocinador debe tener más de 2 caracteres.',
         'string.max': 'El link del patrocinador no puede tener más de 500 caracteres.',
         'string.uri': 'El link del patrocinador debe ser una URL (https://www.ejemplo.com). Sólo válidas https, no http.'
-    })
+    }),
+    important: Joi.number().default(0),
 });
 
 module.exports = sponsorSchema;
