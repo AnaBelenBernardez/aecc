@@ -88,7 +88,7 @@ const EditEventPhotos = () => {
                     <Link href={imgSrc} target='_blank' className='relative'>
                       <button
                         onClick={(e) => openModalDelete(e, photo.id)}  
-                        className='absolute z-[1] right-2 top-2 bg-secondRed rounded-full p-2'><Image src={'/icons/deletePhotoIcon.svg'} width={36} height={36} alt='Icono eliminar'/></button>
+                        className='absolute z-[1] right-2 top-2 bg-secondRed rounded-full p-2'><Image src={'/icons/deletePhotoIcon.svg'} width={20} height={20} alt='Icono eliminar'/></button>
                       <img src={imgSrc} className='w-full h-full object-cover grayscale transition-all ease-in-out duration-1000 rounded-xl' alt='Foto del evento'/>
                     </Link>
                   </div>

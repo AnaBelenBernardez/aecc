@@ -124,7 +124,7 @@ console.log(formValues.photo);
 
               </label>
           </div>
-          <div className='flex flex-col items-center gap-1 sm:justify-center sm:mb-0 lg:flex-row lg:gap-4 lg:self-end '>
+          <div className='flex flex-col items-center gap-1 sm:justify-center sm:mb-0 lg:flex-row lg:gap-4 lg:self-end'>
             <button
               type='submit'
               className='self-center md:mt-2 lg:mb-0 sm:mb-2 border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 lg:self-end

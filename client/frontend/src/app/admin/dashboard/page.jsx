@@ -43,16 +43,16 @@ const DashboardPage = () => {
                 <User />
               </DashboardCard>
             </Link>
-            <DashboardCard title={"FAQ"}>
               <Link href={"/admin/dashboard/faqs"}>
+            <DashboardCard title={"FAQ"}>
                 <Faq />
-              </Link>
             </DashboardCard>
-            <DashboardCard title={"Patrocinadores"}>
+              </Link>
               <Link href={"/admin/dashboard/patrocinadores"}>
+            <DashboardCard title={"Patrocinadores"}>
                 <Publicity />
-              </Link>
             </DashboardCard>
+              </Link>
             <Link href={"/admin/dashboard/noticias"}>
               <DashboardCard title={"Noticias"}>
                 <News />

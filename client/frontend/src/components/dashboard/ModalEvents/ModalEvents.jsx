@@ -211,13 +211,15 @@ export const ModalEvents = ({ token, refetch }) => {
                       />
                     </div>
                   ) : null}
-                  <input
-                    className="cursor-pointer mt-2 text-sm font-medium"
-                    id="photo"
-                    type="file"
-                    name="photo"
-                    {...register("photo", { required: true })}
+                <label htmlFor="photo" className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
+                 <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />AÑADIR
+                  <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
+                  id="photo"
+                  type="file" 
+                  name='photo'
+                  {...register("photo", { required: true })}
                   />
+                </label>
                 </div>
               </label>
               {errors.photo && (
@@ -270,14 +272,14 @@ export const ModalEvents = ({ token, refetch }) => {
               <div className="mr-2 flex flex-col items-center lg:flex-row lg:self-end lg:items-center lg:gap-4">
                 <button
                   type="submit"
-                  className="self-center border-2 mt-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 lg:self-end lg:mb-2
-                    hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen"
+                  className="self-center lg:mb-2 border-2 mt-2 lg:mt-0 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 lg:self-end
+                  hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen"
                 >
                   AÑADIR EVENTO
                 </button>
                 <button
                   type="button"
-                  className="self-center my-2 w-[157px] h-[40px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray"
+                  className="flex self-center lg:mb-2 mt-2 lg:mt-0 gap-4 w-[157px] h-[40px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray"
                   onClick={closeModal}
                 >
                   CANCELAR

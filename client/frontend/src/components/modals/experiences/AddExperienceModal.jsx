@@ -5,6 +5,7 @@ import { addExperienceService } from '../../../service';
 import Image from 'next/image';
 
 const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
+  const [file, setFile] = useState(null);
   const [formValues, setFormValues] = useState({
     name: '',
     content: '',
@@ -22,6 +23,7 @@ const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
 
   const handleChangeImage = (e) => {
     e.preventDefault();
+    setFile(URL.createObjectURL(e.target.files[0]));
     setFormValues({
       ...formValues,
       [e.target.name]: [e.target.files]
@@ -78,13 +80,20 @@ const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
                   onChange={handleChange}
                 />
               </label>
-              <label htmlFor="photo" className="lg:self-start flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
-               <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />AÑADIR
-                <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium" 
-                id="photo" type="file" name='photo' onChange={handleChangeImage}
-                />
-
-              </label>
+              <div className='flex flex-col lg:flex-row lg:self-start lg:gap-4 lg:items-center'>
+                {
+                  file !== null && (
+                    <Image src={file} width={150} height={150} alt='Imagen de la noticia' className='rounded-full w-20 h-20'/>
+                
+                  )
+                }
+                <label htmlFor="photo" className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
+                 <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />AÑADIR
+                  <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
+                  id="photo" type="file" name='photo' onChange={handleChangeImage}
+                  />
+                </label>
+              </div>
 
               <div className='flex flex-col items-center lg:flex-row lg:self-end lg:gap-4'>
                 <button
@@ -97,7 +106,7 @@ const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
                 </button>
                 <button
                   type='button'
-                  className='flex self-center mt-2 lg:mt-0 gap-4 w-[157px] h-[42px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray'
+                  className='flex self-center mt-2 lg:mt-0 gap-4 w-[157px] h-[40px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray'
                   onClick={() => setAddExperienceModalOpen(false)}
                 >
                   CANCELAR
