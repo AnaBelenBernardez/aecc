@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { editNewService } from '../../../service';
+import Image from 'next/image';
 
 const EditNewModal = ({currentNew, setEditNewModalOpen, token, refetch}) => {
   const [image, setImage] = useState();
+  const [file, setFile] = useState(null);
   
   useEffect(() => {
     convertImg();
@@ -28,6 +30,8 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, token, refetch}) => {
     })
   };
 
+  const previousImg = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${currentNew.photo}`
+
   const [formValues, setFormValues] = useState({
     title: currentNew.title,
     content: currentNew.content,
@@ -45,6 +49,7 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, token, refetch}) => {
   };
 
   const handleChangeImage = (e) => {
+    setFile(URL.createObjectURL(e.target.files[0]));
     setFormValues({
       ...formValues,
       [e.target.name]: [e.target.files]
@@ -98,12 +103,23 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, token, refetch}) => {
               id='link' name='link' defaultValue={formValues.link} onChange={handleChange}
             />
           </label>
-          <label className="font-bold text-sm" htmlFor="photo">
-            Foto de la noticia
-            <input className="w-full cursor-pointer mt-2 text-sm font-medium" 
-              id="photo" type="file" name='photo' onChange={handleChangeImage}
-            />
-          </label>
+          <div className='flex flex-row-reverse justify-end gap-6 mt-4'>
+            <label htmlFor="photo" className="lg:self-center flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
+              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />EDITAR FOTO
+              <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
+                id="photo" type="file" name='photo' onChange={handleChangeImage}
+              />
+            </label>
+            {
+              currentNew.photo !== null
+              ? <div className='min-w-20 min-h-20 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
+                  <Image src={file !== null ? file : previousImg} width={150} height={72} alt='Imagen de la noticia' className='w-[150px] h-[72px] object-contain'/>
+                </div>
+              : <div className='min-w-20 min-h-20 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
+                  <Image src={'/image/userDefault.png'} width={150} height={72} alt='Imagen de la noticia' className='rounded-full object-cover w-20 h-20'/>
+                </div>
+            }
+          </div>
           <h2 className='font-bold text-lg mt-6 text-primaryGreen'>Formulario en gallego</h2>
           <label htmlFor="galician_title" className='font-bold text-sm'>
             Título

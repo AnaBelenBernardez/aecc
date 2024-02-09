@@ -31,14 +31,14 @@ const Volunteers = () => {
             {" "}
           </iframe>
         )}
-        <button className="w-80 mb-4 border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
-          <Link
-            href="https://talento.contraelcancer.es/jobs?_ga=2.229474140.1556651381.1704630589-1341541763.1702559712&_gac=1.153648586.1703178197.Cj0KCQiA4Y-sBhC6ARIsAGXF1g4xpShTtR0sJBxL84DCPOi3r5Yxp4L8b5RNz4UegvrMknb6aGAkcKAaAm1IEALw_wcB"
-            target="_blank"
-          >
+        <Link
+          href="https://talento.contraelcancer.es/jobs?_ga=2.229474140.1556651381.1704630589-1341541763.1702559712&_gac=1.153648586.1703178197.Cj0KCQiA4Y-sBhC6ARIsAGXF1g4xpShTtR0sJBxL84DCPOi3r5Yxp4L8b5RNz4UegvrMknb6aGAkcKAaAm1IEALw_wcB"
+          target="_blank"
+        >
+          <button className="w-80 mb-4 border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
             {language === "es" ? "VER OFERTAS ABIERTAS" : "VER OFERTAS ABERTAS"}
-          </Link>
-        </button>
+          </button>
+        </Link>
       </div>
     </div>
   );
