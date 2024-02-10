@@ -3,8 +3,11 @@
 import { useEffect, useState } from 'react';
 import { editExperienceService } from '../../../service';
 import Image from 'next/image';
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 const EditExperienceModal = ({currentExperience, setEditExperienceModalOpen, token, refetch}) => {
+    const { toast } = useToast();
   const [image, setImage] = useState();
   const [file, setFile] = useState(null)
   
@@ -63,7 +66,11 @@ const EditExperienceModal = ({currentExperience, setEditExperienceModalOpen, tok
       setEditExperienceModalOpen(false);      
       refetch();
     } catch (error) {
-      console.error(error.message);
+      toast({
+        variant: "destructive",
+        title: error.message,
+        className: "bg-secondRed text-white text-lg font-bold"
+      })
     }
   }
 
@@ -140,6 +147,7 @@ console.log(formValues.photo);
           </div>
         </form>
       </div>
+      <Toaster />
     </div>
   )
 };

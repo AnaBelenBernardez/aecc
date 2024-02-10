@@ -33,7 +33,11 @@ const EditUser = () => {
       await changePwd(token, formValues);
       router.push("/admin/dashboard");
     } catch (error) {
-      console.error(error.message);
+      toast({
+        variant: "destructive",
+        title: error.message,
+        className: "bg-secondRed text-white text-lg font-bold"
+      })
     }
   }
 

@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import { addExperienceService } from '../../../service';
 import Image from 'next/image';
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
+  const { toast } = useToast();
   const [file, setFile] = useState(null);
   const [formValues, setFormValues] = useState({
     name: '',
@@ -38,7 +41,11 @@ const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
       setAddExperienceModalOpen(false);
       refetch();
     } catch (error) {
-      console.error(error.message);
+      toast({
+        variant: "destructive",
+        title: error.message,
+        className: "bg-secondRed text-white text-lg font-bold"
+      })
     }
   }
 
@@ -114,6 +121,7 @@ const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
               </div>
         </form>
       </div>
+      < Toaster />
     </div>
   )
 };
