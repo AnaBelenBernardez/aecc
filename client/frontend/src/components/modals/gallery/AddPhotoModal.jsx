@@ -1,8 +1,11 @@
 import { addPhotoEventService } from '../../../service';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 const AddPhotoModal = ({ token, idEvent, setAddModalOpen, refetch }) => {
+  const { toast } = useToast();
   const [photo, setPhoto] = useState();
  
   const handleSubmit = async (e) => {
@@ -13,7 +16,11 @@ const AddPhotoModal = ({ token, idEvent, setAddModalOpen, refetch }) => {
       refetch();
       setAddModalOpen(false);
     } catch (error) {
-      console.error(error.message);
+      toast({
+        variant: "destructive",
+        title: error.message,
+        className: "bg-secondRed text-white text-lg font-bold"
+      })
     }
   }
 
@@ -67,6 +74,7 @@ const AddPhotoModal = ({ token, idEvent, setAddModalOpen, refetch }) => {
           </div>
         </form>
       </div>
+      <Toaster />
     </div>
   )
 };

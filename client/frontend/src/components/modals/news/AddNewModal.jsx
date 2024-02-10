@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import { addNewService } from '../../../service';
 import Image from 'next/image';
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
+    const { toast } = useToast();
   const [formValues, setFormValues] = useState({
     title: '',
     content: '',
@@ -39,7 +42,11 @@ const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
       setAddNewModalOpen(false);
       refetch();
     } catch (error) {
-      console.error(error.message);
+      toast({
+        variant: "destructive",
+        title: error.message,
+        className: "bg-secondRed text-white text-lg font-bold"
+      })
     }
   }
 
@@ -143,6 +150,7 @@ const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
               </div>
         </form>
       </div>
+      <Toaster />
     </div>
   )
 };
