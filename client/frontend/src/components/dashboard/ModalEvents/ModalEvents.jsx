@@ -47,7 +47,11 @@ export const ModalEvents = ({ token, refetch }) => {
     <>
       {isModalEventOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-          <div className="w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12">
+
+          <div className="relative w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12">
+            <button onClick={closeModal} className="absolute top-6 right-7 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300">
+              <img src="/icons/closeModals.svg" alt='Icono de cerrar'/>
+            </button>
             <form
               className="flex flex-col gap-2 overflow-auto"
               onSubmit={handleSubmit(onSubmit)}
@@ -91,113 +95,117 @@ export const ModalEvents = ({ token, refetch }) => {
                   Este campo es obligatorio
                 </span>
               )}
-              <label htmlFor="date_start" className="font-bold text-sm">
-                Fecha de inicio
-                <input
-                  type="date"
-                  id="date_start"
-                  className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
-                  file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
-                  focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
-                  border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                  placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  {...register("date_start", { required: true })}
-                />
-              </label>
-              {errors.date_start && (
-                <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
-                </span>
-              )}
-              <label htmlFor="date_end" className="font-bold text-sm">
-                Fecha de fin
-                <input
-                  type="date"
-                  id="date_end"
-                  className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
-                  file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
-                  focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
-                  border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                  placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  {...register("date_end", { required: true })}
-                />
-              </label>
-              {errors.date_end && (
-                <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
-                </span>
-              )}
-              <label htmlFor="location" className="font-bold text-sm">
-                Localización
-                <select
-                  id="event_type"
-                  className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
-                    file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
-                    focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
-                    border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                    placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  {...register("location", { required: true })}
-                >
-                  {placeLocation.map((place) => (
-                    <option value={place} key={place}>
-                      {place}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              {errors.location && (
-                <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
-                </span>
-              )}
               <label htmlFor="link" className="font-bold text-sm">
-                Link
-                <input
-                  type="url"
-                  className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
-                    file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
-                    focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
-                    border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
+                  Link
+                  <input
+                    type="url"
+                    className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
+                      file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
+                      focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
+                      border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
+                      placeholder:italic placeholder:text-slate-400 w-full font-medium"
+                    id="link"
+                    name="link"
+                    {...register("link", { required: true })}
+                  />
+                </label>
+                {errors.link && (
+                  <span className="text-secondRed text-sm">
+                    Este campo es obligatorio
+                  </span>
+                )}
+              <div className="flex flex-row justify-between w-full">
+                <label htmlFor="date_start" className="font-bold text-sm min-w-[48%]">
+                  Fecha de inicio
+                  <input
+                    type="date"
+                    id="date_start"
+                    className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background
+                    file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none
+                    focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50
+                    border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600
                     placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  id="link"
-                  name="link"
-                  {...register("link", { required: true })}
-                />
-              </label>
-              {errors.link && (
-                <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
-                </span>
-              )}
-              <label htmlFor="event_type" className="font-bold text-sm">
-                Tipo de evento
-                <select
-                  id="event_type"
-                  className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
-                    file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
-                    focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
-                    border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
+                    {...register("date_start", { required: true })}
+                  />
+                </label>
+                {errors.date_start && (
+                  <span className="text-secondRed text-sm">
+                    Este campo es obligatorio
+                  </span>
+                )}
+                <label htmlFor="date_end" className="font-bold text-sm min-w-[48%]">
+                  Fecha de fin
+                  <input
+                    type="date"
+                    id="date_end"
+                    className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background
+                    file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none
+                    focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50
+                    border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600
                     placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  {...register("event_type", { required: true })}
-                >
-                  <option value="Andainas y carreras">
-                    Andainas y carreras
-                  </option>
-                  <option value="Travesía a nado de Ribeira">
-                    Travesía a nado de Ribeira
-                  </option>
-                  <option value="Torneo Pádel contra el Cáncer">
-                    Torneo Pádel contra el Cáncer
-                  </option>
-                  <option value="A Coruña Bike">A Coruña Bike</option>
-                  <option value="Otros">Otros</option>
-                </select>
-              </label>
-              {errors.event_type && (
-                <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
-                </span>
-              )}
+                    {...register("date_end", { required: true })}
+                  />
+                </label>
+                {errors.date_end && (
+                  <span className="text-secondRed text-sm">
+                    Este campo es obligatorio
+                  </span>
+                )}
+              </div>                
+              <div className="flex flex-col md:flex-row md:justify-between ">
+                <label htmlFor="location" className="font-bold text-sm md:min-w-[48%]">
+                  Localización
+                  <select
+                    id="event_type"
+                    className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background
+                      file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none
+                      focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50
+                      border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600
+                      placeholder:italic placeholder:text-slate-400 w-full font-medium"
+                    {...register("location", { required: true })}
+                  >
+                    {placeLocation.map((place) => (
+                      <option value={place} key={place}>
+                        {place}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                {errors.location && (
+                  <span className="text-secondRed text-sm">
+                    Este campo es obligatorio
+                  </span>
+                )}
+                <label htmlFor="event_type" className="font-bold text-sm md:min-w-[48%]">
+                  Tipo de evento
+                  <select
+                    id="event_type"
+                    className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background
+                      file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none
+                      focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50
+                      border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600
+                      placeholder:italic placeholder:text-slate-400 w-full font-medium"
+                    {...register("event_type", { required: true })}
+                  >
+                    <option value="Andainas y carreras">
+                      Andainas y carreras
+                    </option>
+                    <option value="Travesía a nado de Ribeira">
+                      Travesía a nado de Ribeira
+                    </option>
+                    <option value="Torneo Pádel contra el Cáncer">
+                      Torneo Pádel contra el Cáncer
+                    </option>
+                    <option value="A Coruña Bike">A Coruña Bike</option>
+                    <option value="Otros">Otros</option>
+                  </select>
+                </label>
+                {errors.event_type && (
+                  <span className="text-secondRed text-sm">
+                    Este campo es obligatorio
+                  </span>
+                )}
+              </div>
               <label className="font-bold text-sm" htmlFor="photo">
                 Foto de portada
                 <div className="flex flex-col md:flex-row md:items-center  gap-2 w-full mt-2">
