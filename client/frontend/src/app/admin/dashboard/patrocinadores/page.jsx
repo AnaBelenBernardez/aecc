@@ -69,9 +69,9 @@ const SponsorAdminPage = () => {
 			Gestión de patrocinios
 		</h1>
 		<div className='flex p-3 justify-center'>
-				<button onClick={handleClickAdd} className='border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'>
-					AÑADIR PATROCINADOR
-				</button>
+			<button onClick={handleClickAdd} className='border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 lg:self-end lg:mb-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'>
+				AÑADIR PATROCINADOR
+			</button>
 		</div>
 		<ol className='flex flex-col gap-5'>
     {deleteModalOpen && <DeleteSponsor handleClickDelete={handleClickDelete} setDeleteModalOpen={setDeleteModalOpen} /> }
