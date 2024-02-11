@@ -54,7 +54,10 @@ const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12'>
+      <div className='relative w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12'>
+      <button onClick={() => setAddNewModalOpen(false)} className="absolute top-5 right-7 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300">
+              <img src="/icons/closeModals.svg" alt='Icono de cerrar'/>
+            </button>
         <form className='flex flex-col gap-2 overflow-auto' onSubmit={handleSubmit}>
           <h2 className='font-bold text-lg text-primaryGreen'>Formulario en castellano</h2>
             <label htmlFor="title" className='font-bold text-sm'>

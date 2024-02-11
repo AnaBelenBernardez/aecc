@@ -73,11 +73,12 @@ const EditExperienceModal = ({currentExperience, setEditExperienceModalOpen, tok
       })
     }
   }
-
-console.log(formValues.photo);
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='w-[80vw] h-[85vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:h-[90vh] lg:p-12 md:max-h-[70%] lg:max-h-[90%]'>
+      <div className='relative w-[80vw] h-[92vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:h-[75vh] md:max-h-[65%] lg:max-h-[90%]'>
+      <button onClick={() => setEditExperienceModalOpen(false)} className="absolute top-5 right-7 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300">
+              <img src="/icons/closeModals.svg" alt='Icono de cerrar'/>
+            </button>
         <form className='flex flex-col gap-2 overflow-auto md:max-w-[90%] min-w-[90%] self-center md:overflow-hidden lg:overflow-auto ' onSubmit={handleSubmit}>
           <h2 className='font-bold text-lg text-primaryGreen'>Formulario en castellano</h2>
           <label htmlFor="name" className='font-bold text-sm'>
@@ -112,7 +113,7 @@ console.log(formValues.photo);
               id='galician_content' name='galician_content' cols="20" rows="20" defaultValue={formValues.galician_content} onChange={handleChange}
             />
           </label>
-          <div className='flex flex-row gap-4'>
+          <div className='flex flex-row gap-4 sm:w-auto'>
           {
             currentExperience.photo !== null
             ? <div className='min-w-20 min-h-20 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
@@ -123,7 +124,7 @@ console.log(formValues.photo);
                 </div>
           }
                   
-                <label htmlFor="photo" className="lg:self-center flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
+                <label htmlFor="photo" className="lg:self-center sm:align-middle md:w-auto flex gap-4 items-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 cursor-pointer">
                <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />EDITAR FOTO
                 <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium" 
                 id="photo" type="file" name='photo' onChange={handleChangeImage}

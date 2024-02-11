@@ -13,7 +13,6 @@ const GalleryPage = () => {
   const { events, loading, error } = useGetAllEvents();
 
   const language = useLanguageStore((state) => state.language);
-  const setLanguage = useLanguageStore((state) => state.setLanguage);
   if (loading) return <Loading/>;
 
   return (
