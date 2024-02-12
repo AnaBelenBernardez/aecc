@@ -34,7 +34,11 @@ const EditUser = () => {
 
     try {
       await changePwd(token, formValues);
-      router.push("/admin/dashboard");
+      toast({
+        variant: "succes",
+        title: "Contraseña editada correctamente",
+        className: "bg-primaryGreen text-white text-lg font-bold"
+      })
     } catch (error) {
       toast({
         variant: "destructive",

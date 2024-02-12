@@ -11,20 +11,57 @@ import { useRouter } from "next/navigation";
 import BlockScroll from '../../../../../components/blockScroll/BlockScroll';
 import DeletePhotoModal from '../../../../../components/modals/gallery/DeletePhotoModal';
 import AddPhotoModal from '../../../../../components/modals/gallery/AddPhotoModal';
+import { addPhotoEventService, deletePhotoEventService } from '../../../../../service';
+import { useToast } from '../../../../../components/ui/use-toast';
+import { Toaster } from '../../../../../components/ui/toaster';
 
 const EditEventPhotos = () => {
   const {id} = useParams();
   const router = useRouter();
+  const { toast } = useToast();
 
   const token = useLoginStore((state) => state.token);
   if (!token) {
     router.push("/admin");
   }
 
-  const { event, loading, error, refetch } = useGetEvent(id);
+  const { event, loading, refetch } = useGetEvent(id);
   const [deleteModalOpen, setDeleteModalOpen] = useState();
   const [addModalOpen, setAddModalOpen] = useState();
   const [idPhotoOpen, setIdPhotoOpen] = useState();
+  const [photo, setPhoto] = useState();
+ 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await addPhotoEventService(token, id, photo);
+      refetch();
+      setAddModalOpen(false);
+      toast({
+        variant: "succes",
+        title: "Foto/s añadida/s correctamente",
+        className: "bg-primaryGreen text-white text-lg font-bold"
+      })
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: error.message,
+        className: "bg-secondRed text-white text-lg font-bold"
+      })
+    }
+  }
+
+  const handleClickDelete = async (idPhoto) => {
+    await deletePhotoEventService(token, id, idPhoto);
+    refetch();
+    setDeleteModalOpen(false);
+    toast({
+      variant: "succes",
+      title: "Foto eliminada correctamente",
+      className: "bg-primaryGreen text-white text-lg font-bold"
+    })
+  };
 
   const openModalDelete = async (e, idPhoto) => {
     e.preventDefault();
@@ -55,9 +92,9 @@ const EditEventPhotos = () => {
                 addModalOpen && (
                   <AddPhotoModal
                     setAddModalOpen={setAddModalOpen}
-                    token={token}
-                    idEvent={id}
-                    refetch={refetch}
+                    handleSubmit={handleSubmit}
+                    photo={photo}
+                    setPhoto={setPhoto}
                   />
                 )
               }
@@ -66,9 +103,7 @@ const EditEventPhotos = () => {
                   <DeletePhotoModal
                     setDeleteModalOpen={setDeleteModalOpen}
                     idPhoto={idPhotoOpen}
-                    token={token}
-                    id={id}
-                    refetch={refetch}
+                    handleClickDelete={handleClickDelete}
                   />)
               }
               <div className="flex flex-col lg:grid lg:auto-rows-[240px] lg:grid-cols-4 gap-4 mx-20">
@@ -98,6 +133,7 @@ const EditEventPhotos = () => {
             </>
           : null
       }
+      <Toaster/>
     </main>
   )
 };

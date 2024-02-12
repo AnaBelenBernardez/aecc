@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { Toaster } from "@/components/ui/toaster";
 
 const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFormValuesEdit, formValuesEdit}) => {
-  console.log(formValuesEdit);
   const [newPhoto, setNeWPhoto] = useState();
   const [image, setImage] = useState();
   

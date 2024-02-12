@@ -2,9 +2,8 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { addSponsorService } from '../../../service';
 
-function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, token}){
+function AddSponsor ({setClickedAdd, handleSubmitAdd}){
   const [name, setName] = useState("");
   const [galician_name, setGalicianName] = useState("");
   const [description, setDescription] = useState("");
@@ -49,34 +48,15 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, token}){
     }
   }
 
-  async function handleSubmit(e){
-    e.preventDefault();
-
-    let newSponsor;
-    const data = new FormData (e.target);
-
-    try{
-      newSponsor = await addSponsorService(data, token);
-    }catch(e){
-      setErrorAdd(e.message);
-    } finally{
-      setClickedAdd(false);
-
-      const newSponsorsList = [...sponsorsList];
-
-      newSponsorsList.push(newSponsor);
-
-      setSponsorsList(newSponsorsList);
-    }
-}
+ 
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='relative w-[90vw] h-[90vh] md:h-[60vh] lg:h-[80vh] lg:w-[60vw] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center'>
+      <div className='relative w-[90vw] h-[90vh] md:h-[60vh] lg:h-[85vh] lg:w-[60vw] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center'>
         <button onClick={() => setClickedAdd(false)} className="absolute top-6 right-7 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300">
           <img src="/icons/closeModals.svg" alt='Icono de cerrar'/>
         </button>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2 overflow-auto md:overflow-hidden lg:overflow-auto">
+        <form onSubmit={handleSubmitAdd} className="flex flex-col gap-2 overflow-auto md:overflow-hidden lg:overflow-auto">
           <fieldset>
             <ul className='flex flex-col gap-4'>
               <li className='flex flex-col gap-2'>

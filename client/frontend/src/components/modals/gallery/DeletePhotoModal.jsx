@@ -1,13 +1,6 @@
 import Image from 'next/image';
-import { deletePhotoEventService } from '../../../service';
 
-const DeletePhotoModal = ({ setDeleteModalOpen, idPhoto, token, id, refetch }) => {
-  const handleClickDelete = async (idPhoto) => {
-    await deletePhotoEventService(token, id, idPhoto);
-    refetch();
-    setDeleteModalOpen(false);
-  };
-
+const DeletePhotoModal = ({ setDeleteModalOpen, idPhoto, handleClickDelete }) => {
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-[2]'>
       <div className='w-[70vw] max-h-[40vh] bg-secondLightGray p-4 rounded-xl shadow-xl lg:w-[40vw]'>
