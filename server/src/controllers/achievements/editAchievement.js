@@ -8,87 +8,87 @@ const deletePhoto = require("../../helpers/deletePhoto");
 
 async function editAchievement(req, res, next) {
     try {
-    const { idAchievement } = req.params;
-    const pool = await getPool();
+        const { idAchievement } = req.params;
+        const pool = await getPool();
 
-    const icon = req.files?.icon;
+        const icon = req.files?.icon;
 
-    if (req.files) {
-        if (req.files.length > 1) {
-            return next(generateError("Sólo es posible anexar un icono por logro", 400));
+        if (req.files) {
+            if (req.files.length > 1) {
+                return next(generateError("Sólo es posible anexar un icono por logro", 400));
+            }
+
+            await photoSchema.validateAsync(icon);
         }
 
-        await photoSchema.validateAsync(icon);
-    }
+        const { error } = achievementSchema.validate(req.body);
 
-    const { error } = achievementSchema.validate(req.body);
+        if (error) {
+            return next(generateError(error.message, 400));
+        }
 
-    if (error) {
-        return next(generateError(error.message, 400));
-    }
+        const { description, galician_description } = req.body;
 
-    const { description, galician_description } = req.body;
-
-    const [duplicateAchievement] = await pool.query(
-        `
+        const [duplicateAchievement] = await pool.query(
+            `
                 SELECT *
                 FROM achievements
                 WHERE description = ?
             `,
-        [description]
-    );
-
-
-    if(duplicateAchievement.length && duplicateAchievement[0].id !== parseInt(idAchievement)){
-        return next(generateError('Ya existe ese logro en la web, edítalo o elimínalo para evitar contenidos duplicados', 400));
-    }
-    
-    if(icon){
-        const [oldDataAchievements] = await pool.query(
-            `
-                SELECT *
-                FROM achievements
-                WHERE id = ?
-            `,[idAchievement]
+            [description]
         );
 
-        deletePhoto(oldDataAchievements[0].icon);
 
-        const iconName = await savePhoto(icon, 500);
+        if(duplicateAchievement.length && duplicateAchievement[0].id !== parseInt(idAchievement)){
+            return next(generateError('Ya existe ese logro en la web, edítalo o elimínalo para evitar contenidos duplicados', 400));
+        }
+        
+        if(icon){
+            const [oldDataAchievements] = await pool.query(
+                `
+                    SELECT *
+                    FROM achievements
+                    WHERE id = ?
+                `,[idAchievement]
+            );
 
-        await pool.query(
+            deletePhoto(oldDataAchievements[0].icon);
+
+            const iconName = await savePhoto(icon, 500);
+
+            await pool.query(
+                `
+                    UPDATE achievements 
+                    SET icon = ?
+                    WHERE id = ?
+                `,
+                [iconName, idAchievement]
+            );
+        }
+
+        const [editedAchievement] = await pool.query(
             `
-                UPDATE achievements 
-                SET icon = ?
-                WHERE id = ?
-            `,
-            [iconName, idAchievement]
+                    UPDATE achievements
+                    SET description = ?, galician_description = ?
+                    WHERE id = ?
+                `,
+            [description, galician_description, idAchievement]
         );
-    }
 
-    const [editedAchievement] = await pool.query(
-        `
-                UPDATE achievements
-                SET description = ?, galician_description = ?
-                WHERE id = ?
-            `,
-        [description, galician_description, idAchievement]
-    );
+        const [updatedAchievement] = await pool.query(
+            `
+                    SELECT *
+                    FROM achievements
+                    WHERE id = ?
+                `,
+            [idAchievement]
+        );
 
-    const [updatedAchievement] = await pool.query(
-        `
-                SELECT *
-                FROM achievements
-                WHERE id = ?
-            `,
-        [idAchievement]
-    );
-
-    res.status(200).send({
-        status: "OK",
-        data: updatedAchievement,
-        infoEdited: editedAchievement,
-    });
+        res.status(200).send({
+            status: "OK",
+            data: updatedAchievement,
+            infoEdited: editedAchievement,
+        });
 
     } catch (e) {
         console.log(e);
