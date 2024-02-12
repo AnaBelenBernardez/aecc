@@ -45,7 +45,10 @@ async function editExperience (req,res,next) {
                     'UPDATE experiences_photos SET photo = ? WHERE experience_id = ?',
                     [photoName, idExperience]
                 );
-                deletePhoto(photoToDelete[0].photo);
+                
+                if (photoToDelete[0]?.photo) {
+                    deletePhoto(photoToDelete[0].photo);
+                }
 
                 insertedPhotos.push(photoName);
             }
