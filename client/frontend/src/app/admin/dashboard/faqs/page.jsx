@@ -11,6 +11,8 @@ import { useLoginStore } from '../../../../store';
 import { useRouter } from 'next/navigation';
 import { deleteFaqService } from '../../../../service';
 import BlockScroll from '../../../../components/blockScroll/BlockScroll';
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 
 const FaqAdminPage = () => {
@@ -20,6 +22,14 @@ const FaqAdminPage = () => {
 	const [faqId, setFaqId] = useState();
 	const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 	const [clickedAdd, setClickedAdd] = useState(false);
+	const [addSuccess, setAddSuccess] = useState(false);
+	const [addReject, setAddReject] = useState(false);
+	const [editSuccess, setEditSuccess] = useState(false);
+	const [editReject, setEditReject] = useState(false);
+	const [deleteSuccess, setDeleteSuccess] = useState(false);
+	const [deleteReject, setDeleteReject] = useState(false);
+
+	const { toast } = useToast();
 
 	const router = useRouter();
   const token = useLoginStore((state) => state.token);
@@ -31,7 +41,70 @@ const FaqAdminPage = () => {
 		if(faqs !== undefined){
 			setFaqsList(faqs);
 		}
-	},[faqs])
+	},[faqs]);
+
+	useEffect(() =>{
+		if(addSuccess){
+			toast({
+				variant: "success",
+				title: "Se ha añadido una nueva FAQ correctamente",
+				className: "bg-primaryGreen text-white text-lg font-bold",
+			});
+
+			setAddSuccess(false);
+		}
+
+		if(addReject){
+			toast({
+        variant: "destructive",
+        title: "Ha ocurrido un problema al añadir la nueva FAQ",
+        className: "bg-secondRed text-white text-lg font-bold",
+      });
+
+			setAddReject(false);
+		}
+
+		if(editSuccess){
+			toast({
+				variant: "success",
+				title: "Se ha editado la FAQ correctamente",
+				className: "bg-primaryGreen text-white text-lg font-bold",
+			});
+
+			setEditSuccess(false);
+		}
+
+		if(editReject){
+			toast({
+				variant: "destructive",
+				title: "Ha ocurrido un problema al editar la FAQ",
+				className: "bg-secondRed text-white text-lg font-bold",
+			});
+
+			setEditReject(false);
+		}
+
+		if(deleteSuccess){
+			toast({
+				variant: "success",
+				title: "Se ha eliminado la FAQ correctamente",
+				className: "bg-primaryGreen text-white text-lg font-bold",
+			});
+
+			setDeleteSuccess(false);
+		}
+
+		if(deleteReject){
+			toast({
+				variant: "destructive",
+				title: "Ha ocurrido un problema al eliminar la FAQ",
+				className: "bg-secondRed text-white text-lg font-bold",
+			});
+
+			setDeleteReject(false);
+		}
+
+	},[addSuccess, addReject, editSuccess, editReject, deleteSuccess, deleteReject]);
 
 	if (loading) return <Loading/>;
 
@@ -50,14 +123,22 @@ const FaqAdminPage = () => {
   }
 
 	const handleClickDelete = async () => {
-    await deleteFaqService(faqId, token);
-		
-		const findFaq = faqsList.find((faq) => faq.id === parseInt(faqId));
-		const indexEditedFaq = faqsList.indexOf(findFaq);
-		const newFaqsList = [...faqsList];
-		newFaqsList.splice(indexEditedFaq, 1);
+		try{
+			await deleteFaqService(faqId, token);
+			setDeleteSuccess(true);
+		}catch(e){
+			setDeleteReject(true);
+		}finally{
+			if(!deleteReject){
+				const findFaq = faqsList.find((faq) => faq.id === parseInt(faqId));
+				const indexEditedFaq = faqsList.indexOf(findFaq);
+				const newFaqsList = [...faqsList];
+				newFaqsList.splice(indexEditedFaq, 1);
+				
+				setFaqsList(newFaqsList);
+			}
+		}
 
-    setFaqsList(newFaqsList);
     setDeleteModalOpen(false);
   };
 
@@ -74,7 +155,7 @@ const FaqAdminPage = () => {
 		</div>
 		<ol className='flex flex-col gap-5'>
 		{deleteModalOpen && <DeleteFaq handleClickDelete={handleClickDelete} setDeleteModalOpen={setDeleteModalOpen} /> }
-		{clickedAdd && <AddFaq setClickedAdd={setClickedAdd} faqsList={faqsList} setFaqsList={setFaqsList} token={token}/> }
+		{clickedAdd && <AddFaq setClickedAdd={setClickedAdd} faqsList={faqsList} setFaqsList={setFaqsList} setAddSuccess={setAddSuccess} setAddReject={setAddReject} setEditReject={setEditReject} token={token}/> }
 		{
 			faqsList.length > 0 ? 
 			faqsList.map((faq) => {
@@ -82,7 +163,7 @@ const FaqAdminPage = () => {
 							<li key={faq.id} className='flex flex-col justify-between p-8 items-center shadow-md md:flex-row'>
 								{
 									clickedEdit && faqId === faq.id ?
-										<EditFaq currentFaq={faq} faqsList={faqsList} setFaqsList={setFaqsList} faqId={faqId} setClickedEdit={setClickedEdit} token={token}/>
+										<EditFaq currentFaq={faq} faqsList={faqsList} setFaqsList={setFaqsList} faqId={faqId} setClickedEdit={setClickedEdit} setEditSuccess={setEditSuccess} setEditReject={setEditReject} token={token}/>
 									:
 										<article className="lg:w-[100%]">
 											<div>
@@ -107,6 +188,7 @@ const FaqAdminPage = () => {
 				</>
 		}
 		</ol>
+		<Toaster />
 	</main>
 	);
 };
