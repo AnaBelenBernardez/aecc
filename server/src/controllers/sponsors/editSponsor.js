@@ -43,7 +43,18 @@ async function editSponsor (req,res,next) {
         }
         
         if(logo){
+            const [oldDataSponsor] = await pool.query(
+                `
+                    SELECT *
+                    FROM sponsors
+                    WHERE id = ?
+                `,[idSponsor]
+            );
+
+            deletePhoto(oldDataSponsor[0].logo);
+
             const logoName = await savePhoto(logo, 500);
+
             await pool.query(
                 `
                     UPDATE sponsors 
@@ -52,8 +63,6 @@ async function editSponsor (req,res,next) {
                 `,
                 [logoName, idSponsor]
             );
-
-            deletePhoto(duplicateSponsor[0].logo);
         }
 
         const [editedSponsor] = await pool.query(
