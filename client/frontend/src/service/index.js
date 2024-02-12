@@ -442,12 +442,15 @@ export const getAllEventsFilterService = async (
 };
 
 export const deletePhotoEventService = async (token, idEvent, idPhoto) => {
-  const response = await fetch(`${backAPI}/events/admin/${idEvent}/delete/photo/${idPhoto}`, {
-    method: 'DELETE',
-    headers : {
-      token: token
+  const response = await fetch(
+    `${backAPI}/events/admin/${idEvent}/delete/photo/${idPhoto}`,
+    {
+      method: "DELETE",
+      headers: {
+        token: token,
+      },
     }
-  });
+  );
 
   const data = response.json();
 
@@ -462,16 +465,16 @@ export const addPhotoEventService = async (token, idEvent, photo) => {
   const addPhotoForm = new FormData();
 
   for (const item of photo) {
-    addPhotoForm.append('photo', item);
+    addPhotoForm.append("photo", item);
   }
 
   const response = await fetch(`${backAPI}/events/admin/add-photo/${idEvent}`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      token: token
+      token: token,
     },
-    body: addPhotoForm
-  })
+    body: addPhotoForm,
+  });
 
   const data = await response.json();
 
@@ -480,7 +483,7 @@ export const addPhotoEventService = async (token, idEvent, photo) => {
   }
 
   return data.data;
-}
+};
 
 export const getAllSponsorsService = async () => {
   const response = await fetch(`${backAPI}/sponsors/`);
@@ -523,38 +526,99 @@ export const deleteSponsorService = async (id, token) => {
   return data.data;
 };
 
-export const editSponsorService = async (formData, token, id) =>{
+export const editSponsorService = async (formData, token, id) => {
   const response = await fetch(`${backAPI}/sponsors/admin/edit/${id}`, {
     method: "PUT",
     body: formData,
-    headers:{
+    headers: {
       token: token,
     },
   });
-  
+
   const data = await response.json();
 
-  if(!response.ok){
+  if (!response.ok) {
     throw new Error(data.message);
   }
 
   return data.data;
-}
-
-export const addSponsorService = async (formData, token) =>{
+};
+export const addSponsorService = async (formData, token) => {
   const response = await fetch(`${backAPI}/sponsors/admin/add`, {
     method: "POST",
     body: formData,
-    headers:{
+    headers: {
       token: token,
     },
   });
-  
+
   const data = await response.json();
 
-  if(!response.ok){
+  if (!response.ok) {
     throw new Error(data.message);
   }
 
   return data.data;
-}
+};
+
+export const addAchievement = async (token, formValues) => {
+  const editNewForm = new FormData();
+  editNewForm.append("description", formValues.description);
+  editNewForm.append("icon", formValues.icon[0]);
+  editNewForm.append("galician_description", formValues.galician_description);
+  const response = await fetch(`${backAPI}/achievements/admin/add`, {
+    method: "POST",
+    headers: {
+      token: token,
+    },
+    body: editNewForm,
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+  return data;
+};
+
+export const deleteAchievementService = async (id, token) => {
+  const response = await fetch(`${backAPI}/achievements/admin/delete/${id}`, {
+    method: "DELETE",
+    headers: {
+      token: token,
+    },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+
+export const editAchievementService = async (id, token, formValues) => {
+  console.log(formValues.icon[0]);
+  const editNewForm = new FormData();
+  editNewForm.append("description", formValues.description);
+  editNewForm.append("icon", formValues.icon[0]);
+  editNewForm.append("galician_description", formValues.galician_description);
+
+  const response = await fetch(`${backAPI}/achievements/admin/edit/${id}`, {
+    method: "PUT",
+    headers: {
+      token: token,
+    },
+    body: editNewForm,
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
+};

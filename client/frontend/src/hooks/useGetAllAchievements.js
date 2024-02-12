@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react';
-import { getAllAchievementsService } from '../service/index';
+import { useState, useEffect } from "react";
+import { getAllAchievementsService } from "../service";
 
 const useGetAllAchievements = () => {
   const [achievements, setAchievements] = useState();
@@ -20,13 +20,17 @@ const useGetAllAchievements = () => {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     loadAchievements();
   }, []);
 
-  return { achievements, loading, error };
+  const refetch = () => {
+    loadAchievements();
+  };
+  console.log(achievements);
+  return { achievements, loading, error, refetch };
 };
 
 export default useGetAllAchievements;
