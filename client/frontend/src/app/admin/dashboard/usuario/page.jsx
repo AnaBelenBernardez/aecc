@@ -5,10 +5,13 @@ import { useRouter } from 'next/navigation';
 import { useLoginStore } from '../../../../store';
 import { changePwd } from '../../../../service';
 import Image from 'next/image';
+import { useToast } from '../../../../components/ui/use-toast';
+import { Toaster } from '../../../../components/ui/toaster';
 
 const EditUser = () => {
   const router = useRouter();
   const token = useLoginStore((state) => state.token);
+  const { toast } = useToast();
   if (!token) {
     router.push("/admin");
   }
@@ -39,6 +42,10 @@ const EditUser = () => {
         className: "bg-secondRed text-white text-lg font-bold"
       })
     }
+  }
+
+  const handleCancel = () => {
+    router.push("/admin/dashboard");
   }
 
   return (
@@ -73,7 +80,7 @@ const EditUser = () => {
             >
               CONFIRMAR
             </button>
-            <button type='button'
+            <button type='button' onClick={handleCancel}
               className='text-secondRed border-2 border-secondRed font-bold rounded-3xl text-sm px-10 py-2 hover:text-secondLightGray hover:bg-secondRed'
             >
               CANCELAR
@@ -81,6 +88,7 @@ const EditUser = () => {
           </div>
         </form>
       </div>
+      <Toaster />
     </main>
   )
 };

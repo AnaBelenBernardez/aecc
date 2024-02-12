@@ -1,21 +1,10 @@
 "use client"
 
 import { useState } from 'react';
-import { addNewService } from '../../../service';
 import Image from 'next/image';
-import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 
-const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
-    const { toast } = useToast();
-  const [formValues, setFormValues] = useState({
-    title: '',
-    content: '',
-    link: '',
-    galician_title: '',
-    galician_content: '',
-    photo: ''
-  });
+const AddNewModal = ({setAddNewModalOpen, formValues, setFormValues, handleSubmitAdd}) => {
   const [newPhoto, setNeWPhoto] = useState();
 
   const handleChange = (e) => {
@@ -34,31 +23,13 @@ const AddNewModal = ({setAddNewModalOpen, token, refetch}) => {
     setNeWPhoto(e.target.files);
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      await addNewService(token, formValues);
-      setAddNewModalOpen(false);
-      refetch();
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: error.message,
-        className: "bg-secondRed text-white text-lg font-bold"
-      })
-    }
-  }
-
-  console.log(newPhoto);
-
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
       <div className='relative w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12'>
       <button onClick={() => setAddNewModalOpen(false)} className="absolute top-5 right-7 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300">
               <img src="/icons/closeModals.svg" alt='Icono de cerrar'/>
             </button>
-        <form className='flex flex-col gap-2 overflow-auto' onSubmit={handleSubmit}>
+        <form className='flex flex-col gap-2 overflow-auto' onSubmit={handleSubmitAdd}>
           <h2 className='font-bold text-lg text-primaryGreen'>Formulario en castellano</h2>
             <label htmlFor="title" className='font-bold text-sm'>
               Título

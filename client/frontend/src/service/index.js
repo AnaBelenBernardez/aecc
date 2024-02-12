@@ -226,7 +226,10 @@ export const addNewService = async (token, formValues) => {
   addNewForm.append("link", formValues.link);
   addNewForm.append("galician_title", formValues.galician_title);
   addNewForm.append("galician_content", formValues.galician_content);
-  addNewForm.append("photo", formValues.photo[0][0]);
+
+  if (formValues.photo !== "") {
+    addNewForm.append("photo", formValues.photo[0][0]);
+  }
 
   const response = await fetch(`${backAPI}/news/admin/add`, {
     method: "POST",
@@ -245,15 +248,15 @@ export const addNewService = async (token, formValues) => {
   return data.data;
 };
 
-export const editNewService = async (formValues, idNew, token) => {
+export const editNewService = async (formValuesEdit, idNew, token) => {
   const editNewForm = new FormData();
-  editNewForm.append("title", formValues.title);
-  editNewForm.append("content", formValues.content);
-  editNewForm.append("link", formValues.link);
-  editNewForm.append("galician_title", formValues.galician_title);
-  editNewForm.append("galician_content", formValues.galician_content);
-  if (Array.isArray(formValues.photo)) {
-    editNewForm.append("photo", formValues.photo[0][0]);
+  editNewForm.append("title", formValuesEdit.title);
+  editNewForm.append("content", formValuesEdit.content);
+  editNewForm.append("link", formValuesEdit.link);
+  editNewForm.append("galician_title", formValuesEdit.galician_title);
+  editNewForm.append("galician_content", formValuesEdit.galician_content);
+  if (Array.isArray(formValuesEdit.photo)) {
+    editNewForm.append("photo", formValuesEdit.photo[0][0]);
   }
 
   const response = await fetch(`${backAPI}/news/admin/edit/${idNew}`, {
@@ -353,16 +356,14 @@ export const editEventService = async (id, token, formValues) => {
 
   return data;
 };
-export const editExperienceService = async (
-  formValues,
-  idExperience,
-  token
-) => {
+
+export const editExperienceService = async (formValues ,idExperience ,token) => {
   const editExperienceForm = new FormData();
   editExperienceForm.append("name", formValues.name);
   editExperienceForm.append("content", formValues.content);
   editExperienceForm.append("galician_content", formValues.galician_content);
-  if (Array.isArray(formValues.photo)) {
+
+  if (formValues.photo) {
     editExperienceForm.append("photo", formValues.photo[0][0]);
   }
 
