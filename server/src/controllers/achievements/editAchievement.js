@@ -7,94 +7,93 @@ const savePhoto = require("../../helpers/savePhoto");
 const deletePhoto = require("../../helpers/deletePhoto");
 
 async function editAchievement(req, res, next) {
-  try {
+    try {
     const { idAchievement } = req.params;
     const pool = await getPool();
 
     const icon = req.files?.icon;
 
     if (req.files) {
-      if (req.files.length > 1) {
-        return next(
-          generateError("Sólo es posible anexar un icono por logro", 400)
-        );
-      }
+        if (req.files.length > 1) {
+            return next(generateError("Sólo es posible anexar un icono por logro", 400));
+        }
 
-      await photoSchema.validateAsync(icon);
+        await photoSchema.validateAsync(icon);
     }
 
     const { error } = achievementSchema.validate(req.body);
 
     if (error) {
-      return next(generateError(error.message, 400));
+        return next(generateError(error.message, 400));
     }
 
     const { description, galician_description } = req.body;
 
     const [duplicateAchievement] = await pool.query(
-      `
+        `
                 SELECT *
                 FROM achievements
                 WHERE description = ?
             `,
-      [description]
+        [description]
     );
 
-    console.log(duplicateAchievement);
 
-    if (
-      duplicateAchievement.length &&
-      duplicateAchievement[0].id !== parseInt(idAchievement)
-    ) {
-      return next(
-        generateError(
-          "Ya existe ese logro en la web, edítalo o elimínalo para evitar contenidos duplicados",
-          400
-        )
-      );
+    if(duplicateAchievement.length && duplicateAchievement[0].id !== parseInt(idAchievement)){
+        return next(generateError('Ya existe ese logro en la web, edítalo o elimínalo para evitar contenidos duplicados', 400));
     }
+    
+    if(icon){
+        const [oldDataAchievements] = await pool.query(
+            `
+                SELECT *
+                FROM achievements
+                WHERE id = ?
+            `,[idAchievement]
+        );
 
-    if (icon) {
-      const iconName = await savePhoto(icon, 500);
-      await pool.query(
-        `
-                    UPDATE achievements 
-                    SET icon = ?
-                    WHERE id = ?
-                `,
-        [iconName, idAchievement]
-      );
+        deletePhoto(oldDataAchievements[0].icon);
 
-      deletePhoto(duplicateAchievement[0].icon);
+        const iconName = await savePhoto(icon, 500);
+
+        await pool.query(
+            `
+                UPDATE achievements 
+                SET icon = ?
+                WHERE id = ?
+            `,
+            [iconName, idAchievement]
+        );
     }
 
     const [editedAchievement] = await pool.query(
-      `
+        `
                 UPDATE achievements
                 SET description = ?, galician_description = ?
                 WHERE id = ?
             `,
-      [description, galician_description, idAchievement]
+        [description, galician_description, idAchievement]
     );
 
     const [updatedAchievement] = await pool.query(
-      `
+        `
                 SELECT *
                 FROM achievements
                 WHERE id = ?
             `,
-      [idAchievement]
+        [idAchievement]
     );
 
     res.status(200).send({
-      status: "OK",
-      data: updatedAchievement,
-      infoEdited: editedAchievement,
+        status: "OK",
+        data: updatedAchievement,
+        infoEdited: editedAchievement,
     });
-  } catch (e) {
-    console.log(e);
-    next(e);
-  }
+
+    } catch (e) {
+        console.log(e);
+        next(e);
+    }
 }
 
 module.exports = editAchievement;
