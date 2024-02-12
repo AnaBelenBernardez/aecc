@@ -68,19 +68,19 @@ async function editAchievement(req, res, next) {
 
         const [editedAchievement] = await pool.query(
             `
-                    UPDATE achievements
-                    SET description = ?, galician_description = ?
-                    WHERE id = ?
-                `,
+                UPDATE achievements
+                SET description = ?, galician_description = ?
+                WHERE id = ?
+            `,
             [description, galician_description, idAchievement]
         );
 
         const [updatedAchievement] = await pool.query(
             `
-                    SELECT *
-                    FROM achievements
-                    WHERE id = ?
-                `,
+                SELECT *
+                FROM achievements
+                WHERE id = ?
+            `,
             [idAchievement]
         );
 
