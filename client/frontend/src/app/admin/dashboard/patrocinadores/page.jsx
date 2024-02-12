@@ -12,7 +12,9 @@ import { deleteSponsorService } from '../../../../service';
 import AddSponsor from '../../../../components/modals/sponsors/AddSponsor';
 import Link from "next/link";
 import EditSponsor from '../../../../components/modals/sponsors/EditSponsor';
-
+import { addSponsorService, editSponsorService } from '../../../../service';
+import { useToast } from '../../../../components/ui/use-toast';
+import { Toaster } from '../../../../components/ui/toaster';
 
 const SponsorAdminPage = () => {
 	const { sponsors, loading, error } = useGetAllSponsors();
@@ -21,6 +23,7 @@ const SponsorAdminPage = () => {
 	const [sponsorId, setSponsorId] = useState();
 	const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 	const [clickedAdd, setClickedAdd] = useState(false);
+	const { toast } = useToast();
 
 	const router = useRouter();
   const token = useLoginStore((state) => state.token);
@@ -36,9 +39,9 @@ const SponsorAdminPage = () => {
 
 	if (loading) return <Loading/>;
 
-	function handleClickEdit(id){
+	function handleClickEdit(sponsor){
 		setClickedEdit(true);
-		setSponsorId(id);
+		setSponsorId(sponsor.id);
 	}
 
 	function openModalDelete(sponsorId){
@@ -60,7 +63,38 @@ const SponsorAdminPage = () => {
 
     setSponsorsList(newSponsorsList);
     setDeleteModalOpen(false);
+		toast({
+			variant: "succes",
+			title: "Patrocinador eliminado correctamente",
+			className: "bg-primaryGreen text-white text-lg font-bold"
+		})
   };
+
+	async function handleSubmitAdd(e){
+    e.preventDefault();
+
+    let newSponsor;
+    const data = new FormData (e.target);
+
+    try{
+      newSponsor = await addSponsorService(data, token);
+			toast({
+				variant: "succes",
+				title: "Patrocinador añadido correctamente",
+				className: "bg-primaryGreen text-white text-lg font-bold"
+			})
+    }catch(e){
+      setErrorAdd(e.message);
+    } finally{
+      setClickedAdd(false);
+
+      const newSponsorsList = [...sponsorsList];
+
+      newSponsorsList.push(newSponsor);
+
+      setSponsorsList(newSponsorsList);
+    }
+	}
 
 	return (
 	<main className="mx-10 my-10 flex flex-col gap-4 items-center">
@@ -75,7 +109,7 @@ const SponsorAdminPage = () => {
 		</div>
 		<ol className='flex flex-col gap-5'>
     {deleteModalOpen && <DeleteSponsor handleClickDelete={handleClickDelete} setDeleteModalOpen={setDeleteModalOpen} /> }
-    {clickedAdd && <AddSponsor setClickedAdd={setClickedAdd} sponsorsList={sponsorsList} setSponsorsList={setSponsorsList} token={token}/> }
+    {clickedAdd && <AddSponsor setClickedAdd={setClickedAdd} sponsorsList={sponsorsList} setSponsorsList={setSponsorsList} handleSubmitAdd={handleSubmitAdd}/> }
 		{
 			sponsorsList.length > 0 ? 
 			sponsorsList.map((sponsor) => {
@@ -84,7 +118,8 @@ const SponsorAdminPage = () => {
 							<li key={sponsor.id} className='flex flex-col justify-between p-4 items-center shadow-md md:flex-row'>
 								{
 									clickedEdit && sponsorId === sponsor.id ?
-                  <EditSponsor currentSponsor={sponsor} sponsorsList={sponsorsList} setSponsorsList={setSponsorsList} sponsorId={sponsorId} setClickedEdit={setClickedEdit} token={token}/>
+                  <EditSponsor currentSponsor={sponsor} sponsorsList={sponsorsList} setSponsorsList={setSponsorsList} sponsorId={sponsorId} 
+										setClickedEdit={setClickedEdit} token={token}/>
 									:
 										<article className="lg:w-[100%] flex flex-col justify-items-center">
                       <section className="flex flex-col justify-items-center w-[85vw]">
@@ -102,7 +137,7 @@ const SponsorAdminPage = () => {
                         <p className="line-clamp-3">{sponsor.description}</p>
                       </section>
 											<section className='self-end flex gap-4 justify-end lg:w-[100%]'>
-												<button onClick={()=>handleClickEdit(sponsor.id)} className='flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen'><Image src="/icons/editIcon.svg" width={24} height={24} alt="Editar"></Image>EDITAR</button>
+												<button onClick={()=>handleClickEdit(sponsor)} className='flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen'><Image src="/icons/editIcon.svg" width={24} height={24} alt="Editar"></Image>EDITAR</button>
 												<button onClick={() => openModalDelete(sponsor.id)}className='flex gap-4 items-center justify-center border border-secondRed py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-secondRed'><Image src="/icons/deleteIcon.svg" width={24} height={24} alt="Eliminar"></Image>ELIMINAR</button>
 											</section>
 										</article>
@@ -119,6 +154,7 @@ const SponsorAdminPage = () => {
 				</>
 		}
 		</ol>
+		<Toaster/>
 	</main>
 	);
 };
