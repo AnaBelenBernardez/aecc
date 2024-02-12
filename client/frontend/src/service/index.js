@@ -226,6 +226,7 @@ export const addNewService = async (token, formValues) => {
   addNewForm.append("link", formValues.link);
   addNewForm.append("galician_title", formValues.galician_title);
   addNewForm.append("galician_content", formValues.galician_content);
+  addNewForm.append("news_date", formValues.news_date);
 
   if (formValues.photo !== "") {
     addNewForm.append("photo", formValues.photo[0][0]);
@@ -255,6 +256,8 @@ export const editNewService = async (formValuesEdit, idNew, token) => {
   editNewForm.append("link", formValuesEdit.link);
   editNewForm.append("galician_title", formValuesEdit.galician_title);
   editNewForm.append("galician_content", formValuesEdit.galician_content);
+  editNewForm.append("news_date", formValuesEdit.news_date);
+  
   if (Array.isArray(formValuesEdit.photo)) {
     editNewForm.append("photo", formValuesEdit.photo[0][0]);
   }
