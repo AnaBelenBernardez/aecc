@@ -17,7 +17,6 @@ async function savePhoto (photo, width) {
 
   try {
     const image = sharp(photo.data);
-    image.resize(width);
 
     const imageName = uuid.v4() + path.extname(photo.name);
 

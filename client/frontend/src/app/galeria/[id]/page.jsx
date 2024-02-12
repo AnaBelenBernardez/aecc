@@ -4,14 +4,39 @@ import Loading from '../../../components/loading/Loading';
 import useGetEvent from '../../../hooks/useGetEvent';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import PreviewImageModal from '../../../components/modals/images/PreviewImageModal';
+import { useState } from 'react';
 
 const EventPhotos = () => {
+  const [modalIndex, setModalIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const {id} = useParams();
-
   const { event, loading, error } = useGetEvent(id);
 
+  const openModal = (index) => {
+    setIsModalOpen(true);
+    setModalIndex(index);
+  };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalIndex(0);
+  };
+
+  const showPrevImage = () => {
+    setModalIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  };
+
+  const showNextImage = () => {
+    setModalIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+ const images = event?.event_photos.map((photo) => {
+   return process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${photo.photo}`
+ })
+ 
   if (loading) return <Loading/>;
+
 
   return (
     <main className='my-4'>
@@ -31,14 +56,22 @@ const EventPhotos = () => {
                       ||i===310||i===313||i===320||i===326||i===330||i===336||i===340||i===346||i===350||i===356||i===360||i===363||i===370||i===376||i===380
                       ||i===386||i===390||i===396||i === 398 || i=== 400 ? "col-span-2 row-span-2" : ""}`}
                   >
-                    <Link href={imgSrc} target='_blank'>
-                      <img src={imgSrc} className='w-full h-full object-cover grayscale hover:grayscale-0 transition-all ease-in-out duration-1000 rounded-xl'/>
-                    </Link>
+                    
+                      <img src={imgSrc} onClick={() => openModal(i)} className='w-full h-full object-cover grayscale hover:grayscale-0 transition-all ease-in-out duration-1000 rounded-xl'/>
+                    
                   </div>
                 )
                 })}
             </div>
           : null
+      }
+      {isModalOpen && <PreviewImageModal
+        images={images}
+        currentIndex={modalIndex}
+        onClose={closeModal}
+        onPrev={showPrevImage}
+        onNext={showNextImage}
+        />
       }
     </main>
   )
