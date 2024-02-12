@@ -10,6 +10,8 @@ import Loading from "../../components/loading/Loading";
 import { useEffect, useState } from "react";
 import { getAllEventsFilterService } from "../../service";
 import { useLanguageStore } from "../../store/language/language.store";
+import { useToast } from '../../components/ui/use-toast';
+import { Toaster } from '../../components/ui/toaster';
 
 export default function CalendarAndRegistration() {
   const { events, loading, error } = useGetAllEvents();
@@ -18,25 +20,28 @@ export default function CalendarAndRegistration() {
   const [eventDateStart, setEventDateStart] = useState();
   const [eventDateEnd, setEventDateEnd] = useState();
   const [filteredEvents, setFilteredEvents] = useState(events);
-
   const language = useLanguageStore((state) => state.language);
   const categoryEvents = [];
   const locations = [];
+  const { toast } = useToast();
 
 
   useEffect(() => {
-    try {
+
       getAllEventsFilterService(
         typeEvent,
         locationEvent,
         eventDateStart,
         eventDateEnd
-      ).then((res) => {
+      ).catch((err) => {
+        toast({
+          variant: "destructive",
+          title: err.message,
+          className: "bg-secondRed text-white text-lg font-bold"
+        })
+      }).then((res) => {
         setFilteredEvents(res);
       });
-    } catch (error) {
-      console.error(error);
-    }
   }, [typeEvent, locationEvent, eventDateStart, eventDateEnd]);
 
   events.forEach((event) => {
@@ -144,6 +149,7 @@ export default function CalendarAndRegistration() {
           </Link>
         </>
       )}
+      <Toaster />
     </main>
   );
 }

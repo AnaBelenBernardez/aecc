@@ -5,9 +5,10 @@ import useGetAllNews from "../../../../hooks/useGetAllNews";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useLoginStore } from "../../../../store";
-import { deleteNewService } from "../../../../service";
-import { useState } from "react";
-
+import { deleteNewService, addNewService, editNewService } from "../../../../service";
+import { useState, useEffect } from "react";
+import { useToast } from '../../../../components/ui/use-toast';
+import { Toaster } from '../../../../components/ui/toaster';
 import AddNewModal from "../../../../components/modals/news/AddNewModal";
 import EditNewModal from "../../../../components/modals/news/EditNewModal";
 import BlockScroll from "../../../../components/blockScroll/BlockScroll";
@@ -19,14 +20,43 @@ const dashboardNews = () => {
   if (!token) {
     router.push("/admin");
   }
+  const { toast } = useToast();
 
-  const { news, loading, error, refetch } = useGetAllNews();
+  const { news, loading, refetch } = useGetAllNews();
   const [idNewOpen, setIdNewOpen] = useState();
   const [deleteModalOpen, setDeleteModalOpen] = useState();
   const [addNewModalOpen, setAddNewModalOpen] = useState();
   const [editNewModalOpen, setEditNewModalOpen] = useState();
   const [singleNew, setSingleNew] = useState();
+  const [formValues, setFormValues] = useState({
+    title: '',
+    content: '',
+    link: '',
+    galician_title: '',
+    galician_content: '',
+    photo: ''
+  });
+  const [formValuesEdit, setFormValuesEdit] = useState({
+    title: singleNew?.title || "",
+    content: singleNew?.content || "",
+    link: singleNew?.link || "",
+    galician_title: singleNew?.galician_title || "",
+    galician_content: singleNew?.galician_content || "",
+    photo: singleNew?.photo || ""
+  })
 
+  useEffect(() => {
+    if (singleNew) {
+      setFormValuesEdit({
+        title: singleNew.title,
+        content: singleNew.content,
+        link: singleNew.link,
+        galician_title: singleNew.galician_title,
+        galician_content: singleNew.galician_content
+      })
+    }
+  }, [singleNew])
+  
   const openModalDelete = async (idNew) => {
     setIdNewOpen(idNew);
     setDeleteModalOpen(true);
@@ -36,7 +66,55 @@ const dashboardNews = () => {
     await deleteNewService(idNewOpen, token);
     refetch();
     setDeleteModalOpen(false);
+    toast({
+      variant: "succes",
+      title: "Noticia eliminada correctamente",
+      className: "bg-primaryGreen text-white text-lg font-bold"
+    })
   };
+
+  const handleSubmitAdd = async (e) => {
+    e.preventDefault();
+
+    try {
+      await addNewService(token, formValues);
+      setAddNewModalOpen(false);
+      refetch();
+      toast({
+        variant: "succes",
+        title: "Noticia añadida correctamente",
+        className: "bg-primaryGreen text-white text-lg font-bold"
+      })
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: error.message,
+        className: "bg-secondRed text-white text-lg font-bold"
+      })
+    }
+  }
+
+  const handleSubmitEdit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await editNewService(formValuesEdit, singleNew.id, token);
+      setEditNewModalOpen(false);      
+      refetch();
+      toast({
+        variant: "succes",
+        title: "Noticia editada correctamente",
+        className: "bg-primaryGreen text-white text-lg font-bold"
+      })
+    } catch (error) {
+      console.log(error);
+      toast({
+        variant: "destructive",
+        title: error.message,
+        className: "bg-secondRed text-white text-lg font-bold"
+      })
+    }
+  }
 
   const openModalAddNew = async () => {
     setAddNewModalOpen(true);
@@ -64,8 +142,9 @@ const dashboardNews = () => {
       {addNewModalOpen && (
         <AddNewModal
           setAddNewModalOpen={setAddNewModalOpen}
-          token={token}
-          refetch={refetch}
+          formValues={formValues}
+          setFormValues={setFormValues}
+          handleSubmitAdd={handleSubmitAdd}
         />
       )}
       {deleteModalOpen && (
@@ -78,8 +157,9 @@ const dashboardNews = () => {
         <EditNewModal
           currentNew={singleNew}
           setEditNewModalOpen={setEditNewModalOpen}
-          token={token}
-          refetch={refetch}
+          handleSubmitEdit={handleSubmitEdit}
+          setFormValuesEdit={setFormValuesEdit}
+          formValuesEdit={formValuesEdit}
         />
       )}
       {news.length > 0 ? (
@@ -168,6 +248,7 @@ const dashboardNews = () => {
           <p className="mt-2 font-bold text-center">Todavía no hay noticias</p>
         </div>
       )}
+      <Toaster/>
     </main>
   );
 };

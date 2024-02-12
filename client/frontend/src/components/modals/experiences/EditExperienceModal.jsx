@@ -119,7 +119,7 @@ const EditExperienceModal = ({currentExperience, setEditExperienceModalOpen, tok
             ? <div className='min-w-20 min-h-20 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
                   <Image src={file !== null ? file : previousImg} width={150} height={150} alt='Imagen de la noticia' className='rounded-full w-20 h-20'/>
                 </div>
-              : <div className='min-w-20 min-h-20 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
+            : <div className='min-w-20 min-h-20 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
                   <Image src={'/image/userDefault.png'} width={150} height={150} alt='Imagen de la noticia' className='rounded-full object-cover w-20 h-20'/>
                 </div>
           }
