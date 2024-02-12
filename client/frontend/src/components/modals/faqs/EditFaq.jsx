@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { editFaqService } from '../../../service';
 
-function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, token}) {
+function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, setEditSuccess, setEditReject, token}) {
 
   const [question, setQuestion] = useState(currentFaq.question);
   const [galician_question, setGalicianQuestion] = useState(currentFaq.galician_question);
   const [answer, setAnswer] = useState(currentFaq.answer);
   const [galician_answer, setGalicianAnswer] = useState(currentFaq.galician_answer);
-  const [errorEdit, setErrorEdit] = useState("");
+  const [errorEdit, setErrorEdit] = useState(false);
 
   function setEditOpen(cancel){
     setClickedEdit(cancel);
@@ -42,17 +42,21 @@ function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, toke
 
     try{
       editedFaq = await editFaqService(question, galician_question, answer, galician_answer, faqId, token);
+      setEditSuccess(true);
     }catch(e){
-      setErrorEdit(e.message);
+      setErrorEdit(true);
+      setEditReject(true);
     } finally{
+      if(!errorEdit){
+        const findFaq = faqsList.find((faq) => faq.id === parseInt(faqId));
+        const indexEditedFaq = faqsList.indexOf(findFaq);
+        const newFaqsList = [...faqsList];
+        newFaqsList.splice(indexEditedFaq, 1, editedFaq);
+
+        setFaqsList(newFaqsList);
+      }
+
       setClickedEdit(false);
-
-      const findFaq = faqsList.find((faq) => faq.id === parseInt(faqId));
-      const indexEditedFaq = faqsList.indexOf(findFaq);
-      const newFaqsList = [...faqsList];
-      newFaqsList.splice(indexEditedFaq, 1, editedFaq);
-
-      setFaqsList(newFaqsList);
     }
   }
   
@@ -107,7 +111,6 @@ function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, toke
                   </input>
                 </label>
               </li>
-              {errorEdit && <li className='flex flex-col gap-2'><p className="text-xs text-secondRed">{errorEdit}</p></li>}
               <li className='flex flex-col items-center lg:flex-row lg:self-end lg:gap-4'>
                 <button type="submit" className='self-center border-2 mt-4 w-[157px] h-[42px] border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold py-2 px-6 lg:self-end lg:mb-2
                   hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'
