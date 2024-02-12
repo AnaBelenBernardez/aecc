@@ -51,9 +51,9 @@ function AddFaq ({setClickedAdd, faqsList, setFaqsList, setAddSuccess, setAddRej
         newFaqsList.push(newFaq);
 
         setFaqsList(newFaqsList);
-      }
 
-      setClickedAdd(false);
+        setClickedAdd(false);
+      }
     }
 }
 

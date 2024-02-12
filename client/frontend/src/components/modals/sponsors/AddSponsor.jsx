@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { addSponsorService } from '../../../service';
 
-function AddSponsor ({setClickedAdd, handleSubmitAdd}){
+function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces, setAddReject, token}){
   const [name, setName] = useState("");
   const [galician_name, setGalicianName] = useState("");
   const [description, setDescription] = useState("");
@@ -12,7 +13,7 @@ function AddSponsor ({setClickedAdd, handleSubmitAdd}){
   const [important, setImportant] = useState(0);
   const [link, setLink] = useState("");
   const [logoPreview, setLogoPreview] = useState("");
-  const [errorAdd, setErrorAdd] = useState("");
+  const [addError, setAddError] = useState("");
 
 
   function handleChange(e){
@@ -43,12 +44,47 @@ function AddSponsor ({setClickedAdd, handleSubmitAdd}){
           setLink(value);
           break;
         default: 
-          setErrorAdd("Ha ocurrido un error obteniendo los datos del formulario.")
+          setAddError("Ha ocurrido un error obteniendo los datos del formulario.")
           break;
     }
   }
 
- 
+  async function handleSubmitAdd(e){
+    e.preventDefault();
+
+    let error = "";
+
+    let newSponsor;
+    const data = new FormData (e.target);
+
+    try{
+      for(let values of data){
+        if(values[0].includes('logo') && (values[1].size === 0)){
+          throw new Error('Es obligatorio añadir un logo a cada patrocinador.');
+        }
+      }
+
+      newSponsor = await addSponsorService(data, token);
+
+			setAddSucces(true);
+    }catch(e){
+      setAddError(e.message);
+      error = e.message;
+      if(e.message !== 'Es obligatorio añadir un logo a cada patrocinador.') setAddReject(true);
+      
+    } finally{
+      if(error === ""){
+        const newSponsorsList = [...sponsorsList];
+
+        newSponsorsList.push(newSponsor);
+
+        setSponsorsList(newSponsorsList);
+
+        setClickedAdd(false);
+        setAddError(error);
+      }
+    }
+	}
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
@@ -155,21 +191,21 @@ function AddSponsor ({setClickedAdd, handleSubmitAdd}){
                     </figure>
                   }
                 </li>
-              {errorAdd && <li className='flex flex-col gap-2'><p className="text-xs text-secondRed">{errorAdd}</p></li>}
-              <li className='flex flex-col items-center lg:flex-row lg:self-end lg:gap-4'>
-                <button type="submit" className='self-center border-2 mt-4 w-[157px] h-[42px] border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold py-2 px-6 lg:self-end lg:mb-2
-                  hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'
+                <span>{addError !== "" && <p className='text-xs text-red-700'>{addError}</p>}</span>
+                <li className='flex flex-col items-center lg:flex-row lg:self-end lg:gap-4'>
+                  <button type="submit" className='self-center border-2 mt-4 w-[157px] h-[42px] border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold py-2 px-6 lg:self-end lg:mb-2
+                    hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'
+                    >
+                    GUARDAR
+                  </button>
+                  <button 
+                    type='button' 
+                    className='flex self-center mt-2 gap-4 w-[157px] h-[42px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray'
+                    onClick={() => setClickedAdd(false)}
                   >
-                  GUARDAR
-                </button>
-                <button 
-                  type='button' 
-                  className='flex self-center mt-2 gap-4 w-[157px] h-[42px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray'
-                  onClick={() => setClickedAdd(false)}
-                >
-                  CANCELAR
-                </button>
-              </li>
+                    CANCELAR
+                  </button>
+                </li>
             </ul>
           </fieldset>
         </form>

@@ -47,7 +47,7 @@ const FaqAdminPage = () => {
 		if(addSuccess){
 			toast({
 				variant: "success",
-				title: "Se ha añadido una nueva FAQ correctamente",
+				title: "Se ha añadido una nueva FAQ correctamente.",
 				className: "bg-primaryGreen text-white text-lg font-bold",
 			});
 
@@ -57,7 +57,7 @@ const FaqAdminPage = () => {
 		if(addReject){
 			toast({
         variant: "destructive",
-        title: "Ha ocurrido un problema al añadir la nueva FAQ",
+        title: "Ha ocurrido un problema al añadir la nueva FAQ.",
         className: "bg-secondRed text-white text-lg font-bold",
       });
 
@@ -67,7 +67,7 @@ const FaqAdminPage = () => {
 		if(editSuccess){
 			toast({
 				variant: "success",
-				title: "Se ha editado la FAQ correctamente",
+				title: "Se ha editado la FAQ correctamente.",
 				className: "bg-primaryGreen text-white text-lg font-bold",
 			});
 
@@ -77,7 +77,7 @@ const FaqAdminPage = () => {
 		if(editReject){
 			toast({
 				variant: "destructive",
-				title: "Ha ocurrido un problema al editar la FAQ",
+				title: "Ha ocurrido un problema al editar la FAQ.",
 				className: "bg-secondRed text-white text-lg font-bold",
 			});
 
@@ -87,7 +87,7 @@ const FaqAdminPage = () => {
 		if(deleteSuccess){
 			toast({
 				variant: "success",
-				title: "Se ha eliminado la FAQ correctamente",
+				title: "Se ha eliminado la FAQ correctamente.",
 				className: "bg-primaryGreen text-white text-lg font-bold",
 			});
 
@@ -97,7 +97,7 @@ const FaqAdminPage = () => {
 		if(deleteReject){
 			toast({
 				variant: "destructive",
-				title: "Ha ocurrido un problema al eliminar la FAQ",
+				title: "Ha ocurrido un problema al eliminar la FAQ.",
 				className: "bg-secondRed text-white text-lg font-bold",
 			});
 

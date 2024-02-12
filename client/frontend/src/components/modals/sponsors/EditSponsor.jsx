@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Image from 'next/image';
 import { editSponsorService } from '../../../service';
 
-function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, setClickedEdit, token}) {
+function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, setClickedEdit, setEditSuccess, setEditReject, token}) {
 
   const [name, setName] = useState(currentSponsor.name);
   const [galician_name, setGalicianName] = useState(currentSponsor.galician_name);
@@ -12,7 +12,7 @@ function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, 
   const [important, setImportant] = useState(currentSponsor.important);
   const [link, setLink] = useState(currentSponsor.link);
   const [logoPreview, setLogoPreview] = useState(process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${logo}`);
-  const [errorEdit, setErrorEdit] = useState("");
+  const [errorEdit, setErrorEdit] = useState(false);
 
   function setEditOpen(cancel){
     setClickedEdit(cancel);
@@ -46,7 +46,7 @@ function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, 
         setLink(value);
         break;
       default: 
-        setErrorAdd("Ha ocurrido un error obteniendo los datos del formulario.")
+        setErrorEdit("Ha ocurrido un error obteniendo los datos del formulario.")
         break;
     }
   }
@@ -59,16 +59,20 @@ function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, 
 
     try{
       editedSponsor = await editSponsorService(data, token, sponsorId);
+      setEditSuccess(true);
     }catch(e){
-      setErrorEdit(e.message);
+      setEditReject(true);
+      setErrorEdit(true);
     } finally{
-      setClickedEdit(false);
+      if(!errorEdit){
+        const findSponsor = sponsorsList.find((sponsor) => sponsor.id === parseInt(sponsorId));
+        const indexEditedSponsor = sponsorsList.indexOf(findSponsor);
+        const newSponsorsList = [...sponsorsList];
+        newSponsorsList.splice(indexEditedSponsor, 1, editedSponsor);
+        setSponsorsList(newSponsorsList);
 
-      const findSponsor = sponsorsList.find((sponsor) => sponsor.id === parseInt(sponsorId));
-      const indexEditedSponsor = sponsorsList.indexOf(findSponsor);
-      const newSponsorsList = [...sponsorsList];
-      newSponsorsList.splice(indexEditedSponsor, 1, editedSponsor);
-      setSponsorsList(newSponsorsList);
+        setClickedEdit(false);
+      }
     }
   }
   
@@ -179,7 +183,6 @@ function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, 
                     </figure>
                   }
                 </li>
-              {errorEdit && <li className='flex flex-col gap-2'><p className="text-xs text-secondRed">{errorEdit}</p></li>}
               <li className='flex flex-col items-center lg:flex-row lg:self-end lg:gap-4'>
                 <button type="submit" className='self-center border-2 mt-4 w-[157px] h-[42px] border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold py-2 px-6 lg:self-end lg:mb-2
                   hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'

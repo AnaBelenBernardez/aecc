@@ -12,7 +12,6 @@ import { deleteSponsorService } from '../../../../service';
 import AddSponsor from '../../../../components/modals/sponsors/AddSponsor';
 import Link from "next/link";
 import EditSponsor from '../../../../components/modals/sponsors/EditSponsor';
-import { addSponsorService, editSponsorService } from '../../../../service';
 import { useToast } from '../../../../components/ui/use-toast';
 import { Toaster } from '../../../../components/ui/toaster';
 
@@ -23,6 +22,12 @@ const SponsorAdminPage = () => {
 	const [sponsorId, setSponsorId] = useState();
 	const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 	const [clickedAdd, setClickedAdd] = useState(false);
+	const [addSuccess, setAddSuccess] = useState(false);
+	const [addReject, setAddReject] = useState(false);
+	const [editSuccess, setEditSuccess] = useState(false);
+	const [editReject, setEditReject] = useState(false);
+	const [deleteSuccess, setDeleteSuccess] = useState(false);
+	const [deleteReject, setDeleteReject] = useState(false);
 	const { toast } = useToast();
 
 	const router = useRouter();
@@ -36,6 +41,69 @@ const SponsorAdminPage = () => {
       setSponsorsList(sponsors);
     }
 	},[sponsors]);
+
+	useEffect(() =>{
+		if(addSuccess){
+			toast({
+				variant: "success",
+				title: "Se ha añadido un nuevo patrocinador correctamente.",
+				className: "bg-primaryGreen text-white text-lg font-bold",
+			});
+
+			setAddSuccess(false);
+		}
+
+		if(addReject){
+			toast({
+        variant: "destructive",
+        title: "Ha ocurrido un problema al añadir el nuevo patrocinador.",
+        className: "bg-secondRed text-white text-lg font-bold",
+      });
+
+			setAddReject(false);
+		}
+
+		if(editSuccess){
+			toast({
+				variant: "success",
+				title: "Patrocinador editado correctamente.",
+				className: "bg-primaryGreen text-white text-lg font-bold",
+			});
+
+			setEditSuccess(false);
+		}
+
+		if(editReject){
+			toast({
+				variant: "destructive",
+				title: "Ha ocurrido un problema al editar el patrocinador.",
+				className: "bg-secondRed text-white text-lg font-bold",
+			});
+
+			setEditReject(false);
+		}
+
+		if(deleteSuccess){
+			toast({
+				variant: "succes",
+				title: "Patrocinador eliminado correctamente.",
+				className: "bg-primaryGreen text-white text-lg font-bold"
+			})
+
+			setDeleteSuccess(false);
+		}
+
+		if(deleteReject){
+			toast({
+				variant: "destructive",
+				title: "Ha ocurrido un problema al eliminar el patrocinador.",
+				className: "bg-secondRed text-white text-lg font-bold",
+			});
+
+			setDeleteReject(false);
+		}
+
+	},[addSuccess, addReject, editSuccess, editReject, deleteSuccess, deleteReject]);
 
 	if (loading) return <Loading/>;
 
@@ -54,47 +122,23 @@ const SponsorAdminPage = () => {
   }
 
 	const handleClickDelete = async () => {
-    await deleteSponsorService(sponsorId, token)
+		try{
+			await deleteSponsorService(sponsorId, token);
+			setDeleteSuccess(true);
+		}catch(e){
+			setDeleteReject(true);
+		}finally{
+			if(!deleteReject){
+				const findSponsor = sponsorsList.find((sponsor) => sponsor.id === parseInt(sponsorId));
+				const indexEditedSponsor = sponsorsList.indexOf(findSponsor);
+				const newSponsorsList = [...sponsorsList];
+				newSponsorsList.splice(indexEditedSponsor, 1);
 
-		const findSponsor = sponsorsList.find((sponsor) => sponsor.id === parseInt(sponsorId));
-		const indexEditedSponsor = sponsorsList.indexOf(findSponsor);
-		const newSponsorsList = [...sponsorsList];
-		newSponsorsList.splice(indexEditedSponsor, 1);
-
-    setSponsorsList(newSponsorsList);
-    setDeleteModalOpen(false);
-		toast({
-			variant: "succes",
-			title: "Patrocinador eliminado correctamente",
-			className: "bg-primaryGreen text-white text-lg font-bold"
-		})
+				setSponsorsList(newSponsorsList);
+				setDeleteModalOpen(false);
+			}
+		}
   };
-
-	async function handleSubmitAdd(e){
-    e.preventDefault();
-
-    let newSponsor;
-    const data = new FormData (e.target);
-
-    try{
-      newSponsor = await addSponsorService(data, token);
-			toast({
-				variant: "succes",
-				title: "Patrocinador añadido correctamente",
-				className: "bg-primaryGreen text-white text-lg font-bold"
-			})
-    }catch(e){
-      setErrorAdd(e.message);
-    } finally{
-      setClickedAdd(false);
-
-      const newSponsorsList = [...sponsorsList];
-
-      newSponsorsList.push(newSponsor);
-
-      setSponsorsList(newSponsorsList);
-    }
-	}
 
 	return (
 	<main className="mx-10 my-10 flex flex-col gap-4 items-center">
@@ -109,7 +153,7 @@ const SponsorAdminPage = () => {
 		</div>
 		<ol className='flex flex-col gap-5'>
     {deleteModalOpen && <DeleteSponsor handleClickDelete={handleClickDelete} setDeleteModalOpen={setDeleteModalOpen} /> }
-    {clickedAdd && <AddSponsor setClickedAdd={setClickedAdd} sponsorsList={sponsorsList} setSponsorsList={setSponsorsList} handleSubmitAdd={handleSubmitAdd}/> }
+    {clickedAdd && <AddSponsor setClickedAdd={setClickedAdd} sponsorsList={sponsorsList} setSponsorsList={setSponsorsList} setAddSucces={setAddSuccess} setAddReject={setAddReject} token={token}/> }
 		{
 			sponsorsList.length > 0 ? 
 			sponsorsList.map((sponsor) => {
@@ -119,7 +163,7 @@ const SponsorAdminPage = () => {
 								{
 									clickedEdit && sponsorId === sponsor.id ?
                   <EditSponsor currentSponsor={sponsor} sponsorsList={sponsorsList} setSponsorsList={setSponsorsList} sponsorId={sponsorId} 
-										setClickedEdit={setClickedEdit} token={token}/>
+										setClickedEdit={setClickedEdit} setEditSuccess={setEditSuccess} setEditReject={setEditReject} token={token}/>
 									:
 										<article className="lg:w-[100%] flex flex-col justify-items-center">
                       <section className="flex flex-col justify-items-center w-[85vw]">
