@@ -34,7 +34,8 @@ const dashboardNews = () => {
     link: '',
     galician_title: '',
     galician_content: '',
-    photo: ''
+    photo: '',
+    news_date: ''
   });
   const [formValuesEdit, setFormValuesEdit] = useState({
     title: singleNew?.title || "",
@@ -42,7 +43,9 @@ const dashboardNews = () => {
     link: singleNew?.link || "",
     galician_title: singleNew?.galician_title || "",
     galician_content: singleNew?.galician_content || "",
-    photo: singleNew?.photo || ""
+    photo: singleNew?.photo || "",
+    news_date: singleNew?.news_date ? new Date(singleNew?.news_date).toISOString().slice(0, 10)
+    : ""
   })
 
   useEffect(() => {
@@ -52,7 +55,8 @@ const dashboardNews = () => {
         content: singleNew.content,
         link: singleNew.link,
         galician_title: singleNew.galician_title,
-        galician_content: singleNew.galician_content
+        galician_content: singleNew.galician_content,
+        news_date: new Date(new Date(singleNew.news_date).getTime() + 86400000).toISOString().slice(0, 10)
       })
     }
   }, [singleNew])
@@ -98,6 +102,7 @@ const dashboardNews = () => {
     e.preventDefault();
 
     try {
+      console.log(formValuesEdit);
       await editNewService(formValuesEdit, singleNew.id, token);
       setEditNewModalOpen(false);      
       refetch();

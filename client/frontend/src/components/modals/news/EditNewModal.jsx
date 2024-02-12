@@ -49,13 +49,14 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
     })
     setNeWPhoto(e.target.files);
   };
+  console.log(currentNew);
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
       <div className='relative w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12'>
-      <button onClick={() => setEditNewModalOpen(false)} className="absolute top-5 right-7 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300">
-              <img src="/icons/closeModals.svg" alt='Icono de cerrar'/>
-            </button>
+        <button onClick={() => setEditNewModalOpen(false)} className="absolute top-5 right-7 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300">
+          <img src="/icons/closeModals.svg" alt='Icono de cerrar'/>
+        </button>
         <form className='flex flex-col gap-2 overflow-auto' onSubmit={handleSubmitEdit}>
           <h2 className='font-bold text-lg text-primaryGreen'>Formulario en castellano</h2>
           <label htmlFor="title" className='font-bold text-sm'>
@@ -65,7 +66,7 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
                 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                 placeholder:italic placeholder:text-slate-400 w-full font-medium'
-                defaultValue={currentNew.title} onChange={handleChange}
+                defaultValue={currentNew.title} onChange={handleChange} required minLength={2} maxLength={300}
             />
           </label>
           <label htmlFor="content" className='font-bold text-sm'>
@@ -74,7 +75,18 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
                 type="text" 
                 className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none font-medium"
                 id='content' name='content' cols="20" rows="20" defaultValue={currentNew.content} onChange={handleChange}
+                required minLength={2} maxLength={1500}
               />
+          </label>
+          <label htmlFor="date" className='font-bold text-sm'>
+            Fecha de la noticia
+            <input type="date" className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
+              file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
+              focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
+              border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
+              placeholder:italic placeholder:text-slate-400 w-full font-medium"
+              id='news_date' name='news_date' required defaultValue={new Date(new Date(currentNew.news_date).getTime() + 86400000).toISOString().slice(0, 10)}
+              onChange={handleChange}/>
           </label>
           <label htmlFor="link" className='font-bold text-sm'>
             Link
@@ -85,7 +97,7 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
               focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
               border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
               placeholder:italic placeholder:text-slate-400 w-full font-medium"
-              id='link' name='link' defaultValue={currentNew.link} onChange={handleChange}
+              id='link' name='link' defaultValue={currentNew.link} onChange={handleChange} required
             />
           </label>
           <div className='flex flex-row-reverse justify-end gap-6 mt-4'>
@@ -116,6 +128,7 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
               border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
               placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='galician_title' name='galician_title' defaultValue={currentNew.galician_title} onChange={handleChange}
+              required minLength={2} maxLength={300}
             />
           </label>
           <label htmlFor="galician_content" className='font-bold mt-4 text-sm'>
@@ -124,6 +137,7 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
               type="text" 
               className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none font-medium"
               id='galician_content' name='galician_content' cols="20" rows="20" defaultValue={currentNew.galician_content} onChange={handleChange}
+              required minLength={2} maxLength={1500}
             />
           </label>
           <div className='flex flex-col items-center lg:flex-row lg:gap-4 lg:self-end lg:mb-2 lg:mr-2'>
