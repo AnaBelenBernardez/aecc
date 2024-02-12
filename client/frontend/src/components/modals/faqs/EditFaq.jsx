@@ -54,9 +54,9 @@ function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, setE
         newFaqsList.splice(indexEditedFaq, 1, editedFaq);
 
         setFaqsList(newFaqsList);
-      }
 
-      setClickedEdit(false);
+        setClickedEdit(false);
+      }
     }
   }
   
