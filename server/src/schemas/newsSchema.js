@@ -30,7 +30,9 @@ const newsSchema = Joi.object({
     'date.format': 'La fecha de la noticia debe ser una fecha (AAAA-MM-DD)'
   }),
 
-  link: Joi.string().uri().messages({
+  link: Joi.string().uri().required().messages({
+    'any.required': 'El link de la noticia es obligatorio.',
+    'string.empty': 'El link de la noticia no puede estar vacío.',
     'string.min': 'El link de la noticia debe tener más de 2 caracteres.',
     'string.max': 'El link de la noticia no puede tener más de 500 caracteres.',
     'string.uri': 'El link de la noticia debe ser una URL (https://www.ejemplo.com). Sólo válidas https, no http.'
