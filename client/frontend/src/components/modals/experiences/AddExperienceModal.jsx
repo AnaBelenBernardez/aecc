@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 
-const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
+const AddExperienceModal = ({setAddSuccess, setAddExperienceModalOpen, token, refetch}) => {
   const { toast } = useToast();
   const [file, setFile] = useState(null);
   const [formValues, setFormValues] = useState({
@@ -26,11 +26,13 @@ const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
 
   const handleChangeImage = (e) => {
     e.preventDefault();
+    if (e.target.files[0]) {
     setFile(URL.createObjectURL(e.target.files[0]));
     setFormValues({
       ...formValues,
       [e.target.name]: [e.target.files]
     })
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -40,6 +42,7 @@ const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
       await addExperienceService(token, formValues);
       setAddExperienceModalOpen(false);
       refetch();
+      setAddSuccess(true);
     } catch (error) {
       toast({
         variant: "destructive",
@@ -60,6 +63,9 @@ const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
             <label htmlFor="name" className='font-bold text-sm'>
               Nombre
               <input 
+                required
+                minLength={3}
+                maxLength={40}
                 type="text" 
                 className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
                 file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
@@ -72,7 +78,10 @@ const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
               </label>
               <label htmlFor="content" className='font-bold text-sm'>
                 Contenido
-                <textarea 
+                <textarea
+                  required
+                  minLength={3}
+                  maxLength={500} 
                   type="text" 
                   className="w-full h-24 focus-visible:ring-0 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray border-b-2 border-secondGray resize-none font-medium"
                   id='content' name='content' cols="20" rows="20"
@@ -83,7 +92,10 @@ const AddExperienceModal = ({setAddExperienceModalOpen, token, refetch}) => {
           
               <label htmlFor="galician_content" className='font-bold text-sm'>
                 Contenido en gallego
-                <textarea 
+                <textarea
+                  required
+                  minLength={3}
+                  maxLength={500} 
                   type="text" 
                   className="w-full h-24 focus-visible:ring-0 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray border-b-2 border-secondGray resize-none font-medium"
                   id='galician_content' name='galician_content' cols="20" rows="20"

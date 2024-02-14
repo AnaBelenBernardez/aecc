@@ -9,7 +9,7 @@ const AddPhotoModal = ({ setAddModalOpen, handleSubmit, photo, setPhoto }) => {
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-[2]'>
-      <div className='relative w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12'>
+      <div className='relative w-[90vw] max-h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12'>
       <button onClick={() => setAddModalOpen(false)} className="absolute top-6 right-7 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300">
               <img src="/icons/closeModals.svg" alt='Icono de cerrar'/>
             </button>
@@ -40,14 +40,14 @@ const AddPhotoModal = ({ setAddModalOpen, handleSubmit, photo, setPhoto }) => {
           <div className='flex flex-col items-center mb-2 lg:flex-row lg:self-end lg:gap-4'>
             <button
               type='submit'
-              className='self-center border-2 mt-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 lg:self-end lg:mb-2
+              className='self-center border-2 mt-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 lg:self-end lg:mb-0
               hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'
             >
               AÑADIR FOTO/S
             </button>
             <button
               type='button'
-              className='flex self-center mt-2 gap-4 w-[157px] h-[42px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray'
+              className='flex self-center mt-2 gap-4 w-[157px] h-[40px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray'
               onClick={() => setAddModalOpen(false)}
             >
               CANCELAR

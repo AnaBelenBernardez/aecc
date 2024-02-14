@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 
-const EditExperienceModal = ({currentExperience, setEditExperienceModalOpen, token, refetch}) => {
+const EditExperienceModal = ({setEditSuccess, currentExperience, setEditExperienceModalOpen, token, refetch}) => {
     const { toast } = useToast();
   const [image, setImage] = useState();
   const [file, setFile] = useState(null)
@@ -30,7 +30,7 @@ const EditExperienceModal = ({currentExperience, setEditExperienceModalOpen, tok
     setImage(img);
     setFormValues({
       ...formValues,
-      photo: img
+      photo: image
     })
   };
 
@@ -51,11 +51,13 @@ const EditExperienceModal = ({currentExperience, setEditExperienceModalOpen, tok
   };
 
   const handleChangeImage = (e) => {
+    if (e.target.files[0]) {
     setFile(URL.createObjectURL(e.target.files[0]));
     setFormValues({
       ...formValues,
       [e.target.name]: [e.target.files]
     })
+  }
   };
 
   const handleSubmit = async (e) => {
@@ -63,9 +65,11 @@ const EditExperienceModal = ({currentExperience, setEditExperienceModalOpen, tok
 
     try {
       await editExperienceService(formValues, currentExperience.id, token);
-      setEditExperienceModalOpen(false);      
+      setEditExperienceModalOpen(false); 
       refetch();
+      setEditSuccess(true);
     } catch (error) {
+      console.log(error);
       toast({
         variant: "destructive",
         title: error.message,
@@ -84,6 +88,9 @@ const EditExperienceModal = ({currentExperience, setEditExperienceModalOpen, tok
           <label htmlFor="name" className='font-bold text-sm'>
             Nombre
             <input 
+                required
+                minLength={3}
+                maxLength={40}
                 type="text" 
                 className='flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
                 file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
@@ -97,6 +104,9 @@ const EditExperienceModal = ({currentExperience, setEditExperienceModalOpen, tok
           <label htmlFor="content" className='font-bold text-sm'>
             Contenido
               <textarea 
+                required
+                minLength={3}
+                maxLength={500}
                 type="text" 
                 className="w-full h-24 focus-visible:ring-0 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray border-b-2 border-secondGray resize-none font-medium"
                 id='content' name='content' cols="20" rows="20" defaultValue={formValues.content} onChange={handleChange}
@@ -108,6 +118,9 @@ const EditExperienceModal = ({currentExperience, setEditExperienceModalOpen, tok
           <label htmlFor="galician_content" className='font-bold text-sm'>
             Contenido en gallego
             <textarea 
+              required
+              minLength={3}
+              maxLength={500}
               type="text" 
               className="w-full h-24 focus-visible:ring-0 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray border-b-2 border-secondGray resize-none font-medium"
               id='galician_content' name='galician_content' cols="20" rows="20" defaultValue={formValues.galician_content} onChange={handleChange}
