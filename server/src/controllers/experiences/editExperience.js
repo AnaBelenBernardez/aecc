@@ -21,9 +21,9 @@ async function editExperience (req,res,next) {
             return next(generateError('Has subido demasiadas fotos. Máximo 400', 400));
         }
 
-       if (photos) { 
-        await photoSchema.validateAsync(photos) 
-    }
+        if (photos) { 
+            await photoSchema.validateAsync(photos) 
+        }
         
         if (photoErrorSchema) {
             return next(generateError(errorSchema.details[0].message, 400));
@@ -41,11 +41,26 @@ async function editExperience (req,res,next) {
                 const [photoToDelete] = await pool.query('SELECT photo FROM experiences_photos WHERE experience_id = ?', [idExperience])
 
                 const photoName = await savePhoto(photos, 500);
-                await pool.query(
-                    'UPDATE experiences_photos SET photo = ? WHERE experience_id = ?',
-                    [photoName, idExperience]
-                );
+
+                if (photoToDelete.length > 0) {
+                    await pool.query(
+                        'UPDATE experiences_photos SET photo = ? WHERE experience_id = ?',
+                        [photoName, idExperience]
+                    );
+                }
                 
+                const [[checkExperienceId]] = await pool.query(
+                    'SELECT * FROM experiences_photos WHERE experience_id = ?',
+                    [idExperience]
+                )
+
+                if (checkExperienceId === undefined) {
+                    await pool.query(
+                        'INSERT INTO experiences_photos (experience_id, photo) VALUES (?, ?)',
+                        [idExperience, photoName]
+                    );
+                }
+ 
                 if (photoToDelete[0]?.photo) {
                     deletePhoto(photoToDelete[0].photo);
                 }
