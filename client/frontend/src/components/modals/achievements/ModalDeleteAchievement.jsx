@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { useModalEventStore } from "../../../store";
 import { deleteAchievementService } from "../../../service";
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 const ModalDeleteAchievement = ({ token, refetch }) => {
   const isModalDeleteAchievementOpen = useModalEventStore(
@@ -11,10 +13,25 @@ const ModalDeleteAchievement = ({ token, refetch }) => {
   );
   const id = useModalEventStore((state) => state.idDeleteEvent);
 
+  const { toast } = useToast();
+
   const handleClickDelete = async () => {
-    await deleteAchievementService(id, token);
-    closeModalDeleteAchievement();
-    refetch();
+    try {
+      await deleteAchievementService(id, token);
+      closeModalDeleteAchievement();
+      refetch();
+      toast({
+        variant: "success",
+        title: "Evento borrado correctamente",
+        className: "bg-primaryGreen text-white text-lg font-bold",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: error.message,
+        className: "bg-secondRed text-white text-lg font-bold",
+      });
+    }
   };
 
   return (
@@ -48,6 +65,7 @@ const ModalDeleteAchievement = ({ token, refetch }) => {
           </div>
         </div>
       )}
+      <Toaster />
     </>
   );
 };

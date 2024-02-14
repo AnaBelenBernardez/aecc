@@ -62,6 +62,7 @@ const EventPage = () => {
               id={event.id}
               photo={event.event_photos[0]}
               title={event.title}
+              warning={event.warning}
             />
           );
         })

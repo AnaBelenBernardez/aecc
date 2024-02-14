@@ -108,10 +108,25 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                   placeholder:italic placeholder:text-slate-400 w-full font-medium"
                   id="title"
                   name="title"
-                  {...register("title", { required: true })}
+                  {...register("title", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Mínimo de 2 caracteres de longitud",
+                    },
+                    maxLength: {
+                      value: 100,
+                      message: "Máximo de 100 caracteres de longitud",
+                    },
+                  })}
                 />
               </label>
-
+              <span className="text-secondRed text-sm">
+                {errors.title?.message}
+              </span>
               <label htmlFor="content" className="font-bold text-sm">
                 Contenido
                 <textarea
@@ -121,9 +136,25 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                   name="content"
                   cols="20"
                   rows="20"
-                  {...register("content", { required: true })}
+                  {...register("content", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Mínimo de 2 caracteres de longitud",
+                    },
+                    maxLength: {
+                      value: 100,
+                      message: "Máximo de 100 caracteres de longitud",
+                    },
+                  })}
                 />
               </label>
+              <span className="text-secondRed text-sm">
+                {errors.content?.message}
+              </span>
               <label htmlFor="date_start" className="font-bold text-sm">
                 Fecha de inicio
                 <input
@@ -134,7 +165,12 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                   focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                   border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                   placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  {...register("date_start", { required: true })}
+                  {...register("date_start", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                  })}
                 />
               </label>
               <label htmlFor="date_end" className="font-bold text-sm">
@@ -147,7 +183,12 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                   focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                   border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                   placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  {...register("date_end", { required: true })}
+                  {...register("date_end", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                  })}
                 />
               </label>
               <label htmlFor="link" className="font-bold text-sm">
@@ -190,9 +231,17 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                   focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                   border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                   placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  {...register("warning_content")}
+                  {...register("warning_content", {
+                    maxLength: {
+                      value: 300,
+                      message: "Máximo de 300 caracteres",
+                    },
+                  })}
                 />
               </label>
+              <span className="text-secondRed text-sm">
+                {errors.warning_content?.message}
+              </span>
               <label htmlFor="location" className="font-bold text-sm">
                 Localización
                 <select
@@ -202,7 +251,12 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                     focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                     border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                     placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  {...register("location", { required: true })}
+                  {...register("location", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                  })}
                 >
                   {placeLocation.map((place) => (
                     <option value={place} key={place}>
@@ -211,6 +265,9 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                   ))}
                 </select>
               </label>
+              <span className="text-secondRed text-sm">
+                {errors.location?.message}
+              </span>
               <label htmlFor="link" className="font-bold text-sm">
                 Link
                 <input
@@ -222,9 +279,21 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                     placeholder:italic placeholder:text-slate-400 w-full font-medium"
                   id="link"
                   name="link"
-                  {...register("link", { required: true })}
+                  {...register("link", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                    pattern: {
+                      value: /^(ftp|http|https):\/\/[^ "]+$/,
+                      message: "Introduce una URL válida",
+                    },
+                  })}
                 />
               </label>
+              <span className="text-secondRed text-sm">
+                {errors.link?.message}
+              </span>
               <label htmlFor="event_type" className="font-bold text-sm">
                 Tipo de evento
                 <select
@@ -234,7 +303,12 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                     focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                     border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                     placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  {...register("event_type", { required: true })}
+                  {...register("event_type", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                  })}
                 >
                   <option value="Andainas y carreras">
                     Andainas y carreras
@@ -249,7 +323,9 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                   <option value="Otros">Otros</option>
                 </select>
               </label>
-
+              <span className="text-secondRed text-sm">
+                {errors.event_type?.message}
+              </span>
               <h2 className="font-bold text-lg mt-6 text-primaryGreen">
                 Formulario en gallego
               </h2>
@@ -264,9 +340,25 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                     placeholder:italic placeholder:text-slate-400 w-full font-medium"
                   id="galician_title"
                   name="galician_title"
-                  {...register("galician_title", { required: true })}
+                  {...register("galician_title", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Mínimo de 2 caracteres de longitud",
+                    },
+                    maxLength: {
+                      value: 100,
+                      message: "Máximo de 100 caracteres de longitud",
+                    },
+                  })}
                 />
               </label>
+              <span className="text-secondRed text-sm">
+                {errors.galician_title?.message}
+              </span>
               <label
                 htmlFor="galician_content"
                 className="font-bold mt-4 text-sm"
@@ -279,9 +371,25 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                   name="galician_content"
                   cols="20"
                   rows="20"
-                  {...register("galician_content", { required: true })}
+                  {...register("galician_content", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Mínimo de 2 caracteres de longitud",
+                    },
+                    maxLength: {
+                      value: 100,
+                      message: "Máximo de 100 caracteres de longitud",
+                    },
+                  })}
                 />
               </label>
+              <span className="text-secondRed text-sm">
+                {errors.galician_content?.message}
+              </span>
               <label htmlFor="warning_content" className="font-bold text-sm">
                 Tipo de incidencia
                 <input
@@ -292,9 +400,17 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                   focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                   border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                   placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  {...register("galician_warning_content")}
+                  {...register("galician_warning_content", {
+                    maxLength: {
+                      value: 300,
+                      message: "Máximo de 300 caracteres",
+                    },
+                  })}
                 />
               </label>
+              <span className="text-secondRed text-sm">
+                {errors.galician_warning_content?.message}
+              </span>
               <div className="mr-2 flex flex-col items-center lg:flex-row lg:self-end lg:gap-4">
                 <button
                   type="submit"
