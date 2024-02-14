@@ -6,14 +6,17 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useLoginStore } from "../../../../store";
 import { deleteExperienceService } from "../../../../service";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import AddExperienceModal from "../../../../components/modals/experiences/AddExperienceModal";
 import EditExperienceModal from "../../../../components/modals/experiences/EditExperienceModal";
 import BlockScroll from "../../../../components/blockScroll/BlockScroll";
 import DeleteExperienceModal from "../../../../components/modals/experiences/DeleteExperienceModal";
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 const dashboardExperiences = () => {
+  const { toast } = useToast();
   const router = useRouter();
   const token = useLoginStore((state) => state.token);
   if (!token) {
@@ -26,6 +29,34 @@ const dashboardExperiences = () => {
   const [addExperienceModalOpen, setAddExperienceModalOpen] = useState();
   const [editExperienceModalOpen, setEditExperienceModalOpen] = useState();
   const [singleExperience, setSingleExperience] = useState();
+  const [addSuccess, setAddSuccess] = useState(false);
+  const [editSuccess, setEditSuccess] = useState(false);
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
+
+  useEffect(() => {
+    if (addSuccess) {
+      toast({
+        variant: "success",
+        title: "Experiencia añadida correctamente",
+        className: "bg-primaryGreen text-white text-lg font-bold",
+      });
+      setAddSuccess(false);
+    } else if (editSuccess) {
+      toast({
+        variant: "success",
+        title: "Experiencia editada correctamente",
+        className: "bg-primaryGreen text-white text-lg font-bold",
+      });
+      setEditSuccess(false);
+    } else if (deleteSuccess) {
+      toast({
+        variant: "success",
+        title: "Experiencia eliminada correctamente",
+        className: "bg-primaryGreen text-white text-lg font-bold",
+      });
+      setDeleteSuccess(false);
+    }
+  })
 
   const openModalDelete = async (idExperience) => {
     setIdExperienceOpen(idExperience);
@@ -36,6 +67,7 @@ const dashboardExperiences = () => {
     await deleteExperienceService(idExperienceOpen, token);
     refetch();
     setDeleteModalOpen(false);
+    setDeleteSuccess(true);
   };
 
   const openModalAddExperience = async () => {
@@ -46,6 +78,7 @@ const dashboardExperiences = () => {
     setSingleExperience(notice);
     setEditExperienceModalOpen(true);
   };
+
 
   if (loading) return <Loading />;
 
@@ -65,6 +98,7 @@ const dashboardExperiences = () => {
       </button>
       {addExperienceModalOpen && (
         <AddExperienceModal
+          setAddSuccess={setAddSuccess}
           setAddExperienceModalOpen={setAddExperienceModalOpen}
           token={token}
           refetch={refetch}
@@ -78,6 +112,7 @@ const dashboardExperiences = () => {
       )}
       {editExperienceModalOpen && (
         <EditExperienceModal
+          setEditSuccess={setEditSuccess}
           currentExperience={singleExperience}
           setEditExperienceModalOpen={setEditExperienceModalOpen}
           token={token}
@@ -94,7 +129,7 @@ const dashboardExperiences = () => {
               className="flex flex-col md:justify-between justify-between p-8 items-center shadow-md md:flex-row md:w-[90%] lg:w-[80%]"
               key={experienceItem.name}
             >
-              <div className="lg:flex lg:w-[70%] lg:gap-20">
+              <div className="lg:flex lg:w-[80%] lg:gap-20">
                 {experienceItem.photo !== null ? (
                   <div className="min-w-36 min-h-36 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]">
                     <Image
@@ -117,10 +152,10 @@ const dashboardExperiences = () => {
                   </div>
                 )}
                 <div className="flex gap-3 sm:gap-1 md:gap-4 items-center">
-                  <p className="lg:w-[150px] sm:w-[60px] md:w-[80px] text-left flex items-center text-lightPink font-bold">
+                  <p className="lg:min-w-[150px] sm:w-[60px] md:w-[80px] text-left flex items-center text-lightPink font-bold">
                     {experienceItem.name}
                   </p>
-                  <h2 className="font-bold lg:px-6 sm:px-0 line-clamp-3 w-[140px] md:w-[160px] lg:w-[240px]">
+                  <h2 className="font-bold lg:px-6 sm:px-0 line-clamp-3 w-[140px] md:w-[160px] lg:w-full">
                     {experienceItem.content}
                   </h2>
                 </div>
@@ -167,6 +202,7 @@ const dashboardExperiences = () => {
           </p>
         </div>
       )}
+      <Toaster />
     </main>
   );
 };

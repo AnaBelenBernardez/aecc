@@ -2,10 +2,10 @@
 
 import Loading from '../../../components/loading/Loading';
 import useGetEvent from '../../../hooks/useGetEvent';
-import { useParams } from 'next/navigation';
-import Link from 'next/link';
+import { useParams, notFound } from 'next/navigation';
 import PreviewImageModal from '../../../components/modals/images/PreviewImageModal';
 import { useState } from 'react';
+
 
 const EventPhotos = () => {
   const [modalIndex, setModalIndex] = useState(0);
@@ -37,7 +37,9 @@ const EventPhotos = () => {
  
   if (loading) return <Loading/>;
 
-
+  if (error) {
+    notFound();
+  }
   return (
     <main className='my-4'>
       {

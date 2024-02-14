@@ -30,7 +30,7 @@ server.use('/achievements', achievementsRouter);
 
 server.use((err, _req, res, _next) => {
     console.log("ERROR: " + err.message);
-    res.status(err.code ?? 500);
+    res.status(err.statusCode ?? 500);
     res.send({
         status: "Error",
         message: `${err.message}`});

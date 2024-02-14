@@ -3,8 +3,8 @@ import React, { useState, useEffect, useRef } from 'react';
 const PreviewImageModal = ({ images, currentIndex, onClose, onNext, onPrev }) => {
   const [focusIndex, setFocusIndex] = useState(0);
   const [touchStart, setTouchStart] = React.useState(0);
-const [touchEnd, setTouchEnd] = React.useState(0);
-
+  const [touchEnd, setTouchEnd] = React.useState(0);
+  
 function handleTouchStart(e) {
     setTouchStart(e.targetTouches[0].clientX);
 }
@@ -77,7 +77,7 @@ function handleTouchEnd() {
           onTouchMove={handleTouchMove}
           src={images && images[currentIndex]}
           alt={`Image ${currentIndex + 1}`}
-          className="w-[90vw] lg:w-[70vw] max-h-[90vh] mx-auto object-contain transition-shadow"
+          className="w-[90vw] lg:w-[70vw] max-h-[90vh] mx-auto object-contain"
           tabIndex={focusIndex === 0 ? 0 : -1}
         />
 
