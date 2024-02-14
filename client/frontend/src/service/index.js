@@ -360,7 +360,11 @@ export const editEventService = async (id, token, formValues) => {
   return data;
 };
 
-export const editExperienceService = async (formValues ,idExperience ,token) => {
+export const editExperienceService = async (
+  formValues,
+  idExperience,
+  token
+) => {
   const editExperienceForm = new FormData();
   editExperienceForm.append("name", formValues.name);
   editExperienceForm.append("content", formValues.content);
@@ -603,11 +607,15 @@ export const deleteAchievementService = async (id, token) => {
 };
 
 export const editAchievementService = async (id, token, formValues) => {
-  console.log(formValues.icon[0]);
-  const editNewForm = new FormData();
-  editNewForm.append("description", formValues.description);
-  editNewForm.append("icon", formValues.icon[0]);
-  editNewForm.append("galician_description", formValues.galician_description);
+  let editNewForm = new FormData();
+  if (formValues.icon.length === 0) {
+    editNewForm.append("description", formValues.description);
+    editNewForm.append("galician_description", formValues.galician_description);
+  } else {
+    editNewForm.append("description", formValues.description);
+    editNewForm.append("icon", formValues.icon[0]);
+    editNewForm.append("galician_description", formValues.galician_description);
+  }
 
   const response = await fetch(`${backAPI}/achievements/admin/edit/${id}`, {
     method: "PUT",

@@ -72,14 +72,29 @@ export const ModalEvents = ({ token, refetch }) => {
                   placeholder:italic placeholder:text-slate-400 w-full font-medium"
                   id="title"
                   name="title"
-                  {...register("title", { required: true })}
+                  {...register("title", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Mínimo de 2 caracteres de longitud",
+                    },
+                    maxLength: {
+                      value: 100,
+                      message: "Máximo de 100 caracteres de longitud",
+                    },
+                  })}
                 />
               </label>
+
               {errors.title && (
                 <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
+                  {errors.title?.message}
                 </span>
               )}
+
               <label htmlFor="content" className="font-bold text-sm">
                 Contenido
                 <textarea
@@ -89,14 +104,27 @@ export const ModalEvents = ({ token, refetch }) => {
                   name="content"
                   cols="20"
                   rows="20"
-                  {...register("content", { required: true })}
+                  {...register("content", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Mínimo de 2 caracteres de longitud",
+                    },
+                    maxLength: {
+                      value: 100,
+                      message: "Máximo de 100 caracteres de longitud",
+                    },
+                  })}
                 />
               </label>
-              {errors.content && (
-                <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
-                </span>
-              )}
+
+              <span className="text-secondRed text-sm">
+                {errors.content?.message}
+              </span>
+
               <label htmlFor="date_start" className="font-bold text-sm">
                 Fecha de inicio
                 <input
@@ -107,14 +135,17 @@ export const ModalEvents = ({ token, refetch }) => {
                   focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                   border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                   placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  {...register("date_start", { required: true })}
+                  {...register("date_start", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                  })}
                 />
               </label>
-              {errors.date_start && (
-                <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
-                </span>
-              )}
+              <span className="text-secondRed text-sm">
+                {errors.date_start?.message}
+              </span>
               <label htmlFor="date_end" className="font-bold text-sm">
                 Fecha de fin
                 <input
@@ -125,14 +156,17 @@ export const ModalEvents = ({ token, refetch }) => {
                   focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                   border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                   placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  {...register("date_end", { required: true })}
+                  {...register("date_end", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                  })}
                 />
               </label>
-              {errors.date_end && (
-                <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
-                </span>
-              )}
+              <span className="text-secondRed text-sm">
+                {errors.date_end?.message}
+              </span>
               <label htmlFor="location" className="font-bold text-sm">
                 Localización
                 <select
@@ -142,7 +176,12 @@ export const ModalEvents = ({ token, refetch }) => {
                     focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                     border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                     placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  {...register("location", { required: true })}
+                  {...register("location", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                  })}
                 >
                   {placeLocation.map((place) => (
                     <option value={place} key={place}>
@@ -151,11 +190,9 @@ export const ModalEvents = ({ token, refetch }) => {
                   ))}
                 </select>
               </label>
-              {errors.location && (
-                <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
-                </span>
-              )}
+              <span className="text-secondRed text-sm">
+                {errors.location?.message}
+              </span>
               <label htmlFor="link" className="font-bold text-sm">
                 Link
                 <input
@@ -167,14 +204,22 @@ export const ModalEvents = ({ token, refetch }) => {
                     placeholder:italic placeholder:text-slate-400 w-full font-medium"
                   id="link"
                   name="link"
-                  {...register("link", { required: true })}
+                  {...register("link", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                    pattern: {
+                      value: /^(ftp|http|https):\/\/[^ "]+$/,
+                      message: "Introduce una URL válida",
+                    },
+                  })}
                 />
               </label>
-              {errors.link && (
-                <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
-                </span>
-              )}
+              <span className="text-secondRed text-sm">
+                {errors.link?.message}
+              </span>
+
               <label htmlFor="event_type" className="font-bold text-sm">
                 Tipo de evento
                 <select
@@ -184,7 +229,12 @@ export const ModalEvents = ({ token, refetch }) => {
                     focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                     border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                     placeholder:italic placeholder:text-slate-400 w-full font-medium"
-                  {...register("event_type", { required: true })}
+                  {...register("event_type", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                  })}
                 >
                   <option value="Andainas y carreras">
                     Andainas y carreras
@@ -199,38 +249,51 @@ export const ModalEvents = ({ token, refetch }) => {
                   <option value="Otros">Otros</option>
                 </select>
               </label>
-              {errors.event_type && (
-                <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
-                </span>
-              )}
+              <span className="text-secondRed text-sm">
+                {errors.event_type?.message}
+              </span>
               <label htmlFor="photo" className="font-bold text-sm">
                 Foto de portada
-                <div className="flex flex-col md:flex-row md:items-center  gap-2 w-full mt-2">
-                  {filePreview ? (
-                    <div className="w-28">
-                      <Image
-                        src={filePreview}
-                        alt="preview"
-                        width={100}
-                        height={100}
-                      />
-                    </div>
-                  ) : null}
-
+              </label>
+              <div className="flex flex-col md:flex-row md:items-center  gap-2 w-full mt-2">
+                {filePreview ? (
+                  <div className="w-28">
+                    <Image
+                      src={filePreview}
+                      alt="preview"
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+                ) : null}
+                <label
+                  htmlFor="photo"
+                  className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer"
+                >
+                  <Image
+                    src={"/icons/addPhotoIcon.svg"}
+                    width={24}
+                    height={24}
+                    alt="añadir imagen"
+                  />
+                  AÑADIR
                   <input
+                    className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
                     id="photo"
                     type="file"
                     name="photo"
-                    {...register("photo", { required: true })}
+                    {...register("photo", {
+                      required: {
+                        value: true,
+                        message: "Este campo es obligatorio",
+                      },
+                    })}
                   />
-                </div>
-              </label>
-              {errors.photo && (
-                <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
-                </span>
-              )}
+                </label>
+              </div>
+              <span className="text-secondRed text-sm">
+                {errors.photo?.message}
+              </span>
               <h2 className="font-bold text-lg mt-6 text-primaryGreen">
                 Formulario en gallego
               </h2>
@@ -245,14 +308,26 @@ export const ModalEvents = ({ token, refetch }) => {
                     placeholder:italic placeholder:text-slate-400 w-full font-medium"
                   id="galician_title"
                   name="galician_title"
-                  {...register("galician_title", { required: true })}
+                  {...register("galician_title", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Mínimo de 2 caracteres de longitud",
+                    },
+                    maxLength: {
+                      value: 100,
+                      message: "Máximo de 100 caracteres de longitud",
+                    },
+                  })}
                 />
               </label>
-              {errors.galician_title && (
-                <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
-                </span>
-              )}
+
+              <span className="text-secondRed text-sm">
+                {errors.galician_title?.message}
+              </span>
               <label
                 htmlFor="galician_content"
                 className="font-bold mt-4 text-sm"
@@ -265,14 +340,25 @@ export const ModalEvents = ({ token, refetch }) => {
                   name="galician_content"
                   cols="20"
                   rows="20"
-                  {...register("galician_content", { required: true })}
+                  {...register("galician_content", {
+                    required: {
+                      value: true,
+                      message: "Este campo es obligatorio",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Mínimo de 2 caracteres de longitud",
+                    },
+                    maxLength: {
+                      value: 100,
+                      message: "Máximo de 100 caracteres de longitud",
+                    },
+                  })}
                 />
               </label>
-              {errors.galician_content && (
-                <span className="text-secondRed text-sm">
-                  Este campo es obligatorio
-                </span>
-              )}
+              <span className="text-secondRed text-sm">
+                {errors.galician_content?.message}
+              </span>
               <div className="mr-2 flex flex-col items-center lg:flex-row lg:self-end lg:items-center lg:gap-4">
                 <button
                   type="submit"

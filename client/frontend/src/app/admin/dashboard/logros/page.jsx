@@ -1,21 +1,30 @@
 "use client";
 import Image from "next/image";
-import Loading from "../../../../components/loading/Loading";
 import Link from "next/link";
-import { useLoginStore, useModalEventStore } from "../../../../store";
 import { useRouter } from "next/navigation";
+import Loading from "../../../../components/loading/Loading";
+import { useLoginStore, useModalEventStore } from "../../../../store";
 import useGetAllAchievements from "../../../../hooks/useGetAllAchievements";
 import { AchievementsCard } from "../../../../components/dashboard/Achievements/AchievementsCard";
 import { ModalAchievement } from "../../../../components/modals/achievements/ModalAchievement";
 import ModalDeleteAchievement from "../../../../components/modals/achievements/ModalDeleteAchievement";
 import { ModalEditAchievement } from "../../../../components/modals/achievements/ModalEditAchievement";
+import BlockScroll from "../../../../components/blockScroll/BlockScroll";
 
 const AchievementsPage = () => {
   const token = useLoginStore((state) => state.token);
 
   const { achievements, loading, error, refetch } = useGetAllAchievements();
   const openModal = useModalEventStore((state) => state.openModalAchievements);
-  console.log(achievements);
+  const isModalAchievementsOpen = useModalEventStore(
+    (state) => state.isModalAchievementsOpen
+  );
+  const isModalDeleteAchievementsOpen = useModalEventStore(
+    (state) => state.isModalDeleteAchievementsOpen
+  );
+  const isModalEditAchievementsOpen = useModalEventStore(
+    (state) => state.isModalEditAchievementsOpen
+  );
 
   const router = useRouter();
 
@@ -27,6 +36,13 @@ const AchievementsPage = () => {
 
   return (
     <main className="flex flex-col my-4 px-4 items-center">
+      <BlockScroll
+        isModalOpen={
+          isModalAchievementsOpen ||
+          isModalDeleteAchievementsOpen ||
+          isModalEditAchievementsOpen
+        }
+      />
       <button
         onClick={openModal}
         className=" border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 
