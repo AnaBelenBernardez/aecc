@@ -370,7 +370,7 @@ export const editExperienceService = async (
   editExperienceForm.append("content", formValues.content);
   editExperienceForm.append("galician_content", formValues.galician_content);
 
-  if (formValues.photo) {
+  if (Array.isArray(formValues.photo)) {
     editExperienceForm.append("photo", formValues.photo[0][0]);
   }
 

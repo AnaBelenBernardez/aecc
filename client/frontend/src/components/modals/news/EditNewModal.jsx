@@ -43,13 +43,14 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
   };
   
   const handleChangeImage = (e) => {
-    setFormValuesEdit({
-      ...formValuesEdit,
-      [e.target.name]: [e.target.files]
-    })
-    setNeWPhoto(e.target.files);
+    if (e.target.files[0]) {
+      setNeWPhoto(URL.createObjectURL(e.target.files[0]));
+      setFormValuesEdit({
+        ...formValuesEdit,
+        [e.target.name]: [e.target.files]
+      })
+    }
   };
-  console.log(currentNew);
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
@@ -110,7 +111,7 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
             {
               newPhoto
                 ? <div className='h-[72px] w-[150px]'>
-                    <Image src={URL.createObjectURL(newPhoto[0])} width={150} height={72} alt='Fotos de la noticia' className='h-[72px] w-[150px] object-cover'/>
+                    <Image src={newPhoto} width={150} height={72} alt='Fotos de la noticia' className='h-[72px] w-[150px] object-cover'/>
                   </div>
                 : <div className='h-[72px] w-[150px]'>
                     <Image src={currentNew.photo !== null ? previousImg :'/image/newsDefault.png'} width={150} height={72} alt='Fotos de la noticia' className='h-[72px] w-[150px] object-cover'/>
