@@ -22,7 +22,7 @@ const ModalDeleteAchievement = ({ token, refetch }) => {
       refetch();
       toast({
         variant: "success",
-        title: "Evento borrado correctamente",
+        title: "Logro eliminado correctamente",
         className: "bg-primaryGreen text-white text-lg font-bold",
       });
     } catch (error) {

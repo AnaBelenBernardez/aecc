@@ -53,7 +53,7 @@ export const ModalEditAchievement = ({ token, refetch, achievement }) => {
       refetch();
       toast({
         variant: "success",
-        title: "Evento editado correctamente",
+        title: "Logro editado correctamente",
         className: "bg-primaryGreen text-white text-lg font-bold",
       });
     } catch (error) {

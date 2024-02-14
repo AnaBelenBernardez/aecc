@@ -53,7 +53,7 @@ const LoginPage = () => {
 
   return (
     <main>
-      <div className="flex flex-col justify-center items-center mb-9">
+      <div className="flex flex-col justify-center items-center mb-7">
         <Form {...form}>
           <Image
             src="/logos/CC_Logo_transicion_color_pos.rgb.svg"

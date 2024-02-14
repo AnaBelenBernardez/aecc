@@ -7,13 +7,15 @@ import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 
 const EditExperienceModal = ({setEditSuccess, currentExperience, setEditExperienceModalOpen, token, refetch}) => {
-    const { toast } = useToast();
+  const { toast } = useToast();
   const [image, setImage] = useState();
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState();
   
   useEffect(() => {
-    convertImg();
-  }, []);
+    if (image) {
+      convertImg();
+    }
+  }, [image]);
   
   const urlToFile = async (url, filename) => {
   
@@ -57,7 +59,7 @@ const EditExperienceModal = ({setEditSuccess, currentExperience, setEditExperien
       ...formValues,
       [e.target.name]: [e.target.files]
     })
-  }
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -126,24 +128,23 @@ const EditExperienceModal = ({setEditSuccess, currentExperience, setEditExperien
               id='galician_content' name='galician_content' cols="20" rows="20" defaultValue={formValues.galician_content} onChange={handleChange}
             />
           </label>
-          <div className='flex flex-row gap-4 sm:w-auto'>
+          <div className='flex flex-row-reverse justify-end gap-4 sm:w-auto'>
+            <label htmlFor="photo" className="lg:self-center sm:align-middle md:w-auto flex gap-4 items-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 cursor-pointer">
+              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />EDITAR FOTO
+              <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium" 
+                id="photo" type="file" name='photo' onChange={handleChangeImage}
+              />
+            </label>
           {
-            currentExperience.photo !== null
+            file
             ? <div className='min-w-20 min-h-20 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
-                  <Image src={file !== null ? file : previousImg} width={150} height={150} alt='Imagen de la noticia' className='rounded-full w-20 h-20'/>
+                  <Image src={file} width={150} height={150} alt='Imagen de la noticia' className='rounded-full w-20 h-20'/>
                 </div>
             : <div className='min-w-20 min-h-20 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
-                  <Image src={'/image/userDefault.png'} width={150} height={150} alt='Imagen de la noticia' className='rounded-full object-cover w-20 h-20'/>
+                  <Image src={currentExperience.photo !== null ? previousImg : '/image/userDefault.png'} width={150} height={150} alt='Imagen de la noticia' className='rounded-full object-cover w-20 h-20'/>
                 </div>
           }
                   
-                <label htmlFor="photo" className="lg:self-center sm:align-middle md:w-auto flex gap-4 items-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 cursor-pointer">
-               <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />EDITAR FOTO
-                <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium" 
-                id="photo" type="file" name='photo' onChange={handleChangeImage}
-                />
-
-              </label>
           </div>
           <div className='flex flex-col items-center gap-1 sm:justify-center sm:mb-0 lg:flex-row lg:gap-4 lg:self-end'>
             <button
