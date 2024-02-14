@@ -34,8 +34,14 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
           setGalicianDescription(value);    
           break;
         case 'logo':
-          setLogo(value);
-          setLogoPreview(URL.createObjectURL(value));
+          if(value?.length) setLogo(value);
+
+          if(value){
+            setLogoPreview(URL.createObjectURL(value));
+          }else{
+            setLogoPreview(URL.revokeObjectURL(logoPreview));
+          }
+          
           break;
         case 'important':
           setImportant(value);

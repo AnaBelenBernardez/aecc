@@ -36,8 +36,8 @@ function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, 
         setGalicianDescription(value);    
         break;
       case 'logo':
-        setLogo(value);
-        setLogoPreview(URL.createObjectURL(value));
+        value?.length && setLogo(value);
+        value ? setLogoPreview(URL.createObjectURL(value)) : setLogoPreview(URL.revokeObjectURL(logoPreview));
         break;
       case 'important':
         setImportant(value);
