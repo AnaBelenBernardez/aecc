@@ -45,7 +45,7 @@ export const CardEvent = ({
         </div>
       </div>
       <Link href={link} target="_blank">
-        <button className="border-2 border-primaryGreen bg-primaryGreen rounded-2xl text-sm font-bold px-6 py-2 ml-3 mb-3 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
+        <button className="border-2 border-primaryGreen bg-primaryGreen rounded-2xl text-sm font-bold px-6 py-2 ml-3 mb-3 mt-2 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
           APÚNTATE
         </button>
       </Link>
