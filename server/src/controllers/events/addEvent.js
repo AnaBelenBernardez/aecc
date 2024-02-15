@@ -7,8 +7,6 @@ const { photoSchema, arrayPhotoSchema } = require('../../schemas/photoSchema');
 
 async function addEvent (req,res,next) {
     try{
-        //! Revisar unique content
-
         const insertedPhotos = [];
         const pool = await getPool();
 

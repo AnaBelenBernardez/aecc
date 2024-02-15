@@ -2,9 +2,7 @@ const {getPool} = require('../../database/db');
 const deletePhoto = require('../../helpers/deletePhoto');
 
 async function deleteEvent (req,res,next) {
-    try {
-        //! ECHAR UN OJO AL MANEJO DE ERRORES
-        
+    try {      
         const pool = await getPool();
         const {idEvent} = req.params;
 

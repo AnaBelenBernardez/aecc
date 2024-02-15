@@ -4,7 +4,6 @@ const deletePhoto = require('../../helpers/deletePhoto');
 
 async function deleteExperience (req,res,next) {
     try {
-        //! ECHAR UN OJO AL MANEJO DE ERRORES
         const pool = await getPool();
 
         const { idExperience } = req.params;
