@@ -29,7 +29,7 @@ const useGetAllAchievements = () => {
   const refetch = () => {
     loadAchievements();
   };
-  console.log(achievements);
+
   return { achievements, loading, error, refetch };
 };
 

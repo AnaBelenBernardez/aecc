@@ -6,7 +6,7 @@ const storeLanguage = (set, get) => ({
   setLanguage: (language) => set({ language })
 });
 
-// Create a store using zustand's create function
+
 export const useLanguageStore = create(
   persist(
     storeLanguage,

@@ -102,7 +102,6 @@ const dashboardNews = () => {
     e.preventDefault();
 
     try {
-      console.log(formValuesEdit);
       await editNewService(formValuesEdit, singleNew.id, token);
       setEditNewModalOpen(false);      
       refetch();

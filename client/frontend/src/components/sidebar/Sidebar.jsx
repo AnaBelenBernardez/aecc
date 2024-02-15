@@ -22,7 +22,6 @@ export const Sidebar = () => {
     <>
       {isSideMenuOpen && (
         <div>
-          {/*Sidemenu*/}
           <nav
             className={clsx(
               "fixed p-5 right-0 top-0 w-full max-h-svh bg-white z-[2] shadow-2xl transform transition-all duration-300 flex flex-col justify-center items-center",
@@ -37,8 +36,6 @@ export const Sidebar = () => {
             >
               <Close />
             </button>
-
-            {/*Menu*/}
             <Link
               href="/"
               className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
