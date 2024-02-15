@@ -263,7 +263,7 @@ export default function Home() {
           </div>
         </div>
       )}
-      {/* {
+      {
         sponsors
           ? <>
               <h3 className="text-2xl font-bold my-8 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mt-20">
@@ -274,7 +274,7 @@ export default function Home() {
               </section>
             </>
           : null
-      } */}
+      }
       {
         achievements
           ? <>
