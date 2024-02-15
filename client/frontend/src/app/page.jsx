@@ -192,7 +192,7 @@ export default function Home() {
           <h3 className="text-2xl font-bold mt-8 mb-2 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
             Próximos eventos
           </h3>
-          <h4 className='font-bold mb-8 text-2xl lg:flex lg:pl-20 lg:w-full lg:gap-2'>en <span className='text-primaryGreen'>A Coruña</span></h4>
+          <h4 className='font-bold mb-8 text-2xl lg:flex lg:pl-20 lg:w-full lg:gap-2'>{language === "es" ? "en la provincia de " : "na provincia de "}<span className='text-primaryGreen'>A Coruña</span></h4>
           {filteredEvents && filteredEvents.length > 3 ? (
             <EventsCarousel filteredEvents={filteredEvents}/>
             ) : (
@@ -221,8 +221,8 @@ export default function Home() {
               </h2>
               <p className="mb-8 mr-5 ml-5 text-balance md:text-center lg:text-left lg:text.left lg:w-2/6 lg:ml-10">
                 {language === "es"
-                  ? "Consulta todos los eventos que hemos planificado este año. Desplázate por el calendario y no te pierdas ninguno."
-                  : "Consulta todos os eventos que temos planificados para este ano. Desplázate polo calendario e non perdas ningún"}
+                  ? "Consulta todos los eventos que hemos planificado este año en la provincia de A Coruña. Desplázate por el calendario y no te pierdas ninguno."
+                  : "Consulta todos os eventos que temos planificados para este ano na provincia de A Coruña. Desplázate polo calendario e non perdas ningún"}
                 <br />{" "}
                 {language === "es" ? "¡Te estamos esperando!" : "Esperámoste!"}
               </p>
@@ -266,7 +266,7 @@ export default function Home() {
       {
         sponsors
           ? <>
-              <h3 className="text-2xl font-bold my-8 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mt-20">
+              <h3 className="text-2xl font-bold my-8 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mt-40">
                 {language === "es" ? "Nuestros patrocinadores" : "Os nosos patrocinadores"}
               </h3>
               <section className='md:mb-14'>

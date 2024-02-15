@@ -11,6 +11,11 @@ import Loading from '../loading/Loading';
 
 const Calendar = () => {
   const css = `
+  @media (min-width: 768px) {
+    .rdp {
+      --rdp-cell-size: 50px;
+    }
+  }
   .my-selected:not([disabled]) { 
     font-weight: bold; 
     border: 2px solid #24C347;
