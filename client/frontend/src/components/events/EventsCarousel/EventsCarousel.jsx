@@ -39,7 +39,7 @@ export const EventsCarousel = ({ filteredEvents }) => {
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.play}
-        className="max-w-xs md:max-w-3xl lg:max-w-7xl "
+        className="max-w-xs md:max-w-2xl lg:max-w-6xl "
       >
         <CarouselContent>
           {filteredEvents && filteredEvents.length > 0

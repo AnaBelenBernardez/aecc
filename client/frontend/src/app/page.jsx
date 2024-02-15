@@ -109,8 +109,8 @@ export default function Home() {
           </h1>
           <p className="text-xs sm:text-xl font-medium my-5 text-white">
             {language === "es"
-              ? "CONSULTA TODOS NUESTROS EVENTOS E INSCRÍBETE"
-              : "CONSULTA TODOS OS NOSOS EVENTOS E INSCRÍBETE"}
+              ? "Consulta todos nuestros eventos e inscríbete"
+              : "Consulta todos os nosos eventos e inscríbete"}
           </p>
           <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 mt-5 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
             <Link href="/calendario-e-inscripciones">IR A EVENTOS</Link>
@@ -160,8 +160,8 @@ export default function Home() {
           <section className="bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10 lg:w-full">
         <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
           {language === "es"
-            ? "Encuentra un evento #contraelcáncer"
-            : "Atopa un evento #contraelcáncer"}
+            ? "Encuentra un evento #contraelcáncer en la provincia de A Coruña"
+            : "Atopa un evento #contraocancro na provincia de A Coruña "}
         </h2>
         <div className="flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center">
           <div className="flex flex-col gap-4 md:flex-row md:items-center">
@@ -189,9 +189,10 @@ export default function Home() {
           ></DateTimePickerValue>
         </div>
       </section>
-          <h3 className="text-2xl font-bold my-8 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
+          <h3 className="text-2xl font-bold mt-8 mb-2 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
             Próximos eventos
           </h3>
+          <h4 className='font-bold mb-8 text-2xl lg:flex lg:pl-20 lg:w-full lg:gap-2'>en <span className='text-primaryGreen'>A Coruña</span></h4>
           {filteredEvents && filteredEvents.length > 3 ? (
             <EventsCarousel filteredEvents={filteredEvents}/>
             ) : (
@@ -279,8 +280,8 @@ export default function Home() {
           ? <>
               <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mb-14">
                 {language === "es"
-                  ? "Gracias a tu participación..."
-                  : "Grazas á túa participación..."}
+                  ? "Gracias a tu participación"
+                  : "Grazas á túa participación"}
               </h3>
               <div className="grid grid-cols-1 items-center justify-center gap-10 sm:grid-cols-3 container">
               {
