@@ -12,7 +12,7 @@ export const CardEvent = ({
 }) => {
   const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${image}`;
   return (
-    <div className="min-w-[300px] md:max-w-[328px] h-[520px] md:h-[500px] shadow-xl bg-secondLightGray overflow-hidden fade-in relative md:mx-4 rounded-t-xl">
+    <div className="min-w-[300px] md:max-w-[300px] h-[520px] shadow-xl bg-secondLightGray overflow-hidden fade-in relative md:mx-4 rounded-t-xl">
       {warning ? (
         <Link className="cursor-pointer" href="/noticias">
         <div className="flex bg-[#FF3C37] py-2 px-4 gap-2 items-center justify-center absolute top-3 left-3 rounded-full">
@@ -26,17 +26,17 @@ export const CardEvent = ({
         </div>
         </Link>
       ) : null}
-      <div className="w-[328px] h-64 rounded-t-lg">
+      <div className="w-[300px] h-64 rounded-t-lg">
         <LazyLoadImage
           src={imgSrc}
           alt={title}
-          className="w-[328px] h-64 block object-cover object-top rounded-xl"
+          className="w-[300px] h-64 block object-cover object-top rounded-xl"
           effect="opacity"
         />
       </div>
       
       <div className="mt-2 mx-3">
-        <h2 className="font-bold text-lg h-12 md:h-10 mb-2 line-clamp-2">{title}</h2>
+        <h2 className="font-bold text-lg h-12 md:h-12 mb-2 line-clamp-2">{title}</h2>
         <p className="h-24 line-clamp-4">{description}</p>
         <div className="flex justify-end mt-3">
           <p className="border-2 border-primaryGreen rounded-xl text-xs font-semibold px-2 py-1">
@@ -46,7 +46,7 @@ export const CardEvent = ({
       </div>
       <Link href={link} target="_blank">
         <button className="border-2 border-primaryGreen bg-primaryGreen rounded-2xl text-sm font-bold px-6 py-2 ml-3 mb-3 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
-          PARTICIPA
+          APÚNTATE
         </button>
       </Link>
     </div>
