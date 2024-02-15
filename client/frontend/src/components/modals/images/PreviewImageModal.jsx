@@ -101,31 +101,3 @@ function handleTouchEnd() {
 };
 
 export default PreviewImageModal;
-
-
-
-// const PreviewImageModal = ({ images, currentIndex, onClose, onPrev, onNext }) => {
-
-//   return (
-//     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">      
-//        <div className="relative">
-//          <button onClick={() => { onClose() }} className="absolute top-4 right-4 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300">
-//           <img src="/icons/closeModals.svg" alt='Icono de cerrar'/>
-//          </button>
-//          <img
-//             src={images && images[currentIndex]}
-//             alt={`Image ${currentIndex + 1}`}
-//             className="w-[50vw] max-h-[90vh] mx-auto"
-//           />
-//          <button onClick={onPrev} className="absolute top-[50%] left-0">
-//           <img src="/icons/left.svg" alt="previo" />
-//          </button>
-//          <button onClick={onNext} className="absolute top-[50%] right-0">
-//           <img src="/icons/right.svg" alt="siguiente" />
-//          </button>
-//         </div>
-//     </div>
-//   );
-// };
-
-// export default PreviewImageModal;
