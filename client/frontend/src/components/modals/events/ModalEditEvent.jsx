@@ -146,8 +146,8 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                       message: "Mínimo de 2 caracteres de longitud",
                     },
                     maxLength: {
-                      value: 100,
-                      message: "Máximo de 100 caracteres de longitud",
+                      value: 500,
+                      message: "Máximo de 500 caracteres de longitud",
                     },
                   })}
                 />
@@ -381,8 +381,8 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
                       message: "Mínimo de 2 caracteres de longitud",
                     },
                     maxLength: {
-                      value: 100,
-                      message: "Máximo de 100 caracteres de longitud",
+                      value: 500,
+                      message: "Máximo de 500 caracteres de longitud",
                     },
                   })}
                 />
