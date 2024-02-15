@@ -5,6 +5,8 @@ import useGetEvent from '../../../hooks/useGetEvent';
 import { useParams, notFound } from 'next/navigation';
 import PreviewImageModal from '../../../components/modals/images/PreviewImageModal';
 import { useState } from 'react';
+import Image from 'next/image';
+import BlockScroll from '../../../components/blockScroll/BlockScroll';
 
 
 const EventPhotos = () => {
@@ -31,22 +33,26 @@ const EventPhotos = () => {
     setModalIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
- const images = event?.event_photos.map((photo) => {
-   return process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${photo.photo}`
- })
- 
+  const images = event?.event_photos.map((photo) => {
+    return process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${photo.photo}`
+  })
+
   if (loading) return <Loading/>;
 
   if (error) {
     notFound();
   }
+
+  const imgLoader = ({ src, width, quality }) => {
+    return `${src}?w=${width}&q=${quality || 75}`
+  }
+
   return (
     <main className='my-4'>
       {
         event 
           ? <div className="flex flex-col lg:grid lg:auto-rows-[240px] lg:grid-cols-4 gap-4 mx-20">
               {event.event_photos.map((photo, i) => {
-                const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${photo.photo}`
                 return (
                   <div
                     key={i}
@@ -58,8 +64,16 @@ const EventPhotos = () => {
                       ||i===310||i===313||i===320||i===326||i===330||i===336||i===340||i===346||i===350||i===356||i===360||i===363||i===370||i===376||i===380
                       ||i===386||i===390||i===396||i === 398 || i=== 400 ? "col-span-2 row-span-2" : ""}`}
                   >
-                    
-                      <img src={imgSrc} onClick={() => openModal(i)} className='w-full h-full object-cover grayscale hover:grayscale-0 transition-all ease-in-out duration-1000 rounded-xl'/>
+                    <button onClick={() => openModal(i) } className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all ease-in-out duration-1000 rounded-xl">
+                      <Image
+                        width={400}
+                        height={400}
+                        loader={imgLoader}
+                        alt={photo.photo}
+                        src={process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${photo.photo}`}
+                        className='w-full h-full object-cover grayscale hover:grayscale-0 transition-all ease-in-out duration-1000 rounded-xl'
+                      />
+                    </button>
                     
                   </div>
                 )
@@ -75,6 +89,7 @@ const EventPhotos = () => {
         onNext={showNextImage}
         />
       }
+      <BlockScroll isModalOpen={isModalOpen}/>
     </main>
   )
 };
