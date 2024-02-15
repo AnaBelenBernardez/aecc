@@ -24,7 +24,7 @@ export const EventsCarousel = ({filteredEvents}) => {
   const {events, loading, error} = useGetAllEvents();
 
   React.useEffect(() => {
-    setLengthCarrousel(setLenghtCarrouselFunc(events, 8));
+    setLengthCarrousel(setLenghtCarrouselFunc(events, events.length));
   }, [events]);
 
   if (loading) return <Loading/>;

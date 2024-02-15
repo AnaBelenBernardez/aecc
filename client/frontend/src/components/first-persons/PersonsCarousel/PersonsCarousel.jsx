@@ -26,7 +26,7 @@ export const PersonsCarousel = () => {
   const {experiences, loading, error} = useGetAllExperiences();
 
   useEffect(() => {
-    setLengthCarrousel(setLenghtCarrouselFunc(experiences, 3));
+    setLengthCarrousel(setLenghtCarrouselFunc(experiences, experiences.length));
   }, [experiences]);
 
   if (loading) return <Loading/>;
