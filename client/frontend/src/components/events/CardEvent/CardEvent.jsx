@@ -12,7 +12,7 @@ export const CardEvent = ({
 }) => {
   const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${image}`;
   return (
-    <div className="w-80 md:w-96 h-[520px] md:h-[500px] shadow-xl bg-secondLightGray overflow-hidden fade-in relative mx-4">
+    <div className="min-w-[300px] md:max-w-[328px] h-[520px] md:h-[500px] shadow-xl bg-secondLightGray overflow-hidden fade-in relative md:mx-4 rounded-t-xl">
       {warning ? (
         <Link className="cursor-pointer" href="/noticias">
         <div className="flex bg-[#FF3C37] py-2 px-4 gap-2 items-center justify-center absolute top-3 left-3 rounded-full">
@@ -26,13 +26,11 @@ export const CardEvent = ({
         </div>
         </Link>
       ) : null}
-      <div className="w-full h-64">
+      <div className="w-[328px] h-64 rounded-t-lg">
         <LazyLoadImage
           src={imgSrc}
           alt={title}
-          className="w-80 md:w-full h-64 block object-cover object-top rounded-xl"
-          width={384}
-          height={233}
+          className="w-[328px] h-64 block object-cover object-top rounded-xl"
           effect="opacity"
         />
       </div>

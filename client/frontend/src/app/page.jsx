@@ -211,7 +211,8 @@ export default function Home() {
                 : <EventsCarousel />
               }
             </div>
-          )}
+          )
+          }
           <section className="flex flex-col w-full md:items-center lg:items-start pl-8 pr-8 lg:relative">
             <div className="flex flex-col items-center w-full lg:flex lg:flex-wrap lg:items-start">
               <h2 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-12 lg:w-full lg:mt-20">
@@ -261,7 +262,7 @@ export default function Home() {
           </div>
         </div>
       )}
-      {
+      {/* {
         sponsors
           ? <>
               <h3 className="text-2xl font-bold my-8 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mt-20">
@@ -272,7 +273,7 @@ export default function Home() {
               </section>
             </>
           : null
-      }
+      } */}
       {
         achievements
           ? <>

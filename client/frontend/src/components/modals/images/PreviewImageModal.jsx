@@ -42,7 +42,6 @@ function handleTouchEnd() {
 
    
   useEffect(() => {
-    // Existing event listeners for keyboard and clicks outside
     if (currentIndex !== null) {
       const handleBlur = () => setFocusIndex(0);
       const handleFocus = () => setFocusIndex(currentIndex);
