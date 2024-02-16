@@ -48,7 +48,7 @@ export const PersonsCarousel = () => {
           <CarouselItem key={index}>
             <div className="p-1">
               <Card>
-                <CardContent className="flex items-center justify-center sm:justify-start p-6">
+                <CardContent className="flex items-center justify-center sm:justify-start py-6 px-2 md:px-8">
                   <CardPerson
                     name={experiences[index].name}
                     content={language === 'es' ? experiences[index].content : experiences[index].galician_content}

@@ -14,6 +14,7 @@ const EventPhotos = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {id} = useParams();
   const { event, loading, error } = useGetEvent(id);
+  const [slideDirection, setSlideDirection] = useState(null);
 
   const openModal = (index) => {
     setIsModalOpen(true);
@@ -27,10 +28,12 @@ const EventPhotos = () => {
 
   const showPrevImage = () => {
     setModalIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setSlideDirection('right');
   };
-
+  
   const showNextImage = () => {
     setModalIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setSlideDirection('left');
   };
 
   const images = event?.event_photos.map((photo) => {
@@ -87,6 +90,8 @@ const EventPhotos = () => {
         onClose={closeModal}
         onPrev={showPrevImage}
         onNext={showNextImage}
+        slideDirection={slideDirection}
+        setSlideDirection={setSlideDirection}
         />
       }
       <BlockScroll isModalOpen={isModalOpen}/>

@@ -48,3 +48,29 @@ select {
 #galician_content:focus {
 	border-color: rgb(22 163 74);
 }
+
+.slide-left {
+	animation: slideLeft 0.2s forwards;
+}
+
+.slide-right {
+	animation: slideRight 0.2s forwards;
+}
+
+@keyframes slideLeft {
+	0% {
+		transform: translateX(15%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideRight {
+	0% {
+		transform: translateX(-15%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
