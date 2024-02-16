@@ -10,8 +10,6 @@ export const GalleryCard = ({ title, location, image }) => {
         src={imgSrc}
         alt={image}
         className="w-[286px] h-[365px] object-cover object-top rounded-xl"
-        width={500}
-        height={500}
         effect="opacity"
       />
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-black bg-opacity-50 backdrop-blur text-white p-4 flex flex-col items-center gap-2 rounded-b-xl">

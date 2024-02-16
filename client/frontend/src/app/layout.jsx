@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "../components/footer/Footer";
 import { Sidebar } from "../components/sidebar/Sidebar";
 import Header from '../components/header/Header';
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
       </body>
+      <GoogleAnalytics gaId="G-K6G3270VC8" />
     </html>
   );
 }

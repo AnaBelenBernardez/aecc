@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const PreviewImageModal = ({ images, currentIndex, onClose, onNext, onPrev }) => {
+const PreviewImageModal = ({ images, currentIndex, onClose, onNext, onPrev, slideDirection, setSlideDirection }) => {
   const [focusIndex, setFocusIndex] = useState(0);
   const [touchStart, setTouchStart] = React.useState(0);
   const [touchEnd, setTouchEnd] = React.useState(0);
+
+
   
 function handleTouchStart(e) {
     setTouchStart(e.targetTouches[0].clientX);
@@ -14,20 +16,24 @@ function handleTouchMove(e) {
 }
 
 function handleTouchEnd() {
-    if (touchStart - touchEnd > 150) {
+    if (touchStart - touchEnd > 20) {
       onNext()
+      setSlideDirection('left');
     }
     
-    if (touchStart - touchEnd < -150) {
+    if (touchStart - touchEnd < -20) {
       onPrev()
+      setSlideDirection('right');
     }
 }
   const handleKeyDown = (event) => {
     if (event.key === 'ArrowLeft') {
       onPrev();
+      setSlideDirection('right');
       setFocusIndex(focusIndex - 1); 
     } else if (event.key === 'ArrowRight') {
       onNext();
+      setSlideDirection('left');
       setFocusIndex(focusIndex + 1);
     } else if (event.key === 'Escape') {
       onClose();
@@ -40,32 +46,34 @@ function handleTouchEnd() {
     }
   };
 
-   
+  
   useEffect(() => {
     if (currentIndex !== null) {
       const handleBlur = () => setFocusIndex(0);
       const handleFocus = () => setFocusIndex(currentIndex);
       const handleOutsideClick = (event) => handleClickOutside(event);
-  
-      window.addEventListener('keydown', handleKeyDown);
+      
+      window.addEventListener('keydown', handleKeyDown);      
       document.addEventListener('focusin', handleFocus);
-      document.addEventListener('blur', handleBlur);
       document.addEventListener('mousedown', handleOutsideClick);
-    
+      
+      setTimeout(() => {
+        
+        setSlideDirection(null); 
+      }, 200);
       
       return () => {
         window.removeEventListener('keydown', handleKeyDown);
         document.removeEventListener('focusin', handleFocus);
-        document.removeEventListener('blur', handleBlur);
         document.removeEventListener('mousedown', handleOutsideClick);
-      
+        
       };
     }
   }, [currentIndex, onPrev, onNext]);
 
   return (
     <div
-      className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 modal-container"
+      className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 modal-container backdrop-blur-sm"
       tabIndex={-1} 
       onFocus={() => setFocusIndex(currentIndex)} 
     >
@@ -76,7 +84,7 @@ function handleTouchEnd() {
           onTouchMove={handleTouchMove}
           src={images && images[currentIndex]}
           alt={`Image ${currentIndex + 1}`}
-          className="w-[90vw] lg:w-[70vw] max-h-[90vh] mx-auto object-contain"
+          className={`w-[90vw] lg:w-[70vw] max-h-[90vh] mx-auto object-contain ${slideDirection ? 'slide-' + slideDirection : ''}`}
           tabIndex={focusIndex === 0 ? 0 : -1}
         />
 
