@@ -64,7 +64,7 @@ const LoginPage = () => {
           />
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className=" bg-secondLightGray rounded-xl flex flex-col justify-center items-center gap-5 w-[400px] h-[400px]"
+            className=" bg-secondLightGray rounded-xl flex flex-col justify-center items-center gap-5 w-full md:max-w-[400px] h-[400px]"
           >
             <FormField
               control={form.control}

@@ -121,7 +121,8 @@ export default function Home() {
         language === 'es'
           ? <>
               <h3 className="text-2xl font-bold text-center mt-14 md:text-5xl lg:flex lg:pl-16 lg:w-full">¿Qué es En Marcha?</h3>
-              <section className='mb-16 px-7 mt-8'>
+              {/* Traer esto del back */}
+              <section className='mb-16 px-7 mt-8 lg:w-full'>
                 <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
                   <span className='font-bold text-primaryGreen text-lg'>A Coruña En Marcha</span>  es el circuito de actividades deportivas 100% solidarias de la Asociación Española Contra el Cáncer en la provincia de A Coruña.
                 </p>
@@ -135,7 +136,7 @@ export default function Home() {
             </>
           : <>
               <h3 className="text-2xl font-bold text-center mt-14 md:text-5xl lg:flex lg:pl-16 lg:w-full">¿Que é En Marcha?</h3>
-              <section className='mb-16 px-7 mt-8'>
+              <section className='mb-16 px-7 mt-8 lg:w-full'>
                 <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
                   <span className='font-bold text-primaryGreen text-lg'>A Coruña En Marcha</span> é o circuíto de actividades deportivas 100% solidarias da Asociación Española Contra o Cancro na provincia da Coruña.
                 </p>
@@ -146,6 +147,7 @@ export default function Home() {
                   Grazas á vosa colaboración e solidaridade, <span className='font-bold text-primaryGreen text-lg'>A Coruña</span> está en marcha contra o cancro pola investigación, polos pacientes e polas familias. Esperámoste!
                 </p>
               </section>
+              {/* Hasta aqui */}
             </>
       }
       
@@ -186,7 +188,9 @@ export default function Home() {
           <h3 className="text-2xl font-bold mt-8 mb-2 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
             Próximos eventos
           </h3>
-          <h4 className='font-bold mb-8 text-2xl lg:flex lg:pl-20 lg:w-full lg:gap-2'>{language === "es" ? "en la provincia de " : "na provincia de "}<span className='text-primaryGreen'>A Coruña</span></h4>
+          <h4 className='font-bold mb-8 text-2xl lg:flex lg:pl-20 lg:w-full lg:gap-2'>
+            {language === "es" ? <p>en la provincia de <span className='text-primaryGreen'>A Coruña</span></p> : <p>na provincia da <span className='text-primaryGreen'>Coruña</span></p>}
+          </h4>
           {filteredEvents && filteredEvents.length > 3 ? (
             <EventsCarousel filteredEvents={filteredEvents}/>
             ) : (
@@ -217,8 +221,8 @@ export default function Home() {
                 {language === "es"
                   ? "Consulta todos los eventos solidarios En Marcha que tenemos planificados. Consulta nuestro calendario."
                   : "Consulta todos os eventos solidarios En Marcha que temos planificados. Consulta o noso calendario."}
-                {/* <br />{" "}
-                {language === "es" ? "¡Te estamos esperando!" : "Esperámoste!"} */}
+                <br />{" "}
+                {language === "es" ? "¡Te estamos esperando!" : "Esperámoste!"}
               </p>
               <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-8 lg:self-start lg:ml-10 hover:text-secondLightGray hover:bg-primaryGreen">
                 <Link href="/calendario-e-inscripciones">
@@ -282,13 +286,13 @@ export default function Home() {
                 achievements.map((achievement) => {
                   const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${achievement.icon}`
                   return (
-                    <div className="flex flex-col items-center gap-5" key={achievement.id}>
-                      <div className="w-[120px] h-[120px]">
+                    <div className="flex flex-col items-center gap-5 h-full" key={achievement.id}>
+                      <div className="w-[120px] h-[120px] object-contain border-2 p-6 border-primaryGreen rounded-full flex items-center">
                         <Image
                           src={imgSrc}
                           width={120}
                           height={120}
-                          className="border-2 p-6 border-primaryGreen rounded-full object-contain w-[120px] h-[120px]"
+                          className="object-contain w-[120px] h-[120px]"
                           alt="Icono"
                         />
                       </div>

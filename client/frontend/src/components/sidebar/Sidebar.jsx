@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLoginStore, useUIStore } from "../../store";
 import { Close, Logout } from "../../lib/svg";
 import { useRouter } from "next/navigation";
+import { useLanguageStore } from '../../store';
 
 export const Sidebar = () => {
   const router = useRouter();
@@ -17,6 +18,8 @@ export const Sidebar = () => {
     router.push("/admin");
     closeMenu();
   };
+
+  const language = useLanguageStore((state) => state.language);
 
   return (
     <>
@@ -38,49 +41,56 @@ export const Sidebar = () => {
             </button>
             <Link
               href="/"
-              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-3 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Inicio</span>
             </Link>
             <Link
-              href="/calendario-e-inscripciones"
-              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              href="/en-marcha"
+              className="flex items-center mt-3 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
-              <span className="ml-3 text-xl">Calendario e inscripciones</span>
+              <span className="ml-3 text-xl">A Coruña en Marcha</span>
+            </Link>
+            <Link
+              href="/calendario-e-inscripciones"
+              className="flex items-center mt-3 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              onClick={closeMenu}
+            >
+              <span className="ml-3 text-xl">{language === "es" ? "Calendario e inscripciones" : "Calendario e inscricións"}</span>
             </Link>
             <Link
               href="/galeria"
-              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-3 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Galeria</span>
             </Link>
             <Link
               href="/faq"
-              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-3 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">FAQ</span>
             </Link>
             <Link
               href="/voluntarios"
-              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-3 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Voluntarios</span>
             </Link>
             <Link
               href="/patrocinios"
-              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-3 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Patrocinios</span>
             </Link>
             <Link
               href="/noticias"
-              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-3 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Noticias</span>
@@ -88,14 +98,14 @@ export const Sidebar = () => {
             <Link
               href="https://blog.contraelcancer.es/"
               target='_blank'
-              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-3 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Blog</span>
             </Link>
             <Link
               href="/contacto"
-              className="flex items-center mt-5 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
+              className="flex items-center mt-3 p-2 hover:text-primaryGreen rounded transition-all sm:justify-center"
               onClick={closeMenu}
             >
               <span className="ml-3 text-xl">Contacto</span>

@@ -7,17 +7,27 @@ const Volunteers = () => {
   const language = useLanguageStore((state) => state.language);
 
   return (
-    <div className="mx-auto mb-4 md:w-[90%] lg:w-3/4">
-      <h1 className="font-bold text-primaryGreen text-xl pt-4 mb-4 lg:text-3xl lg:pt-6 lg:pb-6 lg:pl-0 lg:mb-0">
+    <div className="mx-5 mb-4 md:mx-[38.5px] lg:w-3/4 lg:mx-auto">
+      <h1 className="font-bold text-primaryGreen text-2xl text-center py-4 md:text-3xl md:py-6 lg:text-left">
         Voluntarios
       </h1>
-      <div className="flex flex-col gap-8 items-center">
+      {
+        language === "es"
+          ? <p className='text-balance mb-2 md:text-wrap'>¿Te gustaría hacer del mundo un lugar mejor? No lo dudes, haz voluntariado con la Asociación Española Contra el Cáncer.</p>
+          : <p className='text-balance mb-2 md:text-wrap'>Gustaríache facer do mundo un lugar mellor? Non o dubides, fai voluntariado coa Asociación Española Contra o Cancro.</p>
+      }
+      {
+        language === "es"
+          ? <p className='text-balance mb-4 md:text-wrap'>Rellena este breve formulario y nos pondremos en contacto contigo.</p>
+          : <p className='text-balance mb-4 md:text-wrap'>Completa este breve formulario e poñerémonos en contacto contigo.</p>
+      }
+      <div className="flex flex-col gap-8 items-center h-[226.4vh] md:h-[135.45vh] lg:h-[173vh]">
         {language === "es" ? (
           <iframe
             width="640px"
-            height="480px"
+            height="480vh"
             src="https://forms.office.com/r/sKKFWhHVTM?embed=true"
-            className="w-full h-screen"
+            className="w-full h-[226.4vh] md:h-[135.45vh] lg:h-[173vh]"
           >
             {" "}
           </iframe>
@@ -26,7 +36,7 @@ const Volunteers = () => {
             width="640px"
             height="480px"
             src="https://forms.office.com/r/QDEFfZ6wDh?embed=true"
-            className="w-full h-screen"
+            className="w-full h-[226.4vh] md:h-[135.45vh] lg:h-[173vh]"
           >
             {" "}
           </iframe>

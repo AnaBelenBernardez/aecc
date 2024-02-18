@@ -8,16 +8,16 @@ const Contact = () => {
 
   return (
     <div className="mx-5 mb-4 lg:w-3/4 lg:mx-auto md:mx-[38.5px]">
-      <h1 className="font-bold text-primaryGreen text-xl py-4 lg:text-3xl lg:pt-6 lg:pb-6 lg:pl-0">
+      <h1 className="font-bold text-primaryGreen text-2xl text-center py-4 md:text-3xl md:py-6 lg:text-left">
         Contacto
       </h1>
-      <div className="mb-4 lg:mb-8">
+      <div className="mb-4 lg:mb-8 h-[212.6vh] md:h-[125.3vh] lg:h-[162vh]">
         {language === "es" ? (
           <iframe
             width="640px"
             height="480px"
             src="https://forms.office.com/r/9n22D0fXyf?embed=true"
-            className="w-full h-screen"
+            className="w-full h-[212.6vh] md:h-[125.3vh] lg:h-[162vh]"
           >
             {" "}
           </iframe>
@@ -26,7 +26,7 @@ const Contact = () => {
             width="640px"
             height="480px"
             src="https://forms.office.com/r/BLP7tLJBEn?embed=true"
-            className="w-full h-screen"
+            className="w-full h-[212.6vh] md:h-[125.3vh] lg:h-[162vh]"
           >
             {" "}
           </iframe>
