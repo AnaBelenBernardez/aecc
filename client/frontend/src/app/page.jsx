@@ -104,13 +104,13 @@ export default function Home() {
             A Coruña <span className="text-primaryGreen">en marcha</span>
             <br />
             <span className="text-primaryGreen">
-              CONTRA O CANCRO
+              {language === "es" ? "CONTRA EL CÁNCER" : "CONTRA O CANCRO"}
             </span>
           </h1>
           <p className="text-xs sm:text-xl font-medium my-5 text-white">
             {language === "es"
-              ? "Consulta todos nuestros eventos e inscríbete"
-              : "Consulta todos os nosos eventos e inscríbete"}
+              ? "Consulta todos nuestros eventos solidarios e inscríbete"
+              : "Consulta todos os nosos eventos solidarios e inscríbete"}
           </p>
           <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 mt-5 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
             <Link href="/calendario-e-inscripciones">IR A EVENTOS</Link>
@@ -123,16 +123,13 @@ export default function Home() {
               <h3 className="text-2xl font-bold text-center mt-14 md:text-5xl lg:flex lg:pl-16 lg:w-full">¿Qué es En Marcha?</h3>
               <section className='mb-16 px-7 mt-8'>
                 <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
-                  <span className='font-bold text-primaryGreen text-lg'>En Marcha</span> es un movimiento que reúne a miles de personas de toda España en torno a una causa común: la lucha contra el cáncer. Un ejemplo de colaboración 
-                  público-privada que se ha convertido en una cita imprescindible, en la que personas de todas las edades y condiciones se mueven por un futuro sin cáncer.
+                  <span className='font-bold text-primaryGreen text-lg'>A Coruña En Marcha</span>  es el circuito de actividades deportivas 100% solidarias de la Asociación Española Contra el Cáncer en la provincia de A Coruña.
                 </p>
                 <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
-                  El deporte siempre se ha caracterizado por ponerse al servicio de las más diversas causas solidarias. En el caso de las carreras populares, la travesía a nado 
-                  o el pádel, el componente competitivo queda en un segundo plano para la gran mayoría de los participantes en favor del simple placer de realizar una actividad física en un ambiente festivo.
+                El pasado año más de XXX personas participaron en nuestros XX eventos con los que recaudamos XXX euros destinados a la investigación oncológica y al apoyo a pacientes y familias.. 
                 </p>
                 <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
-                  Los participantes de los eventos <span className='font-bold text-primaryGreen text-lg'>En Marcha</span> no solo colaboran en la lucha contra el cáncer, sino que también cuidan de su salud porque moverse 
-                  importa y más cuando se hace en compañía  y por una buena causa.
+                Gracias a vuestra colaboración y solidaridad, <span className='font-bold text-primaryGreen text-lg'>A Coruña</span> está en marcha contra el cáncer por la investigación, por los pacientes y por las familias. ¡Te esperamos!
                 </p>
               </section>
             </>
@@ -140,16 +137,13 @@ export default function Home() {
               <h3 className="text-2xl font-bold text-center mt-14 md:text-5xl lg:flex lg:pl-16 lg:w-full">¿Que é En Marcha?</h3>
               <section className='mb-16 px-7 mt-8'>
                 <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
-                  <span className='font-bold text-primaryGreen text-lg'>En Marcha</span> é un movemento que reúne a miles de persoas de toda España arredor dunha causa común: a loita contra o cancro. Un exemplo de colaboración
-                  público-privado que se converteu nun evento imprescindible, no que persoas de todas as idades e condicións avanzan cara a un futuro sen cancro.
+                  <span className='font-bold text-primaryGreen text-lg'>A Coruña En Marcha</span> é o circuíto de actividades deportivas 100% solidarias da Asociación Española Contra o Cancro na provincia da Coruña.
                 </p>
                 <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
-                  O deporte sempre se caracterizou por poñerse ao servizo das máis diversas causas solidarias. No caso das carreiras populares, a travesía a natación
-                  ou pádel, a compoñente competitiva pasa a un segundo plano para a gran maioría dos participantes en favor do simple pracer de realizar unha actividade física nun ambiente festivo.
+                O pasado ano máis de XXX persoas participaron nos nosos  XX eventos cos que recadamos XXX euros destinados á investigación oncolóxica e ao apoio a pacientes e familias. 
                 </p>
                 <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
-                  Os participantes dos eventos <span className='font-bold text-primaryGreen text-lg'>En Marcha</span> non só colaboran na loita contra o cancro, senón que coidan a súa saúde porque o movemento
-                  importa e máis aínda cando se fai en compañía e por unha boa causa.
+                  Grazas á vosa colaboración e solidaridade, <span className='font-bold text-primaryGreen text-lg'>A Coruña</span> está en marcha contra o cancro pola investigación, polos pacientes e polas familias. Esperámoste!
                 </p>
               </section>
             </>
@@ -160,8 +154,8 @@ export default function Home() {
           <section className="bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10 lg:w-full">
         <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
           {language === "es"
-            ? "Encuentra un evento #contraelcáncer en la provincia de A Coruña"
-            : "Atopa un evento #contraocancro na provincia de A Coruña "}
+            ? "Encuentra un evento en la provincia de A Coruña"
+            : "Atopa un evento na provincia da Coruña"}
         </h2>
         <div className="flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center">
           <div className="flex flex-col gap-4 md:flex-row md:items-center">
@@ -221,10 +215,10 @@ export default function Home() {
               </h2>
               <p className="mb-8 mr-5 ml-5 text-balance md:text-center lg:text-left lg:text.left lg:w-2/6 lg:ml-10">
                 {language === "es"
-                  ? "Consulta todos los eventos que hemos planificado este año en la provincia de A Coruña. Desplázate por el calendario y no te pierdas ninguno."
-                  : "Consulta todos os eventos que temos planificados para este ano na provincia de A Coruña. Desplázate polo calendario e non perdas ningún"}
-                <br />{" "}
-                {language === "es" ? "¡Te estamos esperando!" : "Esperámoste!"}
+                  ? "Consulta todos los eventos solidarios En Marcha que tenemos planificados. Consulta nuestro calendario."
+                  : "Consulta todos os eventos solidarios En Marcha que temos planificados. Consulta o noso calendario."}
+                {/* <br />{" "}
+                {language === "es" ? "¡Te estamos esperando!" : "Esperámoste!"} */}
               </p>
               <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 self-center mb-8 lg:self-start lg:ml-10 hover:text-secondLightGray hover:bg-primaryGreen">
                 <Link href="/calendario-e-inscripciones">
