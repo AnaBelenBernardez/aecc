@@ -61,8 +61,8 @@ export default function CalendarAndRegistration() {
       <section className="bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10">
         <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
           {language === "es"
-            ? "Encuentra un evento #contraelcáncer"
-            : "Atopa un evento #contraelcáncer"}
+            ? "Encuentra un evento #contraelcáncer en la provincia de A Coruña"
+            : "Atopa un evento #contraocancro na provincia de A Coruña"}
         </h2>
         <div className="flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center">
           <div className="flex flex-col gap-4 md:flex-row md:items-center">
