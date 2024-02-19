@@ -78,6 +78,31 @@ async function createDB() {
     await pool.query(
 
         `
+        CREATE TABLE IF NOT EXISTS introduction
+        (
+            id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+            first_title VARCHAR(30) NOT NULL,
+            second_title VARCHAR(30) NOT NULL,
+            last_title VARCHAR (30) NOT NULL,
+            galician_first_title VARCHAR(30) NOT NULL,
+            galician_second_title VARCHAR(30) NOT NULL,
+            galician_last_title VARCHAR(30) NOT NULL,
+            first_paragraph VARCHAR(300) NOT NULL,
+            second_paragraph VARCHAR(300) NOT NULL,
+            last_paragraph VARCHAR(300) NOT NULL,
+            galician_first_paragraph VARCHAR(300) NOT NULL,
+            galician_second_paragraph VARCHAR(300) NOT NULL,
+            galician_last_paragraph VARCHAR(300) NOT NULL,
+            summary VARCHAR(500) NOT NULL,
+            galician_summary VARCHAR(500) NOT NULL,
+            src_video VARCHAR(200) NOT NULL
+        );
+        `
+    );
+
+    await pool.query(
+
+        `
         CREATE TABLE IF NOT EXISTS news
         (
             id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
