@@ -22,7 +22,7 @@ const EnMarcha = () => {
               : "Móvete contra o cancro!"
             }
           </h2>
-          <p>
+          <p className="text-justify">
             {
               language === "es"
                 ? `A Coruña en Marcha contra el cáncer es una iniciativa 100% solidaria de la Asociación Española Contra el
@@ -38,7 +38,7 @@ const EnMarcha = () => {
                 : "En marcha pola solidariedade"
             }
           </h2>
-          <p>
+          <p className="text-justify">
             {
               language === "es"
                 ? `En 2023 contamos con el apoyo de más de XXXXX participantes y XXX personas voluntarias en XX localidades.
@@ -56,7 +56,7 @@ const EnMarcha = () => {
                 : "Pon o teu gran de area e participa"
             }
           </h2>
-          <p>
+          <p className="text-justify">
             {language === "es"
               ? `¿Quieres ser parte de este movimiento solidario? No te pierdas nuestras próximas actividades.
                   Visita nuestro calendario de eventos y encuentra el más cercano.`
@@ -121,7 +121,7 @@ const EnMarcha = () => {
               className="object-contain w-[120px] h-[120px]"
               alt="Icono"
             />
-          </div>
+          </div> 
           <p className="text-sm mx-5">
             {language === "es"
               ? "Fomentar la investigación oncológica para aumentar las tasas de supervivencia y la calidad de vida de pacientes y familias."
