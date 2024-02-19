@@ -144,10 +144,23 @@ async function createDB() {
             photo_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
             news_id INT UNSIGNED NOT NULL,
             FOREIGN KEY (news_id) REFERENCES news(id)
+            );
+            `
+            );
+            
+    await pool.query(
+
+        `
+        CREATE TABLE IF NOT EXISTS banners_photos
+        (
+            id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+            photo VARCHAR (500),
+            photo_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            banner_id INT NOT NULL,
+            FOREIGN KEY (banner_id) REFERENCES banners(id)
         );
         `
     );
-
 
     await pool.query(
 
@@ -179,6 +192,23 @@ async function createDB() {
         )
         `
     )
+
+    await pool.query(
+        
+        `
+        CREATE TABLE banners (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            title VARCHAR(50),
+            galician_title VARCHAR(255),
+            subtitle VARCHAR(255),
+            galician_subtitle VARCHAR(255),
+            button_text VARCHAR(50),
+            galician_button_text VARCHAR(50),
+            button_link VARCHAR(300)
+        );
+        `
+    )
+
 
 
     await pool.query(

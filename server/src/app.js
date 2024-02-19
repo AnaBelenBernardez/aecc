@@ -12,6 +12,7 @@ const newsRouter = require('../src/routes/newsRouter');
 const faqsRouter = require('../src/routes/faqsRouter');
 const sponsorsRouter = require('../src/routes/sponsorsRouter');
 const achievementsRouter = require('../src/routes/achievementsRouter');
+const bannersRouter = require('../src/routes/bannersRouter');
 
 
 server.use(cors());
@@ -26,6 +27,7 @@ server.use('/news', newsRouter);
 server.use('/faqs', faqsRouter);
 server.use('/sponsors', sponsorsRouter);
 server.use('/achievements', achievementsRouter);
+server.use('/banners', bannersRouter);
 
 
 server.use((err, _req, res, _next) => {
