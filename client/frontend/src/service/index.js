@@ -633,3 +633,97 @@ export const editAchievementService = async (id, token, formValues) => {
 
   return data;
 };
+
+export const addBannerService = async (token, formValues) => {
+  const addBannerForm = new FormData();
+
+  addBannerForm.append("title", formValues.title);
+  addBannerForm.append("subtitle", formValues.subtitle);
+  addBannerForm.append("button_text", formValues.button_text);
+  addBannerForm.append("button_link", formValues.button_link);
+  addBannerForm.append("galician_title", formValues.galician_title);
+  addBannerForm.append("galician_subtitle", formValues.galician_subtitle);
+  addBannerForm.append("galician_button_text", formValues.galician_button_text);
+
+  // Assuming you have a similar field for photo in your banner form
+  if (formValues.photo !== "") {
+    addBannerForm.append("photo", formValues.photo[0][0]);
+  }
+
+  const response = await fetch(`${backAPI}/banners/admin/add`, {
+    method: "POST",
+    headers: {
+      token: token,
+    },
+    body: addBannerForm,
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data.data;
+};
+
+export const editBannerService = async (formValuesEdit, idBanner, token) => {
+  const editBannerForm = new FormData();
+  editBannerForm.append("title", formValuesEdit.title);
+  editBannerForm.append("subtitle", formValuesEdit.subtitle);
+  editBannerForm.append("button_text", formValuesEdit.button_text);
+  editBannerForm.append("button_link", formValuesEdit.button_link);
+  editBannerForm.append("galician_title", formValuesEdit.galician_title);
+  editBannerForm.append("galician_subtitle", formValuesEdit.galician_subtitle);
+  editBannerForm.append("galician_button_text", formValuesEdit.galician_button_text);
+
+  if (Array.isArray(formValuesEdit.photo)) {
+    editBannerForm.append("photo", formValuesEdit.photo[0][0]);
+  }
+
+  const response = await fetch(`${backAPI}/banners/admin/edit/${idBanner}`, {
+    method: "PUT",
+    headers: {
+      token: token,
+    },
+    body: editBannerForm,
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data.data;
+};
+
+export const deleteBannerService = async (idBanner, token) => {
+  const response = await fetch(`${backAPI}/banners/admin/delete/${idBanner}`, {
+    method: "DELETE",
+    headers: {
+      token: token,
+    },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+
+export const getAllBannersService = async () => {
+  const response = await fetch(`${backAPI}/banners`);
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data.data;
+};
+
