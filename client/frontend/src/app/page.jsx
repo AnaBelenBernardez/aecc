@@ -17,6 +17,7 @@ import SponsorsCarrousel from '../components/sponsors/SponsorsCarrousel';
 import useGetAllAchievements from '../hooks/useGetAllAchievements';
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
+import useGetAllBanners from "../hooks/useGetAllBanners";
 
 export default function Home() {
   const { events, loading } = useGetAllEvents();
@@ -29,6 +30,7 @@ export default function Home() {
   const [eventDateStart, setEventDateStart] = useState();
   const [eventDateEnd, setEventDateEnd] = useState();
   const [filteredEvents, setFilteredEvents] = useState(events);
+  const [banners, setBanners] = useState([]);
   const language = useLanguageStore((state) => state.language);
   const categoryEvents = [];
   const locations = [];
