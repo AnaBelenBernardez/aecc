@@ -121,7 +121,6 @@ export default function Home() {
         language === 'es'
           ? <>
               <h3 className="text-2xl font-bold text-center mt-14 md:text-5xl lg:flex lg:pl-16 lg:w-full">¿Qué es En Marcha?</h3>
-              {/* Traer esto del back */}
               <section className='mb-16 px-7 mt-8 lg:w-full'>
                 <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
                   <span className='font-bold text-primaryGreen text-lg'>A Coruña En Marcha</span>  es el circuito de actividades deportivas 100% solidarias de la Asociación Española Contra el Cáncer en la provincia de A Coruña.
@@ -147,7 +146,6 @@ export default function Home() {
                   Grazas á vosa colaboración e solidaridade, <span className='font-bold text-primaryGreen text-lg'>A Coruña</span> está en marcha contra o cancro pola investigación, polos pacientes e polas familias. Esperámoste!
                 </p>
               </section>
-              {/* Hasta aqui */}
             </>
       }
       
