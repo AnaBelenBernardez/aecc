@@ -1,7 +1,7 @@
 # AECC A Coruña 💚
 
 <div>
-  <img src="./client/frontend/public/logos/Logo.png" width="500px"/>
+  <img src="./assets/Logo.png" width="500px"/>
 </div>
 
 <br/>
@@ -12,17 +12,43 @@ _La Asociación Española Contra el Cáncer (AECC) de A Coruña desea realizar u
 
 - Los usuarios pueden:
   - Ver los próximos eventos deportivos organizados por la Asociación, pudiendo filtrar según sus preferencias, seleccionando el tipo de evento, la localización y/o las fechas del mismo.
+  
+    ![CarruselEventos](./assets/proximos-eventos.png)
+
   - Ser redireccionados a la página del evento en el que estén interesados para ver los detalles del evento y efectuar la inscripción.
-  - 
   - Obtener información sobre la misión de la Asociación y sus objetivos con la iniciativa "En Marcha".
+  
+    ![EnMarcha](./assets/en-marcha.png)
+
   - Conocer los últimos logros obtenidos por la Asociación así como una breve descripción de cada uno de ellos.
+  
+    ![Logros](./assets/logros.png)
+
   - Ver los patrocinadores principales de los eventos En Marcha de la provincia de A Coruña.
+  
+    ![CarruselPatrocinadores](./assets/carrusel-patrocinadores.png)
+  
   - Leer experiencias de participantes en anteriores ediciones de eventos En Marcha contra el cáncer.
+  
+    ![CarruselExperiencias](./assets/experiencias.png)
+
   - Visualizar fotos de anteriores eventos en una galería creada con el estilo **Bento Grid** y visualización individual de las mismas en una modal.
+  
+    ![GaleriaEvento](./assets/galeria-evento.png)
+    ![VisualizacionIndividual](./assets/foto-individual.png)
+
   - Dar respuesta a dudas comunes en relación a los eventos a través de una sección de preguntas frecuentes.
+
+    ![FAQs](./assets/faqs.png)
+
   - Ponerse en contacto con la Asociación para ofrecerse a colaborar como voluntario en los eventos.
+  
+    ![Voluntarios]()
+
   - Conocer a los patrocinadores actuales del circuito y el motivo que los anima a colaborar, así como solicitar ser empresa patrocinadora para eventos. 
-  -  
+  
+    ![Patrocinadores](./assets/patrocinios.png) 
+    ![FormPatrocinadores](./assets/form-patrocinios.png)
 - El usuario admin puede:
   - Añadir eventos (fotografía, fechas, link con más información, ubicación, descripción y título).
   - Modificar eventos.
