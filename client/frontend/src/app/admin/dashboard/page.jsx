@@ -9,7 +9,7 @@ import {
   Publicity,
   News,
   Experiences,
-  Achievements,
+  Achievements
 } from "../../../lib/svg";
 import { useLoginStore } from "../../../store";
 import { useRouter } from "next/navigation";
@@ -66,6 +66,11 @@ const DashboardPage = () => {
             </Link>
             <Link href={"/admin/dashboard/logros"}>
               <DashboardCard title={"Logros"}>
+                <Achievements />
+              </DashboardCard>
+            </Link>
+            <Link href={"/admin/dashboard/banners"}>
+              <DashboardCard title={"Banners"}>
                 <Achievements />
               </DashboardCard>
             </Link>

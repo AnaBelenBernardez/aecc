@@ -106,7 +106,7 @@ const dashboardNews = () => {
       setEditNewModalOpen(false);      
       refetch();
       toast({
-        variant: "succes",
+        variant: "success",
         title: "Noticia editada correctamente",
         className: "bg-primaryGreen text-white text-lg font-bold"
       })
