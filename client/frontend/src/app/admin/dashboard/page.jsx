@@ -9,7 +9,8 @@ import {
   Publicity,
   News,
   Experiences,
-  Achievements
+  Achievements,
+  Banner,
 } from "../../../lib/svg";
 import { useLoginStore } from "../../../store";
 import { useRouter } from "next/navigation";
@@ -44,16 +45,16 @@ const DashboardPage = () => {
                 <User />
               </DashboardCard>
             </Link>
-              <Link href={"/admin/dashboard/faqs"}>
-            <DashboardCard title={"FAQ"}>
+            <Link href={"/admin/dashboard/faqs"}>
+              <DashboardCard title={"FAQ"}>
                 <Faq />
-            </DashboardCard>
-              </Link>
-              <Link href={"/admin/dashboard/patrocinadores"}>
-            <DashboardCard title={"Patrocinadores"}>
+              </DashboardCard>
+            </Link>
+            <Link href={"/admin/dashboard/patrocinadores"}>
+              <DashboardCard title={"Patrocinadores"}>
                 <Publicity />
-            </DashboardCard>
-              </Link>
+              </DashboardCard>
+            </Link>
             <Link href={"/admin/dashboard/noticias"}>
               <DashboardCard title={"Noticias"}>
                 <News />
@@ -71,7 +72,7 @@ const DashboardPage = () => {
             </Link>
             <Link href={"/admin/dashboard/banners"}>
               <DashboardCard title={"Banners"}>
-                <Achievements />
+                <Banner />
               </DashboardCard>
             </Link>
           </div>

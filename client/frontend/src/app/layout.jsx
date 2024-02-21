@@ -2,8 +2,8 @@ import { Raleway } from "next/font/google";
 import "./globals.css";
 import Footer from "../components/footer/Footer";
 import { Sidebar } from "../components/sidebar/Sidebar";
-import Header from '../components/header/Header';
-import { GoogleAnalytics } from '@next/third-parties/google'
+import Header from "../components/header/Header";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -11,16 +11,16 @@ const raleway = Raleway({
 });
 
 export const metadata = {
-  title: "Eventos: Participa en nuestros eventos y colabora",
+  title: "Asociación Española Contra el Cáncer A Coruña",
   description:
-    "Carreras deportivas, cenas solidarias, sorteos, actividades culturas, y ¡mucho más cerca de tí!",
+    "Seguimos contigo. Mantenemos nuestros servicios en nuestros canales telefónico (981 14 27 40) y Online",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={raleway.className}>
-        <Header/>
+        <Header />
         <Sidebar />
         {children}
         <Footer />
