@@ -5,10 +5,24 @@ import { useLanguageStore } from "../../store/language/language.store";
 import useGetAllSponsors from '../../hooks/useGetAllSponsors';
 import Image from 'next/image';
 import Loading from '../../components/loading/Loading';
+import { useEffect, useState } from "react";
 
 const Sponsorships = () => {
   const language = useLanguageStore((state) => state.language);
   const {sponsors, loading, error} = useGetAllSponsors();
+  const [sponsorsList, setSponsorsList] = useState([]);
+
+  useEffect(() =>{
+    if(sponsors !== undefined){
+      const sortedByImportance = [];
+
+      sponsors.map((sponsor) => {
+        sponsor.important === 1 ? sortedByImportance.unshift(sponsor) : sortedByImportance.push(sponsor);
+      })
+
+      setSponsorsList(sortedByImportance);
+    }
+	},[sponsors]);
 
   if (loading) return <Loading/>;
 
@@ -19,8 +33,8 @@ const Sponsorships = () => {
       </h1>
       <section className='flex flex-col gap-6 md:flex-row md:flex-wrap md:justify-center'>
         {
-          sponsors
-            ? sponsors.map((sponsor) => {
+          sponsorsList.length > 0
+            ? sponsorsList.map((sponsor) => {
               const imgSrc = `${process.env.NEXT_PUBLIC_BACK_URL}/uploads/${sponsor.logo}`
               return (
                 <article key={sponsor.id} className='flex flex-col gap-2 shadow-lg pb-6 md:max-w-[320px]'>
