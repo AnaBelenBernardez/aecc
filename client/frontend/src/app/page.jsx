@@ -134,7 +134,7 @@ export default function Home() {
                   <span className='font-bold text-primaryGreen text-lg'>A Coruña En Marcha</span>  es el circuito de actividades deportivas 100% solidarias de la Asociación Española Contra el Cáncer en la provincia de A Coruña.
                 </p>
                 <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
-                El pasado año más de XXX personas participaron en nuestros XX eventos con los que recaudamos XXX euros destinados a la investigación oncológica y al apoyo a pacientes y familias.. 
+                El pasado año más de <span className='font-semibold'>14.500 personas</span> participaron en nuestros <span className='font-semibold'>26 eventos</span> con los que recaudamos <span className='font-semibold'>297.000 euros</span> destinados a la investigación oncológica y al apoyo a pacientes y familias.
                 </p>
                 <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
                 Gracias a vuestra colaboración y solidaridad, <span className='font-bold text-primaryGreen text-lg'>A Coruña</span> está en marcha contra el cáncer por la investigación, por los pacientes y por las familias. ¡Te esperamos!
@@ -148,7 +148,7 @@ export default function Home() {
                   <span className='font-bold text-primaryGreen text-lg'>A Coruña En Marcha</span> é o circuíto de actividades deportivas 100% solidarias da Asociación Española Contra o Cancro na provincia da Coruña.
                 </p>
                 <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
-                O pasado ano máis de XXX persoas participaron nos nosos  XX eventos cos que recadamos XXX euros destinados á investigación oncolóxica e ao apoio a pacientes e familias. 
+                O pasado ano máis de <span className='font-semibold'>14.500 persoas</span> participaron nos nosos <span className='font-semibold'>26 eventos</span> cos que recadamos <span className='font-semibold'>297.000 euros</span> destinados á investigación oncolóxica e ao apoio a pacientes e familias. 
                 </p>
                 <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
                   Grazas á vosa colaboración e solidaridade, <span className='font-bold text-primaryGreen text-lg'>A Coruña</span> está en marcha contra o cancro pola investigación, polos pacientes e polas familias. Esperámoste!

@@ -41,11 +41,11 @@ const EnMarcha = () => {
           <p className="text-justify">
             {
               language === "es"
-                ? `En 2023 contamos con el apoyo de más de XXXXX participantes y XXX personas voluntarias en XX localidades.
-                    Gracias a su esfuerzo y compromiso, logramos recaudar más de XXXX euros, fondos destinados a la investigación
+                ? `En 2023 contamos con el apoyo de más de 14.500 participantes y 250 personas voluntarias en 25 localidades.
+                    Gracias a su esfuerzo y compromiso, logramos recaudar más de 297.000 euros, fondos destinados a la investigación
                     contra el cáncer y al apoyo directo a pacientes y sus familias.`
-                : `En 2023 contamos co apoio de máis de XXXXX participantes e XXX persoas voluntarias en XX localidades.
-                    Grazas ao seu esforzo e compromiso, logramos recadar máis de XXXX euros, fondos destinados á investigación contra
+                : `En 2023 contamos co apoio de máis de 14.500 participantes e 250 persoas voluntarias en 25 localidades.
+                    Grazas ao seu esforzo e compromiso, logramos recadar máis de 297.000 euros, fondos destinados á investigación contra
                     o cancro e ao apoio directo a pacientes e as súas familias.`
             }
           </p>
