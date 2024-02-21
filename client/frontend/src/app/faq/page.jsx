@@ -32,7 +32,7 @@ const FaqPage = () => {
             : <>
               <div className='flex flex-col md:flex-row md:justify-center md:items-center'>
                 <Image src={'/image/noFaqsYet.svg'} width={300} height={300} alt='Todavía no hay FAQs' className='mb-6 md:mb-0'/>
-                <p className='text-balance md:pl-10 lg:w-1/2'>{language === 'es' ? '¡Gracias por tu interés! Actualmente no hay preguntas frecuentes disponibles, pero estamos trabajando para brindarte la información que necesitas. ¡Vuelve pronto!' : 'Grazas polo teu interese! Actualmente non hai preguntas frecuentes dispoñibles, pero estamos a traballar para brindarche a información que necesitas. Volve pronto!' }</p>
+                <p className='text-balance md:pl-10 lg:w-1/2'>{language === 'es' ? '¡Gracias por tu interés! Actualmente estamos trabajando para ofrecerte toda la información que necesitas. Vuelve pronto.' : 'Grazas polo teu interese! Actualmente estamos a traballar para ofrecerte toda a información que necesitas. Volve pronto.' }</p>
               </div>
               <Link href={'/'} className='self-center'>
                 <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 hover:text-secondLightGray hover:bg-primaryGreen md:mt-4">

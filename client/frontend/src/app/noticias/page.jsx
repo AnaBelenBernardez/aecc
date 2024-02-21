@@ -111,10 +111,10 @@ const Noticias = () => {
               height={300}
               alt="Noticias"
             />
-            <p className="mt-2 font-bold md:text-center">
+            <p className="mt-2 md:text-center">
               {language === "es"
-                ? "Todavía no hay noticias"
-                : "Aínda non hai noticias"}
+                ? "Aún no hay noticias. Vuelve pronto para estar al corriente de todas las novedades."
+                : "Aínda non hai noticias. Volve pronto para estar ao corrente de tódalas novidades."}
             </p>
           </div>
           <Link href={"/"} className="self-center">
