@@ -38,7 +38,13 @@ const SponsorAdminPage = () => {
 
 	useEffect(() =>{
     if(sponsors !== undefined){
-      setSponsorsList(sponsors);
+      const sortedByImportance = [];
+
+      sponsors.map((sponsor) => {
+        sponsor.important === 1 ? sortedByImportance.unshift(sponsor) : sortedByImportance.push(sponsor);
+      })
+
+      setSponsorsList(sortedByImportance);
     }
 	},[sponsors]);
 
