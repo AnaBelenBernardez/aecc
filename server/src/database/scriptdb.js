@@ -106,6 +106,53 @@ async function createDB() {
             `
         );
 
+        await pool.query(
+
+            `
+            CREATE TABLE IF NOT EXISTS sponsors
+            (
+                id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                name VARCHAR(40) UNIQUE NOT NULL,
+                galician_name VARCHAR(40) UNIQUE NOT NULL,
+                logo VARCHAR (500) UNIQUE NOT NULL,
+                description VARCHAR(500),
+                galician_description VARCHAR(500),
+                important BOOLEAN DEFAULT FALSE,
+                link VARCHAR(500)
+            );
+            `
+        );
+
+        await pool.query(
+
+            `
+            CREATE TABLE IF NOT EXISTS faqs
+            (
+                id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                question VARCHAR(300) UNIQUE NOT NULL,
+                galician_question VARCHAR(300) UNIQUE NOT NULL,
+                answer VARCHAR(300),
+                galician_answer VARCHAR(300)
+            );
+            `
+        );
+
+        await pool.query(
+            
+            `
+            CREATE TABLE banners (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                title VARCHAR(50),
+                galician_title VARCHAR(255),
+                subtitle VARCHAR(255),
+                galician_subtitle VARCHAR(255),
+                button_text VARCHAR(50),
+                galician_button_text VARCHAR(50),
+                button_link VARCHAR(300)
+            );
+            `
+        );
+
 
         await pool.query(
 
@@ -165,55 +212,6 @@ async function createDB() {
             );
             `
         );
-
-
-        await pool.query(
-
-            `
-            CREATE TABLE IF NOT EXISTS sponsors
-            (
-                id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                name VARCHAR(40) UNIQUE NOT NULL,
-                galician_name VARCHAR(40) UNIQUE NOT NULL,
-                logo VARCHAR (500) UNIQUE NOT NULL,
-                description VARCHAR(500),
-                galician_description VARCHAR(500),
-                important BOOLEAN DEFAULT FALSE,
-                link VARCHAR(500)
-            );
-            `
-        );
-
-        await pool.query(
-
-            `
-            CREATE TABLE IF NOT EXISTS faqs
-            (
-                id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                question VARCHAR(300) UNIQUE NOT NULL,
-                galician_question VARCHAR(300) UNIQUE NOT NULL,
-                answer VARCHAR(300),
-                galician_answer VARCHAR(300)
-            );
-            `
-        );
-
-        await pool.query(
-            
-            `
-            CREATE TABLE banners (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                title VARCHAR(50),
-                galician_title VARCHAR(255),
-                subtitle VARCHAR(255),
-                galician_subtitle VARCHAR(255),
-                button_text VARCHAR(50),
-                galician_button_text VARCHAR(50),
-                button_link VARCHAR(300)
-            );
-            `
-        );
-
 
         await pool.query(
 
