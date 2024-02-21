@@ -6,6 +6,7 @@ import LinkYoutube from "./LinksRRSS/LinkYoutube";
 import LinkFacebook from "./LinksRRSS/LinkFacebook";
 import LinkTwitter from "./LinksRRSS/LinkTwitter";
 import LinkInstagram from "./LinksRRSS/LinkInstagram";
+import LinkTikTok from "./LinksRRSS/LinkTikTok";
 import { useLanguageStore } from "../../store/language/language.store";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
@@ -31,19 +32,22 @@ const Footer = () => {
         <p className="mb-4">Rúa Real, 1, 1°, 15003 A Coruña</p>
         <div className="flex justify-center gap-10">
           <Link
-            href="https://www.facebook.com/contraelcancer.es"
+            href="https://www.facebook.com/contraelcancer.acoruna"
             target="_blank"
           >
             <LinkFacebook />
           </Link>
-          <Link href="https://twitter.com/ContraCancerEs" target="_blank">
+          <Link href="https://www.twitter.com/ContraCancerAC" target="_blank">
             <LinkTwitter />
           </Link>
           <Link
-            href="https://www.instagram.com/contraelcancer.es/"
+            href="https://www.instagram.com/contraelcancer.acoruna"
             target="_blank"
           >
             <LinkInstagram />
+          </Link>
+          <Link href="https://www.tiktok.com/@contraelcancer.acoruna" target="_blank">
+            <LinkTikTok/>
           </Link>
           <Link href="https://www.youtube.com/user/aecc" target="_blank">
             <LinkYoutube />
