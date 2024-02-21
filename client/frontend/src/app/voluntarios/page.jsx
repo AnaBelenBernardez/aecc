@@ -11,34 +11,18 @@ const Volunteers = () => {
       <h1 className="font-bold text-primaryGreen text-2xl text-center py-4 md:text-3xl md:py-6 lg:text-left">
         Voluntarios
       </h1>
-      {
-        language === "es"
-          ? <p className='text-balance mb-2 md:text-wrap'>¿Te gustaría hacer del mundo un lugar mejor? No lo dudes, haz voluntariado con la Asociación Española Contra el Cáncer.</p>
-          : <p className='text-balance mb-2 md:text-wrap'>Gustaríache facer do mundo un lugar mellor? Non o dubides, fai voluntariado coa Asociación Española Contra o Cancro.</p>
-      }
-      {
-        language === "es"
-          ? <p className='text-balance mb-4 md:text-wrap'>Rellena este breve formulario y nos pondremos en contacto contigo.</p>
-          : <p className='text-balance mb-4 md:text-wrap'>Completa este breve formulario e poñerémonos en contacto contigo.</p>
-      }
-      <div className="flex flex-col gap-8 items-center h-[226.4vh] md:h-[135.45vh] lg:h-[173vh]">
+      <div className="flex flex-col gap-8 items-center h-[244.5vh] md:h-[140.5vh] lg:h-[183vh]">
         {language === "es" ? (
-          <iframe
-            width="640px"
-            height="480vh"
-            src="https://forms.office.com/r/sKKFWhHVTM?embed=true"
-            className="w-full h-[226.4vh] md:h-[135.45vh] lg:h-[173vh]"
-          >
-            {" "}
+          <iframe width="640px" 
+            height="480px" 
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=LsqjvExiqkORgfZ_HCeQKUYzyejqVhFMl0l2m9cJWZNUODVJQzcyMDdEUzk2MTczWjRFR1owNFQ0MS4u&embed=true"
+            className="w-full h-[244.5vh] md:h-[140.5vh] lg:h-[183vh]">
           </iframe>
         ) : (
-          <iframe
-            width="640px"
-            height="480px"
-            src="https://forms.office.com/r/QDEFfZ6wDh?embed=true"
-            className="w-full h-[226.4vh] md:h-[135.45vh] lg:h-[173vh]"
-          >
-            {" "}
+          <iframe width="640px" 
+            height="480px" 
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=LsqjvExiqkORgfZ_HCeQKUYzyejqVhFMl0l2m9cJWZNUOUtTU0JTWUlDWVRPTkRaVjFWWkxPN0JETC4u&embed=true"
+            className="w-full h-[244.5vh] md:h-[140.5vh] lg:h-[183vh]"> 
           </iframe>
         )}
         <Link

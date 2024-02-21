@@ -100,35 +100,18 @@ const Sponsorships = () => {
             </ul>
         }
       </section>
-      <h3 className="text-lg font-bold mt-6 mb-2 md:text-xl md:mt-8 lg:mt-12">
-        {language === "es"
-          ? `Tu empresa es clave en la lucha contra el cáncer`
-          : `A túa empresa é clave na loita contra o cancro`}
-      </h3>
-      <h4 className='text-justify mb-4'>
-        {language === "es"
-          ? `Sea cual sea tu dimensión o ámbito de negocio, puedes ponerte en marcha contra el cáncer. Elige como participar ¡Infórmate!`
-          : `Sexa cal for a túa dimensión ou ámbito de negocio, podes poñerche en marcha contra o cancro. Elixe como participar Infórmache!`
-        }
-      </h4>
-      <div className="mb-4 h-[232vh] md:h-[137.4vh] lg:h-[177vh]">
+      <div className="mb-4 h-[231vh] md:h-[130.3vh] lg:h-[173vh] mt-8">
         {language === "es" ? (
-          <iframe
-            width="640px"
-            height="480px"
-            src="https://forms.office.com/r/fn1RjUeGEr?embed=true"
-            className="w-full h-[232vh] md:h-[137.4vh] lg:h-[177vh]"
-          >
-            {" "}
+          <iframe width="640px" 
+            height="480px" 
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=LsqjvExiqkORgfZ_HCeQKUYzyejqVhFMl0l2m9cJWZNURE5ROFVUMU1MSENZTFJLUFoyVFFMSEhNOS4u&embed=true" 
+            className="w-full h-[231vh] md:h-[130.3vh] lg:h-[173vh]"> 
           </iframe>
         ) : (
-          <iframe
-            width="640px"
-            height="480px"
-            src="https://forms.office.com/r/VkFMmy4wpP?embed=true"
-            className="w-full h-[232vh] md:h-[137.4vh] lg:h-[177vh]"
-          >
-            {" "}
+          <iframe width="640px" 
+            height="480px" 
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=LsqjvExiqkORgfZ_HCeQKUYzyejqVhFMl0l2m9cJWZNURUFBWEtRR09VWEJZNVpVQ1lVRTQwTzRTSy4u&embed=true" 
+            className="w-full h-[231vh] md:h-[130.3vh] lg:h-[173vh]"> 
           </iframe>
         )}
       </div>

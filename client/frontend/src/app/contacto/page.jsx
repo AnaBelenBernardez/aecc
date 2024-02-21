@@ -13,22 +13,17 @@ const Contact = () => {
       </h1>
       <div className="mb-4 lg:mb-8 h-[212.6vh] md:h-[125.3vh] lg:h-[162vh]">
         {language === "es" ? (
-          <iframe
-            width="640px"
-            height="480px"
-            src="https://forms.office.com/r/9n22D0fXyf?embed=true"
-            className="w-full h-[212.6vh] md:h-[125.3vh] lg:h-[162vh]"
+          <iframe width="640px" 
+            height="480px" 
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=LsqjvExiqkORgfZ_HCeQKUYzyejqVhFMl0l2m9cJWZNUM0lGWFBJNENOU1hOQ1dFRE4wWEI0WklYMC4u&embed=true"
+            className="w-full h-[212.6vh] md:h-[125.3vh] lg:h-[162vh]" 
           >
-            {" "}
           </iframe>
         ) : (
-          <iframe
-            width="640px"
-            height="480px"
-            src="https://forms.office.com/r/BLP7tLJBEn?embed=true"
-            className="w-full h-[212.6vh] md:h-[125.3vh] lg:h-[162vh]"
-          >
-            {" "}
+          <iframe width="640px" 
+            height="480px" 
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=LsqjvExiqkORgfZ_HCeQKUYzyejqVhFMl0l2m9cJWZNUQ1NHU0xENEdBUThOMkdCNExTOUhOV0lNOC4u&embed=true" 
+            className="w-full h-[212.6vh] md:h-[125.3vh] lg:h-[162vh]"> 
           </iframe>
         )}
       </div>
