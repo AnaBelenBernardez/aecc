@@ -97,12 +97,22 @@ _La Asociación Española Contra el Cáncer (AECC) de A Coruña desea realizar u
   - Conocer a los patrocinadores actuales del circuito y el motivo que los anima a colaborar, así como solicitar ser empresa patrocinadora para eventos. 
   
     ![Patrocinadores](./assets/patrocinios.png) 
-    ![FormPatrocinadores](./assets/form-patrocinios.png)
+    ![FormPatrocinadores]()
+  
+  - Noticias
+  - Blog
+  - Contacto
+
 - El usuario admin puede:
-  - Añadir eventos (fotografía, fechas, link con más información, ubicación, descripción y título).
-  - Modificar eventos.
-  - Borrar eventos.
+  - Añadir/modificar/borrar eventos (fotografía, fechas, link con más información, ubicación, descripción y título).
+  - Añadir/borrar fotos del evento 
   - Modificar sus credenciales de acceso.
+  - Añadir/modificar/borrar faqs
+  - Añadir/modificar/borrar patrocinios
+  - Añadir/modificar/borrar noticias
+  - Añadir/modificar/borrar experiencias
+  - Añadir/modificar/borrar logros
+  - Añadir/modificar/borrar banner
   
 <a href="#menu">Volver arriba</a>
 
