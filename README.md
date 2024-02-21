@@ -100,18 +100,48 @@ _La Asociación Española Contra el Cáncer (AECC) de A Coruña desea realizar u
     ![FormPatrocinadores]()
   
   - Noticias
+  
+    ![Noticias](./assets/noticias.png)
+
   - Blog
+  
   - Contacto
+  
+    ![Contacto]()
 
 - El usuario admin puede:
   - Añadir/modificar/borrar eventos (fotografía, fechas, link con más información, ubicación, descripción y título).
-  - Añadir/borrar fotos del evento 
+
+    ![Eventos](./assets/admin-eventos.png)
+
+  - Añadir/borrar fotos del evento
+
+    ![FotosEvento](./assets/admin-fotos-evento.png)
+
   - Modificar sus credenciales de acceso.
+
+    ![Usuario](./assets/admin-usuario.png)
+
   - Añadir/modificar/borrar faqs
+  
+    ![Faqs](./assets/admin-faqs.png)
+
   - Añadir/modificar/borrar patrocinios
+
+    ![Patrocinadores](./assets/admin-patrocinios.png)
+
   - Añadir/modificar/borrar noticias
+
+    ![Noticias](./assets/admin-noticias.png)
+
   - Añadir/modificar/borrar experiencias
+
+    ![Experiencias](./assets/admin-experiencias.png)
+
   - Añadir/modificar/borrar logros
+
+    ![Logros](./assets/admin-logros.png)
+
   - Añadir/modificar/borrar banner
   
 <a href="#menu">Volver arriba</a>
