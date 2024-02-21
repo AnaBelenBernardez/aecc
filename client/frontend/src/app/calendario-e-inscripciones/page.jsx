@@ -130,8 +130,8 @@ export default function CalendarAndRegistration() {
             <div className="flex flex-col">
               <p>
                 {language === "es"
-                  ? "Estamos trabajando en nuevos eventos para luchar contra el cáncer."
-                  : "Estamos traballando en novos eventos para a loita contra o cancro."}
+                  ? "Estamos trabajando en nuevos eventos solidarios contra el cáncer. Vuelve pronto y únete a la causa. #EnMarchaContraElCáncer"
+                  : "Estamos a traballar en novos eventos solidarios contra o cancro. Volve pronto e únete á causa. #EnMarchaContraElCáncer"}
                 .
               </p>
               <p>

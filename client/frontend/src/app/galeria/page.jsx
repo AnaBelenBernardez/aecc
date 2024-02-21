@@ -30,7 +30,7 @@ const GalleryPage = () => {
               <Image src={'/image/noPhotosYet.svg'} width={150} height={150} alt='Todavía no hay ninguna foto'/>
               <div>
                 <Link href={'/'} className='flex flex-col items-center'>
-                  <p className='md:w-3/4 md:mb-4'>{language === 'es' ? 'Actualmente, no hay eventos en la galería. ¡Estamos preparando nuevas oportunidades solidarias!' : 'Actualmente, non hai eventos na galería. Estamos a preparar novas oportunidades solidarias!'}</p>
+                  <p className='md:w-3/4 md:mb-4'>{language === 'es' ? 'Actualmente no hay eventos en la galería. Vuelve pronto para poder ver los eventos.'  : 'Actualmente non hai eventos na galería. Volve pronto para poder ver os eventos. '}</p>
                   <button className='border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mt-2 hover:text-secondLightGray hover:bg-primaryGreen'>{language === 'es' ? 'VOLVER AL INICIO' : 'VOLVER AO COMEZO'}</button>
                 </Link>
               </div>

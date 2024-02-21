@@ -254,15 +254,15 @@ export default function Home() {
           <div className="flex flex-col">
             <p>
               {language === "es"
-                ? "Estamos trabajando en nuevos eventos para luchar contra el cáncer."
-                : "Estamos traballando en novos eventos para a loita contra o cancro."}
+                ? "Estamos trabajando en nuevos eventos solidarios contra el cáncer. "
+                : "Estamos a traballar en novos eventos solidarios contra o cancro."}
               .
             </p>
             <p>
               {language === "es"
                 ? "Vuelve pronto y únete a la causa."
                 : "Volve pronto e únete á causa."}{" "}
-              <span className="font-bold">#JuntosContraElCáncer</span>
+              <span className="font-bold">#EnMarchaContraElCáncer</span>
             </p>
           </div>
         </div>
@@ -333,10 +333,9 @@ export default function Home() {
           <div className="flex flex-col">
             <p className="text-balance">
               {language === "es"
-                ? "Únete a la Asociación Contra el Cáncer compartiendo tu experiencia en nuestros eventos solidarios."
-                : "Únete á Asociación Contra o Cancro compartindo a túa experiencia nos nosos eventos solidarios."}
+                ? "Comparte tu experiencia en nuestros eventos solidarios. ¡Gracias por tu apoyo!"
+                : "Comparte a túa experiencia nos nosos eventos solidarios. Grazas polo teu apoio!"}
             </p>
-            <span className="font-bold">#CadaHistoriaCuenta.</span>
           </div>
         </div>
       )}
