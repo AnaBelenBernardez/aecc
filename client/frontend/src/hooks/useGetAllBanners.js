@@ -1,8 +1,8 @@
 const { useState, useEffect } = require('react');
-const { getAllBannersService } = require('../service'); // Adjust the service function for banners
+const { getAllBannersService } = require('../service'); 
 
 const useGetAllBanners = () => {
-  const [banners, setBanners] = useState([]); // Change variable names to banners
+  const [banners, setBanners] = useState([]); 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -10,7 +10,7 @@ const useGetAllBanners = () => {
     try {
       setLoading(true);
 
-      const data = await getAllBannersService(); // Adjust the service function for banners
+      const data = await getAllBannersService();
 
       setBanners(data);
     } catch (error) {
@@ -27,8 +27,9 @@ const useGetAllBanners = () => {
   const refetch = () => {
     loadBanners();
   };
+  console.log(banners);
 
-  return { banners, loading, error, refetch }; // Change variable names to banners
+  return { banners, loading, error, refetch }; 
 };
 
 export default useGetAllBanners;

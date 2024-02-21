@@ -18,9 +18,11 @@ import useGetAllAchievements from '../hooks/useGetAllAchievements';
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import useGetAllBanners from "../hooks/useGetAllBanners";
+import Slider from "../components/homepageSlider/Slider";
 
 export default function Home() {
   const { events, loading } = useGetAllEvents();
+  const { banners } = useGetAllBanners();
   const { experiences } = useGetAllExperiences();
   const { sponsors } = useGetAllSponsors();
   const { achievements } = useGetAllAchievements();
@@ -30,7 +32,6 @@ export default function Home() {
   const [eventDateStart, setEventDateStart] = useState();
   const [eventDateEnd, setEventDateEnd] = useState();
   const [filteredEvents, setFilteredEvents] = useState(events);
-  const [banners, setBanners] = useState([]);
   const language = useLanguageStore((state) => state.language);
   const categoryEvents = [];
   const locations = [];
@@ -80,9 +81,11 @@ export default function Home() {
       }
     });
   }
-
+  console.log(banners);
   if (loading) return <Loading />;
-
+  
+  const photoBanner = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banners[0]?.photo}`
+  console.log(photoBanner);
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
       {scroll ? (
@@ -97,19 +100,21 @@ export default function Home() {
           </button>
         </Link>
       ) : null}
-      <div
+      { banners.length > 0 ?
+        <Slider banners={banners} />
+        : <div
         className="bg-[url('/image/eventos-M.jpg')] w-full bg-cover bg-center sm:bg-cover h-[380px] sm:h-[480px] bg-no-repeat flex sm:items-center justify-start"
         id="top"
-      >
+        >
         <div className="ml-5 mt-5 sm:ml-32">
-          <h1 className="font-bold text-3xl sm:text-6xl text-white">
+          <h1 className="font-bold text-3xl sm:text-6xl text-primaryGreen">
             A Coruña <span className="text-primaryGreen">en marcha</span>
             <br />
             <span className="text-primaryGreen">
               {language === "es" ? "CONTRA EL CÁNCER" : "CONTRA O CANCRO"}
             </span>
           </h1>
-          <p className="text-xs sm:text-xl font-medium my-5 text-white">
+          <p className="text-xs sm:text-xl font-medium my-5 text-primaryGreen">
             {language === "es"
               ? "Consulta todos nuestros eventos solidarios e inscríbete"
               : "Consulta todos os nosos eventos solidarios e inscríbete"}
@@ -119,6 +124,7 @@ export default function Home() {
           </button>
         </div>
       </div>
+      } 
       {
         language === 'es'
           ? <>
@@ -336,5 +342,6 @@ export default function Home() {
       )}
       <Toaster />
     </main>
+  
   );
 }
