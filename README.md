@@ -490,7 +490,7 @@ Diseñada con [Figma](https://www.figma.com/file/e8ntkYMBhjdPdk01BjmB03/Aecc?typ
 
 Responsive, amigable y facilmente accesible desde multiples dispositivos. Cumpliendo criterios de accesibilidad para que pueda ser usada por culquier persona.
 
-![Mockup](./assets/mockup.png)
+![Mockup](./docs/assets/mockup.png)
 
 ## 👩‍💻 Autores
 <a href="https://github.com/AnaBelenBernardez/aecc/graphs/contributors">
