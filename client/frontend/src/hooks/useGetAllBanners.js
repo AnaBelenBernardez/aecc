@@ -27,7 +27,6 @@ const useGetAllBanners = () => {
   const refetch = () => {
     loadBanners();
   };
-  console.log(banners);
 
   return { banners, loading, error, refetch }; 
 };

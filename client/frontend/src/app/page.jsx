@@ -81,11 +81,13 @@ export default function Home() {
       }
     });
   }
-  console.log(banners);
+
+
   if (loading) return <Loading />;
   
   const photoBanner = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banners[0]?.photo}`
-  console.log(photoBanner);
+
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
       {scroll ? (
