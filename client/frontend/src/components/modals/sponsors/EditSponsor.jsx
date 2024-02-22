@@ -151,7 +151,7 @@ function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, 
                       file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                       focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                       border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                      placeholder:italic placeholder:text-slate-400 font-medium"
+                      placeholder:italic placeholder:text-slate-400 font-medium accent-green-600"
                     />
                   </label>
                   <label className='flex items-center gap-1'>
@@ -165,7 +165,7 @@ function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, 
                       file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                       focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                       border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                      placeholder:italic placeholder:text-slate-400 font-medium self-baseline"
+                      placeholder:italic placeholder:text-slate-400 font-medium self-baseline accent-green-600"
                     />
                   </label>
                 </li>
