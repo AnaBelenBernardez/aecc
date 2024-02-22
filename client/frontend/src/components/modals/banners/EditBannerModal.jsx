@@ -35,6 +35,7 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
     if (newFormValuesEdit === "") {
       setExternalLink(true);
     }
+
     setFormValuesEdit({
       ...formValuesEdit,
       [e.target.name]: newFormValuesEdit
@@ -51,6 +52,8 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
     }
   };
 
+  console.log(formValuesEdit)
+
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
       <div className='relative w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[70vw] lg:p-12'>
@@ -65,7 +68,9 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
               type="text"
               id='title' name='title'
               className='flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium'
-              defaultValue={currentBanner.title} onChange={handleChange} minLength={2} maxLength={300}
+              defaultValue={currentBanner.title !== null && currentBanner.title !== "null" ? currentBanner.title : ""}
+              onChange={handleChange} minLength={2} maxLength={300}
+              required={formValuesEdit.galician_title !== null && formValuesEdit.galician_title !== "null" && formValuesEdit.galician_title !== "" ? true : false}
               />
           </label>
           <label htmlFor="subtitle" className='font-bold text-sm'>
@@ -74,8 +79,10 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
               type="text"
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='subtitle' name='subtitle'
-              defaultValue={currentBanner.subtitle} onChange={handleChange}
+              defaultValue={currentBanner.subtitle !== null && currentBanner.subtitle !== "null" ? currentBanner.subtitle : ""}
+              onChange={handleChange}
               minLength={2} maxLength={1500}
+              required={formValuesEdit.galician_subtitle !== null && formValuesEdit.galician_subtitle !=="null" && formValuesEdit.galician_subtitle !== "" ? true : false}
             />
           </label>
           <label htmlFor="button_link" className='font-bold text-sm'>
@@ -89,7 +96,7 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
                 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                 placeholder:italic placeholder:text-slate-400 w-full font-medium"
                 name="button_link" onChange={handleChange}
-                defaultValue={currentBanner.button_link}
+                defaultValue={currentBanner.button_link !== null && currentBanner.button_link !== "null" ? currentBanner.button_link : ""}
             >
             <option value="">Elija un enlace</option>
             <option value="/calendario-e-inscripciones" key={"/calendario-e-inscripciones"}>
@@ -120,7 +127,7 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
               Enlace externo
             </option>
             </select>
-             { externalLink && 
+            { externalLink && 
               <input
               placeholder='Ingresa la URL'
               type="text"
@@ -140,7 +147,9 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
               type="text"
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='button_text' name='button_text'
-              defaultValue={currentBanner.button_text} onChange={handleChange} 
+              defaultValue={currentBanner.button_text !== null && currentBanner.button_text !== "null" ? currentBanner.button_text : ""}
+              onChange={handleChange}
+              required={formValuesEdit.galician_button_text !== null && formValuesEdit.galician_button_text !== "null" && formValuesEdit.galician_button_text !== "" ? true : false}
             />
           </label>
           <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
@@ -167,8 +176,9 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
               type="text"
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='galician_title' name='galician_title'
-              defaultValue={currentBanner.galician_title} onChange={handleChange}
+              defaultValue={currentBanner.galician_title !== null && currentBanner.galician_title !== "null" ? currentBanner.galician_title : ""} onChange={handleChange}
               minLength={2} maxLength={300}
+              required={formValuesEdit.title !== null && formValuesEdit.title !== "null" && formValuesEdit.title !== "" ? true : false}
             />
           </label>
           <label htmlFor="galician_subtitle" className='font-bold mt-4 text-sm'>
@@ -177,8 +187,9 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
               type="text"
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='galician_subtitle' name='galician_subtitle'
-              defaultValue={currentBanner.galician_subtitle} onChange={handleChange}
+              defaultValue={currentBanner.galician_subtitle !== null && currentBanner.galician_subtitle !== "null" ? currentBanner.galician_subtitle : ""} onChange={handleChange}
               minLength={2} maxLength={1500}
+              required={formValuesEdit.subtitle !== null && formValuesEdit.subtitle !== "null" && formValuesEdit.subtitle !== "" ? true : false}
             />
           </label>
           <label htmlFor="galician_button_text" className='font-bold text-sm'>
@@ -187,7 +198,8 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
               type="text"
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='galician_button_text' name='galician_button_text'
-              defaultValue={currentBanner.galician_button_text} onChange={handleChange} 
+              defaultValue={currentBanner.galician_button_text !== null && currentBanner.galician_button_text !== "null" ? currentBanner.galician_button_text : ""} onChange={handleChange}
+              required={formValuesEdit.button_text !== null && formValuesEdit.button_text !== "null" && formValuesEdit.button_text !== "" ? true : false}
             />
           </label>
           <div className='flex flex-col items-center lg:flex-row lg:gap-4 lg:self-end lg:mb-2 lg:mr-2'>

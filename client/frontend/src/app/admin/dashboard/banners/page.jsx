@@ -172,14 +172,14 @@ const dashboardBanners = () => {
     return (
       <article
         className="flex flex-col justify-between p-8 items-center shadow-md md:flex-row w-[90%]"
-        key={banner.title}
+        key={banner.id}
       >
         <div className="lg:flex lg:w-[70%] lg:justify-evenly">
           <div className="flex items-center">
             <h2 className="hidden font-bold px-6 line-clamp-2 w-[240px] lg:block">
-              {banner.title}
+              {banner.title !== "null" ? banner.title : null}
             </h2>
-            <p className="hidden line-clamp-2 w-[240px] lg:block">{banner.subtitle}</p>
+            <p className="hidden line-clamp-2 w-[240px] lg:block">{banner.subtitle !== "null" ? banner.subtitle : null}</p>
           </div>
           {banner.photo !== null ? (
             <div className="self-center lg:w-[400px] lg:h-[100px]">

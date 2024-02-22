@@ -6,7 +6,6 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
   const [newPhoto, setNewPhoto] = useState();
   const [externalLink, setExternalLink] = useState(false);
   
-
   const handleChange = (e) => {
     const newFormValues = e.target.value;
     if (newFormValues === 'external_link') {
@@ -45,6 +44,7 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
               placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='title' name='title' minLength={2} maxLength={300}
               onChange={handleChange}
+              required={formValues.galician_title !== "" ? true : false}
             />
           </label>
           <label htmlFor="content" className='font-bold text-sm'>
@@ -58,6 +58,7 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
               placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='subtitle' name='subtitle' minLength={2} maxLength={300}
               onChange={handleChange}
+              required={formValues.galician_subtitle !== "" ? true : false}
             />
           </label>
           <label htmlFor="button_link" className='font-bold text-sm'>
@@ -121,6 +122,7 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='button_text' name='button_text'
               onChange={handleChange}
+              required={formValues.galician_button_text !== "" ? true : false}
             />
           </label>
           <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
@@ -150,6 +152,7 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
               border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
               placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='galician_title' name='galician_title' minLength={2} maxLength={300}
+              required={formValues.title !== "" ? true : false}
               onChange={handleChange}
             />
           </label>
@@ -163,6 +166,7 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
               border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
               placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='galician_subtitle' name='galician_subtitle' minLength={2} maxLength={1500}
+              required={formValues.subtitle !== "" ? true : false}
               onChange={handleChange}
             />
           </label>
@@ -172,6 +176,7 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
               type="text"
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='galician_button_text' name='galician_button_text'
+              required={formValues.button_text !== "" ? true : false}
               onChange={handleChange} minLength={2} maxLength={1500}
             />
           </label>
