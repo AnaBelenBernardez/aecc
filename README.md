@@ -1,7 +1,7 @@
 # AECC A Coruña 💚
 
 <div>
-  <img src="./assets/Logo.png" width="500px"/>
+  <img src="./docs/assets/Logo.png" width="500px"/>
 </div>
 
 <br/>
@@ -62,87 +62,93 @@ _La Asociación Española Contra el Cáncer (AECC) de A Coruña desea realizar u
 - Los usuarios pueden:
   - Ver los próximos eventos deportivos organizados por la Asociación, pudiendo filtrar según sus preferencias, seleccionando el tipo de evento, la localización y/o las fechas del mismo.
   
-    ![CarruselEventos](./assets/proximos-eventos.png)
+    ![CarruselEventos](./docs/assets/proximos-eventos.png)
 
   - Ser redireccionados a la página del evento en el que estén interesados para ver los detalles del evento y efectuar la inscripción.
   - Obtener información sobre la misión de la Asociación y sus objetivos con la iniciativa "En Marcha".
   
-    ![EnMarcha](./assets/en-marcha.png)
+    ![EnMarcha](./docs/assets/en-marcha.png)
 
   - Conocer los últimos logros obtenidos por la Asociación así como una breve descripción de cada uno de ellos.
   
-    ![Logros](./assets/logros.png)
+    ![Logros](./docs/assets/logros.png)
 
   - Ver los patrocinadores principales de los eventos En Marcha de la provincia de A Coruña.
   
-    ![CarruselPatrocinadores](./assets/carrusel-patrocinadores.png)
+    ![CarruselPatrocinadores](./docs/assets/carrusel-patrocinadores.png)
   
   - Leer experiencias de participantes en anteriores ediciones de eventos En Marcha contra el cáncer.
   
-    ![CarruselExperiencias](./assets/experiencias.png)
+    ![CarruselExperiencias](./docs/assets/experiencias.png)
 
   - Visualizar fotos de anteriores eventos en una galería creada con el estilo **Bento Grid** y visualización individual de las mismas en una modal.
   
-    ![GaleriaEvento](./assets/galeria-evento.png)
-    ![VisualizacionIndividual](./assets/foto-individual.png)
+    ![GaleriaEvento](./docs/assets/galeria-evento.png)
+    ![VisualizacionIndividual](./docs/assets/foto-individual.png)
 
   - Dar respuesta a dudas comunes en relación a los eventos a través de una sección de preguntas frecuentes.
 
-    ![FAQs](./assets/faqs.png)
+    ![FAQs](./docs/assets/faqs.png)
 
   - Ponerse en contacto con la Asociación para ofrecerse a colaborar como voluntario en los eventos.
   
-    ![Voluntarios]()
+    ![Voluntarios](./docs/assets/form-voluntarios.png)
 
   - Conocer a los patrocinadores actuales del circuito y el motivo que los anima a colaborar, así como solicitar ser empresa patrocinadora para eventos. 
   
-    ![Patrocinadores](./assets/patrocinios.png) 
-    ![FormPatrocinadores]()
+    ![Patrocinadores](./docs/assets/patrocinios.png) 
+    ![FormPatrocinadores](./docs/assets/form-empresa.png)
   
   - Noticias
   
-    ![Noticias](./assets/noticias.png)
+    ![Noticias](./docs/assets/noticias.png)
 
   - Blog
   
   - Contacto
   
-    ![Contacto]()
+    ![Contacto](./docs/assets/form-contacto.png)
 
 - El usuario admin puede:
+	- Panel de administrador
+  
+		![Panel](./docs/assets/panel-admin.png)
+
   - Añadir/modificar/borrar eventos (fotografía, fechas, link con más información, ubicación, descripción y título).
 
-    ![Eventos](./assets/admin-eventos.png)
+    ![Eventos](./docs/assets/admin-eventos.png)
 
   - Añadir/borrar fotos del evento
 
-    ![FotosEvento](./assets/admin-fotos-evento.png)
+    ![FotosEvento](./docs/assets/admin-fotos-evento.png)
 
   - Modificar sus credenciales de acceso.
 
-    ![Usuario](./assets/admin-usuario.png)
+    ![Usuario](./docs/assets/admin-usuario.png)
 
   - Añadir/modificar/borrar faqs
   
-    ![Faqs](./assets/admin-faqs.png)
+    ![Faqs](./docs/assets/admin-faqs.png)
 
   - Añadir/modificar/borrar patrocinios
 
-    ![Patrocinadores](./assets/admin-patrocinios.png)
+    ![Patrocinadores](./docs/assets/admin-patrocinios.png)
 
   - Añadir/modificar/borrar noticias
 
-    ![Noticias](./assets/admin-noticias.png)
+    ![Noticias](./docs/assets/admin-noticias.png)
 
   - Añadir/modificar/borrar experiencias
 
-    ![Experiencias](./assets/admin-experiencias.png)
+    ![Experiencias](./docs/assets/admin-experiencias.png)
 
   - Añadir/modificar/borrar logros
 
-    ![Logros](./assets/admin-logros.png)
+    ![Logros](./docs/assets/admin-logros.png)
 
   - Añadir/modificar/borrar banner
+  
+	![Banners](./docs/assets/admin-banners.png)
   
 <a href="#menu">Volver arriba</a>
 
