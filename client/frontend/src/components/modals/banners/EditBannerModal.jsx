@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEdit, setFormValuesEdit, formValuesEdit }) => {
   const [newPhoto, setNewPhoto] = useState();
   const [image, setImage] = useState();
+  const [externalLink, setExternalLink] = useState(currentBanner.button_link?.includes('https') ? true : false);
 
   useEffect(() => {
     if (image) {
@@ -27,11 +28,13 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
       photo: image
     });
   };
-
   const previousImg = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${currentBanner.photo}`;
 
   const handleChange = (e) => {
     const newFormValuesEdit = e.target.value;
+    if (newFormValuesEdit === "") {
+      setExternalLink(true);
+    }
     setFormValuesEdit({
       ...formValuesEdit,
       [e.target.name]: newFormValuesEdit
@@ -50,7 +53,7 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='relative w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12'>
+      <div className='relative w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[70vw] lg:p-12'>
         <button onClick={() => setEditBannerModalOpen(false)} className="absolute top-5 right-7 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300">
           <img src="/icons/closeModals.svg" alt='Icono de cerrar' />
         </button>
@@ -62,8 +65,8 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
               type="text"
               id='title' name='title'
               className='flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium'
-              defaultValue={currentBanner.title} onChange={handleChange} required minLength={2} maxLength={300}
-            />
+              defaultValue={currentBanner.title} onChange={handleChange} minLength={2} maxLength={300}
+              />
           </label>
           <label htmlFor="subtitle" className='font-bold text-sm'>
             Subtítulo
@@ -72,17 +75,64 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='subtitle' name='subtitle'
               defaultValue={currentBanner.subtitle} onChange={handleChange}
-              required minLength={2} maxLength={1500}
+              minLength={2} maxLength={1500}
             />
           </label>
           <label htmlFor="button_link" className='font-bold text-sm'>
-            button_link
-            <input
-              type="url"
-              className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
+            Link
+
+          <select
+                id="button_link"
+                className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
+                file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
+                focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
+                border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
+                placeholder:italic placeholder:text-slate-400 w-full font-medium"
+                name="button_link" onChange={handleChange}
+                defaultValue={currentBanner.button_link}
+            >
+            <option value="">Elija un enlace</option>
+            <option value="/calendario-e-inscripciones" key={"/calendario-e-inscripciones"}>
+              Calendario e inscripciones
+            </option>
+              <option value={"/en-marcha"} key={"/en-marcha"}>
+              A Coruña en Marcha
+            </option>
+              <option value={"/galeria"} key={"/galeria"}>
+              Galería
+            </option>
+              <option value={"/faq"} key={"/faq"}>
+              FAQS
+            </option>
+              <option value={"/voluntarios"} key={"/voluntarios"}>
+              Voluntariado
+            </option>
+              <option value={"/patrocinios"} key={"/patrocinios"}>
+              Patrocinadores
+            </option>
+              <option value={"/noticias"} key={"/noticias"}>
+              Noticias
+            </option>
+              <option value={"/contacto"} key={"/contacto"}>
+              Contacto
+            </option>
+              <option value="" key="external_link">
+              Enlace externo
+            </option>
+            </select>
+             { externalLink && 
+              <input
+              placeholder='Ingresa la URL'
+              type="text"
+              className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
+              file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
+              focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
+              border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
+              placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='button_link' name='button_link'
-              defaultValue={currentBanner.button_link} onChange={handleChange} required
+              onChange={handleChange}
             />
+            }
           </label>
           <label htmlFor="button_text" className='font-bold text-sm'>
             Texto del botón
@@ -90,7 +140,7 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
               type="text"
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='button_text' name='button_text'
-              defaultValue={currentBanner.button_text} onChange={handleChange} required
+              defaultValue={currentBanner.button_text} onChange={handleChange} 
             />
           </label>
           <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
@@ -102,11 +152,11 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
             </label>
             {
               newPhoto
-                ? <div className='h-[100px] w-[400px] lg:h-[250px] lg:w-[1000px]'>
-                  <Image src={newPhoto} width={400} height={100} alt='Fotos del banner' className='h-[100px] w-[400px] lg:h-[250px] lg:w-[1000px] object-cover' />
+                ? <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
+                  <Image src={newPhoto} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
                 </div>
-                : <div className='h-[100px] w-[400px] lg:h-[250px] lg:w-[1000px]'>
-                  <Image src={currentBanner.photo !== null ? previousImg : '/image/newsDefault.png'} width={400} height={100} alt='Fotos del banner' className='h-[100px] w-[300px] lg:h-[250px] lg:w-[1000px] object-cover' />
+                : <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
+                  <Image src={currentBanner.photo !== null ? previousImg : '/image/newsDefault.png'} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
                 </div>
             }
           </div>
@@ -118,7 +168,7 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='galician_title' name='galician_title'
               defaultValue={currentBanner.galician_title} onChange={handleChange}
-              required minLength={2} maxLength={300}
+              minLength={2} maxLength={300}
             />
           </label>
           <label htmlFor="galician_subtitle" className='font-bold mt-4 text-sm'>
@@ -128,7 +178,7 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='galician_subtitle' name='galician_subtitle'
               defaultValue={currentBanner.galician_subtitle} onChange={handleChange}
-              required minLength={2} maxLength={1500}
+              minLength={2} maxLength={1500}
             />
           </label>
           <label htmlFor="galician_button_text" className='font-bold text-sm'>
@@ -137,7 +187,7 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
               type="text"
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='galician_button_text' name='galician_button_text'
-              defaultValue={currentBanner.galician_button_text} onChange={handleChange} required
+              defaultValue={currentBanner.galician_button_text} onChange={handleChange} 
             />
           </label>
           <div className='flex flex-col items-center lg:flex-row lg:gap-4 lg:self-end lg:mb-2 lg:mr-2'>

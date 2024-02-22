@@ -169,7 +169,7 @@ Para inicializar la app debes seguir los siguientes pasos:
   npm i
   ```
 
-- Añadir un archivo `.env` cumplimentando los datos aportados en el archivo `.env.example` como ejemplo
+- Añadir un archivo `.env` cumplimentando los datos aportados en el archivo `.env.example` como ejemplo. En cuanto a la **ADMIN_PASS, ésta debe tener entre 8 y 20 caracteres, contener una minúscula, una mayúscula, un número y un caracter especial**
 
 - Arrancar el servidor
   

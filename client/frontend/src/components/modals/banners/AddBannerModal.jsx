@@ -4,9 +4,14 @@ import { Toaster } from "@/components/ui/toaster";
 
 const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, handleSubmitAdd }) => {
   const [newPhoto, setNewPhoto] = useState();
+  const [externalLink, setExternalLink] = useState(false);
+  
 
   const handleChange = (e) => {
     const newFormValues = e.target.value;
+    if (newFormValues === 'external_link') {
+      setExternalLink(true);
+    }
     setFormValues({
       ...formValues,
       [e.target.name]: newFormValues
@@ -23,7 +28,7 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='relative w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12'>
+      <div className='relative w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[70vw] lg:p-12'>
         <button onClick={() => setAddBannerModalOpen(false)} className="absolute top-5 right-7 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300">
           <img src="/icons/closeModals.svg" alt='Icono de cerrar' />
         </button>
@@ -38,7 +43,7 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
               focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
               border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
               placeholder:italic placeholder:text-slate-400 w-full font-medium"
-              id='title' name='title' minLength={2} maxLength={300} required
+              id='title' name='title' minLength={2} maxLength={300}
               onChange={handleChange}
             />
           </label>
@@ -51,22 +56,63 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
               focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
               border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
               placeholder:italic placeholder:text-slate-400 w-full font-medium"
-              id='subtitle' name='subtitle' minLength={2} maxLength={300} required
+              id='subtitle' name='subtitle' minLength={2} maxLength={300}
               onChange={handleChange}
             />
           </label>
           <label htmlFor="button_link" className='font-bold text-sm'>
             Link
-            <input
+              <select
+                id="button_link"
+                className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
+                file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
+                focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
+                border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
+                placeholder:italic placeholder:text-slate-400 w-full font-medium"
+                name="button_link" onChange={handleChange}
+            >
+            <option value="">Elija un enlace</option>
+            <option value="/calendario-e-inscripciones" key={"/calendario-e-inscripciones"}>
+              Calendario e inscripciones
+            </option>
+              <option value={"/en-marcha"} key={"/en-marcha"}>
+              A Coruña en Marcha
+            </option>
+              <option value={"/galeria"} key={"/galeria"}>
+              Galería
+            </option>
+              <option value={"/faq"} key={"/faq"}>
+              FAQS
+            </option>
+              <option value={"/voluntarios"} key={"/voluntarios"}>
+              Voluntariado
+            </option>
+              <option value={"/patrocinios"} key={"/patrocinios"}>
+              Patrocinadores
+            </option>
+              <option value={"/noticias"} key={"/noticias"}>
+              Noticias
+            </option>
+              <option value={"/contacto"} key={"/contacto"}>
+              Contacto
+            </option>
+              <option value="external_link" key="external_link">
+              Enlace externo
+            </option>
+            </select>
+            { externalLink && 
+              <input
+              placeholder='Ingresa la URL'
               type="text"
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
               file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
               focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
               border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
               placeholder:italic placeholder:text-slate-400 w-full font-medium"
-              id='button_link' name='button_link' required
+              id='button_link' name='button_link'
               onChange={handleChange}
             />
+            }
           </label>
           <label htmlFor="button_text" className='font-bold text-sm'>
             Texto del botón
@@ -74,7 +120,7 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
               type="text"
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='button_text' name='button_text'
-              onChange={handleChange} required
+              onChange={handleChange}
             />
           </label>
           <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
@@ -87,8 +133,8 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
             </label>
             {
               newPhoto
-                ? <div className='h-[100px] w-[300px] lg:h-[300px] lg:w-[900px]'>
-                  <Image src={URL.createObjectURL(newPhoto[0])} width={150} height={72} alt='Fotos de la noticia' className='h-[100px] w-[300px] lg:h-[300px] lg:w-[900px] object-cover' />
+                ? <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
+                  <Image src={URL.createObjectURL(newPhoto[0])} width={150} height={72} alt='Fotos de la noticia' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
                 </div>
                 : null
             }
@@ -103,7 +149,7 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
               focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
               border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
               placeholder:italic placeholder:text-slate-400 w-full font-medium"
-              id='galician_title' name='galician_title' required minLength={2} maxLength={300}
+              id='galician_title' name='galician_title' minLength={2} maxLength={300}
               onChange={handleChange}
             />
           </label>
@@ -116,7 +162,7 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
               focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
               border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
               placeholder:italic placeholder:text-slate-400 w-full font-medium"
-              id='galician_subtitle' name='galician_subtitle' required minLength={2} maxLength={1500}
+              id='galician_subtitle' name='galician_subtitle' minLength={2} maxLength={1500}
               onChange={handleChange}
             />
           </label>
@@ -126,7 +172,7 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
               type="text"
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='galician_button_text' name='galician_button_text'
-              onChange={handleChange} required minLength={2} maxLength={1500}
+              onChange={handleChange} minLength={2} maxLength={1500}
             />
           </label>
           
