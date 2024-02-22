@@ -63,14 +63,14 @@ const EmblaCarousel = (props) => {
                   >
               <div className="ml-5 mt-5 md:ml-12 lg:ml-32">
                  <h1 className="font-bold text-3xl sm:text-6xl text-primaryGreen max-w-2xl">
-                  {language === "es" ? banner?.title : banner?.galician_title}
+                  {language === "es" ? (banner?.title !== "null" ? banner?.title : null) : (banner?.galician_title !== "null" ? banner?.galician_title : null)}
                   </h1>
                   <p className="text-xs sm:text-xl font-medium my-5 text-primaryGreen">
             {language === "es"
-              ? banner?.subtitle
-              : banner?.galician_subtitle}
+              ? (banner?.subtitle !== "null" ? banner?.subtitle : null)
+              : (banner?.galician_subtitle !== "null" ? banner?.galician_subtitle : null)}
                     </p>
-                   { banner?.button_link && (banner?.button_text || banner?.galician_button_text) &&  <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 mt-5 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen uppercase">
+                   { banner?.button_link && ((banner?.button_text !== "null" && banner?.button_text !== null && banner?.button_text !== "" ? true : false) || (banner?.galician_button_text !== "null" && banner?.galician_button_text !== null && banner?.galician_button_text !== "" ? true : false )) &&  <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 mt-5 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen uppercase">
             <Link target={banner?.button_link.includes("https") ? "_blank" : "_self"} className="w-full" href={banner?.button_link}>{language === "es" ? banner?.button_text : banner?.galician_button_text}</Link>
           </button>}
                  </div>
