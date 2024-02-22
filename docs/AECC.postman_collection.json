@@ -1,0 +1,1608 @@
+{
+	"info": {
+		"_postman_id": "4912f501-c089-4193-8d9a-41af19cc966e",
+		"name": "AECC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28582310"
+	},
+	"item": [
+		{
+			"name": "adminRouter",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA0MzY5ODU5LCJleHAiOjE3MDQ0NTYyNTl9.GOs88VpcH8O1XwF_fADAOgczDyVka1lYT35yclI2vr8",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"admin\",\r\n    \"pwd\":\"Admin!00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changePwd",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "oldPwd",
+									"value": "Admin!00",
+									"type": "text"
+								},
+								{
+									"key": "newPwd",
+									"value": "Admin!00NUEVA",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/update-password/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"update-password",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "eventsRouter",
+			"item": [
+				{
+					"name": "addEvent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Título de prueba 1",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Contenido prueba 1",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "Muros",
+									"type": "text"
+								},
+								{
+									"key": "date_start",
+									"value": "2024/05/30",
+									"type": "text"
+								},
+								{
+									"key": "date_end",
+									"value": "2024/05/31",
+									"type": "text"
+								},
+								{
+									"key": "link",
+									"value": "https://www.prueba1.com",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": [
+										"/E:/AECC/uploads/4c6a8d8f-2b7d-4b1f-9d88-4d85dac9ff20.jpg",
+										"/E:/AECC/uploads/9d6307bf-ca01-49b8-9fac-b02fd3b4d4fa.jpg",
+										"/E:/AECC/uploads/36f40b57-5413-4e7c-adf6-7c54309af27f.jpeg",
+										"/E:/AECC/uploads/77d1c793-a30e-4126-baf1-abbf39a6d116.JPG",
+										"/E:/AECC/uploads/becf58c2-c92a-496c-b8a2-8a91570b2886.jpg"
+									]
+								},
+								{
+									"key": "event_type",
+									"value": "Andainas y carreras",
+									"type": "text"
+								},
+								{
+									"key": "galician_title",
+									"value": "Título de proba 3",
+									"type": "text"
+								},
+								{
+									"key": "galician_content",
+									"value": "Contido de proba 3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/events/admin/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"events",
+								"admin",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEvent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/events/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"events",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllEvents",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/events/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"events",
+								""
+							],
+							"query": [
+								{
+									"key": "location",
+									"value": "dfsfd",
+									"disabled": true
+								},
+								{
+									"key": "eventType",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editEvent",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Título prueba 2 (editado)",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Contenido prueba 2 (editado)",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "Santiago de Compostela",
+									"type": "text"
+								},
+								{
+									"key": "date_start",
+									"value": "2024/02/12",
+									"type": "text"
+								},
+								{
+									"key": "date_end",
+									"value": "2024/02/13",
+									"type": "text"
+								},
+								{
+									"key": "link",
+									"value": "https://www.prueba2editado.com",
+									"type": "text"
+								},
+								{
+									"key": "event_type",
+									"value": "Andainas y carreras",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/E:/AECC/uploads/151572a9-ccb8-44bf-a91f-bef51c4a22ee.jpg"
+								},
+								{
+									"key": "galician_title",
+									"value": "Título 2 (editado en gallego)",
+									"type": "text"
+								},
+								{
+									"key": "galician_content",
+									"value": "Contido 2 (editado en gallego)",
+									"type": "text"
+								},
+								{
+									"key": "warning",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "warning_content",
+									"value": "Aviso para el evento con ID8",
+									"type": "text"
+								},
+								{
+									"key": "galician_warning_content",
+									"value": "Aviso para o evento con ID8 (gallego)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/events/admin/edit/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"events",
+								"admin",
+								"edit",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteEvent",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/events/admin/delete/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"events",
+								"admin",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addEventPhoto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/E:/AECC/uploads/8f15c97d-4389-468c-9891-8694eb908201.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/events/admin/add-photo/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"events",
+								"admin",
+								"add-photo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteEventPhoto",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/events/admin/1/delete/photo/40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"events",
+								"admin",
+								"1",
+								"delete",
+								"photo",
+								"40"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "experiencesRouter",
+			"item": [
+				{
+					"name": "addExperience",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Juan",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Ha sido una experiencia increíble. Me alegra mucho ver que la gente apoya la investigación contra el cáncer y que se anima a realizar actividades solidarias que promueven los buenos hábitos.",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/E:/AECC/uploads/79d4a8d5-c6d8-41fd-ae12-47cbe3249d19.jpg"
+								},
+								{
+									"key": "galician_content",
+									"value": "Traducción del contenido de la experiencia a gallego.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/experiences/admin/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"experiences",
+								"admin",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllExperiences",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/experiences/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"experiences",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteExperience",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/experiences/admin/delete/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"experiences",
+								"admin",
+								"delete",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editExperience",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Pepita Pepez",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Me encantaron las actividades. Ha sido una bonita experiencia.",
+									"type": "text"
+								},
+								{
+									"key": "galician_content",
+									"value": "Encantáronme as actividades. Foi unha bonita experiencia.",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/E:/AECC/uploads/50e001e6-9ba5-41b8-94f2-1de2a7862cb7.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/experiences/admin/edit/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"experiences",
+								"admin",
+								"edit",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "faqsRouter",
+			"item": [
+				{
+					"name": "addFaq",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\": \"Ejemplo de FAQ. Aquí iría la pregunta en castellano.\",\r\n    \"galician_question\": \"Ejemplo de FAQ. Aquí iría la pregunta en gallego.\",\r\n    \"answer\": \"Ejemplo de FAQ. Aquí iría la respuesta en castellano.\",\r\n    \"galician_answer\": \"Ejmplo de FAQ. Aquí iría la respuesta en gallego.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/faqs/admin/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"faqs",
+								"admin",
+								"add"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editFaq",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\": \"¿Cuánto cuestan las camisetas numeradas de la asociación para las carreras? MOD\",\r\n    \"galician_question\": \"pregunta en gallego\",\r\n    \"answer\": \"Depende de los patrocinadores. Lo normal es que los dorsales no valgan un precio superior a 10 euros. MOD\",\r\n    \"galician_answer\": \"respuesta en gallego\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/faqs/admin/edit/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"faqs",
+								"admin",
+								"edit",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllFaqs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/faqs/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"faqs",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFaq",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/faqs/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"faqs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteFaq",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/faqs/admin/delete/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"faqs",
+								"admin",
+								"delete",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sponsorsRouter",
+			"item": [
+				{
+					"name": "addSponsor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ABANCA",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Breve descripción de por qué el patrocinador ha decidido colaborar con la asociación.",
+									"type": "text"
+								},
+								{
+									"key": "link",
+									"value": "https://www.abanca.com/es/",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/E:/AECC/uploads/f92a3c86-99ca-425b-8977-de0b384e0c96.png"
+								},
+								{
+									"key": "galician_name",
+									"value": "ABANCA",
+									"type": "text"
+								},
+								{
+									"key": "galician_description",
+									"value": "Breve descripción, en gallego, de por qué el patrocinador ha decidido colaborar con la asociación.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/sponsors/admin/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sponsors",
+								"admin",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editSponsor",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ABANCA",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Descripción modificada de por qué el patrocinador ha decidido colaborar con la asociación.",
+									"type": "text"
+								},
+								{
+									"key": "link",
+									"value": "https://www.linkdepruebamodificacion.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/E:/AECC/uploads/1854bade-67fd-41a3-bfb5-a9845f331e67.png"
+								},
+								{
+									"key": "galician_name",
+									"value": "Nombre en gallego del patrocinador",
+									"type": "text"
+								},
+								{
+									"key": "galician_description",
+									"value": "Descripción modificada en gallego",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/sponsors/admin/edit/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sponsors",
+								"admin",
+								"edit",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteSponsor",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/sponsors/admin/delete/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sponsors",
+								"admin",
+								"delete",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSponsor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/sponsors/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sponsors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllSponsors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/sponsors/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sponsors",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "newsRouter",
+			"item": [
+				{
+					"name": "addNews",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Título de la noticia 2",
+									"type": "text"
+								},
+								{
+									"key": "galician_title",
+									"value": "Título da noticia 2",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Contenido de la noticia 2",
+									"type": "text"
+								},
+								{
+									"key": "galician_content",
+									"value": "Contido da noticia 2",
+									"type": "text"
+								},
+								{
+									"key": "link",
+									"value": "https://www.pruebitanews.com",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/E:/AECC/uploads/92753d2f-7446-41c5-a645-879160bbfa9d.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/news/admin/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"news",
+								"admin",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getNews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/news/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"news",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllNews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/news/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"news",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editNews",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Título de prueba modificado",
+									"type": "text"
+								},
+								{
+									"key": "galician_title",
+									"value": "Título de proba modificado",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Contenido de prueba modificado",
+									"type": "text"
+								},
+								{
+									"key": "galician_content",
+									"value": "Contido de proba modificado",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/E:/AECC/uploads/e7299d2c-c65f-4891-9f04-9bb29c5ce36b.jpg"
+								},
+								{
+									"key": "news_date",
+									"value": "2024/05/20",
+									"type": "text"
+								},
+								{
+									"key": "link",
+									"value": "https://www.linkdeprueba.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/news/admin/edit/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"news",
+								"admin",
+								"edit",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteNews",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/news/admin/delete/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"news",
+								"admin",
+								"delete",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteNewsPhoto",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/news/admin/8/delete/photo/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"news",
+								"admin",
+								"8",
+								"delete",
+								"photo",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "achievementsRouter",
+			"item": [
+				{
+					"name": "addAchievement",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "description",
+									"value": "¡Hemos conseguido organizar eventos deportivos, que fomentan los hábitos saludables y ayudan a recaudar fondos en la investigación contra el cáncer en más de 5 localidades de A Coruña!",
+									"type": "text"
+								},
+								{
+									"key": "galician_description",
+									"value": "Descripción en gallego",
+									"type": "text"
+								},
+								{
+									"key": "icon",
+									"type": "file",
+									"src": "/E:/AECC/uploads/36ad5713-e63b-49c3-aae0-88cee13fe308.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/achievements/admin/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"achievements",
+								"admin",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAchievement",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/achievements/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"achievements",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllAchievements",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/achievements/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"achievements",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editAchievement",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "description",
+									"value": "Descripción del logro modificada",
+									"type": "text"
+								},
+								{
+									"key": "galician_description",
+									"value": "Traducción al gallego",
+									"type": "text"
+								},
+								{
+									"key": "icon",
+									"type": "file",
+									"src": "/E:/AECC/uploads/e07173a8-a68e-4733-852a-f99e39df0019.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/achievements/admin/edit/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"achievements",
+								"admin",
+								"edit",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAchievement",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/achievements/admin/delete/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"achievements",
+								"admin",
+								"delete",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bannersRouter",
+			"item": [
+				{
+					"name": "getAllBanners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/banners/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"banners",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBanner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/banners/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"banners",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addBanner",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Betanzos En Marcha",
+									"type": "text"
+								},
+								{
+									"key": "subtitle",
+									"value": "CONTRA EL CÁNCER",
+									"type": "text"
+								},
+								{
+									"key": "button_text",
+									"value": "IR A EVENTOS",
+									"type": "text"
+								},
+								{
+									"key": "button_link",
+									"value": "https://www.ejemplolink.com",
+									"type": "text"
+								},
+								{
+									"key": "galician_title",
+									"value": "Betnazos en Marcha",
+									"type": "text"
+								},
+								{
+									"key": "galician_subtitle",
+									"value": "CONTRA O CANCRO",
+									"type": "text"
+								},
+								{
+									"key": "galician_button_text",
+									"value": "IR A EVENTOS",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/E:/AECC/uploads/e7299d2c-c65f-4891-9f04-9bb29c5ce36b.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/banners/admin/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"banners",
+								"admin",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editBanner",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "A Coruña En Marcha",
+									"type": "text"
+								},
+								{
+									"key": "galician_title",
+									"value": "A Coruña En Marcha",
+									"type": "text"
+								},
+								{
+									"key": "subtitle",
+									"value": "CONTRA EL CÁNCER",
+									"type": "text"
+								},
+								{
+									"key": "galician_subtitle",
+									"value": "CONTRA O CANCRO",
+									"type": "text"
+								},
+								{
+									"key": "button_text",
+									"value": "ÚLTIMO EVENTO",
+									"type": "text"
+								},
+								{
+									"key": "galician_button_text",
+									"value": "ÚLTIMO EVENTO",
+									"type": "text"
+								},
+								{
+									"key": "button_link",
+									"value": "https://www.ejemplolinkevento.com",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/E:/AECC/uploads/c740922a-8154-4aa6-9dab-b3589f7ce0cd.webp"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/banners/admin/edit/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"banners",
+								"admin",
+								"edit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBanner",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/banners/admin/delete/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"banners",
+								"admin",
+								"delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBannerPhoto",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNzA4NTkzNzQ0LCJleHAiOjE3MDg2ODAxNDR9.kSkDoCHRdPM4kfhgZvGnY6dI4rtC7PaCT3IGO3CUkj0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/banners/admin/4/delete/photo/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"banners",
+								"admin",
+								"4",
+								"delete",
+								"photo",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
