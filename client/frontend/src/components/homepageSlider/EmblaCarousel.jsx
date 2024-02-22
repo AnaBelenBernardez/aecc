@@ -70,9 +70,9 @@ const EmblaCarousel = (props) => {
               ? banner?.subtitle
               : banner?.galician_subtitle}
                     </p>
-                   <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 mt-5 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen uppercase">
-            <Link href={banner?.button_link}>{language === "es" ? banner?.button_text : banner?.galician_button_text}</Link>
-          </button>
+                   { banner?.button_link && (banner?.button_text || banner?.galician_button_text) &&  <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 mt-5 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen uppercase">
+            <Link target={banner?.button_link.includes("https") ? "_blank" : "_self"} className="w-full" href={banner?.button_link}>{language === "es" ? banner?.button_text : banner?.galician_button_text}</Link>
+          </button>}
                  </div>
                 </div>
               </div>

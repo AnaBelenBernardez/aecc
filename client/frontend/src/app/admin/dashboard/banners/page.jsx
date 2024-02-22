@@ -22,7 +22,7 @@ const dashboardBanners = () => {
   }
   const { toast } = useToast();
 
-  const { banners, loading, refetch } = useGetAllBanners(); // Use the hook for banners
+  const { banners, loading, refetch } = useGetAllBanners(); 
   const [idBannerOpen, setIdBannerOpen] = useState();
   const [deleteModalOpen, setDeleteModalOpen] = useState();
   const [addBannerModalOpen, setAddBannerModalOpen] = useState();
@@ -171,24 +171,24 @@ const dashboardBanners = () => {
     const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banner.photo}`;
     return (
       <article
-        className="flex flex-col justify-between p-8 items-center shadow-md md:flex-row lg:w-[80%]"
+        className="flex flex-col justify-between p-8 items-center shadow-md md:flex-row w-[90%]"
         key={banner.title}
       >
         <div className="lg:flex lg:w-[70%] lg:justify-evenly">
           <div className="flex items-center">
-            <h2 className="font-bold px-6 line-clamp-2 w-[240px]">
+            <h2 className="hidden font-bold px-6 line-clamp-2 w-[240px] lg:block">
               {banner.title}
             </h2>
-            <p className="line-clamp-2 w-[240px]">{banner.subtitle}</p>
+            <p className="hidden line-clamp-2 w-[240px] lg:block">{banner.subtitle}</p>
           </div>
           {banner.photo !== null ? (
-            <div className="self-center hidden lg:block lg:w-[400px] lg:h-[100px]">
+            <div className="self-center lg:w-[400px] lg:h-[100px]">
               <Image
                 src={imgSrc}
-                width={300}
+                width={400}
                 height={100}
                 alt="Imagen del banner"
-                className="lg:w-[400px] lg:h-[100px] object-cover"
+                className="w-[280px] h-[70px] lg:w-[400px] lg:h-[100px] object-cover"
               />
             </div>
           ) : (
@@ -203,7 +203,7 @@ const dashboardBanners = () => {
             </div>
           )}
         </div>
-        <div className="self-end flex gap-4 md:self-center">
+        <div className="flex gap-4 self-center">
           <button
             onClick={() => openModalEdit(banner)}
             className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0"

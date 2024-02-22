@@ -1,6 +1,5 @@
 const { getPool } = require("../../database/db");
 const generateError = require('../../helpers/generateError');
-const bannerSchema = require('../../schemas/bannerSchema');
 const { photoSchema, arrayPhotoSchema } = require('../../schemas/photoSchema');
 const savePhoto = require('../../helpers/savePhoto');
 const deletePhoto = require("../../helpers/deletePhoto");
@@ -27,12 +26,6 @@ async function editBanner(req, res, next) {
 
         if (photoErrorSchema) {
             return next(generateError(photoErrorSchema.details[0].message, 400));
-        }
-
-        const { error } = bannerSchema.validate(req.body);
-
-        if (error) {
-            return next(generateError(error.message, 400));
         }
 
         const { title, galician_title, subtitle, galician_subtitle, button_text, galician_button_text, button_link } = req.body;
