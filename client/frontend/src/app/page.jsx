@@ -12,9 +12,9 @@ import Loading from "../components/loading/Loading";
 import { useEffect, useState } from "react";
 import { getAllEventsFilterService } from "../service";
 import { useLanguageStore } from "../store/language/language.store";
-import useGetAllSponsors from '../hooks/useGetAllSponsors';
-import SponsorsCarrousel from '../components/sponsors/SponsorsCarrousel';
-import useGetAllAchievements from '../hooks/useGetAllAchievements';
+import useGetAllSponsors from "../hooks/useGetAllSponsors";
+import SponsorsCarrousel from "../components/sponsors/SponsorsCarrousel";
+import useGetAllAchievements from "../hooks/useGetAllAchievements";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import useGetAllBanners from "../hooks/useGetAllBanners";
@@ -54,18 +54,20 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-      getAllEventsFilterService(
-        typeEvent,
-        locationEvent,
-        eventDateStart,
-        eventDateEnd
-      ).catch((err) => {
+    getAllEventsFilterService(
+      typeEvent,
+      locationEvent,
+      eventDateStart,
+      eventDateEnd
+    )
+      .catch((err) => {
         toast({
           variant: "destructive",
           title: err.message,
-          className: "bg-secondRed text-white text-lg font-bold"
-        })
-      }).then((res) => {
+          className: "bg-secondRed text-white text-lg font-bold",
+        });
+      })
+      .then((res) => {
         setFilteredEvents(res);
       });
   }, [typeEvent, locationEvent, eventDateStart, eventDateEnd]);
@@ -82,11 +84,10 @@ export default function Home() {
     });
   }
 
-
   if (loading) return <Loading />;
-  
-  const photoBanner = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banners[0]?.photo}`
 
+  const photoBanner =
+    process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banners[0]?.photo}`;
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
@@ -102,124 +103,170 @@ export default function Home() {
           </button>
         </Link>
       ) : null}
-      { banners.length > 0 ?
+      {banners.length > 0 ? (
         <Slider banners={banners} />
-        : <div
-        className="bg-[url('/image/eventos-M.jpg')] w-full bg-cover bg-center sm:bg-cover h-[380px] sm:h-[480px] bg-no-repeat flex sm:items-center justify-start"
-        id="top"
+      ) : (
+        <div
+          className="bg-[url('/image/eventos-M.jpg')] w-full bg-cover bg-center sm:bg-cover h-[380px] sm:h-[480px] bg-no-repeat flex sm:items-center justify-start"
+          id="top"
         >
-        <div className="ml-5 mt-5 sm:ml-32">
-          <h1 className="font-bold text-3xl sm:text-6xl text-primaryGreen">
-            A Coruña <span className="text-primaryGreen">en marcha</span>
-            <br />
-            <span className="text-primaryGreen">
-              {language === "es" ? "CONTRA EL CÁNCER" : "CONTRA O CANCRO"}
-            </span>
-          </h1>
-          <p className="text-xs sm:text-xl font-medium my-5 text-primaryGreen">
-            {language === "es"
-              ? "Consulta todos nuestros eventos solidarios e inscríbete"
-              : "Consulta todos os nosos eventos solidarios e inscríbete"}
-          </p>
-          <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 mt-5 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
-            <Link href="/calendario-e-inscripciones">IR A EVENTOS</Link>
-          </button>
+          <div className="ml-5 mt-5 sm:ml-32">
+            <h1 className="font-bold text-3xl sm:text-6xl text-primaryGreen">
+              A Coruña <span className="text-primaryGreen">en marcha</span>
+              <br />
+              <span className="text-primaryGreen">
+                {language === "es" ? "CONTRA EL CÁNCER" : "CONTRA O CANCRO"}
+              </span>
+            </h1>
+            <p className="text-xs sm:text-xl font-medium my-5 text-primaryGreen">
+              {language === "es"
+                ? "Consulta todos nuestros eventos solidarios e inscríbete"
+                : "Consulta todos os nosos eventos solidarios e inscríbete"}
+            </p>
+            <button className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold sm:px-16 px-10 sm:py-4 py-2 mt-5 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen">
+              <Link href="/calendario-e-inscripciones">IR A EVENTOS</Link>
+            </button>
+          </div>
         </div>
-      </div>
-      } 
-      {
-        language === 'es'
-          ? <>
-              <h3 className="text-2xl font-bold text-center mt-14 md:text-5xl lg:flex lg:pl-16 lg:w-full">¿Qué es En Marcha?</h3>
-              <section className='mb-16 px-7 mt-8 lg:w-full'>
-                <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
-                  <span className='font-bold text-primaryGreen text-lg'>A Coruña En Marcha</span>  es el circuito de actividades deportivas 100% solidarias de la Asociación Española Contra el Cáncer en la provincia de A Coruña.
-                </p>
-                <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
-                El pasado año más de <span className='font-semibold'>14.500 personas</span> participaron en nuestros <span className='font-semibold'>26 eventos</span> con los que recaudamos <span className='font-semibold'>297.000 euros</span> destinados a la investigación oncológica y al apoyo a pacientes y familias.
-                </p>
-                <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
-                Gracias a vuestra colaboración y solidaridad, <span className='font-bold text-primaryGreen text-lg'>A Coruña</span> está en marcha contra el cáncer por la investigación, por los pacientes y por las familias. ¡Te esperamos!
-                </p>
-              </section>
-            </>
-          : <>
-              <h3 className="text-2xl font-bold text-center mt-14 md:text-5xl lg:flex lg:pl-16 lg:w-full">¿Que é En Marcha?</h3>
-              <section className='mb-16 px-7 mt-8 lg:w-full'>
-                <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
-                  <span className='font-bold text-primaryGreen text-lg'>A Coruña En Marcha</span> é o circuíto de actividades deportivas 100% solidarias da Asociación Española Contra o Cancro na provincia da Coruña.
-                </p>
-                <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
-                O pasado ano máis de <span className='font-semibold'>14.500 persoas</span> participaron nos nosos <span className='font-semibold'>26 eventos</span> cos que recadamos <span className='font-semibold'>297.000 euros</span> destinados á investigación oncolóxica e ao apoio a pacientes e familias. 
-                </p>
-                <p className='pb-4 lg:w-[80%] lg:pl-16 text-justify'>
-                  Grazas á vosa colaboración e solidaridade, <span className='font-bold text-primaryGreen text-lg'>A Coruña</span> está en marcha contra o cancro pola investigación, polos pacientes e polas familias. Esperámoste!
-                </p>
-              </section>
-            </>
-      }
-      
+      )}
+      {language === "es" ? (
+        <>
+          <h3 className="text-2xl font-bold text-center mt-14 md:text-5xl lg:flex lg:pl-16 lg:w-full">
+            ¿Qué es En Marcha?
+          </h3>
+          <section className="mb-16 px-7 mt-8 lg:w-full">
+            <p className="pb-4 lg:w-[80%] lg:pl-16 text-justify">
+              <span className="font-bold text-primaryGreen text-lg">
+                A Coruña En Marcha
+              </span>{" "}
+              es el circuito de actividades deportivas 100% solidarias de la
+              Asociación Española Contra el Cáncer en la provincia de A Coruña.
+            </p>
+            <p className="pb-4 lg:w-[80%] lg:pl-16 text-justify">
+              El pasado año más de{" "}
+              <span className="font-semibold">14.500 personas</span>{" "}
+              participaron en nuestros{" "}
+              <span className="font-semibold">26 eventos</span> con los que
+              recaudamos <span className="font-semibold">297.000 euros</span>{" "}
+              destinados a la investigación oncológica y al apoyo a pacientes y
+              familias.
+            </p>
+            <p className="pb-4 lg:w-[80%] lg:pl-16 text-justify">
+              Gracias a vuestra colaboración y solidaridad,{" "}
+              <span className="font-bold text-primaryGreen text-lg">
+                A Coruña
+              </span>{" "}
+              está en marcha contra el cáncer por la investigación, por los
+              pacientes y por las familias. ¡Te esperamos!
+            </p>
+          </section>
+        </>
+      ) : (
+        <>
+          <h3 className="text-2xl font-bold text-center mt-14 md:text-5xl lg:flex lg:pl-16 lg:w-full">
+            ¿Que é En Marcha?
+          </h3>
+          <section className="mb-16 px-7 mt-8 lg:w-full">
+            <p className="pb-4 lg:w-[80%] lg:pl-16 text-justify">
+              <span className="font-bold text-primaryGreen text-lg">
+                A Coruña En Marcha
+              </span>{" "}
+              é o circuíto de actividades deportivas 100% solidarias da
+              Asociación Española Contra o Cancro na provincia da Coruña.
+            </p>
+            <p className="pb-4 lg:w-[80%] lg:pl-16 text-justify">
+              O pasado ano máis de{" "}
+              <span className="font-semibold">14.500 persoas</span> participaron
+              nos nosos <span className="font-semibold">26 eventos</span> cos
+              que recadamos <span className="font-semibold">297.000 euros</span>{" "}
+              destinados á investigación oncolóxica e ao apoio a pacientes e
+              familias.
+            </p>
+            <p className="pb-4 lg:w-[80%] lg:pl-16 text-justify">
+              Grazas á vosa colaboración e solidaridade,{" "}
+              <span className="font-bold text-primaryGreen text-lg">
+                A Coruña
+              </span>{" "}
+              está en marcha contra o cancro pola investigación, polos pacientes
+              e polas familias. Esperámoste!
+            </p>
+          </section>
+        </>
+      )}
+
       {events.length > 0 ? (
         <>
           <section className="bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10 lg:w-full">
-        <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
-          {language === "es"
-            ? "Encuentra un evento en la provincia de A Coruña"
-            : "Atopa un evento na provincia da Coruña"}
-        </h2>
-        <div className="flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center">
-            <SelectInput
-              setStatus={setTypeEvent}
-              text={"Tipo de evento"}
-              eventType={"typeEvent"}
-              options={categoryEvents}
-              onChange={(e) => setTypeEvent(e.target.value)}
-            ></SelectInput>
-            <SelectInput
-              setStatus={setLocationEvent}
-              text={"Localidades"}
-              eventType={"locationEvent"}
-              options={locations}
-              onChange={(e) => setLocationEvent(e.target.value)}
-            ></SelectInput>
-          </div>
-          <DateTimePickerValue
-            language={language}
-            eventDateEnd={eventDateEnd}
-            setEventDateEnd={setEventDateEnd}
-            setEventDateStart={setEventDateStart}
-            eventDateStart={eventDateStart}
-          ></DateTimePickerValue>
-        </div>
-      </section>
+            <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
+              {language === "es"
+                ? "Encuentra un evento en la provincia de A Coruña"
+                : "Atopa un evento na provincia da Coruña"}
+            </h2>
+            <div className="flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center">
+              <div className="flex flex-col gap-4 md:flex-row md:items-center">
+                <SelectInput
+                  setStatus={setTypeEvent}
+                  text={"Tipo de evento"}
+                  eventType={"typeEvent"}
+                  options={categoryEvents}
+                  onChange={(e) => setTypeEvent(e.target.value)}
+                ></SelectInput>
+                <SelectInput
+                  setStatus={setLocationEvent}
+                  text={"Localidades"}
+                  eventType={"locationEvent"}
+                  options={locations}
+                  onChange={(e) => setLocationEvent(e.target.value)}
+                ></SelectInput>
+              </div>
+              <DateTimePickerValue
+                language={language}
+                eventDateEnd={eventDateEnd}
+                setEventDateEnd={setEventDateEnd}
+                setEventDateStart={setEventDateStart}
+                eventDateStart={eventDateStart}
+              ></DateTimePickerValue>
+            </div>
+          </section>
           <h3 className="text-2xl font-bold mt-8 mb-2 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
             Próximos eventos
           </h3>
-          <h4 className='font-bold mb-8 text-2xl lg:flex lg:pl-20 lg:w-full lg:gap-2'>
-            {language === "es" ? <p>en la provincia de <span className='text-primaryGreen'>A Coruña</span></p> : <p>na provincia da <span className='text-primaryGreen'>Coruña</span></p>}
+          <h4 className="font-bold mb-8 text-2xl lg:flex lg:pl-20 lg:w-full lg:gap-2">
+            {language === "es" ? (
+              <p>
+                en la provincia de{" "}
+                <span className="text-primaryGreen">A Coruña</span>
+              </p>
+            ) : (
+              <p>
+                na provincia da{" "}
+                <span className="text-primaryGreen">Coruña</span>
+              </p>
+            )}
           </h4>
           {filteredEvents && filteredEvents.length > 3 ? (
-            <EventsCarousel filteredEvents={filteredEvents}/>
-            ) : (
-              <div className="flex flex-col gap-10 mb-6 mt-4 lg:flex-row lg:flex-wrap">
-              {filteredEvents && filteredEvents.length > 0
-                ? filteredEvents.map((event) => (
-                    <CardEvent
-                      title={event.title}
-                      key={event.id}
-                      image={event.event_photos[0]}
-                      description={language === "es" ? event.content : event.galician_content}
-                      location={event.location}
-                      link={event.link}
-                      warning={event.warning}
-                      />
-                      )) 
-                : <EventsCarousel />
-              }
+            <EventsCarousel filteredEvents={filteredEvents} />
+          ) : (
+            <div className="flex flex-col gap-10 mb-6 mt-4 lg:flex-row lg:flex-wrap">
+              {filteredEvents && filteredEvents.length > 0 ? (
+                filteredEvents.map((event) => (
+                  <CardEvent
+                    title={event.title}
+                    key={event.id}
+                    image={event.event_photos[0]}
+                    description={
+                      language === "es" ? event.content : event.galician_content
+                    }
+                    location={event.location}
+                    link={event.link}
+                    warning={event.warning}
+                  />
+                ))
+              ) : (
+                <EventsCarousel />
+              )}
             </div>
-          )
-          }
+          )}
           <section className="flex flex-col w-full md:items-center lg:items-start pl-8 pr-8 lg:relative">
             <div className="flex flex-col items-center w-full lg:flex lg:flex-wrap lg:items-start">
               <h2 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-12 lg:w-full lg:mt-20">
@@ -240,7 +287,7 @@ export default function Home() {
                 </Link>
               </button>
             </div>
-            <div className="flex justify-center lg:absolute lg:top-[100px] lg:right-80 2xl:right-[40rem]">
+            <div className="flex justify-center lg:absolute lg:top-[100px] lg:right-[10rem] 2xl:right-[20rem]">
               <Calendar />
             </div>
           </section>
@@ -269,54 +316,55 @@ export default function Home() {
           </div>
         </div>
       )}
-      {
-        sponsors
-          ? <>
-              <h3 className="text-2xl font-bold my-8 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mt-40">
-                {language === "es" ? "Nuestros patrocinadores" : "Os nosos patrocinadores"}
-              </h3>
-              <section className='md:mb-14'>
-                <SponsorsCarrousel/>
-              </section>
-            </>
-          : null
-      }
-      {
-        achievements
-          ? <>
-              <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mb-14">
-                {language === "es"
-                  ? "Gracias a tu participación"
-                  : "Grazas á túa participación"}
-              </h3>
-              <div className="grid grid-cols-1 items-center justify-center gap-10 sm:grid-cols-3 container">
-              {
-                achievements.map((achievement) => {
-                  const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${achievement.icon}`
-                  return (
-                    <div className="flex flex-col items-center gap-5 h-full" key={achievement.id}>
-                      <div className="w-[120px] h-[120px] object-contain border-2 p-6 border-primaryGreen rounded-full flex items-center">
-                        <Image
-                          src={imgSrc}
-                          width={120}
-                          height={120}
-                          className="object-contain w-[120px] h-[120px]"
-                          alt="Icono"
-                        />
-                      </div>
-                      <p className="text-sm mx-5">
-                        {language === "es"
-                          ? achievement.description
-                          : achievement.galician_description}
-                      </p>
-                    </div>    
-                  )
-                })
-              }
-              </div>
-            </> 
-          : null
-      }
+      {sponsors ? (
+        <>
+          <h3 className="text-2xl font-bold my-8 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mt-40">
+            {language === "es"
+              ? "Nuestros patrocinadores"
+              : "Os nosos patrocinadores"}
+          </h3>
+          <section className="md:mb-14">
+            <SponsorsCarrousel />
+          </section>
+        </>
+      ) : null}
+      {achievements ? (
+        <>
+          <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mb-14">
+            {language === "es"
+              ? "Gracias a tu participación"
+              : "Grazas á túa participación"}
+          </h3>
+          <div className="grid grid-cols-1 items-center justify-center gap-10 sm:grid-cols-3 container">
+            {achievements.map((achievement) => {
+              const imgSrc =
+                process.env.NEXT_PUBLIC_BACK_URL +
+                `/uploads/${achievement.icon}`;
+              return (
+                <div
+                  className="flex flex-col items-center gap-5 h-full"
+                  key={achievement.id}
+                >
+                  <div className="w-[120px] h-[120px] object-contain border-2 p-6 border-primaryGreen rounded-full flex items-center">
+                    <Image
+                      src={imgSrc}
+                      width={120}
+                      height={120}
+                      className="object-contain w-[120px] h-[120px]"
+                      alt="Icono"
+                    />
+                  </div>
+                  <p className="text-sm mx-5">
+                    {language === "es"
+                      ? achievement.description
+                      : achievement.galician_description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      ) : null}
       <h3 className="text-2xl font-bold my-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
         {language === "es" ? "En primera persona" : "En primeira persoa"}
       </h3>
@@ -343,6 +391,5 @@ export default function Home() {
       )}
       <Toaster />
     </main>
-  
   );
 }
