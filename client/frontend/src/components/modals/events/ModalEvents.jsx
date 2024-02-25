@@ -25,8 +25,8 @@ export const ModalEvents = ({ token, refetch }) => {
   const [filePreview] = useFilePreview(photo);
 
   const onSubmit = async (data) => {
-    const eventData = await addEvent(token, data);
     try {
+      const eventData = await addEvent(token, data);
       closeModal();
       refetch();
       toast({

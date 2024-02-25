@@ -4,7 +4,6 @@ const backAPI = process.env.NEXT_PUBLIC_BACK_URL;
 
 export const getAllEventsService = async () => {
   const response = await fetch(`${backAPI}/events`);
-
   const data = await response.json();
 
   if (!response.ok) {
@@ -257,7 +256,7 @@ export const editNewService = async (formValuesEdit, idNew, token) => {
   editNewForm.append("galician_title", formValuesEdit.galician_title);
   editNewForm.append("galician_content", formValuesEdit.galician_content);
   editNewForm.append("news_date", formValuesEdit.news_date);
-  
+
   if (Array.isArray(formValuesEdit.photo)) {
     editNewForm.append("photo", formValuesEdit.photo[0][0]);
   }
@@ -326,6 +325,18 @@ export const deleteEventService = async (id, token) => {
 };
 
 export const editEventService = async (id, token, formValues) => {
+  if (formValues.warning === "0") {
+    formValues.warning_content = null;
+    formValues.galician_warning_content = null;
+  }
+
+  if (
+    (formValues.warning === "1" && formValues.warning_content === "") ||
+    (formValues.warning === "1" && formValues.galician_warning_content === "")
+  ) {
+    throw new Error("El campo tipo de incidencia no puede estar vacío");
+  }
+
   const editNewForm = new FormData();
   editNewForm.append("title", formValues.title);
   editNewForm.append("content", formValues.content);
@@ -720,4 +731,3 @@ export const getAllBannersService = async () => {
 
   return data.data;
 };
-

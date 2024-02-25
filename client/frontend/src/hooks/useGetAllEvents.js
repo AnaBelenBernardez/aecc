@@ -7,13 +7,10 @@ const useGetAllEvents = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
   const loadEvents = async () => {
     try {
       setLoading(true);
-
       const data = await getAllEventsService();
-
       setEvents(data);
     } catch (error) {
       setError(error.message);

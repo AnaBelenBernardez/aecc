@@ -52,8 +52,10 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
         ? new Date(editEvent?.date_end).toISOString().slice(0, 10)
         : "",
       warning: editEvent?.warning?.toString(),
-      warning_content: editEvent?.warning_content,
-      galician_warning_content: editEvent?.galician_warning_content,
+      warning_content: "null" ? "" : editEvent?.warning_content,
+      galician_warning_content: "null"
+        ? ""
+        : editEvent?.galician_warning_content,
       location: editEvent?.location,
       event_type: editEvent?.event_type,
     };
