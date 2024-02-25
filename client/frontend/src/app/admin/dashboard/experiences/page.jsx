@@ -152,7 +152,7 @@ const dashboardExperiences = () => {
                   </div>
                 )}
                 <div className="flex gap-3 sm:gap-1 md:gap-4 items-center">
-                  <p className="lg:min-w-[150px] sm:w-[60px] md:w-[80px] text-left flex items-center text-lightPink font-bold">
+                  <p className="lg:min-w-[150px] sm:w-[60px] md:w-[80px] text-left flex items-center text-primaryGreen font-bold">
                     {experienceItem.name}
                   </p>
                   <h2 className="font-bold lg:px-6 sm:px-0 line-clamp-3 w-[140px] md:w-[160px] lg:w-full">

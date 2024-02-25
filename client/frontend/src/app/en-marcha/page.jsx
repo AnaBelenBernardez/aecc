@@ -15,14 +15,14 @@ const EnMarcha = () => {
   return (
     <main className='mx-5 lg:mx-32'>
       <div className='mt-8 flex flex-col gap-12 lg:flex-row'>
-        <section className='bg-primaryGreen text-secondLightGray p-4 flex flex-col gap-4 md:p-8 lg:w-2/5'>
-          <h2 className="font-bold text-lg">
+        <section className='bg-primaryGreen text-secondLightGray p-4 flex flex-col gap-4 md:p-8 lg:w-4/5 lg:justify-evenly'>
+          <h2 className="font-bold text-lg md:text-3xl lg:text-4xl">
             {language === "es"
               ? "Muévete contra el cáncer!"
               : "Móvete contra o cancro!"
             }
           </h2>
-          <p className="text-justify">
+          <p className="text-justify md:text-xl">
             {
               language === "es"
                 ? `A Coruña en Marcha contra el cáncer es una iniciativa 100% solidaria de la Asociación Española Contra el
@@ -31,14 +31,14 @@ const EnMarcha = () => {
                     o Cancro que recada fondos para mellorar a vida dos pacientes e familias.`
             }
           </p>
-          <h2 className="font-bold text-lg">
+          <h2 className="font-bold text-lg md:text-3xl lg:text-4xl">
             {
               language === "es"
                 ? "En marcha por la solidaridad"
                 : "En marcha pola solidariedade"
             }
           </h2>
-          <p className="text-justify">
+          <p className="text-justify md:text-xl">
             {
               language === "es"
                 ? `En 2023 contamos con el apoyo de más de 14.500 participantes y 250 personas voluntarias en 25 localidades.
@@ -49,14 +49,14 @@ const EnMarcha = () => {
                     o cancro e ao apoio directo a pacientes e as súas familias.`
             }
           </p>
-          <h2 className="font-bold text-lg">
+          <h2 className="font-bold text-lg md:text-3xl lg:text-4xl">
             {
               language === "es"
                 ? "Pon tu grano de arena y participa"
                 : "Pon o teu gran de area e participa"
             }
           </h2>
-          <p className="text-justify">
+          <p className="text-justify md:text-xl">
             {language === "es"
               ? `¿Quieres ser parte de este movimiento solidario? No te pierdas nuestras próximas actividades.
                   Visita nuestro calendario de eventos y encuentra el más cercano.`
@@ -65,14 +65,16 @@ const EnMarcha = () => {
             }
           </p>
           <Link href={'/calendario-e-inscripciones'} className='self-center my-4 md:mb-2'>
-            <button className='bg-secondLightGray text-primaryBlack font-bold rounded-3xl text-sm px-10 py-2 hover:text-primaryGreen'>
+            <button className='bg-secondLightGray text-primaryBlack font-bold rounded-3xl text-sm px-10 py-2 hover:text-primaryGreen md:text-lg'>
               {
                 language === "es" ? "IR AL CALENDARIO" : "IR O CALENDARIO"
               }
             </button>
           </Link>
         </section>
-        <iframe src="https://www.youtube.com/embed/PEv5rcqAArw?si=wKsSXGimsfEEW2Ra" allowFullScreen className='w-full h-[325px] lg:h-auto lg:w-3/5'/>
+        <div className='w-auto h-full lg:h-[revert-layer]'>
+          <Image src={'/image/enMarcha.jpg'} alt='Imagen en marcha' width={800} height={800} className='w-auto h-full lg:h-[revert-layer] object-cover'/>
+        </div>
       </div>
       <h3 className="text-2xl font-bold my-8 mb-10 md:text-3xl lg:flex lg:w-full lg:mb-14">
         {language === "es"
