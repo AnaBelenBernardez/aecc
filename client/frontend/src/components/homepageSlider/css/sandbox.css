@@ -11,6 +11,8 @@
 .sandbox__carousel {
   position: relative;
   background-color: var(--background-code);
+  display: flex;
+  flex-direction: column;
 }
 @media (max-width: 749px) {
   .sandbox__carousel {

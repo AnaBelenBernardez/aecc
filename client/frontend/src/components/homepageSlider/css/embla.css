@@ -112,11 +112,12 @@ html {--brand-primary: #24c347;
   z-index: 1;
   bottom: 1rem;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%); 
   display: flex;
   justify-content: center;
   align-items: center;
+  width: fit-content;
 }
 .embla__dot {
   width: 2.4rem;

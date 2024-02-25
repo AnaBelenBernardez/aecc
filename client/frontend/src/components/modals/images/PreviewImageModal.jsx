@@ -90,7 +90,7 @@ function handleTouchEnd() {
 
         <button
           onClick={onPrev}
-          className="absolute hidden lg:flex top-[50%] -left-12"
+          className="absolute hidden lg:flex top-[50%] -translate-y-2/4 -left-12"
           tabIndex={focusIndex === 1 ? 0 : -1}
         >
           <img src="/icons/left.svg" alt="Previous" />
@@ -98,7 +98,7 @@ function handleTouchEnd() {
 
         <button
           onClick={onNext}
-          className="absolute hidden lg:flex top-[50%] -right-12"
+          className="absolute hidden lg:flex top-[50%] -translate-y-2/4 -right-12"
           tabIndex={focusIndex === 2 ? 0 : -1}
         >
           <img src="/icons/right.svg" alt="Next" />

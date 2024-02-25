@@ -3,7 +3,6 @@ import useEmblaCarousel from 'embla-carousel-react'
 import {
   DotButton
 } from './EmblaCarouselArrowsDotsButtons'
-import Image from 'next/image'
 import { useLanguageStore } from '../../store/language/language.store'
 import Link from 'next/link'
 
