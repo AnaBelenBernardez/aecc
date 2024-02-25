@@ -1,6 +1,8 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 import "../../app/globals.css";
 import LinkYoutube from "./LinksRRSS/LinkYoutube";
 import LinkFacebook from "./LinksRRSS/LinkFacebook";
@@ -8,8 +10,6 @@ import LinkTwitter from "./LinksRRSS/LinkTwitter";
 import LinkInstagram from "./LinksRRSS/LinkInstagram";
 import LinkTikTok from "./LinksRRSS/LinkTikTok";
 import { useLanguageStore } from "../../store/language/language.store";
-import dynamic from "next/dynamic";
-import { usePathname } from "next/navigation";
 
 const Footer = () => {
   const pathname = usePathname();
@@ -46,8 +46,11 @@ const Footer = () => {
           >
             <LinkInstagram />
           </Link>
-          <Link href="https://www.tiktok.com/@contraelcancer.acoruna" target="_blank">
-            <LinkTikTok/>
+          <Link
+            href="https://www.tiktok.com/@contraelcancer.acoruna"
+            target="_blank"
+          >
+            <LinkTikTok />
           </Link>
           <Link href="https://www.youtube.com/user/aecc" target="_blank">
             <LinkYoutube />
@@ -120,6 +123,17 @@ const Footer = () => {
             target="_blank"
           >
             <li>Blog</li>
+          </Link>
+        </ul>
+      </section>
+      <section className="mt-6 lg:mt-0">
+        <h2 className="font-extrabold mb-2">LEGAL</h2>
+        <ul className="flex flex-col gap-2">
+          <Link
+            href="/aviso-legal"
+            className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+          >
+            <li>Aviso legal</li>
           </Link>
         </ul>
       </section>

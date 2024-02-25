@@ -1,5 +1,8 @@
 "use client";
 
+import Link from "next/link";
+import { notFound, useRouter } from "next/navigation";
+import Image from "next/image";
 import {
   DashboardCardEvent,
   ModalEditEvents,
@@ -7,16 +10,15 @@ import {
 } from "../../../../components";
 import Loading from "../../../../components/loading/Loading";
 import useGetAllEvents from "../../../../hooks/useGetAllEvents";
-import Link from "next/link";
 import { useLoginStore, useModalEventStore } from "../../../../store";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-
 import BlockScroll from "../../../../components/blockScroll/BlockScroll";
 import ModalDeleteEvent from "../../../../components/modals/events/ModalDeleteEvent";
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
+
 const EventPage = () => {
   const token = useLoginStore((state) => state.token);
-
+  const { toast } = useToast();
   const { events, loading, error, refetch } = useGetAllEvents();
   const openModal = useModalEventStore((state) => state.openModalEvent);
   const isEditModalOpen = useModalEventStore(
@@ -37,6 +39,10 @@ const EventPage = () => {
 
   if (loading) return <Loading />;
 
+  if (error) {
+    notFound();
+  }
+
   return (
     <main className="flex flex-col my-4 px-4 items-center">
       <BlockScroll
@@ -55,17 +61,19 @@ const EventPage = () => {
       <ModalDeleteEvent token={token} refetch={refetch} />
       <ModalEditEvents token={token} refetch={refetch} event={events} />
       {!loading && events.length > 0 ? (
-        events.map((event) => {
-          return (
-            <DashboardCardEvent
-              key={event.id}
-              id={event.id}
-              photo={event.event_photos[0]}
-              title={event.title}
-              warning={event.warning}
-            />
-          );
-        })
+        events
+          .sort((a, b) => new Date(a.date_start) - new Date(b.date_start))
+          .map((event) => {
+            return (
+              <DashboardCardEvent
+                key={event.id}
+                id={event.id}
+                photo={event.event_photos[0]}
+                title={event.title}
+                warning={event.warning}
+              />
+            );
+          })
       ) : (
         <>
           <div className="flex items-center gap-6 my-10 px-4 lg:my-0 lg:mt-28 lg:justify-center">
