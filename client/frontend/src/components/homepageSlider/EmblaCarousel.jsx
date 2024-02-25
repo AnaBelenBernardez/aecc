@@ -56,11 +56,18 @@ const EmblaCarousel = (props) => {
           <div className="embla__container">
             {banners.map((banner, index) => (
               <div className="embla__slide relative" key={index}>
+                 {banner.button_link && !banner.button_text && (
+                  <Link
+                    target={banner.button_link.includes("https") ? "_blank" : "_self"}
+                    href={banner.button_link}
+                    className="w-full h-full block absolute left-0 top-0"
+                  />
+                )}
                 <div
-                 className="w-full bg-cover bg-center sm:bg-cover h-[380px] sm:h-[480px] bg-no-repeat flex sm:items-center justify-start"
-                id="top"
+                  className="w-full bg-cover bg-center sm:bg-cover h-[380px] sm:h-[480px] bg-no-repeat flex sm:items-center justify-startleft-0"
+                  id="top"
                   style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banner?.photo}`})` }}
-                  >
+                >
               <div className="ml-5 mt-5 md:ml-12 lg:ml-32">
                  <h1 className="font-bold text-3xl sm:text-6xl text-primaryGreen max-w-2xl">
                   {language === "es" ? (banner?.title !== "null" ? banner?.title : null) : (banner?.galician_title !== "null" ? banner?.galician_title : null)}
