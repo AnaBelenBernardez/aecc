@@ -52,8 +52,6 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
     }
   };
 
-  console.log(formValuesEdit)
-
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
       <div className='relative w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[70vw] lg:p-12'>
@@ -138,6 +136,7 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
               placeholder:italic placeholder:text-slate-400 w-full font-medium"
               id='button_link' name='button_link'
               onChange={handleChange}
+              defaultValue={currentBanner.button_link !== null && currentBanner.button_link !== "null"  && currentBanner.button_link[0] !== "/" ? currentBanner.button_link : ""}
             />
             }
           </label>

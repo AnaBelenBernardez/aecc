@@ -3,6 +3,7 @@ import Link from "next/link";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const CardEvent = ({
+  date,
   title,
   description,
   image,
@@ -40,7 +41,11 @@ export const CardEvent = ({
         <p className="h-24 line-clamp-4">{description}</p>
         <div className="flex justify-end mt-3">
           <p className="border-2 border-primaryGreen rounded-xl text-xs font-semibold px-2 py-1">
-            {location}
+            {new Date(date).toLocaleDateString("es-ES", {
+              day: "numeric",
+              year: "numeric",
+              month: "short"
+            })}
           </p>
         </div>
       </div>

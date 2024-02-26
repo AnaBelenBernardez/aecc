@@ -86,8 +86,6 @@ export default function Home() {
 
   if (loading) return <Loading />;
 
-  const photoBanner =
-    process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banners[0]?.photo}`;
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
@@ -196,14 +194,14 @@ export default function Home() {
 
       {events.length > 0 ? (
         <>
-          <section className="bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10 lg:w-full">
+          <section className="bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10 md:w-full">
             <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
               {language === "es"
                 ? "Encuentra un evento en la provincia de A Coruña"
                 : "Atopa un evento na provincia da Coruña"}
             </h2>
             <div className="flex flex-col gap-6 lg:flex-row lg:w-full lg:items-end lg:justify-center">
-              <div className="flex flex-col gap-4 md:flex-row md:items-center">
+              <div className="flex flex-col gap-6 md:justify-center md:flex-row md:items-center">
                 <SelectInput
                   setStatus={setTypeEvent}
                   text={"Tipo de evento"}
@@ -259,6 +257,7 @@ export default function Home() {
                     }
                     location={event.location}
                     link={event.link}
+                    date={event.date_start}
                     warning={event.warning}
                   />
                 ))
@@ -316,21 +315,33 @@ export default function Home() {
           </div>
         </div>
       )}
-      {sponsors ? (
-        <>
-          <h3 className="text-2xl font-bold my-8 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mt-40">
-            {language === "es"
-              ? "Nuestros patrocinadores"
-              : "Os nosos patrocinadores"}
-          </h3>
-          <section className="md:mb-14">
-            <SponsorsCarrousel />
-          </section>
-        </>
-      ) : null}
+            <h3 className="text-2xl font-bold my-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-40">
+              {language === "es" ? "En primera persona" : "En primeira persoa"}
+            </h3>
+            {experiences.length > 0 ? (
+              <div className="flex lg:justify-center justify-start mb-16 w-[75%]">
+                <PersonsCarousel />
+              </div>
+            ) : (
+              <div className="flex items-center gap-6 px-4 mb-8 md:w-[708px] lg:mb-24 lg:mt-12">
+                <Image
+                  src={"/image/noExperiencesYet.svg"}
+                  height={150}
+                  width={150}
+                  alt="Todavía no hay experiencias"
+                />
+                <div className="flex flex-col">
+                  <p className="text-balance">
+                    {language === "es"
+                      ? "Comparte tu experiencia en nuestros eventos solidarios. ¡Gracias por tu apoyo!"
+                      : "Comparte a túa experiencia nos nosos eventos solidarios. Grazas polo teu apoio!"}
+                  </p>
+                </div>
+              </div>
+            )}
       {achievements ? (
         <>
-          <h3 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mb-14">
+          <h3 className="text-2xl font-bold mt-8 mb-10 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mb-14">
             {language === "es"
               ? "Gracias a tu participación"
               : "Grazas á túa participación"}
@@ -338,12 +349,12 @@ export default function Home() {
           <div className="grid grid-cols-1 items-center justify-center gap-10 sm:grid-cols-3 container">
             {achievements.map((achievement) => {
               const imgSrc =
-                process.env.NEXT_PUBLIC_BACK_URL +
-                `/uploads/${achievement.icon}`;
+              process.env.NEXT_PUBLIC_BACK_URL +
+              `/uploads/${achievement.icon}`;
               return (
                 <div
-                  className="flex flex-col items-center gap-5 h-full"
-                  key={achievement.id}
+                className="flex flex-col items-center gap-5 h-full"
+                key={achievement.id}
                 >
                   <div className="w-[120px] h-[120px] object-contain border-2 p-6 border-primaryGreen rounded-full flex items-center">
                     <Image
@@ -352,7 +363,7 @@ export default function Home() {
                       height={120}
                       className="object-contain w-[120px] h-[120px]"
                       alt="Icono"
-                    />
+                      />
                   </div>
                   <p className="text-sm mx-5">
                     {language === "es"
@@ -365,30 +376,18 @@ export default function Home() {
           </div>
         </>
       ) : null}
-      <h3 className="text-2xl font-bold my-10 md:text-5xl lg:flex lg:pl-20 lg:w-full lg:mt-20">
-        {language === "es" ? "En primera persona" : "En primeira persoa"}
-      </h3>
-      {experiences.length > 0 ? (
-        <div className="flex lg:justify-center justify-start mb-16 w-[75%]">
-          <PersonsCarousel />
-        </div>
-      ) : (
-        <div className="flex items-center gap-6 px-4 mb-8 md:w-[708px] lg:mb-24 lg:mt-12">
-          <Image
-            src={"/image/noExperiencesYet.svg"}
-            height={150}
-            width={150}
-            alt="Todavía no hay experiencias"
-          />
-          <div className="flex flex-col">
-            <p className="text-balance">
-              {language === "es"
-                ? "Comparte tu experiencia en nuestros eventos solidarios. ¡Gracias por tu apoyo!"
-                : "Comparte a túa experiencia nos nosos eventos solidarios. Grazas polo teu apoio!"}
-            </p>
-          </div>
-        </div>
-      )}
+      {sponsors ? (
+        <>
+          <h3 className="text-2xl font-bold mb-8 mt-12 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mt-20">
+            {language === "es"
+              ? "Nuestros patrocinadores"
+              : "Os nosos patrocinadores"}
+          </h3>
+          <section className="mb-14">
+            <SponsorsCarrousel />
+          </section>
+        </>
+      ) : null}
       <Toaster />
     </main>
   );

@@ -7,7 +7,9 @@ async function getAllExperiences (req, res, next) {
 
     const [experiences] = await pool.query(`SELECT e.id, e.name, e.content, e.galician_content, ep.photo, ep.photo_date
     FROM experiences e
-    LEFT JOIN experiences_photos ep ON e.id = ep.experience_id;`
+    LEFT JOIN experiences_photos ep ON e.id = ep.experience_id
+    ORDER BY ep.photo_date DESC
+    `
     );
 
     if (!experiences.length) {
