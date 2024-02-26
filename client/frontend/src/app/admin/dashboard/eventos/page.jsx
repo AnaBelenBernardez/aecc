@@ -19,7 +19,8 @@ import { Toaster } from "@/components/ui/toaster";
 const EventPage = () => {
   const token = useLoginStore((state) => state.token);
   const { toast } = useToast();
-  const { events, loading, error, refetch } = useGetAllEvents();
+  const absolutely = true;
+  const { events, loading, error, refetch } = useGetAllEvents(absolutely);
   const openModal = useModalEventStore((state) => state.openModalEvent);
   const isEditModalOpen = useModalEventStore(
     (state) => state.isModalEditEventOpen
@@ -62,7 +63,7 @@ const EventPage = () => {
       <ModalEditEvents token={token} refetch={refetch} event={events} />
       {!loading && events.length > 0 ? (
         events
-          .sort((a, b) => new Date(a.date_start) - new Date(b.date_start))
+          .sort((a, b) => new Date(b.date_start) - new Date(a.date_start))
           .map((event) => {
             return (
               <DashboardCardEvent

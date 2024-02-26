@@ -57,7 +57,7 @@ const Noticias = () => {
         Noticias
       </h1>
       {news.length > 0 ? (
-        news.sort((a, b) => new Date(b.create_date) - new Date(a.create_date)).map((newItem) => {
+        news.sort((a, b) => new Date(b.news_date ? b.news_date : b.create_date) - new Date(a.news_date ? a.news_date : a.create_date)).map((newItem) => {
           const imgSrc =
             process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${newItem.photo}`;
           return (

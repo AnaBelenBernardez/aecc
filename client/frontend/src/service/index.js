@@ -2,8 +2,13 @@ import formatDate from "../helpers/formatDate";
 
 const backAPI = process.env.NEXT_PUBLIC_BACK_URL;
 
-export const getAllEventsService = async () => {
-  const response = await fetch(`${backAPI}/events`);
+export const getAllEventsService = async (absolutely) => {
+  let response;
+  if (absolutely) {
+    response = await fetch(`${backAPI}/events/absolutely/all`);
+  } else {
+    response = await fetch(`${backAPI}/events`);
+  }
   const data = await response.json();
 
   if (!response.ok) {

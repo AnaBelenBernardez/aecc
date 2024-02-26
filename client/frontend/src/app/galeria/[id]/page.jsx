@@ -62,7 +62,7 @@ const EventPhotos = () => {
                   : <h1 className='font-bold text-primaryGreen text-xl pt-4 pl-6 lg:text-3xl lg:pt-6 lg:pb-6 lg:pl-0 lg:ml-20'>{event.galician_title}</h1>
               }
               <div className="flex flex-col lg:grid lg:auto-rows-[240px] lg:grid-cols-4 gap-4 mx-20">
-                {event.event_photos.map((photo, i) => {
+                {event.event_photos.slice(1).map((photo, i) => {
                   return (
                     <div
                       key={i}
