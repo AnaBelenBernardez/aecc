@@ -35,7 +35,6 @@ async function getAllEvents (req,res,next){
                 WHERE event_type = ? AND location = ?
                 AND e.date_start BETWEEN ? AND ?
                 GROUP BY e.id
-                ORDER BY e.date_start DESC
             `, [eventTypeFilter, locationFilter, minDate, maxDate]
             );
 
@@ -52,7 +51,7 @@ async function getAllEvents (req,res,next){
                 WHERE location = ?
                 AND e.date_start BETWEEN ? AND ?
                 GROUP BY e.id
-                ORDER BY e.date_start DESC`, [locationFilter, minDate, maxDate]
+                `, [locationFilter, minDate, maxDate]
             );
 
             convertPhotosIds(events);
@@ -68,7 +67,7 @@ async function getAllEvents (req,res,next){
                 WHERE event_type = ?
                 AND e.date_start BETWEEN ? AND ?
                 GROUP BY e.id
-                ORDER BY e.date_start DESC`, [eventTypeFilter, minDate, maxDate]
+               `, [eventTypeFilter, minDate, maxDate]
             );
 
             convertPhotosIds(events);
@@ -83,7 +82,7 @@ async function getAllEvents (req,res,next){
                 events_photos AS ep ON e.id = ep.event_id
                 WHERE e.date_start BETWEEN ? AND ?
                 GROUP BY e.id
-                ORDER BY e.date_start DESC`, [minDate, maxDate]
+               `, [minDate, maxDate]
             );
 
             convertPhotosIds(events);

@@ -36,7 +36,8 @@ const Calendar = () => {
   }
   `;
 
-  const { events, loading, error } = useGetAllEvents();
+  const absolutely = true;
+  const { events, loading, error } = useGetAllEvents(absolutely);
 
   const eventsDate = events.map((event) => {
     return parseISO(event.date_start);

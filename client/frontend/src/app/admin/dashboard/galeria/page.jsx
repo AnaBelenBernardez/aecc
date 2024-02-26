@@ -15,8 +15,8 @@ const EventsList = () => {
   if (!token) {
     router.push("/admin");
   }
-  
-  const { events, loading, error } = useGetAllEvents();
+  const absolutely = true;
+  const { events, loading, error } = useGetAllEvents(absolutely);
   const language = useLanguageStore((state) => state.language);
 
   if (loading) return <Loading/>;
