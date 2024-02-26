@@ -68,7 +68,7 @@ export default function CalendarAndRegistration() {
           <div className="flex flex-col gap-4 md:flex-row md:items-center">
             <SelectInput
               setStatus={setTypeEvent}
-              text={"Tipo de evento"}
+              text={"Tipo"}
               eventType={"typeEvent"}
               options={categoryEvents}
               onChange={(e) => setTypeEvent(e.target.value)}
@@ -113,6 +113,7 @@ export default function CalendarAndRegistration() {
                           ? event.content
                           : event.galician_content
                       }
+                      date={event.date_start}
                       location={event.location}
                       link={event.link}
                       warning={event.warning}

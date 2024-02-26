@@ -32,8 +32,8 @@ const SelectInput = ({setStatus, eventType, options, text}) => {
   }
 
   return (
-    <div className='flex flex-col md:flex-row md:items-center md:gap-3 lg:flex-col lg:gap-2 lg:items-start'>
-      <label htmlFor={eventType} className='font-bold'> {text}</label>
+    <div className='flex flex-col md:items-center md:gap-3 lg:gap-2 lg:items-start'>
+      <label htmlFor={eventType} className='font-bold self-start'> {text}</label>
         <select defaultValue='' onClick={handleClick} onChange={handleChange} name={eventType} id={eventType} className='w-full font-light h-14 border border-[#cccccc] pl-4 rounded-s md:w-64'>
           <option value=''>{textToDefault ? textToDefault : text}</option>
           {

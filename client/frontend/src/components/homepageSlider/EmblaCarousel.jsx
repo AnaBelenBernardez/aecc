@@ -55,7 +55,7 @@ const EmblaCarousel = (props) => {
           <div className="embla__container">
             {banners.map((banner, index) => (
               <div className="embla__slide relative" key={index}>
-                 {banner.button_link && !banner.button_text && (
+                 {(banner.button_link !== "null" && banner.button_link !== null) && (!banner.button_text || banner.button_text === "null") && (
                   <Link
                     target={banner.button_link.includes("https") ? "_blank" : "_self"}
                     href={banner.button_link}

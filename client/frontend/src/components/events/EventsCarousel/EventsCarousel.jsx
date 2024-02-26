@@ -64,6 +64,7 @@ export const EventsCarousel = ({ filteredEvents }) => {
                               : filteredEvents[index].galician_content
                           }
                           location={filteredEvents[index].location}
+                          date={filteredEvents[index].date_start}
                           link={filteredEvents[index].link}
                           warning={filteredEvents[index].warning}
                         />
