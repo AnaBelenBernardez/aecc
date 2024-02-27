@@ -99,54 +99,54 @@ _La Asociación Española Contra el Cáncer (AECC) de A Coruña desea realizar u
     ![Patrocinadores](./docs/assets/patrocinios.png) 
     ![FormPatrocinadores](./docs/assets/form-empresa.png)
   
-  - Noticias
+  - Ver la sección de noticias donde podrán mantenerse informados de los últimos logros alcanzados, donaciones realizadas, ayudas obtenidas...Así como los avisos especiales que se pudieran producir en algún evento.
   
     ![Noticias](./docs/assets/noticias.png)
 
-  - Blog
+  - Acceso directo al Blog de la Asociación Española Contra el Cáncer. 
   
-  - Contacto
+  - Apartado de contacto para cualquier duda o aclaración que necesiten.
   
     ![Contacto](./docs/assets/form-contacto.png)
 
 - El usuario admin puede:
-	- Panel de administrador
+	- Acceso completo a todas las funciones de gestión, lo que incluye la capacidad de añadir, editar y eliminar diferentes secciones de la web directamente desde el panel de administrador. 
   
 		![Panel](./docs/assets/panel-admin.png)
 
-  - Añadir/modificar/borrar eventos (fotografía, fechas, link con más información, ubicación, descripción y título).
+  - Gestión de todo lo relacionado con los eventos como fechas, carteles de los mismos, descripción, título, así como añadir incidencias en caso de que fuera necesario.
 
     ![Eventos](./docs/assets/admin-eventos.png)
 
-  - Añadir/borrar fotos del evento
+  - Añadir o eliminar fotos de un evento concreto.
 
     ![FotosEvento](./docs/assets/admin-fotos-evento.png)
 
-  - Modificar sus credenciales de acceso.
+  - Modificar las credenciales de acceso del usuario administrador.
 
     ![Usuario](./docs/assets/admin-usuario.png)
 
-  - Añadir/modificar/borrar faqs
+  - Gestión de las preguntas frecuentes (FAQs) relacionadas con temas generales de la Asociación.
   
     ![Faqs](./docs/assets/admin-faqs.png)
 
-  - Añadir/modificar/borrar patrocinios
+  - Privilegios totales para gestionar patrocinadores, tanto a nivel general como de circuito, con la opción adicional de marcar aquellos asociados a circuito como 'importantes'.
 
     ![Patrocinadores](./docs/assets/admin-patrocinios.png)
 
-  - Añadir/modificar/borrar noticias
+  - Añadir, modificar o borrar noticias que aborden logros conseguidos, dinero donado, hitos alcanzados y otros eventos relevantes para la Asociación de A Coruña.
 
     ![Noticias](./docs/assets/admin-noticias.png)
 
-  - Añadir/modificar/borrar experiencias
+  - Gestionar las experiencias de los usuarios que han participado en los eventos deportivos solidarios organizados por la asociación, destacando sus vivencias y contribuciones en dichos eventos.
 
     ![Experiencias](./docs/assets/admin-experiencias.png)
 
-  - Añadir/modificar/borrar logros
+  - Gestionar los logros alcanzados por la asociación, como el número de pacientes y familias a las que han ayudado, la cantidad de dinero donado, la cantidad de socios... para mantener actualizados los registros y la transparencia de la asociación.
 
     ![Logros](./docs/assets/admin-logros.png)
 
-  - Añadir/modificar/borrar banner
+  - Control sobre el contenido del banner de la cabecera de la página de inicio, el cual puede incluir un enlace, un botón que redireccione a cualquier url y un texto descriptivo. Esto permite gestionar de manera flexible la presentación y las acciones asociadas al banner para proporcionar una experiencia de usuario efectiva.
   
 	![Banners](./docs/assets/admin-banners.png)
   
