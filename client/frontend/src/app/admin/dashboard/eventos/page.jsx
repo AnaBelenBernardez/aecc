@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { notFound, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import {
   DashboardCardEvent,
@@ -13,14 +13,11 @@ import useGetAllEvents from "../../../../hooks/useGetAllEvents";
 import { useLoginStore, useModalEventStore } from "../../../../store";
 import BlockScroll from "../../../../components/blockScroll/BlockScroll";
 import ModalDeleteEvent from "../../../../components/modals/events/ModalDeleteEvent";
-import { useToast } from "@/components/ui/use-toast";
-import { Toaster } from "@/components/ui/toaster";
 
 const EventPage = () => {
   const token = useLoginStore((state) => state.token);
-  const { toast } = useToast();
   const absolutely = true;
-  const { events, loading, error, refetch } = useGetAllEvents(absolutely);
+  const { events, loading, error, refetch, setEvents } = useGetAllEvents(absolutely);
   const openModal = useModalEventStore((state) => state.openModalEvent);
   const isEditModalOpen = useModalEventStore(
     (state) => state.isModalEditEventOpen
@@ -40,10 +37,6 @@ const EventPage = () => {
 
   if (loading) return <Loading />;
 
-  if (error) {
-    notFound();
-  }
-
   return (
     <main className="flex flex-col my-4 px-4 items-center">
       <BlockScroll
@@ -59,7 +52,7 @@ const EventPage = () => {
         NUEVO EVENTO
       </button>
       <ModalEvents token={token} refetch={refetch} />
-      <ModalDeleteEvent token={token} refetch={refetch} />
+      <ModalDeleteEvent token={token} refetch={refetch} setEvents={setEvents}/>
       <ModalEditEvents token={token} refetch={refetch} event={events} />
       {!loading && events.length > 0 ? (
         events

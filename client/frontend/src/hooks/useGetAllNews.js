@@ -28,7 +28,7 @@ const useGetAllNews = () => {
     loadNews();
   };
 
-  return { news, loading, error, refetch };
+  return { news, loading, error, refetch, setNews };
 }
 
 export default useGetAllNews;

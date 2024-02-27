@@ -14,7 +14,7 @@ import BlockScroll from "../../../../components/blockScroll/BlockScroll";
 const AchievementsPage = () => {
   const token = useLoginStore((state) => state.token);
 
-  const { achievements, loading, error, refetch } = useGetAllAchievements();
+  const { achievements, loading, error, refetch, setAchievements } = useGetAllAchievements();
   const openModal = useModalEventStore((state) => state.openModalAchievements);
   const isModalAchievementsOpen = useModalEventStore(
     (state) => state.isModalAchievementsOpen
@@ -50,7 +50,7 @@ const AchievementsPage = () => {
       >
         NUEVO LOGRO
       </button>
-      <ModalDeleteAchievement token={token} refetch={refetch} />
+      <ModalDeleteAchievement token={token} refetch={refetch} setAchievements={setAchievements} />
       <ModalAchievement token={token} refetch={refetch} />
       <ModalEditAchievement
         token={token}
@@ -72,7 +72,7 @@ const AchievementsPage = () => {
       ) : (
         <>
           <div className="flex items-center gap-6 my-10 px-4 lg:my-0 lg:mt-28 lg:justify-center">
-            <Image src={"/image/noEventsYet.svg"} width={150} height={150} />
+            <Image src={"/image/noEventsYet.svg"} width={150} height={150} alt='No hay logros disponibles'/>
             <div className="flex flex-col">
               <p>No hay logros para mostrar</p>
             </div>

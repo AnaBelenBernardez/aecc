@@ -28,7 +28,7 @@ const useGetAllExperiences = () => {
       loadExperiences();
     };
 
-  return { experiences, loading, error, refetch };
+  return { experiences, loading, error, refetch, setExperiences };
 }
 
 export default useGetAllExperiences;

@@ -23,7 +23,7 @@ const dashboardExperiences = () => {
     router.push("/admin");
   }
 
-  const { experiences, loading, error, refetch } = useGetAllExperiences();
+  const { experiences, loading, error, refetch, setExperiences } = useGetAllExperiences();
   const [idExperienceOpen, setIdExperienceOpen] = useState();
   const [deleteModalOpen, setDeleteModalOpen] = useState();
   const [addExperienceModalOpen, setAddExperienceModalOpen] = useState();
@@ -56,7 +56,7 @@ const dashboardExperiences = () => {
       });
       setDeleteSuccess(false);
     }
-  })
+  }, [experiences])
 
   const openModalDelete = async (idExperience) => {
     setIdExperienceOpen(idExperience);
@@ -64,10 +64,15 @@ const dashboardExperiences = () => {
   };
 
   const handleClickDelete = async () => {
-    await deleteExperienceService(idExperienceOpen, token);
-    refetch();
-    setDeleteModalOpen(false);
-    setDeleteSuccess(true);
+    try {
+      await deleteExperienceService(idExperienceOpen, token);
+      setExperiences([]);
+      refetch();
+      setDeleteModalOpen(false);
+      setDeleteSuccess(true);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const openModalAddExperience = async () => {

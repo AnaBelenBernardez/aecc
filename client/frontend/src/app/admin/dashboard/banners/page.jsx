@@ -22,7 +22,7 @@ const dashboardBanners = () => {
   }
   const { toast } = useToast();
 
-  const { banners, loading, refetch } = useGetAllBanners(); 
+  const { banners, loading, refetch, setBanners } = useGetAllBanners(); 
   const [idBannerOpen, setIdBannerOpen] = useState();
   const [deleteModalOpen, setDeleteModalOpen] = useState();
   const [addBannerModalOpen, setAddBannerModalOpen] = useState();
@@ -68,6 +68,7 @@ const dashboardBanners = () => {
 
   const handleClickDelete = async () => {
     await deleteBannerService(idBannerOpen, token);
+    setBanners([]);
     refetch();
     setDeleteModalOpen(false);
     toast({

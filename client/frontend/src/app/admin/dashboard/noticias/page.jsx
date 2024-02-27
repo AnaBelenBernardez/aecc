@@ -22,7 +22,7 @@ const dashboardNews = () => {
   }
   const { toast } = useToast();
 
-  const { news, loading, refetch } = useGetAllNews();
+  const { news, loading, refetch, setNews } = useGetAllNews();
   const [idNewOpen, setIdNewOpen] = useState();
   const [deleteModalOpen, setDeleteModalOpen] = useState();
   const [addNewModalOpen, setAddNewModalOpen] = useState();
@@ -68,6 +68,7 @@ const dashboardNews = () => {
 
   const handleClickDelete = async () => {
     await deleteNewService(idNewOpen, token);
+    setNews([]);
     refetch();
     setDeleteModalOpen(false);
     toast({
