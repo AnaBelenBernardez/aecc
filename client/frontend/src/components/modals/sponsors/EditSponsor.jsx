@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Image from 'next/image';
 import { editSponsorService } from '../../../service';
 
-function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, setClickedEdit, setEditSuccess, setEditReject, token}) {
+function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, setClickedEdit, setEditSuccess, setEditReject, setSearchSuccess, token}) {
 
   const [name, setName] = useState(currentSponsor.name);
   const [galician_name, setGalicianName] = useState(currentSponsor.galician_name);
@@ -71,6 +71,7 @@ function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, 
         newSponsorsList.splice(indexEditedSponsor, 1, editedSponsor);
         setSponsorsList(newSponsorsList);
 
+        setSearchSuccess(editedSponsor);
         setClickedEdit(false);
       }
     }
@@ -82,7 +83,7 @@ function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, 
         <button onClick={() => setClickedEdit(false)} className="absolute top-6 right-7 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300">
           <img src="/icons/closeModals.svg" alt='Icono de cerrar'/>
         </button>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2 overflow-auto md:overflow-hidden lg:overflow-auto">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2 overflow-auto">
           <fieldset>
             <ul className='flex flex-col gap-4'>
               <li className='flex flex-col gap-2'>

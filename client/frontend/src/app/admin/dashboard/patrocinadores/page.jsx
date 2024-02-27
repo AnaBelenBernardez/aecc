@@ -28,6 +28,7 @@ const SponsorAdminPage = () => {
 	const [editReject, setEditReject] = useState(false);
 	const [deleteSuccess, setDeleteSuccess] = useState(false);
 	const [deleteReject, setDeleteReject] = useState(false);
+	const [searchSuccess, setSearchSuccess] = useState(false);
 	const { toast } = useToast();
 
 	const router = useRouter();
@@ -127,6 +128,23 @@ const SponsorAdminPage = () => {
     setClickedAdd(true);
   }
 
+	function handleChange(e){
+    const value = e.target.value;
+		let findSponsor = sponsorsList.find((sponsor) => sponsor.name.toLowerCase().startsWith(value.toLowerCase()));
+
+		if(value?.length === 0){
+			findSponsor = false;
+			setSearchSuccess(false);
+		}
+
+		if(findSponsor){
+			setSearchSuccess(findSponsor);
+		}else{
+			setSearchSuccess(false);
+		}
+
+	}
+
 	const handleClickDelete = async () => {
 		try{
 			await deleteSponsorService(sponsorId, token);
@@ -142,6 +160,7 @@ const SponsorAdminPage = () => {
 
 				setSponsorsList(newSponsorsList);
 				setDeleteModalOpen(false);
+				setSearchSuccess(false);
 			}
 		}
   };
@@ -157,11 +176,53 @@ const SponsorAdminPage = () => {
 				AÑADIR PATROCINADOR
 			</button>
 		</div>
+		<section className='w-full'>
+			<label className="self-start w-full text-sm font-semibold">Buscador de patrocinios
+				<input 
+					type="text"
+					name="sponsorName"
+					id="sponsorName"
+					onChange={handleChange}
+					className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
+					file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
+					focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
+					border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
+					font-normal not-italic w-full"
+				/>
+			</label>
+			{
+				searchSuccess &&
+				<div className="border-2 border-color-primaryGreen">
+					<article className="lg:w-[100%] p-5 flex flex-col justify-items-center">
+						<section className="flex flex-col self-center md:justify-items-center w-[60vw] md:w-[85vw]">
+							<div className="flex flex-col items-center gap-3 mb-4">
+								<Image src={process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${searchSuccess.logo}`} width={200} height={150} alt='Logo del patrocinador' className='rounded object-contain w-300 h-36 self-center'/>
+								{searchSuccess.link && <Link href={searchSuccess.link} target='_blank' className='text-xs border-2 border-primaryGreen text-primaryBlack font-medium rounded-3xl px-5 py-2'>{searchSuccess.link}</Link>}
+							</div>
+							<div className='flex items-center gap-1'>
+								{
+									searchSuccess.important === 1 &&
+									<Image src="/icons/importantIcon.svg" width={32} height={32} alt="Patrocinador importante"/>
+								}
+								<h3 className="text-primaryGreen font-semibold text-l text-justify self-end">{searchSuccess.name}</h3>
+							</div>
+							<p className="line-clamp-3">{searchSuccess.description}</p>
+						</section>
+						<section className='self-end flex gap-2 md:gap-4 lg:justify-end lg:w-[100%]'>
+							<button onClick={()=>handleClickEdit(searchSuccess)} className='flex gap-2 md:gap-4 items-center justify-center border border-primaryGreen py-1 px-4 md:py-2 md:px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen'><Image src="/icons/editIcon.svg" width={24} height={24} alt="Editar"></Image>EDITAR</button>
+							<button onClick={() => openModalDelete(searchSuccess.id)}className='flex gap-2 md:gap-4 items-center justify-center border border-secondRed py-1 px-4 md:py-2 md:px-6 mt-4 rounded-3xl font-bold text-sm text-secondRed'><Image src="/icons/deleteIcon.svg" width={24} height={24} alt="Eliminar"></Image>ELIMINAR</button>
+						</section>
+					</article>
+				</div>
+			}
+		</section>
+		
+		
 		<ol className='flex flex-col gap-5'>
     {deleteModalOpen && <DeleteSponsor handleClickDelete={handleClickDelete} setDeleteModalOpen={setDeleteModalOpen} /> }
     {clickedAdd && <AddSponsor setClickedAdd={setClickedAdd} sponsorsList={sponsorsList} setSponsorsList={setSponsorsList} setAddSucces={setAddSuccess} setAddReject={setAddReject} token={token}/> }
 		{
-			sponsorsList.length > 0 ? 
+			sponsorsList?.length > 0 ? 
 			sponsorsList.map((sponsor) => {
         const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${sponsor.logo}`;
 					return (
@@ -169,7 +230,7 @@ const SponsorAdminPage = () => {
 								{
 									clickedEdit && sponsorId === sponsor.id ?
                   <EditSponsor currentSponsor={sponsor} sponsorsList={sponsorsList} setSponsorsList={setSponsorsList} sponsorId={sponsorId} 
-										setClickedEdit={setClickedEdit} setEditSuccess={setEditSuccess} setEditReject={setEditReject} token={token}/>
+										setClickedEdit={setClickedEdit} setEditSuccess={setEditSuccess} setEditReject={setEditReject} setSearchSuccess={setSearchSuccess} token={token}/>
 									:
 										<article className="lg:w-[100%] flex flex-col justify-items-center">
                       <section className="flex flex-col justify-items-center w-[85vw]">

@@ -82,7 +82,7 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
       if(error === ""){
         const newSponsorsList = [...sponsorsList];
 
-        newSponsorsList.push(newSponsor);
+        newSponsorsList.unshift(newSponsor);
 
         setSponsorsList(newSponsorsList);
 
@@ -98,7 +98,7 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
         <button onClick={() => setClickedAdd(false)} className="absolute top-6 right-7 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300">
           <img src="/icons/closeModals.svg" alt='Icono de cerrar'/>
         </button>
-        <form onSubmit={handleSubmitAdd} className="flex flex-col gap-2 overflow-auto md:overflow-hidden lg:overflow-auto">
+        <form onSubmit={handleSubmitAdd} className="flex flex-col gap-2 overflow-auto">
           <fieldset>
             <ul className='flex flex-col gap-4'>
               <li className='flex flex-col gap-2'>
