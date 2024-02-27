@@ -11,8 +11,8 @@ async function deleteExperience (req,res,next) {
         const [photos] = await pool.query(
             `
                 SELECT photo
-                FROM events_photos
-                WHERE event_id=?
+                FROM experiences_photos
+                WHERE experience_id=?
             `,
             [idExperience]
         );
