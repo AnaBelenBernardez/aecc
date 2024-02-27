@@ -55,7 +55,7 @@ const EventPhotos = () => {
     setSlideDirection('left');
   };
 
-  const images = event?.event_photos.map((photo) => {
+  const images = event?.event_photos.slice(1).map((photo) => {
     return process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${photo.photo}`
   })
 

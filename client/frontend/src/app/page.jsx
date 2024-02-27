@@ -285,7 +285,7 @@ export default function Home() {
                 </Link>
               </button>
             </div>
-            <div className="flex justify-center lg:absolute lg:top-[100px] lg:right-[10rem] 2xl:right-[20rem]">
+            <div className="flex justify-center lg:absolute lg:top-[100px] lg:right-[30%]">
               <Calendar />
             </div>
           </section>
