@@ -6,7 +6,8 @@
 
 <br/>
 
-_La Asociación Española Contra el Cáncer (AECC) de A Coruña desea realizar una página web para promocionar eventos y actividades deportivas._
+_Proyecto de voluntariado para la Asociación Española Contra el Cáncer de A Coruña. 
+Página web donde consultar eventos y actividades deportivas organizadas por la asociación en la provincia de A Coruña._
 
 <ol id='menu'>
   <li>
