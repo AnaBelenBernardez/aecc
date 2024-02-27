@@ -4,8 +4,9 @@ import Loading from '../../../components/loading/Loading';
 import useGetEvent from '../../../hooks/useGetEvent';
 import { useParams, notFound } from 'next/navigation';
 import PreviewImageModal from '../../../components/modals/images/PreviewImageModal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import BlockScroll from '../../../components/blockScroll/BlockScroll';
 import { useLanguageStore } from '../../../store';
 
@@ -16,6 +17,23 @@ const EventPhotos = () => {
   const { event, loading, error } = useGetEvent(id);
   const [slideDirection, setSlideDirection] = useState(null);
   const language = useLanguageStore((state) => state.language);
+  const [scroll, setScroll] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const openModal = (index) => {
     setIsModalOpen(true);
@@ -52,7 +70,19 @@ const EventPhotos = () => {
   }
 
   return (
-    <main className='my-4'>
+    <main className='my-4' id='top'>
+      {scroll ? (
+        <Link href={"#top"}>
+          <button className="rounded-full bg-primaryGreen w-11 h-11 flex items-center justify-center fixed bottom-12 right-12 z-[1]">
+            <Image
+              src={"/image/scrollUp.svg"}
+              width={24}
+              height={24}
+              alt="Volver arriba"
+            />
+          </button>
+        </Link>
+      ) : null}
       {
         event 
           ? <>

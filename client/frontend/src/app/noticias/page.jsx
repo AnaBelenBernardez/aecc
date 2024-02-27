@@ -7,12 +7,30 @@ import useGetAllEvents from "../../hooks/useGetAllEvents";
 import Loading from "../../components/loading/Loading";
 import { useLanguageStore } from "../../store/language/language.store";
 import dynamic from "next/dynamic";
+import { useState, useEffect } from 'react';
 
 const Noticias = () => {
   const { news, loading, error } = useGetAllNews();
   const { events, loading: lodingEvents } = useGetAllEvents();
   const language = useLanguageStore((state) => state.language);
   const setLanguage = useLanguageStore((state) => state.setLanguage);
+  const [scroll, setScroll] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const eventsFilter = events
     .filter(
@@ -44,7 +62,19 @@ const Noticias = () => {
   if (loading || lodingEvents) return <Loading />;
 
   return (
-    <main className="flex flex-col gap-2 mx-auto mb-4 lg:w-3/4">
+    <main className="flex flex-col gap-2 mx-auto mb-4 lg:w-3/4" id='top'>
+      {scroll ? (
+        <Link href={"#top"}>
+          <button className="rounded-full bg-primaryGreen w-11 h-11 flex items-center justify-center fixed bottom-12 right-12 z-[1]">
+            <Image
+              src={"/image/scrollUp.svg"}
+              width={24}
+              height={24}
+              alt="Volver arriba"
+            />
+          </button>
+        </Link>
+      ) : null}
       {eventsFilter.length > 0 ? (
         <>
           <h2 className="font-bold text-primaryGreen text-xl pt-4 pl-6 lg:text-3xl lg:pt-6 lg:pb-6 lg:pl-0">

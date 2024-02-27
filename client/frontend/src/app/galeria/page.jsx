@@ -5,19 +5,48 @@ import useGetAllEvents from '../../hooks/useGetAllEvents';
 import Loading from '../../components/loading/Loading';
 import Link from 'next/link';
 import Image from 'next/image';
-import {useLanguageStore} from '../../store/language/language.store';
+import { useLanguageStore } from '../../store/language/language.store';
 import dynamic from 'next/dynamic';
-
+import { useState, useEffect } from 'react';
 
 const GalleryPage = () => {
   const absolutely = true;
   const { events, loading, error } = useGetAllEvents(absolutely);
+  const [scroll, setScroll] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const language = useLanguageStore((state) => state.language);
   if (loading) return <Loading/>;
 
   return (
-    <main className="flex flex-col items-center justify-center gap-4 md:flex-row md:flex-wrap my-4 lg:mx-10 lg:my-8">
+    <main className="flex flex-col items-center justify-center gap-4 md:flex-row md:flex-wrap my-4 lg:mx-10 lg:my-8" id='top'>
+      {scroll ? (
+        <Link href={"#top"}>
+          <button className="rounded-full bg-primaryGreen w-11 h-11 flex items-center justify-center fixed bottom-12 right-12 z-[1]">
+            <Image
+              src={"/image/scrollUp.svg"}
+              width={24}
+              height={24}
+              alt="Volver arriba"
+            />
+          </button>
+        </Link>
+      ) : null}
       {
         events.length > 0 
           ? events.filter((event) => event.event_photos.length > 1).map((event) => {
