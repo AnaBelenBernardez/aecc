@@ -27,7 +27,7 @@ const useGetAllEvents = (absolutely) => {
     loadEvents();
   };
 
-  return { events, loading, error, refetch };
+  return { events, loading, error, refetch, setEvents };
 };
 
 export default useGetAllEvents;

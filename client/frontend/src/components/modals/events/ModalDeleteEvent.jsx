@@ -4,7 +4,7 @@ import { deleteEventService } from "../../../service";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 
-const ModalDeleteEvent = ({ token, refetch }) => {
+const ModalDeleteEvent = ({ token, refetch,setEvents }) => {
   const isModalDeleteEventOpen = useModalEventStore(
     (state) => state.isModalDeleteEventOpen
   );
@@ -19,6 +19,7 @@ const ModalDeleteEvent = ({ token, refetch }) => {
     try {
       await deleteEventService(id, token);
       closeModalDeleteEvent();
+      setEvents([]);
       refetch();
       toast({
         variant: "success",

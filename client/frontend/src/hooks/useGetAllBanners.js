@@ -28,7 +28,7 @@ const useGetAllBanners = () => {
     loadBanners();
   };
 
-  return { banners, loading, error, refetch }; 
+  return { banners, loading, error, refetch, setBanners }; 
 };
 
 export default useGetAllBanners;

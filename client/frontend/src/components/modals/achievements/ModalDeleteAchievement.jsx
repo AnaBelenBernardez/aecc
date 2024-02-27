@@ -4,7 +4,7 @@ import { deleteAchievementService } from "../../../service";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 
-const ModalDeleteAchievement = ({ token, refetch }) => {
+const ModalDeleteAchievement = ({ token, refetch, setAchievements }) => {
   const isModalDeleteAchievementOpen = useModalEventStore(
     (state) => state.isModalDeleteAchievementsOpen
   );
@@ -19,6 +19,7 @@ const ModalDeleteAchievement = ({ token, refetch }) => {
     try {
       await deleteAchievementService(id, token);
       closeModalDeleteAchievement();
+      setAchievements([]);
       refetch();
       toast({
         variant: "success",

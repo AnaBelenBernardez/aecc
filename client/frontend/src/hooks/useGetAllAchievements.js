@@ -30,7 +30,7 @@ const useGetAllAchievements = () => {
     loadAchievements();
   };
 
-  return { achievements, loading, error, refetch };
+  return { achievements, loading, error, refetch, setAchievements };
 };
 
 export default useGetAllAchievements;
