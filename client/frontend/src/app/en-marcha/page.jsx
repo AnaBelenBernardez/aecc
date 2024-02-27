@@ -1,20 +1,45 @@
 "use client"
 
-import Loading from '../../components/loading/Loading';
-import useGetAllAchievements from '../../hooks/useGetAllAchievements';
 import { useLanguageStore } from '../../store';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 const EnMarcha = () => {
   const language = useLanguageStore((state) => state.language);
-  const {achievements, loading} = useGetAllAchievements();
+  const [scroll, setScroll] = useState(false);
 
-  if (loading) return <Loading/>;
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <main className='mx-5 lg:mx-32'>
-      <div className='mt-8 flex flex-col gap-12 lg:flex-row'>
+      {scroll ? (
+        <Link href={"#top"}>
+          <button className="rounded-full bg-primaryGreen w-11 h-11 flex items-center justify-center fixed bottom-12 right-12 z-[1]">
+            <Image
+              src={"/image/scrollUp.svg"}
+              width={24}
+              height={24}
+              alt="Volver arriba"
+            />
+          </button>
+        </Link>
+      ) : null}
+      <div className='mt-8 flex flex-col gap-12 lg:flex-row' id='top'>
         <section className='bg-primaryGreen text-secondLightGray p-4 flex flex-col gap-4 md:p-8 lg:w-4/5 lg:justify-evenly'>
           <h2 className="font-bold text-lg md:text-3xl lg:text-4xl">
             {language === "es"

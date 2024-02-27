@@ -20,6 +20,7 @@ export default function CalendarAndRegistration() {
   const [eventDateStart, setEventDateStart] = useState();
   const [eventDateEnd, setEventDateEnd] = useState();
   const [filteredEvents, setFilteredEvents] = useState(events);
+  const [scroll, setScroll] = useState(false);
   const language = useLanguageStore((state) => state.language);
   const categoryEvents = [];
   const locations = [];
@@ -27,7 +28,6 @@ export default function CalendarAndRegistration() {
 
 
   useEffect(() => {
-
       getAllEventsFilterService(
         typeEvent,
         locationEvent,
@@ -44,6 +44,22 @@ export default function CalendarAndRegistration() {
       });
   }, [typeEvent, locationEvent, eventDateStart, eventDateEnd]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   events.forEach((event) => {
     if (!categoryEvents.includes(event.event_type)) {
       categoryEvents.push(event.event_type);
@@ -58,7 +74,19 @@ export default function CalendarAndRegistration() {
 
   return (
     <main className="flex flex-col">
-      <section className="bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10">
+      {scroll ? (
+        <Link href={"#top"}>
+          <button className="rounded-full bg-primaryGreen w-11 h-11 flex items-center justify-center fixed bottom-12 right-12 z-[1]">
+            <Image
+              src={"/image/scrollUp.svg"}
+              width={24}
+              height={24}
+              alt="Volver arriba"
+            />
+          </button>
+        </Link>
+      ) : null}
+      <section className="bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10" id='top'>
         <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
           {language === "es"
             ? "Encuentra un evento #contraelcáncer en la provincia de A Coruña"

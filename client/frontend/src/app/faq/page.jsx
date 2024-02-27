@@ -4,17 +4,48 @@ import useGetAllFaqs from '../../hooks/useGetAllFaqs';
 import Image from 'next/image';
 import Link from 'next/link';
 import Loading from '../../components/loading/Loading';
-import {useLanguageStore} from '../../store/language/language.store';
+import { useLanguageStore } from '../../store/language/language.store';
 import dynamic from 'next/dynamic';
+import { useState, useEffect } from 'react';
+
 const FaqPage = () => {
   const { faqs, loading, error } = useGetAllFaqs();
   const language = useLanguageStore((state) => state.language);
   const setLanguage = useLanguageStore((state) => state.setLanguage);
+  const [scroll, setScroll] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   if (loading) return <Loading/>;
   
   return (
-    <main className="mx-10 my-10 flex flex-col gap-5">
+    <main className="mx-10 my-10 flex flex-col gap-5" id='top'>
+      {scroll ? (
+        <Link href={"#top"}>
+          <button className="rounded-full bg-primaryGreen w-11 h-11 flex items-center justify-center fixed bottom-12 right-12 z-[1]">
+            <Image
+              src={"/image/scrollUp.svg"}
+              width={24}
+              height={24}
+              alt="Volver arriba"
+            />
+          </button>
+        </Link>
+      ) : null}
       <h1 className="text-4xl sm:text-6xl text-primaryGreen font-semibold">
         Preguntas frecuentes FAQS
       </h1>
