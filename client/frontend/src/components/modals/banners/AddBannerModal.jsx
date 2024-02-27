@@ -1,10 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Toaster } from "@/components/ui/toaster";
 
 const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, handleSubmitAdd }) => {
   const [newPhoto, setNewPhoto] = useState();
   const [externalLink, setExternalLink] = useState(false);
+
+  useEffect(() => {
+    setFormValues({
+      title: '',
+      subtitle: '',
+      button_text: '',
+      button_link: '',
+      galician_title: '',
+      galician_subtitle: '',
+      galician_button_text: '',
+    })
+  }, []);
   
   const handleChange = (e) => {
     const newFormValues = e.target.value;
