@@ -1,10 +1,11 @@
+import Image from "next/image";
 import { useModalEventStore } from "../../../store";
 import { useForm } from "react-hook-form";
+import useFilePreview from "../../../hooks/useFilePreview";
 import { addAchievement } from "../../../service";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-import useFilePreview from "../../../hooks/useFilePreview";
-import Image from "next/image";
+import { set } from "date-fns";
 
 export const ModalAchievement = ({ token, refetch }) => {
   const isModaAchievementOpen = useModalEventStore(
@@ -14,6 +15,8 @@ export const ModalAchievement = ({ token, refetch }) => {
     (state) => state.closeModalAchievements
   );
 
+  let photo;
+
   const {
     register,
     handleSubmit,
@@ -22,8 +25,9 @@ export const ModalAchievement = ({ token, refetch }) => {
   } = useForm();
   const { toast } = useToast();
 
-  const photo = watch("icon");
-  const [filePreview] = useFilePreview(photo);
+  photo = watch("icon");
+
+  const [filePreview, setFilePreview] = useFilePreview(photo);
 
   const onSubmit = async (data) => {
     const eventData = await addAchievement(token, data);
@@ -42,6 +46,11 @@ export const ModalAchievement = ({ token, refetch }) => {
         className: "bg-secondRed text-white text-lg font-bold",
       });
     }
+  };
+
+  const handleCloseModal = () => {
+    closeModal();
+    setFilePreview(null);
   };
 
   return (
@@ -183,7 +192,7 @@ export const ModalAchievement = ({ token, refetch }) => {
                 <button
                   type="button"
                   className="self-center my-2 w-[157px] h-[40px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray"
-                  onClick={closeModal}
+                  onClick={handleCloseModal}
                 >
                   CANCELAR
                 </button>
