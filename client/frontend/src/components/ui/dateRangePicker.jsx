@@ -11,7 +11,6 @@ const DateTimePickerValue = ({ setEventDateEnd, setEventDateStart, language }) =
   dateNow.setHours(0, 0, 0, 0);
 
   function handleChangeStart(e){
-    console.log(e)
     if(e) e.toString() !== "Invalid Date" ?  setEventDateStart(e) : setEventDateStart(new Date());
   }
 
