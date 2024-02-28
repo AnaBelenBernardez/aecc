@@ -11,11 +11,18 @@ const DateTimePickerValue = ({ setEventDateEnd, setEventDateStart, language }) =
   dateNow.setHours(0, 0, 0, 0);
 
   function handleChangeStart(e){
-    setEventDateStart(e);
+    console.log(e)
+    if(e) e.toString() !== "Invalid Date" ?  setEventDateStart(e) : setEventDateStart(new Date());
   }
 
   function handleChangeEnd(e){
-    setEventDateEnd(e);
+    if(e){
+      if(e.toString() !== "Invalid Date"){
+        if(e.getFullYear() >= 2024) setEventDateEnd(e);
+      }else{
+        setEventDateEnd(new Date(new Date().setFullYear(parseInt(new Date().getFullYear())+1)));
+      }
+    }
   }
 
   return (
