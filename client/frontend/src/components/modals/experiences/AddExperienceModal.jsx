@@ -105,12 +105,13 @@ const AddExperienceModal = ({setAddSuccess, setAddExperienceModalOpen, token, re
               <div className='flex flex-col lg:flex-row lg:self-start lg:gap-4 lg:items-center'>
                 {
                   file !== null && (
-                    <Image src={file} width={150} height={150} alt='Imagen de la noticia' className='rounded-full w-20 h-20'/>
-                
+                    <div className='rounded-full w-20 h-20'>
+                      <Image src={file} width={150} height={150} alt='Imagen de la noticia' className='rounded-full w-20 h-20 object-contain'/>
+                    </div>
                   )
                 }
                 <label htmlFor="photo" className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
-                 <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />AÑADIR
+                  <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />AÑADIR
                   <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
                   id="photo" type="file" name='photo' onChange={handleChangeImage}
                   />

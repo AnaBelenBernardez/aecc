@@ -136,23 +136,23 @@ const dashboardExperiences = () => {
             >
               <div className="lg:flex lg:w-[80%] lg:gap-20">
                 {experienceItem.photo !== null ? (
-                  <div className="min-w-36 min-h-36 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]">
+                  <div className="min-w-36 min-h-36 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px] rounded-full">
                     <Image
                       src={imgSrc}
                       width={150}
                       height={150}
                       alt="Imagen de la noticia"
-                      className="rounded-full object-cover w-36 h-36"
+                      className="rounded-full object-contain w-36 h-36"
                     />
                   </div>
                 ) : (
-                  <div className="min-w-36 min-h-36 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]">
+                  <div className="min-w-36 min-h-36 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px] rounded-full">
                     <Image
                       src={"/image/userDefault.png"}
                       width={150}
                       height={150}
                       alt="Imagen de la noticia"
-                      className="rounded-full object-cover w-36 h-36"
+                      className="rounded-full object-contain w-36 h-36"
                     />
                   </div>
                 )}

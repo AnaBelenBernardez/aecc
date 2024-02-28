@@ -48,7 +48,7 @@ function AddFaq ({setClickedAdd, faqsList, setFaqsList, setAddSuccess, setAddRej
       if(!addError){
         const newFaqsList = [...faqsList];
 
-        newFaqsList.push(newFaq);
+        newFaqsList.unshift(newFaq);
 
         setFaqsList(newFaqsList);
 

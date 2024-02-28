@@ -41,7 +41,10 @@ const EditUser = () => {
         title: "Contraseña cambiada correctamente",
         className: "bg-primaryGreen text-white text-lg font-bold",
       });
-      router.push("/admin");
+      setTimeout(()=>{
+        router.push("/admin/dashboard");
+      },2000)
+      
     } catch (error) {
       toast({
         variant: "destructive",
