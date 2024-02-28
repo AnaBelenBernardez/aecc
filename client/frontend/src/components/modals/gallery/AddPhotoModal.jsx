@@ -7,6 +7,11 @@ const AddPhotoModal = ({ setAddModalOpen, handleSubmit, photo, setPhoto }) => {
     setPhoto(e.target.files);
   }
 
+  function handleCancel(){
+    setAddModalOpen(false);
+    setPhoto("");
+  } 
+
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-[2]'>
       <div className='relative w-[90vw] max-h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12'>
@@ -48,7 +53,7 @@ const AddPhotoModal = ({ setAddModalOpen, handleSubmit, photo, setPhoto }) => {
             <button
               type='button'
               className='flex self-center mt-2 gap-4 w-[157px] h-[40px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray'
-              onClick={() => setAddModalOpen(false)}
+              onClick={handleCancel}
             >
               CANCELAR
             </button>
