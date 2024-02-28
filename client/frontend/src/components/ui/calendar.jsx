@@ -35,19 +35,48 @@ const Calendar = () => {
     border: 2px solid #24C347;
   }
   `;
-
+  
   const absolutely = true;
   const { events, loading, error } = useGetAllEvents(absolutely);
-
+  
   const eventsDate = events.map((event) => {
     return parseISO(event.date_start);
   });
   const today = new Date();
-
+  
+  const [showTimeout, setShowTimeout] = useState(null);
   const [selectedDay, setSelectedDay] = useState();
+  const handleClearDay = () => {
+    const newTimeout = setTimeout(() => {
+      setSelectedDay(null);
+    }, 3000);
+    setShowTimeout(newTimeout);
+    if (showTimeout) {
+      clearTimeout(showTimeout);
+    }
+  };
+  const handleMouseEnter = () => {
+    if (showTimeout) {
+      clearTimeout(showTimeout);
+    }
+  };
+    
+  const handleDayClick = (day) => {
+   
+      clearTimeout(showTimeout);
+  
+    const event = events.find(
+      (event) => new Date(event.date_start).toDateString() === day.toDateString()
+    );
+    setSelectedDay(event);
+  };
+  
+
 
   const footer = selectedDay && (
-    <div className="h-36 w-[275px] border-2 border-secondGray absolute bg-white rounded-lg p-2 shadow-xl z-50 ">
+    <div className="h-36 w-[275px] border-2 border-secondGray absolute bg-white rounded-lg p-2 shadow-xl z-50"
+      onMouseEnter={handleMouseEnter}
+      >
       <p className="font-bold">{selectedDay.title}</p>
       <p className="font-bold">{selectedDay.location}</p>
       {
@@ -61,22 +90,9 @@ const Calendar = () => {
       }
     </div>
   );
-
-  const handleDayClick = (day) => {
-    const event = events.find(
-      (event) => new Date(event.date_start).toDateString() === day.toDateString()
-    );
-    setSelectedDay(event);
-  };
-
-  const handleClearDayClick = () => {
-    setTimeout(() => {
-      setSelectedDay(null);
-    }, 5000);
-  };
-
+  
   if (loading) return <Loading/>;
-
+   
   return (
     <>
       <style>{css}</style>
@@ -102,10 +118,11 @@ const Calendar = () => {
         }}
         onDayClick={handleDayClick}
         onDayTouchStart={handleDayClick}
-        onDayTouchEnd={handleClearDayClick}
-        onDayMouseLeave={handleClearDayClick}
+        onDayTouchEnd={handleClearDay}
+        onDayMouseEnter={handleMouseEnter}
+        onDayMouseLeave={handleClearDay}
         footer={footer}
-      />
+        />
     </>
   );
 };
