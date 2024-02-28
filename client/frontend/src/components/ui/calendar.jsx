@@ -50,25 +50,6 @@ const Calendar = () => {
   const [isMouseOverDay, setIsMouseOverDay] = useState(false);
   const [isMouseOverFooter, setIsMouseOverFooter] = useState(false);
 
- /*  const handleClearDay = () => {
-    const newTimeout = setTimeout(() => {
-      setSelectedDay(null);
-    }, 3000);
-    setShowTimeout(newTimeout);
-    if (showTimeout) {
-      clearTimeout(showTimeout);
-    }
-  };
-
-  const test = () => {
-    if (selectedDay !== null) {
-      clearTimeout(showTimeout);
-      setTimeout(() => {
-        setSelectedDay(null);
-      }, 3000);
-    }
-  } */
-
   const handleMouseEnterDay = () => {
     setIsMouseOverDay(true);
     clearTimeout(showTimeout);
@@ -112,7 +93,7 @@ const Calendar = () => {
   };
 
   const footer = selectedDay && (
-    <div className="h-36 w-[275px] border-2 border-secondGray absolute bg-white rounded-lg p-2 shadow-xl z-50" onMouseEnter={handleMouseEnterFooter}
+    <div className="h-36 w-[275px] border-2 border-secondGray absolute bg-white rounded-lg p-2 shadow-xl z-50 md:w-[350px]" onMouseEnter={handleMouseEnterFooter}
     onMouseLeave={handleMouseLeaveFooter}>
       <p className="font-bold">{selectedDay.title}</p>
       <p className="font-bold">{selectedDay.location}</p>
