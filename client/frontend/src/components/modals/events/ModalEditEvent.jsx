@@ -46,16 +46,14 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
       galician_title: editEvent?.galician_title,
       galician_content: editEvent?.galician_content,
       date_start: editEvent?.date_start
-        ? new Date(editEvent?.date_start).toISOString().slice(0, 10)
+        ? new Date(new Date(editEvent?.date_start).getTime() + 86400000).toISOString().slice(0, 10)
         : "",
       date_end: editEvent?.date_end
-        ? new Date(editEvent?.date_end).toISOString().slice(0, 10)
+        ? new Date(new Date(editEvent?.date_end).getTime() + 86400000).toISOString().slice(0, 10)
         : "",
       warning: editEvent?.warning?.toString(),
-      warning_content: "null" ? "" : editEvent?.warning_content,
-      galician_warning_content: "null"
-        ? ""
-        : editEvent?.galician_warning_content,
+      warning_content: (editEvent?.warning_content !== null) && (editEvent?.warning_content !== "null") ? editEvent?.warning_content : "",
+      galician_warning_content: (editEvent?.galician_warning_content !== null) && (editEvent?.galician_warning_content !== "null") ? editEvent?.galician_warning_content : "",
       location: editEvent?.location,
       event_type: editEvent?.event_type,
     };

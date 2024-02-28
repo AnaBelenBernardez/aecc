@@ -6,8 +6,8 @@ export const CardPerson = ({ name, content, image }) => {
     <div className="flex flex-col sm:flex-row items-center sm:justify-center gap-8 w-9/12 md:w-full">
       { 
         image
-          ? <div className='min-w-36 min-h-36 object-contain'><Image src={imgSrc} width={150} height={150} alt={image} className='rounded-full w-36 h-36 grayscale'/></div>
-          : <div className='min-w-36 min-h-36 object-contain'><Image src={'/image/userDefault.png'} width={150} height={150} alt='Avatar por defecto' className='rounded-full'/></div>
+          ? <div className='min-w-36 min-h-36'><Image src={imgSrc} width={150} height={150} alt={image} className='rounded-full w-36 h-36 grayscale object-contain'/></div>
+          : <div className='min-w-36 min-h-36'><Image src={'/image/userDefault.png'} width={150} height={150} alt='Avatar por defecto' className='rounded-full object-contain'/></div>
       }
       <div className="w-auto self-center">
         <p className="text-sm md:text-justify">{content}</p>

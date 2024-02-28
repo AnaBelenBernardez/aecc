@@ -114,7 +114,7 @@ const EditExperienceModal = ({setEditSuccess, currentExperience, setEditExperien
                 id='content' name='content' cols="20" rows="20" defaultValue={formValues.content} onChange={handleChange}
               />
           </label>
-         
+
           <h2 className='font-bold text-lg text-primaryGreen'>Formulario en gallego</h2>
           
           <label htmlFor="galician_content" className='font-bold text-sm'>
@@ -137,11 +137,11 @@ const EditExperienceModal = ({setEditSuccess, currentExperience, setEditExperien
             </label>
           {
             file
-            ? <div className='min-w-20 min-h-20 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
-                  <Image src={file} width={150} height={150} alt='Imagen de la noticia' className='rounded-full w-20 h-20'/>
+            ? <div className='w-20 h-20 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
+                  <Image src={file} width={150} height={150} alt='Imagen de la noticia' className='rounded-full w-20 h-20 object-contain'/>
                 </div>
-            : <div className='min-w-20 min-h-20 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
-                  <Image src={currentExperience.photo !== null ? previousImg : '/image/userDefault.png'} width={150} height={150} alt='Imagen de la noticia' className='rounded-full object-cover w-20 h-20'/>
+            : <div className='w-20 h-20 self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]'>
+                  <Image src={currentExperience.photo !== null ? previousImg : '/image/userDefault.png'} width={150} height={150} alt='Imagen de la noticia' className='rounded-full object-contain w-20 h-20'/>
                 </div>
           }
                   

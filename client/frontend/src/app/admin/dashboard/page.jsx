@@ -27,7 +27,7 @@ const DashboardPage = () => {
       {token && (
         <section>
           <h1 className="text-5xl font-bold text-center mt-7">
-            Bienvenido Admin
+            Bienvenido/a Admin
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-center w-full container">
             <Link href="/admin/dashboard/eventos">
