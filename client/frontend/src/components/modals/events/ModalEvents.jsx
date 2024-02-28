@@ -22,7 +22,7 @@ export const ModalEvents = ({ token, refetch }) => {
   const { toast } = useToast();
 
   const photo = watch("photo");
-  const [filePreview] = useFilePreview(photo);
+  const [filePreview, setFilePreview] = useFilePreview(photo);
 
   const onSubmit = async (data) => {
     try {
@@ -41,6 +41,11 @@ export const ModalEvents = ({ token, refetch }) => {
         className: "bg-secondRed text-white text-lg font-bold",
       });
     }
+  };
+
+  const HandleCloseModal = () => {
+    closeModal();
+    setFilePreview(null);
   };
 
   return (
@@ -370,7 +375,7 @@ export const ModalEvents = ({ token, refetch }) => {
                 <button
                   type="button"
                   className="self-center my-2 w-[157px] h-[40px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray"
-                  onClick={closeModal}
+                  onClick={HandleCloseModal}
                 >
                   CANCELAR
                 </button>
