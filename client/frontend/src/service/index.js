@@ -443,16 +443,24 @@ export const getAllEventsFilterService = async (
 
   if (typeEvent !== "") params.eventType = typeEvent;
   if (locationEvent !== "") params.location = locationEvent;
-  if (eventDateStart !== undefined) {
-    const formatedDateStart = formatDate(eventDateStart);
-    params.minDate = formatedDateStart;
+
+  if (eventDateStart) {
+    if(eventDateStart.toString() !== "Invalid Date"){
+      const formatedDateStart = formatDate(eventDateStart);
+      params.minDate = formatedDateStart;
+    }
   }
-  if (eventDateEnd !== undefined) {
-    const formatedDateEnd = formatDate(eventDateEnd);
-    params.maxDate = formatedDateEnd;
+
+  if (eventDateEnd) {
+    if(eventDateEnd.toString() !== "Invalid Date"){
+      const formatedDateEnd = formatDate(eventDateEnd);
+      params.maxDate = formatedDateEnd;
+    }
+    
   }
 
   const queryParams = new URLSearchParams(params).toString();
+
   const response = await fetch(`${backAPI}/events?${queryParams}`);
 
   const data = await response.json();
