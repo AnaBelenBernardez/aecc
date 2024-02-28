@@ -36,7 +36,7 @@ export const ModalEditAchievement = ({ token, refetch, achievement }) => {
   });
 
   const photo = watch("icon");
-  const [filePreview] = useFilePreview(photo);
+  const [filePreview, setFilePreview] = useFilePreview(photo);
 
   useEffect(() => {
     let defaults = {
@@ -63,6 +63,12 @@ export const ModalEditAchievement = ({ token, refetch, achievement }) => {
         className: "bg-secondRed text-white text-lg font-bold",
       });
     }
+  };
+
+  const handleCloseModal = () => {
+    closeModalAchievement();
+    setFilePreview(null);
+    icon.value = "";
   };
 
   return (
@@ -200,7 +206,7 @@ export const ModalEditAchievement = ({ token, refetch, achievement }) => {
                 <button
                   type="button"
                   className="self-center my-2 gap-4 w-[157px] h-[40px] items-center justify-center border border-secondRed bg-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondLightGray"
-                  onClick={closeModalAchievement}
+                  onClick={handleCloseModal}
                 >
                   CANCELAR
                 </button>
