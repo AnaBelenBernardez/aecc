@@ -46,7 +46,11 @@ const Calendar = () => {
   
   const [showTimeout, setShowTimeout] = useState(null);
   const [selectedDay, setSelectedDay] = useState();
-  const handleClearDay = () => {
+
+  const [isMouseOverDay, setIsMouseOverDay] = useState(false);
+  const [isMouseOverFooter, setIsMouseOverFooter] = useState(false);
+
+ /*  const handleClearDay = () => {
     const newTimeout = setTimeout(() => {
       setSelectedDay(null);
     }, 3000);
@@ -55,28 +59,61 @@ const Calendar = () => {
       clearTimeout(showTimeout);
     }
   };
-  const handleMouseEnter = () => {
-    if (showTimeout) {
+
+  const test = () => {
+    if (selectedDay !== null) {
       clearTimeout(showTimeout);
+      setTimeout(() => {
+        setSelectedDay(null);
+      }, 3000);
     }
+  } */
+
+  const handleMouseEnterDay = () => {
+    setIsMouseOverDay(true);
+    clearTimeout(showTimeout);
+  };
+
+  const handleMouseLeaveDay = () => {
+    setIsMouseOverDay(false);
+    startCloseTimer();
+  };
+
+  const handleMouseEnterFooter = () => {
+    setIsMouseOverFooter(true);
+    clearTimeout(showTimeout);
+  };
+
+  const handleMouseLeaveFooter = () => {
+    setIsMouseOverFooter(false);
+    startCloseTimer();
+  };
+
+  const handleContainerMouseLeave = () => {
+    if (!isMouseOverDay && !isMouseOverFooter) {
+      startCloseTimer();
+    }
+  };
+
+  const startCloseTimer = () => {
+    const timeoutId = setTimeout(() => {
+      setSelectedDay(null);
+    }, 3000);
+    setShowTimeout(timeoutId);
   };
     
   const handleDayClick = (day) => {
-   
-      clearTimeout(showTimeout);
+    clearTimeout(showTimeout);
   
     const event = events.find(
       (event) => new Date(event.date_start).toDateString() === day.toDateString()
     );
     setSelectedDay(event);
   };
-  
-
 
   const footer = selectedDay && (
-    <div className="h-36 w-[275px] border-2 border-secondGray absolute bg-white rounded-lg p-2 shadow-xl z-50"
-      onMouseEnter={handleMouseEnter}
-      >
+    <div className="h-36 w-[275px] border-2 border-secondGray absolute bg-white rounded-lg p-2 shadow-xl z-50" onMouseEnter={handleMouseEnterFooter}
+    onMouseLeave={handleMouseLeaveFooter}>
       <p className="font-bold">{selectedDay.title}</p>
       <p className="font-bold">{selectedDay.location}</p>
       {
@@ -94,7 +131,7 @@ const Calendar = () => {
   if (loading) return <Loading/>;
    
   return (
-    <>
+    <div onMouseLeave={handleContainerMouseLeave}>
       <style>{css}</style>
       <DayPicker
         mode="multiple"
@@ -118,12 +155,11 @@ const Calendar = () => {
         }}
         onDayClick={handleDayClick}
         onDayTouchStart={handleDayClick}
-        onDayTouchEnd={handleClearDay}
-        onDayMouseEnter={handleMouseEnter}
-        onDayMouseLeave={handleClearDay}
+        onMouseEnter={handleMouseEnterDay}
+        onMouseLeave={handleMouseLeaveDay}
         footer={footer}
         />
-    </>
+    </div>
   );
 };
 
