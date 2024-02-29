@@ -1,13 +1,14 @@
 "use client";
 
 import { DayPicker } from "react-day-picker";
-import { es } from "date-fns/locale";
+import { es, gl } from "date-fns/locale";
 import { parseISO } from "date-fns";
 import "react-day-picker/dist/style.css";
 import { useState } from "react";
 import Link from "next/link";
 import useGetAllEvents from '../../hooks/useGetAllEvents';
 import Loading from '../loading/Loading';
+import { useLanguageStore } from '../../store';
 
 const Calendar = () => {
   const css = `
@@ -38,6 +39,7 @@ const Calendar = () => {
   
   const absolutely = true;
   const { events, loading, error } = useGetAllEvents(absolutely);
+  const language = useLanguageStore((state) => state.language);
   
   const eventsDate = events.map((event) => {
     return parseISO(event.date_start);
@@ -118,7 +120,7 @@ const Calendar = () => {
         mode="multiple"
         selected={eventsDate}
         weekStartsOn={1}
-        locale={es}
+        locale={language === 'es' ? es : gl}
         modifiersClassNames={{
           selected: "my-selected",
           today: "my-today",
