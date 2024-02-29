@@ -109,7 +109,9 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
                     file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                     focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                     border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                    font-normal not-italic w-full">
+                    font-normal not-italic w-full"
+                    placeholder='Escriba aquí el nombre del patrocinador'
+                    >
                   </input>
                 </label>
                 <label htmlFor='description' className='text-sm font-bold'>
@@ -118,7 +120,9 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
                     file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                     focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                     border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                    font-normal not-italic w-full">
+                    font-normal not-italic w-full"
+                    placeholder='Escriba aquí la descripción del patrocinio'
+                    >
                   </input>
                 </label>
               </li>
@@ -130,7 +134,9 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
                     file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                     focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                     border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                    font-normal not-italic w-full">
+                    font-normal not-italic w-full"
+                    placeholder='Escriba aquí o nome do patrocinador'
+                    >
                   </input>
                 </label>
                 <label htmlFor='galician_description' className='text-sm font-bold'>
@@ -139,7 +145,9 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
                     file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                     focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                     border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                    font-normal not-italic w-full">
+                    font-normal not-italic w-full"
+                    placeholder='Escriba aquí a descrición do patrocinio'
+                    >
                   </input>
                 </label>
               </li>
@@ -150,7 +158,9 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
                     file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                     focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                     border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                    font-normal not-italic w-full text-black">
+                    font-normal not-italic w-full text-black"
+                    placeholder='https://www.ejemplo.com'
+                    >
                   </input>
                 </label>
               </li>

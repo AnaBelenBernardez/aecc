@@ -189,6 +189,7 @@ const SponsorAdminPage = () => {
 						focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
 						border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
 						font-normal not-italic w-full"
+						placeholder='Escriba aquí el nombre del patrocinador'
 					/>
 				</label>
 				{

@@ -74,7 +74,9 @@ function AddFaq ({setClickedAdd, faqsList, setFaqsList, setAddSuccess, setAddRej
                       file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                       focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                       border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                      font-normal not-italic w-full">
+                      font-normal not-italic w-full"
+                      placeholder='Escriba aquí la pregunta'
+                      >
                     </input>
                   </label>
                   <label htmlFor='answer' className='text-sm font-bold'>
@@ -83,7 +85,9 @@ function AddFaq ({setClickedAdd, faqsList, setFaqsList, setAddSuccess, setAddRej
                       file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                       focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                       border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                      font-normal not-italic w-full">
+                      font-normal not-italic w-full"
+                      placeholder='Escriba aquí la respuesta'
+                      >
                     </input>
                   </label>
                 </li>
@@ -95,7 +99,9 @@ function AddFaq ({setClickedAdd, faqsList, setFaqsList, setAddSuccess, setAddRej
                       file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                       focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                       border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                      font-normal not-italic w-full">
+                      font-normal not-italic w-full"
+                      placeholder='Escriba aquí a pregunta'
+                      >
                     </input>
                   </label>
                   <label htmlFor='galician_answer' className='text-sm font-bold'>
@@ -104,7 +110,9 @@ function AddFaq ({setClickedAdd, faqsList, setFaqsList, setAddSuccess, setAddRej
                       file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                       focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                       border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                      font-normal not-italic w-full">
+                      font-normal not-italic w-full"
+                      placeholder='Escriba aquí a resposta'
+                      >
                     </input>
                   </label>
                 </li>
