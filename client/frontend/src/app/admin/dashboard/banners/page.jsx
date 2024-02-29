@@ -133,120 +133,122 @@ const dashboardBanners = () => {
   if (loading) return <Loading />;
 
   return (
-    <main className="flex flex-col my-4 px-4 items-center">
-      <BlockScroll
-        isModalOpen={addBannerModalOpen || deleteModalOpen || editBannerModalOpen}
-      />
-      <button
-        onClick={openModalAddBanner}
-        className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 
-        mb-6 lg:mb-6 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen"
-      >
-        AÑADIR BANNER
-      </button>
-      {addBannerModalOpen && (
-        <AddBannerModal
-          setAddBannerModalOpen={setAddBannerModalOpen}
-          formValues={formValues}
-          setFormValues={setFormValues}
-          handleSubmitAdd={handleSubmitAdd}
+    <>
+      <main className="flex flex-col my-4 px-4 items-center">
+        <BlockScroll
+          isModalOpen={addBannerModalOpen || deleteModalOpen || editBannerModalOpen}
         />
-      )}
-      {deleteModalOpen && (
-        <DeleteBannerModal
-          handleClickDelete={handleClickDelete}
-          setDeleteModalOpen={setDeleteModalOpen}
-        />
-      )}
-      {editBannerModalOpen && (
-        <EditBannerModal
-          currentBanner={singleBanner}
-          setEditBannerModalOpen={setEditBannerModalOpen}
-          handleSubmitEdit={handleSubmitEdit}
-          setFormValuesEdit={setFormValuesEdit}
-          formValuesEdit={formValuesEdit}
-        />
-      )}
-     {banners.length > 0 ? (
-  banners.map((banner) => {
-    const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banner.photo}`;
-    return (
-      <article
-        className="flex flex-col justify-between p-8 items-center shadow-md md:flex-row w-[90%]"
-        key={banner.id}
-      >
-        <div className="lg:flex lg:w-[70%] lg:justify-evenly">
-          <div className="flex items-center">
-            <h2 className="hidden font-bold px-6 line-clamp-2 w-[240px] lg:block">
-              {banner.title !== "null" ? banner.title : null}
-            </h2>
-            <p className="hidden line-clamp-2 w-[240px] lg:block">{banner.subtitle !== "null" ? banner.subtitle : null}</p>
+        <button
+          onClick={openModalAddBanner}
+          className="border-2 border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 
+          mb-6 lg:mb-6 hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen"
+        >
+          AÑADIR BANNER
+        </button>
+        {addBannerModalOpen && (
+          <AddBannerModal
+            setAddBannerModalOpen={setAddBannerModalOpen}
+            formValues={formValues}
+            setFormValues={setFormValues}
+            handleSubmitAdd={handleSubmitAdd}
+          />
+        )}
+        {deleteModalOpen && (
+          <DeleteBannerModal
+            handleClickDelete={handleClickDelete}
+            setDeleteModalOpen={setDeleteModalOpen}
+          />
+        )}
+        {editBannerModalOpen && (
+          <EditBannerModal
+            currentBanner={singleBanner}
+            setEditBannerModalOpen={setEditBannerModalOpen}
+            handleSubmitEdit={handleSubmitEdit}
+            setFormValuesEdit={setFormValuesEdit}
+            formValuesEdit={formValuesEdit}
+          />
+        )}
+      {banners.length > 0 ? (
+    banners.map((banner) => {
+      const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banner.photo}`;
+      return (
+        <article
+          className="flex flex-col justify-between p-8 items-center shadow-md md:flex-row w-[90%]"
+          key={banner.id}
+        >
+          <div className="lg:flex lg:w-[70%] lg:justify-evenly">
+            <div className="flex items-center">
+              <h2 className="hidden font-bold px-6 line-clamp-2 w-[240px] lg:block">
+                {banner.title !== "null" ? banner.title : null}
+              </h2>
+              <p className="hidden line-clamp-2 w-[240px] lg:block">{banner.subtitle !== "null" ? banner.subtitle : null}</p>
+            </div>
+            {banner.photo !== null ? (
+              <div className="self-center lg:w-[400px] lg:h-[100px]">
+                <Image
+                  src={imgSrc}
+                  width={400}
+                  height={100}
+                  alt="Imagen del banner"
+                  className="w-[280px] h-[70px] lg:w-[400px] lg:h-[100px] object-cover"
+                />
+              </div>
+            ) : (
+              <div className="self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]">
+                <Image
+                  src={"/image/bannerDefault.png"}
+                  width={150}
+                  height={150}
+                  alt="Imagen del banner por defecto"
+                  className="lg:max-w-[150px] lg:max-h-[72px] object-cover"
+                />
+              </div>
+            )}
           </div>
-          {banner.photo !== null ? (
-            <div className="self-center lg:w-[400px] lg:h-[100px]">
+          <div className="flex gap-4 self-center">
+            <button
+              onClick={() => openModalEdit(banner)}
+              className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0"
+            >
               <Image
-                src={imgSrc}
-                width={400}
-                height={100}
-                alt="Imagen del banner"
-                className="w-[280px] h-[70px] lg:w-[400px] lg:h-[100px] object-cover"
+                src={"/icons/editIcon.svg"}
+                width={24}
+                height={24}
+                alt="Icono de editar"
               />
-            </div>
-          ) : (
-            <div className="self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]">
+              EDITAR
+            </button>
+            <button
+              onClick={() => openModalDelete(banner.id)}
+              className="flex gap-4 items-center justify-center border border-secondRed py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-secondRed md:mt-0"
+            >
               <Image
-                src={"/image/bannerDefault.png"}
-                width={150}
-                height={150}
-                alt="Imagen del banner por defecto"
-                className="lg:max-w-[150px] lg:max-h-[72px] object-cover"
+                src={"/icons/deleteIcon.svg"}
+                width={24}
+                height={24}
+                alt="Icono de eliminar"
               />
-            </div>
-          )}
+              ELIMINAR
+            </button>
+          </div>
+        </article>
+      );
+    })
+      ) : (
+        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-8">
+          <Image
+            src={"/image/noBannersYet.svg"}
+            width={300}
+            height={300}
+            alt="Banners"
+          />
+          <p className="mt-2 font-bold text-center">Todavía no hay banners</p>
         </div>
-        <div className="flex gap-4 self-center">
-          <button
-            onClick={() => openModalEdit(banner)}
-            className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0"
-          >
-            <Image
-              src={"/icons/editIcon.svg"}
-              width={24}
-              height={24}
-              alt="Icono de editar"
-            />
-            EDITAR
-          </button>
-          <button
-            onClick={() => openModalDelete(banner.id)}
-            className="flex gap-4 items-center justify-center border border-secondRed py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-secondRed md:mt-0"
-          >
-            <Image
-              src={"/icons/deleteIcon.svg"}
-              width={24}
-              height={24}
-              alt="Icono de eliminar"
-            />
-            ELIMINAR
-          </button>
-        </div>
-      </article>
-    );
-  })
-) : (
-  <div className="flex flex-col lg:flex-row lg:items-center lg:gap-8">
-    <Image
-      src={"/image/noBannersYet.svg"}
-      width={300}
-      height={300}
-      alt="Banners"
-    />
-    <p className="mt-2 font-bold text-center">Todavía no hay banners</p>
-  </div>
-)}
-
+      )}
+      </main>
       <Toaster />
-    </main>
+    </>
+    
   );
 };
 
