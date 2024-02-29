@@ -25,8 +25,8 @@ export const AchievementsCard = ({ id, photo, title }) => {
   };
 
   return (
-    <article className="flex flex-col justify-between p-8  items-center shadow-md md:flex-row lg:w-[80%] md:w-[90%]">
-      <div className="flex items-center gap-5">
+    <article className="flex flex-col justify-between py-8 items-center shadow-md md:flex-row lg:w-[80%] md:w-[90%]">
+      <div className="flex items-center gap-2">
         <Image
           src={imgSrc}
           width={100}
