@@ -5,7 +5,6 @@ import useFilePreview from "../../../hooks/useFilePreview";
 import { addAchievement } from "../../../service";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-import { set } from "date-fns";
 
 export const ModalAchievement = ({ token, refetch }) => {
   const isModaAchievementOpen = useModalEventStore(
@@ -80,6 +79,7 @@ export const ModalAchievement = ({ token, refetch }) => {
                   name="description"
                   cols="5"
                   rows="5"
+                  placeholder='Escriba aquí el logro'
                   {...register("description", {
                     required: {
                       value: true,
@@ -159,6 +159,7 @@ export const ModalAchievement = ({ token, refetch }) => {
                   name="galician_description"
                   cols="5"
                   rows="5"
+                  placeholder='Escriba aquí o seu logro'
                   {...register("galician_description", {
                     required: {
                       value: true,
