@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { editExperienceService } from '../../../service';
 import Image from 'next/image';
 import { useToast } from "@/components/ui/use-toast";
-import { Toaster } from "@/components/ui/toaster";
 
 const EditExperienceModal = ({setEditSuccess, currentExperience, setEditExperienceModalOpen, token, refetch}) => {
   const { toast } = useToast();
@@ -162,7 +161,6 @@ const EditExperienceModal = ({setEditSuccess, currentExperience, setEditExperien
           </div>
         </form>
       </div>
-      <Toaster />
     </div>
   )
 };

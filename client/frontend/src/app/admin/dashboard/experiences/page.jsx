@@ -88,6 +88,7 @@ const dashboardExperiences = () => {
   if (loading) return <Loading />;
 
   return (
+    <>
     <main className="flex flex-col my-4 px-4 items-center">
       <BlockScroll
         isModalOpen={
@@ -207,8 +208,9 @@ const dashboardExperiences = () => {
           </p>
         </div>
       )}
-      <Toaster />
     </main>
+      <Toaster />
+    </>
   );
 };
 

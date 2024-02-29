@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Toaster } from "@/components/ui/toaster";
 
 const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEdit, setFormValuesEdit, formValuesEdit }) => {
   const [newPhoto, setNewPhoto] = useState();
@@ -222,7 +221,6 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
           </div>
         </form>
       </div>
-      <Toaster />
     </div>
   );
 };

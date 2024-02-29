@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Toaster } from "@/components/ui/toaster";
+
 
 const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFormValuesEdit, formValuesEdit}) => {
   const [newPhoto, setNeWPhoto] = useState();
@@ -157,7 +157,6 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
           </div>
         </form>
       </div>
-      <Toaster />
     </div>
   )
 };
