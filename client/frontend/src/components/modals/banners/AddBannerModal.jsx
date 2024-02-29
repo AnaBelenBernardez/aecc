@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Toaster } from "@/components/ui/toaster";
 
 const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, handleSubmitAdd }) => {
   const [newPhoto, setNewPhoto] = useState();
@@ -218,7 +217,6 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
           </div>
         </form>
       </div>
-      <Toaster />
     </div>
   );
 };
