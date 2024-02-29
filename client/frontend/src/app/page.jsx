@@ -87,7 +87,8 @@ export default function Home() {
   if (loading) return <Loading />;
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
+    <>
+      <main className="flex min-h-screen flex-col items-center justify-center">
       {scroll ? (
         <Link href={"#top"}>
           <button className="rounded-full bg-primaryGreen w-11 h-11 flex items-center justify-center fixed bottom-12 right-12 z-[1]">
@@ -374,20 +375,21 @@ export default function Home() {
             })}
           </div>
         </>
-      ) : null}
-      {sponsors ? (
-        <>
-          <h3 className="text-2xl font-bold mb-8 mt-12 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mt-20">
-            {language === "es"
-              ? "Nuestros patrocinadores"
-              : "Os nosos patrocinadores"}
-          </h3>
-          <section className="mb-14">
-            <SponsorsCarrousel />
-          </section>
-        </>
-      ) : null}
+        ) : null}
+        {sponsors ? (
+          <>
+            <h3 className="text-2xl font-bold mb-8 mt-12 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mt-20">
+              {language === "es"
+                ? "Nuestros patrocinadores"
+                : "Os nosos patrocinadores"}
+            </h3>
+            <section className="mb-14">
+              <SponsorsCarrousel />
+            </section>
+          </>
+        ) : null}
+      </main>
       <Toaster />
-    </main>
+    </>
   );
 }
