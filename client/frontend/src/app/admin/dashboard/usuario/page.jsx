@@ -92,6 +92,7 @@ const EditUser = () => {
               focus-visible:ring-0 focus:border-b-green-600 w-72 placeholder:italic placeholder:text-slate-400"
               onChange={handleChange}
               required
+              placeholder='Escriba aquí su contraseña actual'
             />
             <button
               type="button"
@@ -120,6 +121,7 @@ const EditUser = () => {
               focus-visible:ring-0 focus:border-b-green-600 w-72 placeholder:italic placeholder:text-slate-400"
               onChange={handleChange}
               required
+              placeholder='Escriba aquí su nueva contraseña'
             />
             <button
               type="button"
