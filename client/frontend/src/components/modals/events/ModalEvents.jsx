@@ -69,6 +69,7 @@ export const ModalEvents = ({ token, refetch }) => {
               <label htmlFor="title" className="font-bold text-sm">
                 Título
                 <input
+                  placeholder="Excriba aquí el título del evento"
                   type="text"
                   className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
                   file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
@@ -103,6 +104,7 @@ export const ModalEvents = ({ token, refetch }) => {
               <label htmlFor="content" className="font-bold text-sm">
                 Contenido
                 <textarea
+                  placeholder="Escriba aquí el contenido del evento en castellano"
                   type="text"
                   className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none font-medium"
                   id="content"
@@ -201,6 +203,7 @@ export const ModalEvents = ({ token, refetch }) => {
               <label htmlFor="link" className="font-bold text-sm">
                 Link
                 <input
+                  placeholder="https://www.estoesunejemplo.com"
                   type="url"
                   className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
                     file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
@@ -305,6 +308,7 @@ export const ModalEvents = ({ token, refetch }) => {
               <label htmlFor="galician_title" className="font-bold text-sm">
                 Título
                 <input
+                  placeholder="Escriba aqui el título en gallego"
                   type="text"
                   className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
                     file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
@@ -339,6 +343,7 @@ export const ModalEvents = ({ token, refetch }) => {
               >
                 Contido
                 <textarea
+                  placeholder="Escriba aqui el contenido del evento en gallego"
                   type="text"
                   className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none font-medium"
                   id="galician_content"
