@@ -100,6 +100,7 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
               <label htmlFor="title" className="font-bold text-sm">
                 Título
                 <input
+                  placeholder="Escriba el título del evento"
                   type="text"
                   className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
                   file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
@@ -130,6 +131,7 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
               <label htmlFor="content" className="font-bold text-sm">
                 Contenido
                 <textarea
+                  placeholder="Escriba el contenido del evento"
                   type="text"
                   className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none font-medium"
                   id="content"
@@ -224,6 +226,7 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
               <label htmlFor="warning_content" className="font-bold text-sm">
                 Tipo de incidencia
                 <input
+                  placeholder="Escriba aquí el tipo de incidencia"
                   type="text"
                   name="warning_content"
                   className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
@@ -271,6 +274,7 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
               <label htmlFor="link" className="font-bold text-sm">
                 Link
                 <input
+                  placeholder="Escriba aquí el link del evento"
                   type="url"
                   className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
                     file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
@@ -332,6 +336,7 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
               <label htmlFor="galician_title" className="font-bold text-sm">
                 Título
                 <input
+                  placeholder="Escriba aquí el título en gallego"
                   type="text"
                   className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
                     file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
@@ -365,6 +370,7 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
               >
                 Contido
                 <textarea
+                  placeholder="Escriba aquí el contenido en gallego"
                   type="text"
                   className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none font-medium"
                   id="galician_content"
@@ -393,6 +399,7 @@ export const ModalEditEvents = ({ token, refetch, event }) => {
               <label htmlFor="warning_content" className="font-bold text-sm">
                 Tipo de incidencia
                 <input
+                  placeholder="Escriba aquí la incidencia en gallego"
                   type="text"
                   name="galician_warning_content"
                   className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 

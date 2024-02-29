@@ -54,7 +54,7 @@ const AddExperienceModal = ({setAddSuccess, setAddExperienceModalOpen, token, re
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='relative w-[80vw] h-[70vh]  bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] md:max-h-[70%] lg:max-h-[90%]  '>
+      <div className='relative w-[90vw] h-[70vh]  bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] md:max-h-[70%] lg:max-h-[90%]  '>
       <button onClick={() => setAddExperienceModalOpen(false)} className="absolute top-5 right-7 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300">
               <img src="/icons/closeModals.svg" alt='Icono de cerrar'/>
             </button>
@@ -62,7 +62,8 @@ const AddExperienceModal = ({setAddSuccess, setAddExperienceModalOpen, token, re
           <h2 className='font-bold text-lg text-primaryGreen'>Formulario en castellano</h2>
             <label htmlFor="name" className='font-bold text-sm'>
               Nombre
-              <input 
+              <input
+                placeholder='Escriba aquí el nombre de la persona' 
                 required
                 minLength={3}
                 maxLength={40}
@@ -79,6 +80,7 @@ const AddExperienceModal = ({setAddSuccess, setAddExperienceModalOpen, token, re
               <label htmlFor="content" className='font-bold text-sm'>
                 Contenido
                 <textarea
+                  placeholder='Escriba aquí el contenido de la experiencia en castellano'
                   required
                   minLength={3}
                   maxLength={500} 
@@ -93,6 +95,7 @@ const AddExperienceModal = ({setAddSuccess, setAddExperienceModalOpen, token, re
               <label htmlFor="galician_content" className='font-bold text-sm'>
                 Contenido en gallego
                 <textarea
+                  placeholder='Escriba aquí el contenido de la experiencia en gallego'
                   required
                   minLength={3}
                   maxLength={500} 
