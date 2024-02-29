@@ -42,6 +42,7 @@ const AddNewModal = ({setAddNewModalOpen, formValues, setFormValues, handleSubmi
                 placeholder:italic placeholder:text-slate-400 w-full font-medium"
                 id='title' name='title' minLength={2} maxLength={300} required
                 onChange={handleChange}
+                placeholder='Escriba aquí el título de la noticia'
               />
               </label>
               <label htmlFor="content" className='font-bold text-sm'>
@@ -51,6 +52,7 @@ const AddNewModal = ({setAddNewModalOpen, formValues, setFormValues, handleSubmi
                   className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none font-medium"
                   id='content' name='content' cols="20" rows="20" required minLength={2} maxLength={1500}
                   onChange={handleChange}
+                  placeholder='Escriba aquí el contenido de la noticia'
                 />
               </label>
               <label htmlFor="date" className='font-bold text-sm'>
@@ -74,6 +76,7 @@ const AddNewModal = ({setAddNewModalOpen, formValues, setFormValues, handleSubmi
                   placeholder:italic placeholder:text-slate-400 w-full font-medium"
                   id='link' name='link' required
                   onChange={handleChange}
+                  placeholder='Escriba aquí la url de la noticia'
                 />
               </label>
               <div className='flex gap-6 mt-4 items-center'>
@@ -104,6 +107,7 @@ const AddNewModal = ({setAddNewModalOpen, formValues, setFormValues, handleSubmi
                   placeholder:italic placeholder:text-slate-400 w-full font-medium"
                   id='galician_title' name='galician_title' required minLength={2} maxLength={300}
                   onChange={handleChange}
+                  placeholder='Escriba aquí o título da noticia'
                 />
               </label>
               <label htmlFor="galician_content" className='font-bold mt-4 text-sm'>
@@ -113,6 +117,7 @@ const AddNewModal = ({setAddNewModalOpen, formValues, setFormValues, handleSubmi
                   className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none font-medium"
                   id='galician_content' name='galician_content' cols="20" rows="20" required minLength={2} maxLength={1500}
                   onChange={handleChange}
+                  placeholder='Escriba aquí o título da noticia'
                 />
               </label>
               <div className='flex flex-col items-center lg:flex-row lg:self-end lg:gap-4 lg:mr-2'>
