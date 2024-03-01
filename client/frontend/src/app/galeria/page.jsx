@@ -49,10 +49,10 @@ const GalleryPage = () => {
       ) : null}
       {
         events.length > 0 
-          ? events.filter((event) => event.event_photos.length > 1).map((event) => {
+          ? events.filter((event) => event.event_photos && event.event_photos?.length > 1).map((event) => {
             return (
               <Link href={`/galeria/${event.id}`} key={event.id}>
-                <GalleryCard title={language === 'es' ? event.title : event.galician_title} location={event.location} image={event.event_photos[0]}/>
+                <GalleryCard title={language === 'es' ? event.title : event.galician_title} location={event.location} image={event.event_photos ? event.event_photos[0] : false}/>
               </Link>
             )
           })

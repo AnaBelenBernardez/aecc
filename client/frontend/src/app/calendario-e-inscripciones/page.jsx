@@ -135,7 +135,7 @@ export default function CalendarAndRegistration() {
                       title={
                         language === "es" ? event.title : event.galician_title
                       }
-                      image={event.event_photos[0]}
+                      image={event.event_photos ? event.event_photos[0] : false}
                       description={
                         language === "es"
                           ? event.content

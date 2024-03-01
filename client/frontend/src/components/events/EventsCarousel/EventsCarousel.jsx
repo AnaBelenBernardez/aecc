@@ -57,7 +57,7 @@ export const EventsCarousel = ({ filteredEvents }) => {
                               ? filteredEvents[index].title
                               : filteredEvents[index].galician_title
                           }
-                          image={filteredEvents[index].event_photos[0]}
+                          image={filteredEvents[index].event_photos ? filteredEvents[index].event_photos[0] : false}
                           description={
                             language === "es"
                               ? filteredEvents[index].content

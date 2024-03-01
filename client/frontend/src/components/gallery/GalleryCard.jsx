@@ -7,8 +7,8 @@ export const GalleryCard = ({ title, location, image }) => {
   return (
     <div className="w-[286px] h-[365px] max-w-sm mx-auto relative shadow-md cursor-pointer rounded-xl">
       <LazyLoadImage
-        src={imgSrc}
-        alt={image}
+        src={image ? imgSrc : '/image/NotImage.svg'}
+        alt={image ? title : 'Todavía no hay una imagen de portada del evento'}
         className="w-[286px] h-[365px] object-cover object-top rounded-xl"
         effect="opacity"
       />
