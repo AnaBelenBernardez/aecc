@@ -28,7 +28,7 @@ const EventsList = () => {
           ? events.map((event) => {
             return (
               <Link href={`/admin/dashboard/galeria/${event.id}`} key={event.id}>
-                <GalleryCard title={language === 'es' ? event.title : event.galician_title} location={event.location} image={event.event_photos[0]}/>
+                <GalleryCard title={language === 'es' ? event.title : event.galician_title} location={event.location} image={event.event_photos ? event.event_photos[0] : false}/>
               </Link>
             )
           })

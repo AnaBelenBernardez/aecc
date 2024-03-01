@@ -251,7 +251,7 @@ export default function Home() {
                   <CardEvent
                     title={event.title}
                     key={event.id}
-                    image={event.event_photos[0]}
+                    image={event.event_photos ? event.event_photos[0] : false}
                     description={
                       language === "es" ? event.content : event.galician_content
                     }
