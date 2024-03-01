@@ -235,7 +235,7 @@ const dashboardBanners = () => {
       );
     })
       ) : (
-        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-8">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-8 mt-8">
           <Image
             src={"/image/noBannersYet.svg"}
             width={300}

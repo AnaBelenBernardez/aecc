@@ -77,7 +77,7 @@ const AchievementsPage = () => {
               </div>
             </div>
             <Link href={"/admin/dashboard"} className="self-center">
-              <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 hover:text-secondLightGray hover:bg-primaryGreen">
+              <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 hover:text-secondLightGray hover:bg-primaryGreen mt-8">
                 VOLVER AL INICIO
               </button>
             </Link>

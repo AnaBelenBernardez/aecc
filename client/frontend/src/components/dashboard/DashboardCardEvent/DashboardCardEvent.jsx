@@ -24,13 +24,13 @@ export const DashboardCardEvent = ({ id, photo, title, warning }) => {
     openModalEditEvent();
     idEvent(id);
   };
-
+  
   return (
     <article className="flex flex-col justify-between p-8 items-center shadow-md md:flex-row lg:w-[80%] md:w-[90%]">
       <div className="flex items-center lg:gap-10 lg:w-full">
         <div className="flex items-center gap-5">
           <Image
-            src={imgSrc}
+            src={photo ? imgSrc : "/image/NotImage.svg"}
             width={100}
             height={100}
             alt="Imagen del evento"
