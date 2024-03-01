@@ -61,7 +61,7 @@ const EventPage = () => {
                 <DashboardCardEvent
                   key={event.id}
                   id={event.id}
-                  photo={event.event_photos[0]}
+                  photo={event.event_photos ? event.event_photos[0] : false}
                   title={event.title}
                   warning={event.warning}
                 />
@@ -76,7 +76,7 @@ const EventPage = () => {
               </div>
             </div>
             <Link href={"/admin/dashboard"} className="self-center">
-              <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 hover:text-secondLightGray hover:bg-primaryGreen">
+              <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mb-6 hover:text-secondLightGray hover:bg-primaryGreen mt-6">
                 VOLVER AL INICIO
               </button>
             </Link>
