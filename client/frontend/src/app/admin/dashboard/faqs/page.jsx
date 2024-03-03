@@ -123,13 +123,15 @@ const FaqAdminPage = () => {
   }
 
 	const handleClickDelete = async () => {
+		let error = false;
 		try{
 			await deleteFaqService(faqId, token);
 			setDeleteSuccess(true);
 		}catch(e){
+			error = true;
 			setDeleteReject(true);
 		}finally{
-			if(!deleteReject){
+			if(!error){
 				const findFaq = faqsList.find((faq) => faq.id === parseInt(faqId));
 				const indexEditedFaq = faqsList.indexOf(findFaq);
 				const newFaqsList = [...faqsList];

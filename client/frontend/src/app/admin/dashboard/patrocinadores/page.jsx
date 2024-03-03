@@ -146,13 +146,17 @@ const SponsorAdminPage = () => {
 	}
 
 	const handleClickDelete = async () => {
+		
+		let error = false;
+		
 		try{
 			await deleteSponsorService(sponsorId, token);
 			setDeleteSuccess(true);
 		}catch(e){
+			error = true;
 			setDeleteReject(true);
 		}finally{
-			if(!deleteReject){
+			if(!error){
 				const findSponsor = sponsorsList.find((sponsor) => sponsor.id === parseInt(sponsorId));
 				const indexEditedSponsor = sponsorsList.indexOf(findSponsor);
 				const newSponsorsList = [...sponsorsList];
@@ -232,7 +236,8 @@ const SponsorAdminPage = () => {
 										{
 											clickedEdit && sponsorId === sponsor.id ?
 											<EditSponsor currentSponsor={sponsor} sponsorsList={sponsorsList} setSponsorsList={setSponsorsList} sponsorId={sponsorId} 
-												setClickedEdit={setClickedEdit} setEditSuccess={setEditSuccess} setEditReject={setEditReject} setSearchSuccess={setSearchSuccess} token={token}/>
+												setClickedEdit={setClickedEdit} setEditSuccess={setEditSuccess} setEditReject={setEditReject} 
+												searchSuccess={searchSuccess} setSearchSuccess={setSearchSuccess} token={token}/>
 											:
 												<article className="lg:w-[100%] flex flex-col justify-items-center">
 													<section className="flex flex-col justify-items-center w-[85vw]">

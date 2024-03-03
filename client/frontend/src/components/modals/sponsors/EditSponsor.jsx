@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Image from 'next/image';
 import { editSponsorService } from '../../../service';
 
-function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, setClickedEdit, setEditSuccess, setEditReject, setSearchSuccess, token}) {
+function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, setClickedEdit, setEditSuccess, setEditReject, setSearchSuccess, searchSuccess, token}) {
 
   const [name, setName] = useState(currentSponsor.name);
   const [galician_name, setGalicianName] = useState(currentSponsor.galician_name);
@@ -71,7 +71,12 @@ function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, 
         newSponsorsList.splice(indexEditedSponsor, 1, editedSponsor);
         setSponsorsList(newSponsorsList);
 
-        setSearchSuccess(editedSponsor);
+        if(searchSuccess){
+          setSearchSuccess(editedSponsor);
+        }else{
+          setSearchSuccess(false);
+        }
+        
         setClickedEdit(false);
       }
     }
