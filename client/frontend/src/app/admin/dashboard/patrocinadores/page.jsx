@@ -63,7 +63,7 @@ const SponsorAdminPage = () => {
 		if(addReject){
 			toast({
         variant: "destructive",
-        title: "Ha ocurrido un problema al añadir el nuevo patrocinador.",
+        title: addReject,
         className: "bg-secondRed text-white text-lg font-bold",
       });
 
@@ -83,7 +83,7 @@ const SponsorAdminPage = () => {
 		if(editReject){
 			toast({
 				variant: "destructive",
-				title: "Ha ocurrido un problema al editar el patrocinador.",
+				title: editReject,
 				className: "bg-secondRed text-white text-lg font-bold",
 			});
 

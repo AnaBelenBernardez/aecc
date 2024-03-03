@@ -7,7 +7,6 @@ function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, setE
   const [galician_question, setGalicianQuestion] = useState(currentFaq.galician_question);
   const [answer, setAnswer] = useState(currentFaq.answer);
   const [galician_answer, setGalicianAnswer] = useState(currentFaq.galician_answer);
-  const [errorEdit, setErrorEdit] = useState(false);
 
   function setEditOpen(cancel){
     setClickedEdit(cancel);
@@ -30,7 +29,8 @@ function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, setE
       case 'galician_answer':
           setGalicianAnswer(value);    
           break;
-      default: 
+      default:
+          setEditReject("Ha ocurrido un error enviando los datos del formulario.")
           break;
     }
   }
@@ -39,15 +39,16 @@ function EditFaq({currentFaq, faqsList, setFaqsList, faqId, setClickedEdit, setE
     e.preventDefault();
 
     let editedFaq;
+    let error = false;
 
     try{
       editedFaq = await editFaqService(question, galician_question, answer, galician_answer, faqId, token);
       setEditSuccess(true);
     }catch(e){
-      setErrorEdit(true);
-      setEditReject(true);
+      error = true;
+      setEditReject(e.message);
     } finally{
-      if(!errorEdit){
+      if(!error){
         const findFaq = faqsList.find((faq) => faq.id === parseInt(faqId));
         const indexEditedFaq = faqsList.indexOf(findFaq);
         const newFaqsList = [...faqsList];

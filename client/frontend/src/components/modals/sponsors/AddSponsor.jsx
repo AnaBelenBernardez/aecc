@@ -13,7 +13,6 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
   const [important, setImportant] = useState(0);
   const [link, setLink] = useState("");
   const [logoPreview, setLogoPreview] = useState("");
-  const [addError, setAddError] = useState("");
 
 
   function handleChange(e){
@@ -50,7 +49,7 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
           setLink(value);
           break;
         default: 
-          setAddError("Ha ocurrido un error obteniendo los datos del formulario.")
+          setAddReject("Ha ocurrido un error obteniendo los datos del formulario.")
           break;
     }
   }
@@ -74,9 +73,8 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
 
 			setAddSucces(true);
     }catch(e){
-      setAddError(e.message);
       error = e.message;
-      if(e.message !== 'Es obligatorio añadir un logo a cada patrocinador.') setAddReject(true);
+      setAddReject(e.message);
       
     } finally{
       if(error === ""){
@@ -87,7 +85,6 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
         setSponsorsList(newSponsorsList);
 
         setClickedAdd(false);
-        setAddError(error);
       }
     }
 	}
@@ -207,7 +204,6 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
                     </figure>
                   }
                 </li>
-                <span>{addError !== "" && <p className='text-xs text-red-700'>{addError}</p>}</span>
                 <li className='flex flex-col items-center lg:flex-row lg:self-end lg:gap-4'>
                   <button type="submit" className='self-center border-2 mt-4 w-[157px] h-[42px] border-primaryGreen bg-primaryGreen rounded-3xl text-sm font-bold py-2 px-6 lg:self-end lg:mb-2
                     hover:text-primaryBlack hover:bg-secondLightGray hover:border-primaryGreen'

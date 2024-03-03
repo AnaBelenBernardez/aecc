@@ -37,15 +37,16 @@ function AddFaq ({setClickedAdd, faqsList, setFaqsList, setAddSuccess, setAddRej
     e.preventDefault();
 
     let newFaq;
+    let error = false;
 
     try{
       newFaq = await addFaqService(question, galician_question, answer, galician_answer, token);
       setAddSuccess(true);
     }catch(e){
-      setAddError(true);
-      setAddReject(true);
+      error = true;
+      setAddReject(e.message);
     } finally{
-      if(!addError){
+      if(!error){
         const newFaqsList = [...faqsList];
 
         newFaqsList.unshift(newFaq);
