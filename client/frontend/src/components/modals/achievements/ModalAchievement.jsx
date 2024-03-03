@@ -29,8 +29,8 @@ export const ModalAchievement = ({ token, refetch }) => {
   const [filePreview, setFilePreview] = useFilePreview(photo);
 
   const onSubmit = async (data) => {
-    const eventData = await addAchievement(token, data);
     try {
+      const eventData = await addAchievement(token, data);
       closeModal();
       refetch();
       toast({

@@ -18,7 +18,7 @@ async function editExperience (req,res,next) {
         let photoErrorSchema;
 
         if (photos && photos.length > 1) {
-            return next(generateError('Has subido demasiadas fotos. Máximo 400', 400));
+            return next(generateError('Has subido demasiadas fotos. Máximo una', 400));
         }
 
         if (photos) { 
@@ -36,6 +36,18 @@ async function editExperience (req,res,next) {
         }
 
         const { name, content, galician_content } = req.body;
+
+        const [previousExperience] = await pool.query(
+            `
+                SELECT *
+                FROM experiences
+                WHERE content = ? OR galician_content = ?
+            `, [content, galician_content]
+        );
+
+        if (previousExperience.length) {
+            return next(generateError('Ya existe una experiencia con ese contenido', 400));
+        }
 
         if (photos) {
                 const [photoToDelete] = await pool.query('SELECT photo FROM experiences_photos WHERE experience_id = ?', [idExperience])

@@ -33,8 +33,8 @@ async function addAchievement (req,res,next) {
             `
                 SELECT *
                 FROM achievements
-                WHERE description = ?
-            `, [description]
+                WHERE description = ? OR galician_description = ?
+            `, [description, galician_description]
         );
 
         if(duplicateAchievement.length){
