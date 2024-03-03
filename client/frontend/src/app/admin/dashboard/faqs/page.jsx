@@ -57,7 +57,7 @@ const FaqAdminPage = () => {
 		if(addReject){
 			toast({
         variant: "destructive",
-        title: "Ha ocurrido un problema al añadir la nueva FAQ.",
+        title: addReject,
         className: "bg-secondRed text-white text-lg font-bold",
       });
 
@@ -77,7 +77,7 @@ const FaqAdminPage = () => {
 		if(editReject){
 			toast({
 				variant: "destructive",
-				title: "Ha ocurrido un problema al editar la FAQ.",
+				title: editReject,
 				className: "bg-secondRed text-white text-lg font-bold",
 			});
 

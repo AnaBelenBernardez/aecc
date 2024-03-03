@@ -34,11 +34,15 @@ async function editSponsor (req,res,next) {
             `
                 SELECT *
                 FROM sponsors
-                WHERE name = ?
-            `, [name]
+                WHERE name = ? OR galician_name = ?
+            `, [name, galician_name]
         );
 
-        if(duplicateSponsor.length && duplicateSponsor[0].id !== parseInt(idSponsor)){
+        if(duplicateSponsor?.length && duplicateSponsor[0].id !== parseInt(idSponsor)){
+            return next(generateError('Ya existe ese patrocinador en la web, edítalo o elimínalo para evitar contenidos duplicados', 400));
+        }
+
+        if(duplicateSponsor?.length && duplicateSponsor?.length > 1 && duplicateSponsor[1].id !== parseInt(idSponsor)){
             return next(generateError('Ya existe ese patrocinador en la web, edítalo o elimínalo para evitar contenidos duplicados', 400));
         }
         

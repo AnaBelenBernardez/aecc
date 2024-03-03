@@ -24,8 +24,12 @@ async function editFaq (req,res,next) {
             `, [question, galician_question]
         );
 
-        if(faqQuestion.length){
+        if(faqQuestion?.length){
             if(faqQuestion[0].id !== parseInt(idFaq)) return next(generateError('Ya existe esa pregunta en las FAQs, edítala o elimínala para evitar contenidos duplicados', 400));
+        }
+
+        if(faqQuestion?.length && faqQuestion?.length > 1){
+            if(faqQuestion[1].id !== parseInt(idFaq)) return next(generateError('Ya existe esa pregunta en las FAQs, edítala o elimínala para evitar contenidos duplicados', 400));
         }
 
         const [editedFaq] = await pool.query(

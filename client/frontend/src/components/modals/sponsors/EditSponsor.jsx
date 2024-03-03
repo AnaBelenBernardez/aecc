@@ -12,7 +12,7 @@ function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, 
   const [important, setImportant] = useState(currentSponsor.important);
   const [link, setLink] = useState(currentSponsor.link);
   const [logoPreview, setLogoPreview] = useState(process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${logo}`);
-  const [errorEdit, setErrorEdit] = useState(false);
+
 
   function setEditOpen(cancel){
     setClickedEdit(cancel);
@@ -46,25 +46,25 @@ function EditSponsor({currentSponsor, sponsorsList, setSponsorsList, sponsorId, 
         setLink(value);
         break;
       default: 
-        setErrorEdit("Ha ocurrido un error obteniendo los datos del formulario.")
+        setEditReject("Ha ocurrido un error obteniendo los datos del formulario.")
         break;
     }
   }
 
   async function handleSubmit(e){
     e.preventDefault();
-
     let editedSponsor;
+    let error;
     const data = new FormData (e.target);
 
     try{
       editedSponsor = await editSponsorService(data, token, sponsorId);
       setEditSuccess(true);
     }catch(e){
-      setEditReject(true);
-      setErrorEdit(true);
+      setEditReject(e.message);
+      error = true;
     } finally{
-      if(!errorEdit){
+      if(!error){
         const findSponsor = sponsorsList.find((sponsor) => sponsor.id === parseInt(sponsorId));
         const indexEditedSponsor = sponsorsList.indexOf(findSponsor);
         const newSponsorsList = [...sponsorsList];
