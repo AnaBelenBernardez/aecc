@@ -69,7 +69,9 @@ const Sponsorships = () => {
               return (
                 <article key={sponsor.id} className='flex flex-col gap-2 shadow-lg pb-6 md:max-w-[320px]'>
                   <div className='w-80 h-40 px-4'>
-                    <Image width={150} height={150} alt='Logo patrocinador' src={imgSrc} className='w-80 h-40 object-contain'/>
+                    <Link href={sponsor.link} target="_blank">
+                      <Image width={150} height={150} alt='Logo patrocinador' src={imgSrc} className='w-80 h-40 object-contain'/>                    
+                    </Link>
                   </div>
                   <h2 className='px-6 text-balance font-bold mt-2 text-xl'>{language === 'es' ? sponsor.name : sponsor.galician_name}</h2>
                   <p className='px-6 text-balance'>{language === 'es' ? sponsor.description : sponsor.galician_description}</p>
