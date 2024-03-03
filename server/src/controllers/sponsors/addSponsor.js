@@ -33,8 +33,8 @@ async function addSponsor (req,res,next) {
             `
                 SELECT *
                 FROM sponsors
-                WHERE name = ?
-            `, [name]
+                WHERE name = ? OR galician_name = ?
+            `, [name, galician_name]
         );
 
         if(duplicateSponsor.length){
