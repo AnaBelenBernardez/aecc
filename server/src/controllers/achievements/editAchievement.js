@@ -33,9 +33,9 @@ async function editAchievement(req, res, next) {
             `
                 SELECT *
                 FROM achievements
-                WHERE description = ?
+                WHERE description = ? OR galician_description = ?
             `,
-            [description]
+            [description, galician_description]
         );
 
 

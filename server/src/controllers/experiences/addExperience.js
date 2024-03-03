@@ -13,7 +13,17 @@ async function addExperience (req,res,next) {
         const { name, content, galician_content } = req.body;
         const photos = req.files?.photo;
 
-        
+        const [previousExperience] = await pool.query(
+            `
+                SELECT *
+                FROM experiences
+                WHERE content = ? OR galician_content = ?
+            `, [content, galician_content]
+        );
+
+        if(previousExperience.length){
+            return next(generateError('Ya existe una experiencia con ese contenido', 400));
+        }
 
         const {error} = experienceSchema.validate(req.body);
 

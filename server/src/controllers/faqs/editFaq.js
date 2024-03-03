@@ -20,8 +20,8 @@ async function editFaq (req,res,next) {
             `
                 SELECT *
                 FROM faqs
-                WHERE question = ?
-            `, [question]
+                WHERE question = ? OR galician_question = ?
+            `, [question, galician_question]
         );
 
         if(faqQuestion.length){
