@@ -15,10 +15,11 @@ async function getAllFaqs (req,res,next){
             `
         );
 
-
         if(faqs.length === 0){
             return next(generateError('Actualmente no hay FAQs para mostrar', 404));
         }
+
+        faqs.sort((a, b) => b.id - a.id);
 
         res.status(200).send({
             status: 'OK',
