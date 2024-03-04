@@ -77,7 +77,7 @@ export const ModalEditAchievement = ({ token, refetch, achievement }) => {
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
           <div className="relative w-[90vw] h-[90vh] bg-secondLightGray p-4 rounded-xl shadow-xl flex flex-col justify-center lg:w-[60vw] lg:p-12">
             <button
-              onClick={closeModalAchievement}
+              onClick={handleCloseModal}
               className="absolute top-6 right-7 md:top-6 md:right-7 hover:cursor-pointer hover:scale-125 duration-300"
             >
               <img src="/icons/closeModals.svg" alt="Icono de cerrar" />
