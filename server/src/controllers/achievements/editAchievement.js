@@ -39,10 +39,14 @@ async function editAchievement(req, res, next) {
         );
 
 
-        if(duplicateAchievement.length && duplicateAchievement[0].id !== parseInt(idAchievement)){
+        if(duplicateAchievement?.length && duplicateAchievement[0].id !== parseInt(idAchievement)){
             return next(generateError('Ya existe ese logro en la web, edítalo o elimínalo para evitar contenidos duplicados', 400));
         }
         
+        if(duplicateAchievement?.length && duplicateAchievement?.length > 1 &&  duplicateAchievement[1].id !== parseInt(idAchievement)){
+            return next(generateError('Ya existe ese logro en la web, edítalo o elimínalo para evitar contenidos duplicados', 400));
+        }
+
         if(icon){
             const [oldDataAchievements] = await pool.query(
                 `

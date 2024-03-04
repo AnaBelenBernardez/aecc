@@ -48,7 +48,7 @@ export const EventsCarousel = ({ filteredEvents }) => {
                   key={index}
                   className=" md:basis-3/6 lg:basis-1/3"
                 >
-                  <div>
+                  <div className="lg:border-primaryLightGrey lg:border">
                     <Card className="border-none">
                       <CardContent className="flex items-center justify-center py-6">
                         <CardEvent
