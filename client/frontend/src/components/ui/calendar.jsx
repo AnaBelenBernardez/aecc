@@ -26,7 +26,10 @@ const Calendar = () => {
   }
   .my-selected:hover:not([disabled]) { 
     border-color: #24C347;
-    color: #f5f5f5;
+    color: #24C347;
+  }
+  .rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+    background-color: #ffffff;
   }
   .my-today { 
     font-weight: bold;

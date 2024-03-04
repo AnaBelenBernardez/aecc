@@ -86,7 +86,7 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
               focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
               border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
               placeholder:italic placeholder:text-slate-400 w-full font-medium"
-              id='news_date' name='news_date' required defaultValue={new Date(new Date(currentNew.news_date).getTime() + 86400000).toISOString().slice(0, 10)}
+              id='news_date' name='news_date' required defaultValue={new Date(new Date(currentNew.news_date).getTime()).toISOString().slice(0, 10)}
               onChange={handleChange}/>
           </label>
           <label htmlFor="link" className='font-bold text-sm'>

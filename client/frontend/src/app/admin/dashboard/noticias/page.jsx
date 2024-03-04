@@ -56,7 +56,7 @@ const dashboardNews = () => {
         link: singleNew.link,
         galician_title: singleNew.galician_title,
         galician_content: singleNew.galician_content,
-        news_date: new Date(new Date(singleNew.news_date).getTime() + 86400000).toISOString().slice(0, 10)
+        news_date: new Date(new Date(singleNew.news_date).getTime()).toISOString().slice(0, 10)
       })
     }
   }, [singleNew])

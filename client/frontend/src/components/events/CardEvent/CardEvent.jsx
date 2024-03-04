@@ -31,12 +31,14 @@ export const CardEvent = ({
         </Link>
       ) : null}
       <div className="w-[300px] h-64 rounded-t-lg">
-        <LazyLoadImage
-          src={image ? imgSrc : '/image/NotImage.svg'}
-          alt={image ? title : 'Todavía no hay imagen del evento para mostrar'}
-          className="w-[300px] h-64 block object-cover object-top rounded-xl"
-          effect="opacity"
-        />
+        <Link href={link} target="_blank">
+          <LazyLoadImage
+            src={image ? imgSrc : '/image/NotImage.svg'}
+            alt={image ? title : 'Todavía no hay imagen del evento para mostrar'}
+            className="w-[300px] h-64 block object-cover object-top rounded-xl"
+            effect="opacity"
+          />
+        </Link>
       </div>
       
       <div className="mt-2 mx-3">
