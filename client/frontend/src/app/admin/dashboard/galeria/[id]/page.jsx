@@ -43,6 +43,7 @@ const EditEventPhotos = () => {
         title: "Foto/s añadida/s correctamente",
         className: "bg-primaryGreen text-white text-lg font-bold"
       })
+      setPhoto(null);
     } catch (error) {
       toast({
         variant: "destructive",
