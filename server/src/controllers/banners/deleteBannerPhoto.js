@@ -9,7 +9,7 @@ async function deleteBannerPhoto(req, res, next) {
 
         const [current] = await pool.query(
             `
-                SELECT photo
+                SELECT desktop_photo, mobile_photo, tablet_photo
                 FROM banners_photos
                 WHERE id=? AND banner_id=?
             `,
@@ -20,7 +20,9 @@ async function deleteBannerPhoto(req, res, next) {
             return next(generateError("La imagen seleccionada no existe o ya ha sido eliminada previamente", 404));
         }
 
-        await deletePhoto(current[0].photo);
+        await deletePhoto(current[0].desktop_photo);
+        await deletePhoto(current[0].mobile_photo);
+        await deletePhoto(current[0].tablet_photo);
 
         await pool.query(
             `

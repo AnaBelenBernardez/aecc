@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, handleSubmitAdd }) => {
-  const [newPhoto, setNewPhoto] = useState();
+  const [desktopNewPhoto, setDesktopNewPhoto] = useState();
+  const [mobileNewPhoto, setMobileNewPhoto] = useState();
+  const [tabletNewPhoto, setTabletNewPhoto] = useState();
   const [externalLink, setExternalLink] = useState(false);
 
   useEffect(() => {
@@ -28,13 +30,29 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
     });
   };
 
-  const handleChangeImage = (e) => {
+  const handleDesktopChangeImage = (e) => {
     setFormValues({
       ...formValues,
       [e.target.name]: [e.target.files]
     });
-    setNewPhoto(e.target.files);
+    setDesktopNewPhoto(e.target.files);
   };
+
+  const handleMobileChangeImage = (e) => {
+    setFormValues({
+      ...formValues,
+      [e.target.name]: [e.target.files]
+    })
+    setMobileNewPhoto(e.target.files);
+  }
+
+  const handleTabletChangeImage = (e) => {
+    setFormValues({
+      ...formValues,
+      [e.target.name]: [e.target.files]
+    })
+    setTabletNewPhoto(e.target.files);
+  }
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
@@ -140,18 +158,55 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
             />
           </label>
           <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
-            <label htmlFor="photo" className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
+            <label htmlFor="desktop_photo" className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
+              Banner para escritorio
               <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />AÑADIR
               <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
-                id="photo" type="file" name='photo' multiple
-                onChange={handleChangeImage}
+                id="desktop_photo" type="file" name='desktop_photo'
+                onChange={handleDesktopChangeImage}
                 placeholder='Escriba aquí o título'
               />
             </label>
             {
-              newPhoto
+              desktopNewPhoto
                 ? <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
-                  <Image src={URL.createObjectURL(newPhoto[0])} width={150} height={72} alt='Fotos de la noticia' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                  <Image src={URL.createObjectURL(desktopNewPhoto[0])} width={150} height={72} alt='Fotos de la noticia' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                </div>
+                : null
+            }
+          </div>
+          <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
+            <label htmlFor="tablet_photo" className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
+            Banner para tablet
+              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />AÑADIR
+              <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
+                id="tablet_photo" type="file" name='tablet_photo'
+                onChange={handleTabletChangeImage}
+                placeholder='Escriba aquí o título'
+              />
+            </label>
+            {
+              tabletNewPhoto
+                ? <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
+                  <Image src={URL.createObjectURL(tabletNewPhoto[0])} width={150} height={72} alt='Fotos de la noticia' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                </div>
+                : null
+            }
+          </div>
+          <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
+            <label htmlFor="mobile_photo" className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
+              Banner para móvil
+              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />AÑADIR
+              <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
+                id="mobile_photo" type="file" name='mobile_photo'
+                onChange={handleMobileChangeImage}
+                placeholder='Escriba aquí o título'
+              />
+            </label>
+            {
+              mobileNewPhoto
+                ? <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
+                  <Image src={URL.createObjectURL(mobileNewPhoto[0])} width={150} height={72} alt='Fotos de la noticia' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
                 </div>
                 : null
             }

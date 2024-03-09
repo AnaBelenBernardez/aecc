@@ -205,7 +205,9 @@ async function createDB() {
             CREATE TABLE IF NOT EXISTS banners_photos
             (
                 id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                photo VARCHAR (500),
+                desktop_photo VARCHAR (500),
+                mobile_photo VARCHAR (500),
+                tablet_photo VARCHAR (500),
                 photo_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 banner_id INT NOT NULL,
                 FOREIGN KEY (banner_id) REFERENCES banners(id)

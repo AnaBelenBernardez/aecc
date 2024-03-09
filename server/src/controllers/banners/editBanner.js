@@ -1,6 +1,6 @@
 const { getPool } = require("../../database/db");
 const generateError = require('../../helpers/generateError');
-const { photoSchema, arrayPhotoSchema } = require('../../schemas/photoSchema');
+const { photoSchema } = require('../../schemas/photoSchema');
 const savePhoto = require('../../helpers/savePhoto');
 const deletePhoto = require("../../helpers/deletePhoto");
 
@@ -10,59 +10,86 @@ async function editBanner(req, res, next) {
         const pool = await getPool();
         const insertedPhotos = [];
 
-        const photos = req.files?.photo;
-        let photoErrorSchema;
+        const desktop_photo = req.files?.desktop_photo;
+        const mobile_photo = req.files?.mobile_photo;
+        const tablet_photo = req.files?.tablet_photo;
 
-        if (photos && photos.length > 0) {
-            return next(generateError('Has subido demasiadas fotos. Máximo 1', 400));
+        if ((desktop_photo && desktop_photo.length > 1)  || (mobile_photo &&  mobile_photo.length > 1) || (tablet_photo && tablet_photo.length > 1)) {
+            return next(generateError('Sólo puedes subir una imagen por tipo de dispositivo.', 400));
         }
 
-        if (Array.isArray(photos)) {
-            const { error } = await arrayPhotoSchema.validateAsync(photos);
-            photoErrorSchema = error;
-        } else if (photos) {
-            await photoSchema.validateAsync(photos);
-        }
-
-        if (photoErrorSchema) {
-            return next(generateError(photoErrorSchema.details[0].message, 400));
-        }
+        await photoSchema.validateAsync(desktop_photo);
+        await photoSchema.validateAsync(mobile_photo);
+        await photoSchema.validateAsync(tablet_photo);
 
         const { title, galician_title, subtitle, galician_subtitle, button_text, galician_button_text, button_link } = req.body;
 
-        if (Array.isArray(photos)) {
-            for (const photo of photos) {
-                const photoName = await savePhoto(photo, 500);
 
-                await pool.query(
-                    'INSERT INTO banners_photos (banner_id, photo) VALUES (?, ?)',
-                    [idBanner, photoName]
-                )
-
-                insertedPhotos.push(photoName);
-
-            }
-
-        } else if (photos) {
+        if (desktop_photo) {
             const [photoToDelete] = await pool.query(
-                'SELECT photo FROM banners_photos WHERE banner_id = ?',
+                'SELECT desktop_photo FROM banners_photos WHERE banner_id = ?',
                 [idBanner]
             )
-            if (photoToDelete.length) {
-                await deletePhoto(photoToDelete[0].photo);
+            if (photoToDelete.length && photoToDelete[0].desktop_photo) {
+                await deletePhoto(photoToDelete[0].desktop_photo);
                 await pool.query(
-                    'DELETE FROM banners_photos WHERE banner_id = ?',
-                    [idBanner]
+                    'DELETE FROM banners_photos WHERE banner_id = ? AND desktop_photo = ?',
+                    [idBanner, photoToDelete[0].desktop_photo]
                 )
             }
-            const photoName = await savePhoto(photos, 500);
+            const desktopPhotoName = await savePhoto(desktop_photo);
             await pool.query(
-                'INSERT INTO banners_photos (banner_id, photo) VALUES (?, ?)',
-                [idBanner, photoName]
+                'UPDATE banners_photos SET desktop_photo = ? WHERE banner_id = ?',
+                [ desktopPhotoName, idBanner ]
             )
-            insertedPhotos.push(photoName);
+    
+            insertedPhotos.push(desktopPhotoName);
 
-        }
+        } 
+        
+        if (mobile_photo) {
+            const [photoToDelete] = await pool.query(
+                'SELECT mobile_photo FROM banners_photos WHERE banner_id = ?',
+                [idBanner]
+            )
+            console.log(photoToDelete);
+            if (photoToDelete.length && photoToDelete[0].mobile_photo) {
+                await deletePhoto(photoToDelete[0].mobile_photo);
+                await pool.query(
+                    'DELETE FROM banners_photos WHERE banner_id = ? AND mobile_photo = ?',
+                    [idBanner, photoToDelete[0].mobile_photo]
+                )
+            }
+            const mobilePhotoName = await savePhoto(mobile_photo);
+            await pool.query(
+                'UPDATE banners_photos SET mobile_photo = ? WHERE banner_id = ?',
+                [ mobilePhotoName, idBanner ]
+            )
+
+            insertedPhotos.push(mobilePhotoName);
+        } 
+
+        if (tablet_photo) {
+            const [photoToDelete] = await pool.query(
+                'SELECT tablet_photo FROM banners_photos WHERE banner_id = ?',
+                [idBanner]
+            )
+            if (photoToDelete.length && photoToDelete[0].tablet_photo) {
+                await deletePhoto(photoToDelete[0].tablet_photo);
+                await pool.query(
+                    'DELETE FROM banners_photos WHERE banner_id = ? AND tablet_photo = ?',
+                    [idBanner, photoToDelete[0].tablet_photo]
+                )
+            }
+            const tabletPhotoName = await savePhoto(tablet_photo);
+            await pool.query(
+               'UPDATE banners_photos SET tablet_photo = ? WHERE banner_id = ?',
+                [ tabletPhotoName, idBanner ]
+            )
+
+            insertedPhotos.push(tabletPhotoName);
+
+            }
 
         const [editedBanner] = await pool.query(
             `
@@ -77,8 +104,9 @@ async function editBanner(req, res, next) {
 
             `
                 SELECT *
-                FROM banners
-                WHERE id = ?
+                FROM banners 
+                LEFT JOIN banners_photos ON banners.id = banners_photos.banner_id
+                WHERE banners.id = ?
             `,
             [idBanner]
 

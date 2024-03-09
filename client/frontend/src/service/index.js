@@ -669,8 +669,15 @@ export const addBannerService = async (token, formValues) => {
     }
   }
 
-  if (formValues.photo) {
-    addBannerForm.append("photo", formValues.photo[0][0]);
+  if (formValues.desktop_photo) {
+    addBannerForm.append("desktop_photo", formValues.desktop_photo[0][0]);
+  }
+  if (formValues.mobile_photo) {
+    addBannerForm.append("mobile_photo", formValues.mobile_photo[0][0]);
+  }
+
+  if (formValues.tablet_photo) {
+    addBannerForm.append("tablet_photo", formValues.tablet_photo[0][0]);
   }
 
   const response = await fetch(`${backAPI}/banners/admin/add`, {
@@ -697,8 +704,16 @@ export const editBannerService = async (formValuesEdit, idBanner, token) => {
       editBannerForm.append(key, formValuesEdit[key]);
     }
   }
-  if (Array.isArray(formValuesEdit.photo)) {
-    editBannerForm.append("photo", formValuesEdit.photo[0][0]);
+  if (formValuesEdit.desktop_photo) {
+    editBannerForm.append("desktop_photo", formValuesEdit.desktop_photo[0][0]);
+  }
+
+  if (formValuesEdit.mobile_photo) {
+    editBannerForm.append("mobile_photo", formValuesEdit.mobile_photo[0][0]);
+  }
+
+  if (formValuesEdit.tablet_photo) {
+    editBannerForm.append("tablet_photo", formValuesEdit.tablet_photo[0][0]);
   }
 
   const response = await fetch(`${backAPI}/banners/admin/edit/${idBanner}`, {

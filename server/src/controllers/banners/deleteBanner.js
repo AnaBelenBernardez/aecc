@@ -9,7 +9,7 @@ async function deleteBanner(req, res, next) {
 
         const [photos] = await pool.query(
             `
-                SELECT photo
+                SELECT desktop_photo, mobile_photo, tablet_photo
                 FROM banners_photos
                 WHERE banner_id=?
             `,
@@ -20,7 +20,15 @@ async function deleteBanner(req, res, next) {
             await pool.query(`DELETE FROM banners_photos WHERE banner_id=?`, [idBanner]);
 
             for (let item of photos) {
-                await deletePhoto(item.photo);
+                if (item.desktop_photo) {
+                    await deletePhoto(item.desktop_photo);
+                }
+                if (item.mobile_photo) {
+                    await deletePhoto(item.mobile_photo);
+                }
+                if (item.tablet_photo) {
+                    await deletePhoto(item.tablet_photo);
+                }
             }
         }
 
