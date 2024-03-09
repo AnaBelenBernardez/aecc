@@ -120,17 +120,12 @@ html {--brand-primary: #24c347;
   width: fit-content;
 }
 .embla__dot {
-  width: 2vw;
+  width: 2.4rem;
   height: 2.4rem;
   display: flex;
   align-items: center;
   margin-right: 0.75rem;
   margin-left: 0.75rem;
-}
-@media(768px <= width < 1920px) {
-  .embla__dot {
-    width: 4vw;
-  }
 }
 .embla__dot:after {
   background: var(--background-site);

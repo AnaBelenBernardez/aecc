@@ -27,6 +27,8 @@ const EmblaCarousel = (props) => {
     (index) => emblaApi && emblaApi.scrollTo(index),
     [emblaApi]
   )
+  const viewport = window.innerWidth;
+  
 
   const onInit = useCallback((emblaApi) => {
     setScrollSnaps(emblaApi.scrollSnapList())
@@ -48,6 +50,7 @@ const EmblaCarousel = (props) => {
     emblaApi.on('select', onSelect)
   }, [emblaApi, onInit, onSelect])
 
+
   return (
     <>
       <div className="embla">
@@ -63,10 +66,17 @@ const EmblaCarousel = (props) => {
                   />
                 )}
                 <div
-                  className="w-full bg-cover bg-center sm:bg-cover h-[380px] sm:h-[480px] bg-no-repeat flex sm:items-center justify-startleft-0"
+                className={
+                  "w-full bg-cover bg-center sm:bg-cover lg:aspect-[4/1] md:aspect-[4/2.5] aspect-[3/3] bg-no-repeat flex sm:items-center justify-startleft-0"
+                  }
                   id="top"
-                  style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banner?.photo}`})` }}
-                >
+                  style={
+                    viewport < 768 && banner.mobile_photo ?
+                    {backgroundImage: `url(${process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banner.mobile_photo}`})`} 
+                  : (viewport >= 768 && viewport < 1024) && banner.tablet_photo ? 
+                    {backgroundImage: `url(${process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banner.tablet_photo}`})`} 
+                  : {backgroundImage: `url(${process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banner.desktop_photo}`})`}}
+                  >
               <div className="ml-5 mt-5 md:ml-12 lg:ml-32">
                  <h1 className="font-bold text-3xl sm:text-6xl text-primaryGreen max-w-2xl">
                   {language === "es" ? (banner?.title !== "null" ? banner?.title : null) : (banner?.galician_title !== "null" ? banner?.galician_title : null)}

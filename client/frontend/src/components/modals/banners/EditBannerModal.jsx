@@ -2,15 +2,25 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEdit, setFormValuesEdit, formValuesEdit }) => {
-  const [newPhoto, setNewPhoto] = useState();
-  const [image, setImage] = useState();
+  const [desktopNewPhoto, setDesktopNewPhoto] = useState();
+  const [mobileNewPhoto, setMobileNewPhoto] = useState();
+  const [tabletNewPhoto, setTabletNewPhoto] = useState();
+  const [desktopImage, setDesktopImage] = useState();
+  const [tabletImage, setTabletImage] = useState();
+  const [mobileImage, setMobileImage] = useState();
   const [externalLink, setExternalLink] = useState(currentBanner.button_link?.includes('https') ? true : false);
 
   useEffect(() => {
-    if (image) {
-      convertImg();
+    if (desktopImage) {
+      convertDesktoptImg();
     }
-  }, [image]);
+    if (tabletImage) {
+      convertTabletImg();
+    }
+    if (mobileImage) {
+      convertMobileImg();
+    }
+  }, [desktopImage, tabletImage, mobileImage]);
 
   const urlToFile = async (url, filename) => {
     const response = await fetch(url);
@@ -18,16 +28,37 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
     return new File([blob], filename, { type: blob.type });
   };
 
-  const convertImg = async () => {
-    const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${currentBanner.photo}`;
+  const convertDesktoptImg = async () => {
+    const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${currentBanner.desktop_photo}`;
     const img = await urlToFile(imgSrc, 'photo');
-    setImage(img);
+    setDesktopImage(img);
     setFormValuesEdit({
       ...formValuesEdit,
-      photo: image
+      desktop_photo: desktopImage
     });
   };
-  const previousImg = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${currentBanner.photo}`;
+  const convertTabletImg = async () => {
+    const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${currentBanner.tablet_photo}`;
+    const img = await urlToFile(imgSrc, 'photo');
+    setTabletImage(img);
+    setFormValuesEdit({
+      ...formValuesEdit,
+      tablet_photo: tabletImage
+    });
+  };
+  const convertMobileImg = async () => {
+    const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${currentBanner.mobile_photo}`;
+    const img = await urlToFile(imgSrc, 'photo');
+    setMobileImage(img);
+    setFormValuesEdit({
+      ...formValuesEdit,
+      mobile_photo: mobileImage
+    });
+  };
+  const previousDesktopImg = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${currentBanner?.desktop_photo}`;
+  const previousTabletImg = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${currentBanner?.tablet_photo}`;
+  const previousMobileImg = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${currentBanner?.mobile_photo}`;
+  console.log(previousDesktopImg, previousTabletImg, previousMobileImg);
 
   const handleChange = (e) => {
     const newFormValuesEdit = e.target.value;
@@ -41,9 +72,27 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
     });
   };
 
-  const handleChangeImage = (e) => {
+  const handleDesktopChangeImage = (e) => {
     if (e.target.files[0]) {
-      setNewPhoto(URL.createObjectURL(e.target.files[0]));
+      setDesktopNewPhoto(URL.createObjectURL(e.target.files[0]));
+      setFormValuesEdit({
+        ...formValuesEdit,
+        [e.target.name]: [e.target.files]
+      });
+    }
+  };
+  const handleTabletChangeImage = (e) => {
+    if (e.target.files[0]) {
+      setTabletNewPhoto(URL.createObjectURL(e.target.files[0]));
+      setFormValuesEdit({
+        ...formValuesEdit,
+        [e.target.name]: [e.target.files]
+      });
+    }
+  };
+  const handleMobileChangeImage = (e) => {
+    if (e.target.files[0]) {
+      setMobileNewPhoto(URL.createObjectURL(e.target.files[0]));
       setFormValuesEdit({
         ...formValuesEdit,
         [e.target.name]: [e.target.files]
@@ -154,19 +203,53 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
             />
           </label>
           <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
-            <label htmlFor="photo" className="lg:self-center flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
-              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />EDITAR FOTO
+            <label htmlFor="desktop_photo" className="lg:self-center flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
+              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />EDITAR FOTO ESCRITORIO
               <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
-                id="photo" type="file" name='photo' onChange={handleChangeImage}
+                id="desktop_photo" type="file" name='desktop_photo' onChange={handleDesktopChangeImage}
               />
             </label>
             {
-              newPhoto
+              desktopNewPhoto
                 ? <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
-                  <Image src={newPhoto} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                  <Image src={desktopNewPhoto} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
                 </div>
                 : <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
-                  <Image src={currentBanner.photo !== null ? previousImg : '/image/newsDefault.png'} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                  <Image src={currentBanner.desktopNewPhoto !== null ? previousDesktopImg : '/image/newsDefault.png'} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                </div>
+            }
+          </div>
+          <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
+            <label htmlFor="tablet_photo" className="lg:self-center flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
+              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />EDITAR FOTO TABLET
+              <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
+                id="tablet_photo" type="file" name='tablet_photo' onChange={handleTabletChangeImage}
+              />
+            </label>
+            {
+              tabletNewPhoto
+                ? <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
+                  <Image src={tabletNewPhoto} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                </div>
+                : <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
+                  <Image src={currentBanner.tabletNewPhoto !== null && !previousTabletImg.includes('null') ? previousTabletImg : previousDesktopImg} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                </div>
+            }
+          </div>
+          <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
+            <label htmlFor="mobile_photo" className="lg:self-center flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
+              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />EDITAR FOTO MÓVIL
+              <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
+                id="mobile_photo" type="file" name='mobile_photo' onChange={handleMobileChangeImage}
+              />
+            </label>
+            {
+              mobileNewPhoto
+                ? <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
+                  <Image src={mobileNewPhoto} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                </div>
+                : <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
+                  <Image src={currentBanner.mobileNewPhoto !== null && !previousMobileImg.includes('null') ? previousMobileImg : previousDesktopImg} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
                 </div>
             }
           </div>

@@ -38,13 +38,13 @@ const dashboardBanners = () => {
     galician_button_text: '',
   });
   const [formValuesEdit, setFormValuesEdit] = useState({
-    title: singleBanner?.title || "",
-    subtitle: singleBanner?.subtitle || "",
-    button_text: singleBanner?.button_text || "",
-    button_link: singleBanner?.button_link || "",
-    galician_title: singleBanner?.galician_title || "",
-    galician_subtitle: singleBanner?.galician_subtitle || "",
-    galician_button_text: singleBanner?.galician_button_text || "",
+    title: singleBanner?.title || '',
+    subtitle: singleBanner?.subtitle || '',
+    button_text: singleBanner?.button_text || '',
+    button_link: singleBanner?.button_link || '',
+    galician_title: singleBanner?.galician_title || '',
+    galician_subtitle: singleBanner?.galician_subtitle || '',
+    galician_button_text: singleBanner?.galician_button_text || '',
   });
 
   useEffect(() => {
@@ -170,45 +170,66 @@ const dashboardBanners = () => {
         )}
       {banners.length > 0 ? (
     banners.map((banner) => {
-      const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banner.photo}`;
+      const desktopImgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banner.desktop_photo}`;
+      const mobileImgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banner.mobile_photo}`;
+      const tabletImgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banner.tablet_photo}`;
       return (
         <article
-          className="flex flex-col justify-between p-8 items-center shadow-md md:flex-row w-[90%]"
+          className="flex flex-col justify-center p-8 items-center shadow-md md:flex-row w-[95%]"
           key={banner.id}
         >
-          <div className="lg:flex lg:w-[70%] lg:justify-evenly">
+          <div className="grid lg:grid-flow-col justify-between gap-4 md:gap-6 lg:w-[90%]">
             <div className="flex items-center">
               <h2 className="hidden font-bold px-6 line-clamp-2 w-[240px] lg:block">
                 {banner.title !== "null" ? banner.title : null}
               </h2>
-              <p className="hidden line-clamp-2 w-[240px] lg:block">{banner.subtitle !== "null" ? banner.subtitle : null}</p>
+              {/* <p className="hidden line-clamp-2 w-[240px] lg:block">{banner.subtitle !== "null" ? banner.subtitle : null}</p> */}
             </div>
-            {banner.photo !== null ? (
-              <div className="self-center lg:w-[400px] lg:h-[100px]">
+            <div className="flex flex-col lg:flex-row lg:h-auto gap-4">
+            {banner.desktop_photo !== null ? (
+              <div className="aspect-[4/1] lg:h-[100px] lg:mb-0 ">
                 <Image
-                  src={imgSrc}
+                  src={desktopImgSrc}
                   width={400}
                   height={100}
                   alt="Imagen del banner"
-                  className="w-[280px] h-[70px] lg:w-[400px] lg:h-[100px] object-cover"
+                  className="aspect-[4/1] lg:h-[100px] object-cover"
                 />
               </div>
-            ) : (
-              <div className="self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]">
-                <Image
-                  src={"/image/bannerDefault.png"}
-                  width={150}
-                  height={150}
-                  alt="Imagen del banner por defecto"
-                  className="lg:max-w-[150px] lg:max-h-[72px] object-cover"
-                />
-              </div>
-            )}
-          </div>
-          <div className="flex gap-4 self-center">
+            ) : null
+            }
+            <div className="flex justify-between gap-4">
+              {banner.tablet_photo !== null
+                ? (
+                <div className="aspect-[4/2.5] lg:h-[100px]">
+                  <Image
+                    src={tabletImgSrc}
+                    width={200}
+                    height={125}
+                    alt="Imagen del banner"
+                    className="aspect-[4/2.5] lg:h-[100px] object-cover"
+                  />
+                </div>
+              ) : null
+              }
+              {banner.mobile_photo !== null ? (
+                <div className="aspect-[1/1] lg:h-[100px]">
+                  <Image
+                    src={mobileImgSrc}
+                    width={200}
+                    height={200}
+                    alt="Imagen del banner"
+                    className="aspect-[1/1] lg:h-[100px] object-cover"
+                  />
+                </div>
+              ) : null
+              }
+            </div>
+            </div>
+          <div className="flex gap-4 self-center justify-center">
             <button
               onClick={() => openModalEdit(banner)}
-              className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0"
+              className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0"
             >
               <Image
                 src={"/icons/editIcon.svg"}
@@ -220,7 +241,7 @@ const dashboardBanners = () => {
             </button>
             <button
               onClick={() => openModalDelete(banner.id)}
-              className="flex gap-4 items-center justify-center border border-secondRed py-2 px-6 mt-4 rounded-3xl font-bold text-sm text-secondRed md:mt-0"
+              className="flex gap-4 items-center justify-center border border-secondRed py-2 px-6 rounded-3xl font-bold text-sm text-secondRed md:mt-0"
             >
               <Image
                 src={"/icons/deleteIcon.svg"}
@@ -230,6 +251,7 @@ const dashboardBanners = () => {
               />
               ELIMINAR
             </button>
+            </div>
           </div>
         </article>
       );
