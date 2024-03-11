@@ -30,12 +30,8 @@ async function editBanner(req, res, next) {
                 'SELECT desktop_photo FROM banners_photos WHERE banner_id = ?',
                 [idBanner]
             )
-            if (photoToDelete.length && photoToDelete[0].desktop_photo) {
+            if (photoToDelete.length) {
                 await deletePhoto(photoToDelete[0].desktop_photo);
-                await pool.query(
-                    'DELETE FROM banners_photos WHERE banner_id = ? AND desktop_photo = ?',
-                    [idBanner, photoToDelete[0].desktop_photo]
-                )
             }
             const desktopPhotoName = await savePhoto(desktop_photo);
             await pool.query(
@@ -53,12 +49,8 @@ async function editBanner(req, res, next) {
                 [idBanner]
             )
             console.log(photoToDelete);
-            if (photoToDelete.length && photoToDelete[0].mobile_photo) {
+            if (photoToDelete.length) {
                 await deletePhoto(photoToDelete[0].mobile_photo);
-                await pool.query(
-                    'DELETE FROM banners_photos WHERE banner_id = ? AND mobile_photo = ?',
-                    [idBanner, photoToDelete[0].mobile_photo]
-                )
             }
             const mobilePhotoName = await savePhoto(mobile_photo);
             await pool.query(
@@ -74,12 +66,8 @@ async function editBanner(req, res, next) {
                 'SELECT tablet_photo FROM banners_photos WHERE banner_id = ?',
                 [idBanner]
             )
-            if (photoToDelete.length && photoToDelete[0].tablet_photo) {
+            if (photoToDelete.length) {
                 await deletePhoto(photoToDelete[0].tablet_photo);
-                await pool.query(
-                    'DELETE FROM banners_photos WHERE banner_id = ? AND tablet_photo = ?',
-                    [idBanner, photoToDelete[0].tablet_photo]
-                )
             }
             const tabletPhotoName = await savePhoto(tablet_photo);
             await pool.query(
