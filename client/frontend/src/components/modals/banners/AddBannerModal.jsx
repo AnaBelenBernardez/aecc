@@ -158,9 +158,9 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
             />
           </label>
           <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
-            <label htmlFor="desktop_photo" className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
-              Banner para escritorio
-              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />AÑADIR
+            <label htmlFor="desktop_photo" className="flex gap-4 items-center justify-center lg:justify-between border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer min-w-64 md:min-w-[330px] lg:min-w-72">
+              AÑADIR BANNER ESCRITORIO
+              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' className='hidden lg:block' />
               <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
                 id="desktop_photo" type="file" name='desktop_photo'
                 onChange={handleDesktopChangeImage}
@@ -169,16 +169,21 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
             </label>
             {
               desktopNewPhoto
-                ? <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
-                  <Image src={URL.createObjectURL(desktopNewPhoto[0])} width={150} height={72} alt='Fotos de la noticia' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                ? <div className='h-[75px] w-[300px] lg:w-[800px] lg:h-[200px]'>
+                  <Image 
+                  src={URL.createObjectURL(desktopNewPhoto[0])} 
+                  width={150} 
+                  height={72} 
+                  alt='Fotos del banner para el escritorio' 
+                  className='h-[75px] w-[300px] lg:w-[800px] lg:h-[200px] object-cover' />
                 </div>
                 : null
             }
           </div>
           <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
-            <label htmlFor="tablet_photo" className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
-            Banner para tablet
-              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />AÑADIR
+            <label htmlFor="tablet_photo" className="flex gap-4 items-center justify-center lg:justify-between border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer min-w-64 md:min-w-[330px] lg:min-w-72">
+              AÑADIR BANNER TABLET
+              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' className='hidden lg:block' />
               <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
                 id="tablet_photo" type="file" name='tablet_photo'
                 onChange={handleTabletChangeImage}
@@ -187,17 +192,22 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
             </label>
             {
               tabletNewPhoto
-                ? <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
-                  <Image src={URL.createObjectURL(tabletNewPhoto[0])} width={150} height={72} alt='Fotos de la noticia' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                ? <div className='w-[100px] h-[75px] lg:h-[200px] lg:w-[300px] self-center'>
+                  <Image 
+                  src={URL.createObjectURL(tabletNewPhoto[0])} 
+                  width={150} 
+                  height={72} 
+                  alt='Fotos del banner para tablet' 
+                  className='w-[100px] h-[75px] lg:h-[200px] lg:w-[300px] object-cover' />
                 </div>
                 : null
             }
           </div>
           <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
-            <label htmlFor="mobile_photo" className="flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
-              Banner para móvil
-              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />AÑADIR
-              <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
+            <label htmlFor="mobile_photo" className="flex gap-4 items-center justify-center lg:justify-between border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer min-w-64 md:min-w-[330px] lg:min-w-72">
+              AÑADIR BANNER MÓVIL
+              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' className='hidden lg:block' />
+              <input className="hidden w-full lg:w-52 cursor-pointer mt-2 text-sm font-medium"
                 id="mobile_photo" type="file" name='mobile_photo'
                 onChange={handleMobileChangeImage}
                 placeholder='Escriba aquí o título'
@@ -205,8 +215,13 @@ const AddBannerModal = ({ setAddBannerModalOpen, formValues, setFormValues, hand
             </label>
             {
               mobileNewPhoto
-                ? <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
-                  <Image src={URL.createObjectURL(mobileNewPhoto[0])} width={150} height={72} alt='Fotos de la noticia' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                ? <div className='w-[75px] h-[75px] lg:h-[200px] lg:w-[200px] self-center'>
+                  <Image 
+                  src={URL.createObjectURL(mobileNewPhoto[0])} 
+                  width={150} 
+                  height={72} 
+                  alt='Fotos de la noticia' 
+                  className='w-[75px] h-[75px] lg:h-[200px] lg:w-[200px] object-cover' />
                 </div>
                 : null
             }

@@ -707,13 +707,12 @@ export const editBannerService = async (formValuesEdit, idBanner, token) => {
   if (formValuesEdit.desktop_photo) {
     editBannerForm.append("desktop_photo", formValuesEdit.desktop_photo[0][0]);
   }
+  if (formValuesEdit.tablet_photo) {
+    editBannerForm.append("tablet_photo", formValuesEdit.tablet_photo[0][0]);
+  }
 
   if (formValuesEdit.mobile_photo) {
     editBannerForm.append("mobile_photo", formValuesEdit.mobile_photo[0][0]);
-  }
-
-  if (formValuesEdit.tablet_photo) {
-    editBannerForm.append("tablet_photo", formValuesEdit.tablet_photo[0][0]);
   }
 
   const response = await fetch(`${backAPI}/banners/admin/edit/${idBanner}`, {

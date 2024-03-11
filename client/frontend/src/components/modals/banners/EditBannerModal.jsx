@@ -204,52 +204,77 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
           </label>
           <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
             <label htmlFor="desktop_photo" className="lg:self-center flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
-              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />EDITAR FOTO ESCRITORIO
+              {/* <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' /> */}
+              EDITAR FOTO ESCRITORIO
               <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
                 id="desktop_photo" type="file" name='desktop_photo' onChange={handleDesktopChangeImage}
               />
             </label>
             {
               desktopNewPhoto
-                ? <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
-                  <Image src={desktopNewPhoto} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                ? <div className='h-[75px] w-[300px] lg:w-[800px] lg:h-[200px]'>
+                  <Image 
+                  src={desktopNewPhoto} 
+                  width={400} 
+                  height={100} 
+                  alt='Fotos del banner' 
+                  className='h-[75px] w-[300px] lg:w-[800px] lg:h-[200px] object-cover' />
                 </div>
-                : <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
-                  <Image src={currentBanner.desktopNewPhoto !== null ? previousDesktopImg : '/image/newsDefault.png'} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                : <div className='h-[75px] w-[300px] lg:w-[800px] lg:h-[200px]'>
+                  <Image 
+                  src={currentBanner.desktopNewPhoto !== null ? previousDesktopImg : '/image/banner_default.png'} 
+                  width={400} 
+                  height={100} 
+                  alt='Fotos del banner' 
+                  className='h-[75px] w-[300px] lg:w-[800px] lg:h-[200px] object-cover' />
                 </div>
             }
           </div>
           <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
             <label htmlFor="tablet_photo" className="lg:self-center flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
-              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />EDITAR FOTO TABLET
+              {/* <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' /> */}
+              EDITAR FOTO TABLET
               <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
                 id="tablet_photo" type="file" name='tablet_photo' onChange={handleTabletChangeImage}
               />
             </label>
             {
               tabletNewPhoto
-                ? <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
-                  <Image src={tabletNewPhoto} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                ? <div className='w-[100px] h-[75px] lg:h-[200px] lg:w-[300px] self-center'>
+                  <Image 
+                  src={tabletNewPhoto} 
+                  width={400} height={250} 
+                  alt='Fotos del banner' 
+                  className='w-[100px] h-[75px] lg:h-[200px] lg:w-[300px] object-cover' />
                 </div>
-                : <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
-                  <Image src={currentBanner.tabletNewPhoto !== null && !previousTabletImg.includes('null') ? previousTabletImg : previousDesktopImg} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                : <div className='w-[100px] h-[75px] lg:h-[200px] lg:w-[300px] self-center'>
+                  <Image 
+                  src={currentBanner.tabletNewPhoto !== null && !previousTabletImg.includes('null') ? previousTabletImg : previousDesktopImg} width={400} 
+                  height={250} 
+                  alt='Fotos del banner' 
+                  className='w-[100px] h-[75px] lg:h-[200px] lg:w-[300px] object-cover'/>
                 </div>
             }
           </div>
           <div className='flex flex-col-reverse justify-end gap-6 mt-4 self-center'>
             <label htmlFor="mobile_photo" className="lg:self-center flex gap-4 items-center justify-center border border-primaryGreen py-2 px-6 rounded-3xl font-bold text-sm text-primaryGreen md:mt-0 md:mb-2 lg:mb-0 self-center cursor-pointer">
-              <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' />EDITAR FOTO MÓVIL
+              {/* <Image src={"/icons/addPhotoIcon.svg"} width={24} height={24} alt='añadir imagen' /> */}
+              EDITAR FOTO MÓVIL
               <input className="hidden w-full cursor-pointer mt-2 text-sm font-medium"
                 id="mobile_photo" type="file" name='mobile_photo' onChange={handleMobileChangeImage}
               />
             </label>
             {
               mobileNewPhoto
-                ? <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
-                  <Image src={mobileNewPhoto} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                ? <div className='w-[75px] h-[75px] lg:h-[200px] lg:w-[200px] self-center'>
+                  <Image src={mobileNewPhoto} width={200} height={200} alt='Fotos del banner' className='w-[75px] h-[75px] lg:h-[200px] lg:w-[200px] object-cover' />
                 </div>
-                : <div className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px]'>
-                  <Image src={currentBanner.mobileNewPhoto !== null && !previousMobileImg.includes('null') ? previousMobileImg : previousDesktopImg} width={400} height={100} alt='Fotos del banner' className='h-[50px] w-[200px] lg:h-[200px] lg:w-[800px] object-cover' />
+                : <div className='w-[75px] h-[75px] lg:h-[200px] lg:w-[200px] self-center'>
+                  <Image 
+                  src={currentBanner.mobileNewPhoto !== null && !previousMobileImg.includes('null') ? previousMobileImg : previousDesktopImg} width={200} 
+                  height={200} 
+                  alt='Fotos del banner' 
+                  className='w-[75px] h-[75px] lg:h-[200px] lg:w-[200px] object-cover' />
                 </div>
             }
           </div>
