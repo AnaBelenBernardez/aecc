@@ -61,11 +61,13 @@ export default function Home() {
       eventDateEnd
     )
       .catch((err) => {
+        if (err.message !== 'Actualmente no hay ningún evento que cumpla con los parámetros seleccionados') {
         toast({
           variant: "destructive",
           title: err.message,
           className: "bg-secondRed text-white text-lg font-bold",
         });
+        }
       })
       .then((res) => {
         setFilteredEvents(res);
