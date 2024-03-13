@@ -19,12 +19,13 @@ async function addNews (req,res,next){
        
         await photoSchema.validateAsync(photos);
       
+        //! Lo mismo que en el Edit
         
-        const {error} = newsSchema.validate(req.body);
+        // const {error} = newsSchema.validate(req.body);
         
-        if (error) {
-            return next(generateError(error.message, 400));
-        }
+        // if (error) {
+        //     return next(generateError(error.message, 400));
+        // }
 
         const { title, galician_title, content, galician_content, news_date, link } = req.body;
 
@@ -32,12 +33,12 @@ async function addNews (req,res,next){
             `
                 SELECT *
                 FROM news
-                WHERE content = ?
-            `, [content]
+                WHERE title = ?
+            `, [title]
         );
 
         if(previousNewsContent.length){
-            return next(generateError('Ya existe ese contenido en Noticias. Edítalo o elimínalo para evitar contenidos duplicados', 400));
+            return next(generateError('Ya existe ese título en Noticias. Edítalo o elimínalo para evitar contenidos duplicados', 400));
         }
 
         const [newNews] = await pool.query(

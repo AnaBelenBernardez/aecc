@@ -33,11 +33,14 @@ async function editNews (req,res,next) {
             return next(generateError(errorSchema.details[0].message, 400));
         }
 
-        const {error} = newsSchema.validate(req.body);
 
-        if (error) {
-            return next(generateError(error.message, 400));
-        }
+        //! Hay que mirar bien el esquema de Joi. No me deja que vaya el contenido vacío
+
+        // const {error} = newsSchema.validate(req.body);
+
+        // if (error) {
+        //     return next(generateError(error.message, 400));
+        // }
 
         const { title, galician_title, content, galician_content, news_date, link } = req.body;
 

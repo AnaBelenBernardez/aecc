@@ -84,8 +84,8 @@ async function createDB() {
                 id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 title VARCHAR(300) NOT NULL,
                 galician_title VARCHAR(300) NOT NULL,
-                content VARCHAR(1500) NOT NULL,
-                galician_content VARCHAR(1500) NOT NULL,
+                content VARCHAR(1500),
+                galician_content VARCHAR(1500),
                 create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 news_date DATETIME,
                 link VARCHAR(500)
