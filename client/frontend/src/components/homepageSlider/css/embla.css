@@ -111,7 +111,7 @@ html {--brand-primary: #24c347;
 .embla__dots {
   z-index: 1;
   position: absolute;
-  bottom: 2%;
+  bottom: 0.5%;
   left: 50%;
   transform: translateX(-50%); 
   display: flex;
