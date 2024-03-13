@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 
+//! Comprobar que vacíe el Link si lo borra y lo manda vacío
+
 const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFormValuesEdit, formValuesEdit}) => {
   const [newPhoto, setNeWPhoto] = useState();
   const [image, setImage] = useState();
@@ -76,7 +78,7 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
                 type="text" 
                 className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none font-medium"
                 id='content' name='content' cols="20" rows="20" defaultValue={currentNew.content} onChange={handleChange}
-                required minLength={2} maxLength={1500}
+                 minLength={2} maxLength={1500}
               />
           </label>
           <label htmlFor="date" className='font-bold text-sm'>
@@ -98,7 +100,7 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
               focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
               border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
               placeholder:italic placeholder:text-slate-400 w-full font-medium"
-              id='link' name='link' defaultValue={currentNew.link} onChange={handleChange} required
+              id='link' name='link' defaultValue={currentNew.link} onChange={handleChange}
             />
           </label>
           <div className='flex flex-row-reverse justify-end gap-6 mt-4'>
@@ -138,7 +140,7 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
               type="text" 
               className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none font-medium"
               id='galician_content' name='galician_content' cols="20" rows="20" defaultValue={currentNew.galician_content} onChange={handleChange}
-              required minLength={2} maxLength={1500}
+             minLength={2} maxLength={1500}
             />
           </label>
           <div className='flex flex-col items-center lg:flex-row lg:gap-4 lg:self-end lg:mb-2 lg:mr-2'>

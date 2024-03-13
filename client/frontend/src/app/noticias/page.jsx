@@ -13,7 +13,6 @@ const Noticias = () => {
   const { news, loading, error } = useGetAllNews();
   const { events, loading: lodingEvents } = useGetAllEvents();
   const language = useLanguageStore((state) => state.language);
-  const setLanguage = useLanguageStore((state) => state.setLanguage);
   const [scroll, setScroll] = useState(false);
 
   useEffect(() => {
@@ -94,7 +93,7 @@ const Noticias = () => {
             <Link href={`${newItem.link}`} target="_blank" key={newItem.id}>
               <article className="flex justify-between p-8 items-center shadow-md">
                 <div className="flex items-center">
-                  <p className="w-[52px] text-center flex items-center text-primaryGreen font-bold">
+                  <p className="w-[52px] lg:w-28 text-center flex items-center text-primaryGreen font-bold">
                     {new Date(newItem.news_date || newItem.create_date)
                       .toLocaleDateString("es-ES", {
                         month: "short",
