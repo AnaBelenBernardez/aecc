@@ -48,8 +48,7 @@ async function editBanner(req, res, next) {
                 'SELECT mobile_photo FROM banners_photos WHERE banner_id = ?',
                 [idBanner]
             )
-            console.log(photoToDelete);
-            if (photoToDelete.length) {
+            if (photoToDelete[0].mobile_photo !== null && photoToDelete.length) {
                 await deletePhoto(photoToDelete[0].mobile_photo);
             }
             const mobilePhotoName = await savePhoto(mobile_photo);
@@ -66,7 +65,7 @@ async function editBanner(req, res, next) {
                 'SELECT tablet_photo FROM banners_photos WHERE banner_id = ?',
                 [idBanner]
             )
-            if (photoToDelete.length) {
+            if (photoToDelete[0].tablet_photo !== null && photoToDelete.length) {
                 await deletePhoto(photoToDelete[0].tablet_photo);
             }
             const tabletPhotoName = await savePhoto(tablet_photo);
