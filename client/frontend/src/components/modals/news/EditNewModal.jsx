@@ -64,22 +64,14 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
           <h2 className='font-bold text-lg text-primaryGreen'>Formulario en castellano</h2>
           <label htmlFor="title" className='font-bold text-sm'>
             Título
-            <input type="text" id='title' name='title' className='flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
+            <textarea 
+                type="text" id='title' name='title' className='flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
                 file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-                placeholder:italic placeholder:text-slate-400 w-full font-medium'
+                placeholder:italic placeholder:text-slate-400 w-full font-medium resize-none'
                 defaultValue={currentNew.title} onChange={handleChange} required minLength={2} maxLength={300}
             />
-          </label>
-          <label htmlFor="content" className='font-bold text-sm'>
-            Contenido
-              <textarea 
-                type="text" 
-                className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none font-medium"
-                id='content' name='content' cols="20" rows="20" defaultValue={currentNew.content} onChange={handleChange}
-                 minLength={2} maxLength={1500}
-              />
           </label>
           <label htmlFor="date" className='font-bold text-sm'>
             Fecha de la noticia
@@ -122,25 +114,16 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
           </div>
           <h2 className='font-bold text-lg mt-6 text-primaryGreen'>Formulario en gallego</h2>
           <label htmlFor="galician_title" className='font-bold text-sm'>
-            Título
-            <input 
+            Título en gallego
+            <textarea 
               type="text" 
               className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
               file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
               focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
               border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
-              placeholder:italic placeholder:text-slate-400 w-full font-medium"
+              placeholder:italic placeholder:text-slate-400 w-full font-medium resize-none"
               id='galician_title' name='galician_title' defaultValue={currentNew.galician_title} onChange={handleChange}
               required minLength={2} maxLength={300}
-            />
-          </label>
-          <label htmlFor="galician_content" className='font-bold mt-4 text-sm'>
-            Contido
-            <textarea 
-              type="text" 
-              className="w-full h-40 focus:ring-2 focus:ring-green-600 p-4 bg-secondLightGray resize-none font-medium"
-              id='galician_content' name='galician_content' cols="20" rows="20" defaultValue={currentNew.galician_content} onChange={handleChange}
-             minLength={2} maxLength={1500}
             />
           </label>
           <div className='flex flex-col items-center lg:flex-row lg:gap-4 lg:self-end lg:mb-2 lg:mr-2'>

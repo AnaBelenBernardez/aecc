@@ -19,15 +19,14 @@ async function addNews (req,res,next){
        
         await photoSchema.validateAsync(photos);
       
-        //! Lo mismo que en el Edit
         
-        // const {error} = newsSchema.validate(req.body);
+        const {error} = newsSchema.validate(req.body);
         
-        // if (error) {
-        //     return next(generateError(error.message, 400));
-        // }
+        if (error) {
+            return next(generateError(error.message, 400));
+        }
 
-        const { title, galician_title, content, galician_content, news_date, link } = req.body;
+        const { title, galician_title, news_date, link } = req.body;
 
         const [previousNewsContent] = await pool.query(
             `
@@ -43,10 +42,10 @@ async function addNews (req,res,next){
 
         const [newNews] = await pool.query(
             `
-                INSERT INTO news (title, galician_title, content, galician_content, news_date, link)
-                VALUES (?,?,?,?,?,?)
+                INSERT INTO news (title, galician_title, news_date, link)
+                VALUES (?,?,?,?)
             `,
-            [title, galician_title, content, galician_content, news_date, link] 
+            [title, galician_title, news_date, link] 
         );
 
         const {insertId} = newNews;

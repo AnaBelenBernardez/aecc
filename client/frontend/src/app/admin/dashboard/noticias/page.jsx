@@ -30,19 +30,15 @@ const dashboardNews = () => {
   const [singleNew, setSingleNew] = useState();
   const [formValues, setFormValues] = useState({
     title: '',
-    content: '',
     link: '',
     galician_title: '',
-    galician_content: '',
     photo: '',
     news_date: ''
   });
   const [formValuesEdit, setFormValuesEdit] = useState({
     title: singleNew?.title || "",
-    content: singleNew?.content || "",
     link: singleNew?.link || "",
     galician_title: singleNew?.galician_title || "",
-    galician_content: singleNew?.galician_content || "",
     photo: singleNew?.photo || "",
     news_date: singleNew?.news_date ? new Date(singleNew?.news_date).toISOString().slice(0, 10)
     : ""
@@ -52,10 +48,8 @@ const dashboardNews = () => {
     if (singleNew) {
       setFormValuesEdit({
         title: singleNew.title,
-        content: singleNew.content,
         link: singleNew.link,
         galician_title: singleNew.galician_title,
-        galician_content: singleNew.galician_content,
         news_date: new Date(new Date(singleNew.news_date).getTime()).toISOString().slice(0, 10)
       })
     }
