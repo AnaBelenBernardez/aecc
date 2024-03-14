@@ -175,14 +175,16 @@ const dashboardBanners = () => {
       const tabletImgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${banner.tablet_photo}`;
       return (
         <article
-          className="flex flex-col justify-center p-8 items-center shadow-md md:flex-row w-[95%]"
+          className="flex flex-col justify-center p-8 items-center lg:justify-start shadow-md md:flex-row w-[95%]"
           key={banner.id}
         >
           <div className="grid lg:grid-flow-col justify-between gap-4 md:gap-6 lg:w-[90%]">
             <div className="flex items-center">
-              <h2 className="hidden font-bold px-6 line-clamp-2 w-[240px] lg:block">
-                {banner.title !== "null" ? banner.title : null}
-              </h2>
+              { banner.title === "null" ? null :
+              <h2 className="hidden font-bold px-6 line-clamp-2 lg:block">
+                {banner.title}
+              </h2> 
+            }
               {/* <p className="hidden line-clamp-2 w-[240px] lg:block">{banner.subtitle !== "null" ? banner.subtitle : null}</p> */}
             </div>
             <div className="flex flex-col lg:flex-row lg:h-auto gap-4">
