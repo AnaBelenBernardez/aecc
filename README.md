@@ -52,12 +52,16 @@ Página web donde consultar eventos y actividades deportivas organizadas por la 
     <a href="#🎨-diseño">Diseño</a>
   </li>
   <li>
-    <a href="#👩‍💻-autores">Autores</a>
-  </li>
-  <li>
     <a href="#💻-tech-stack">Tecnologías utilizadas</a>
   </li>
 </ol>
+
+## 👩‍💻 Autores
+<a href="https://github.com/AnaBelenBernardez/aecc/graphs/contributors">
+  <img src="https://i.postimg.cc/J4Mw5Gmp/autores.png" />
+</a>
+
+<br/>
 
 ## 📋 Descripción
 - Los usuarios pueden:
@@ -492,13 +496,6 @@ Diseñada con [Figma](https://www.figma.com/file/e8ntkYMBhjdPdk01BjmB03/Aecc?typ
 Responsive, amigable y facilmente accesible desde multiples dispositivos. Cumpliendo criterios de accesibilidad para que pueda ser usada por culquier persona.
 
 ![Mockup](./docs/assets/mockup.png)
-
-## 👩‍💻 Autores
-<a href="https://github.com/AnaBelenBernardez/aecc/graphs/contributors">
-  <img src="https://i.postimg.cc/J4Mw5Gmp/autores.png" />
-</a>
-
-<br/>
 
 ## 💻 Tech Stack
 <div align="center">
