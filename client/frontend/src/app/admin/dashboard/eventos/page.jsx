@@ -13,6 +13,7 @@ import useGetAllEvents from "../../../../hooks/useGetAllEvents";
 import { useLoginStore, useModalEventStore } from "../../../../store";
 import BlockScroll from "../../../../components/blockScroll/BlockScroll";
 import ModalDeleteEvent from "../../../../components/modals/events/ModalDeleteEvent";
+import { useEffect } from "react";
 
 const EventPage = () => {
   const token = useLoginStore((state) => state.token);
@@ -32,9 +33,11 @@ const EventPage = () => {
 
   const router = useRouter();
 
-  if (!token) {
-    router.push("/admin");
-  }
+  useEffect(() => {
+    if (!token) {
+     router.push("/admin");
+    }
+  }, [token])
 
   if (loading) return <Loading />;
 

@@ -33,9 +33,12 @@ const SponsorAdminPage = () => {
 
 	const router = useRouter();
   const token = useLoginStore((state) => state.token);
-  if (!token) {
-    router.push("/admin");
-  }
+	
+  useEffect(() => {
+    if (!token) {
+     router.push("/admin");
+    }
+  }, [token])
 
 	useEffect(() =>{
     if(sponsors !== undefined){

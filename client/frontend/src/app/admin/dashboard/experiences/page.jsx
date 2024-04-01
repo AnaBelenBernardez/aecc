@@ -19,9 +19,6 @@ const dashboardExperiences = () => {
   const { toast } = useToast();
   const router = useRouter();
   const token = useLoginStore((state) => state.token);
-  if (!token) {
-    router.push("/admin");
-  }
 
   const { experiences, loading, error, refetch, setExperiences } = useGetAllExperiences();
   const [idExperienceOpen, setIdExperienceOpen] = useState();
@@ -32,6 +29,12 @@ const dashboardExperiences = () => {
   const [addSuccess, setAddSuccess] = useState(false);
   const [editSuccess, setEditSuccess] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
+
+  useEffect (() => {
+    if (!token) {
+     router.push("/admin");
+    }
+  }, [token])
 
   useEffect(() => {
     if (addSuccess) {

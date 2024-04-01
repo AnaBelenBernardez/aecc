@@ -10,6 +10,7 @@ import { ModalAchievement } from "../../../../components/modals/achievements/Mod
 import ModalDeleteAchievement from "../../../../components/modals/achievements/ModalDeleteAchievement";
 import { ModalEditAchievement } from "../../../../components/modals/achievements/ModalEditAchievement";
 import BlockScroll from "../../../../components/blockScroll/BlockScroll";
+import { useEffect } from "react";
 
 const AchievementsPage = () => {
   const token = useLoginStore((state) => state.token);
@@ -29,9 +30,11 @@ const AchievementsPage = () => {
 
   const router = useRouter();
 
-  if (!token) {
-    router.push("/admin");
-  }
+  useEffect(() => {
+    if (!token) {
+     router.push("/admin");
+    }
+  }, [token])
 
   if (loading) return <Loading />;
 
