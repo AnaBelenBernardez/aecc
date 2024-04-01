@@ -8,13 +8,16 @@ import { GalleryCard } from '../../../../components';
 import Loading from '../../../../components/loading/Loading';
 import { useLoginStore } from '../../../../store';
 import { useRouter } from "next/navigation";
+import { useEffect } from 'react';
 
 const EventsList = () => {
   const token = useLoginStore((state) => state.token);
   const router = useRouter();
-  if (!token) {
-    router.push("/admin");
-  }
+  useEffect(() => {
+    if (!token) {
+     router.push("/admin");
+    }
+  }, [token])
   const absolutely = true;
   const { events, loading, error } = useGetAllEvents(absolutely);
   const language = useLanguageStore((state) => state.language);

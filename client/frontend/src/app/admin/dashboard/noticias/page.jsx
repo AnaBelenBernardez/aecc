@@ -17,9 +17,7 @@ import DeleteNewModal from "../../../../components/modals/news/DeleteNewModal";
 const dashboardNews = () => {
   const router = useRouter();
   const token = useLoginStore((state) => state.token);
-  if (!token) {
-    router.push("/admin");
-  }
+  
   const { toast } = useToast();
 
   const { news, loading, refetch, setNews } = useGetAllNews();
@@ -43,6 +41,12 @@ const dashboardNews = () => {
     news_date: singleNew?.news_date ? new Date(singleNew?.news_date).toISOString().slice(0, 10)
     : ""
   })
+
+  useEffect(() => {
+    if (!token) {
+     router.push("/admin");
+    }
+  }, [token])
 
   useEffect(() => {
     if (singleNew) {

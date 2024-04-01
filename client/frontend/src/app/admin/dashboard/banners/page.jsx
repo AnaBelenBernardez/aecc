@@ -17,9 +17,7 @@ import DeleteBannerModal from "../../../../components/modals/banners/DeleteBanne
 const dashboardBanners = () => {
   const router = useRouter();
   const token = useLoginStore((state) => state.token);
-  if (!token) {
-    router.push("/admin");
-  }
+  
   const { toast } = useToast();
 
   const { banners, loading, refetch, setBanners } = useGetAllBanners(); 
@@ -46,6 +44,12 @@ const dashboardBanners = () => {
     galician_subtitle: singleBanner?.galician_subtitle || '',
     galician_button_text: singleBanner?.galician_button_text || '',
   });
+
+  useEffect (() => {
+    if (!token) {
+     router.push("/admin");
+    }
+  }, [token])
 
   useEffect(() => {
     if (singleBanner) {

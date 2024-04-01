@@ -15,13 +15,18 @@ import {
 import { useLoginStore } from "../../../store";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const DashboardPage = () => {
   const router = useRouter();
   const token = useLoginStore((state) => state.token);
-  if (!token) {
-    router.push("/admin");
-  }
+
+  useEffect(() => {
+    if (!token) {
+     router.push("/admin");
+    }
+  }, [token])
+  
   return (
     <>
       {token && (

@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLoginStore } from '../../../../../store';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation";
 import BlockScroll from '../../../../../components/blockScroll/BlockScroll';
 import DeletePhotoModal from '../../../../../components/modals/gallery/DeletePhotoModal';
@@ -21,9 +21,12 @@ const EditEventPhotos = () => {
   const { toast } = useToast();
 
   const token = useLoginStore((state) => state.token);
-  if (!token) {
-    router.push("/admin");
-  }
+  
+  useEffect(() => {
+    if (!token) {
+     router.push("/admin");
+    }
+  }, [token])
 
   const { event, loading, refetch } = useGetEvent(id);
   const [deleteModalOpen, setDeleteModalOpen] = useState();

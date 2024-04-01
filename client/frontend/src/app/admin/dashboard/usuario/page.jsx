@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLoginStore } from "../../../../store";
 import { changePwd } from "../../../../service";
@@ -12,9 +12,12 @@ const EditUser = () => {
   const router = useRouter();
   const token = useLoginStore((state) => state.token);
   const { toast } = useToast();
-  if (!token) {
-    router.push("/admin");
-  }
+  
+  useEffect(() => {
+    if (!token) {
+     router.push("/admin");
+    }
+  }, [token])
 
   const [formValues, setFormValues] = useState({
     oldPwd: "",
