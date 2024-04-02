@@ -1,5 +1,4 @@
 const { getPool } = require('../../database/db');
-const generateError = require('../../helpers/generateError');
 
 async function getBanner(req, res, next) {
     const { idBanner } = req.params;
@@ -12,10 +11,6 @@ async function getBanner(req, res, next) {
             LEFT JOIN banners_photos bp ON b.id = bp.banner_id
             WHERE b.id = ?
         `, [idBanner]);
-
-        if (!banner.length) {
-            return next(generateError('No se ha podido encontrar el banner', 404));
-        }
 
         res.status(200).send({
             status: "OK",

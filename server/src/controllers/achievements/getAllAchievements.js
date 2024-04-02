@@ -14,11 +14,6 @@ async function getAllAchievements (req,res,next){
             `
         );
 
-
-        if(achievements.length === 0){
-            return next(generateError('Actualmente no hay logros para mostrar', 404));
-        }
-
         res.status(200).send({
             status: 'OK',
             data: achievements
