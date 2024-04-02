@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['api.corunaenmarchacontraocancro.com/'],
+    domains: ['api.corunaenmarchacontraocancro.com'],
     dangerouslyAllowSVG: true,
     remotePatterns: [
       {
