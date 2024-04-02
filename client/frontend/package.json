@@ -34,6 +34,7 @@
     "react-hook-form": "^7.49.2",
     "react-lazy-load-image-component": "^1.6.0",
     "react-responsive-carousel": "^3.2.23",
+    "sharp": "^0.33.3",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-radix": "^2.8.0",
