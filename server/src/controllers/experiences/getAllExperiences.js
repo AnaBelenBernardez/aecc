@@ -1,5 +1,4 @@
 const {getPool} = require('../../database/db');
-const generateError = require('../../helpers/generateError');
 
 async function getAllExperiences (req, res, next) {
   try {
@@ -11,10 +10,6 @@ async function getAllExperiences (req, res, next) {
     ORDER BY ep.photo_date DESC
     `
     );
-
-    if (!experiences.length) {
-      return next(generateError('No hay experiencias para mostrar', 404));
-    }
     
     res.status(200).send({
       status: 'Ok',

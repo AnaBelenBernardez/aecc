@@ -1,6 +1,4 @@
 const {getPool} = require('../../database/db');
-const generateError = require('../../helpers/generateError');
-
 
 async function getAllSponsors (req,res,next){
     try{
@@ -13,11 +11,6 @@ async function getAllSponsors (req,res,next){
             FROM sponsors
             `
         );
-
-
-        if(sponsors.length === 0){
-            return next(generateError('Actualmente no hay patrocinios para mostrar', 404));
-        }
 
         res.status(200).send({
             status: 'OK',

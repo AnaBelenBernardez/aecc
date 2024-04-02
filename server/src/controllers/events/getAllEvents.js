@@ -96,10 +96,6 @@ async function getAllEvents (req,res,next){
 
         }
 
-        if(showEvents.length === 0 || showEvents[0].length === 0){
-            return next(generateError('Actualmente no hay ningún evento que cumpla con los parámetros seleccionados', 404));
-        }
-
         res.status(200).send({
             status: 'OK',
             data: showEvents[0]

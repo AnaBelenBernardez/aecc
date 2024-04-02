@@ -1,5 +1,4 @@
 const { getPool } = require('../../database/db');
-const generateError = require('../../helpers/generateError');
 
 async function getAllBanners(req, res, next) {
     const pool = await getPool();
@@ -10,10 +9,6 @@ async function getAllBanners(req, res, next) {
             FROM banners b
             LEFT JOIN banners_photos bp ON b.id = bp.banner_id;
         `);
-
-        if (!banners.length) {
-            return next(generateError('No hay banners para mostrar', 404));
-        }
 
         res.status(200).send({
             status: 'OK',
