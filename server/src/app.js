@@ -17,6 +17,7 @@ const bannersRouter = require('../src/routes/bannersRouter');
 
 server.use(cors());
 server.use(express.json());
+server.use(require('express-status-monitor')());
 server.use(fileupload());
 server.use('/uploads', express.static(path.join(__dirname,'uploads')));
 
