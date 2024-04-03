@@ -27,7 +27,7 @@ export const Sidebar = () => {
         <div>
           <nav
             className={clsx(
-              "fixed p-5 right-0 top-0 w-full max-h-svh bg-white z-[2] shadow-2xl transform transition-all duration-300 flex flex-col justify-center items-center",
+              "fixed p-5 pt-[15%] md:pt-[5%] right-0 top-0 w-full max-h-svh bg-white z-[2] shadow-2xl transform transition-all duration-300 flex flex-col justify-center items-center overflow-auto max-md:landscape:pt-[50%]",
               {
                 "translate-x-full": !isSideMenuOpen,
               }

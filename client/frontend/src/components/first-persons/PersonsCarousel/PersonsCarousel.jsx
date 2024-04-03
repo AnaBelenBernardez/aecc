@@ -40,7 +40,7 @@ export const PersonsCarousel = () => {
       plugins={[plugin.current]}
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.play}
-      className="w-full max-w-sm md:max-w-4xl lg:max-w-7xl"
+      className="w-full max-w-sm md:max-w-4xl lg:max-w-7xl max-md:landscape:max-w-full"
     >
       <CarouselContent>
         { loading ? <Loading/> 

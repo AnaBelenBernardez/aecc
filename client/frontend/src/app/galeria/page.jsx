@@ -33,6 +33,8 @@ const GalleryPage = () => {
   const language = useLanguageStore((state) => state.language);
   if (loading) return <Loading/>;
 
+  const filteredEvents = events.filter((event) => event.event_photos && event.event_photos?.length > 1);
+
   return (
     <main className="flex flex-col items-center justify-center gap-4 md:flex-row md:flex-wrap my-4 lg:mx-10 lg:my-8" id='top'>
       {scroll ? (
@@ -48,8 +50,8 @@ const GalleryPage = () => {
         </Link>
       ) : null}
       {
-        events.length > 0 
-          ? events.filter((event) => event.event_photos && event.event_photos?.length > 1).map((event) => {
+        filteredEvents.length > 0
+          ? filteredEvents.map((event) => {
             return (
               <Link href={`/galeria/${event.id}`} key={event.id}>
                 <GalleryCard title={language === 'es' ? event.title : event.galician_title} location={event.location} image={event.event_photos ? event.event_photos[0] : false}/>

@@ -39,14 +39,14 @@ export const EventsCarousel = ({ filteredEvents }) => {
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.play}
-        className="max-w-xs md:max-w-2xl lg:max-w-6xl "
+        className="max-w-xs md:max-w-2xl lg:max-w-6xl max-xl:landscape:max-w-[55rem] max-md:landscape:max-w-[38rem]"
       >
         <CarouselContent>
           {filteredEvents && filteredEvents.length > 0
             ? filteredEvents.map((_, index) => (
                 <CarouselItem
                   key={index}
-                  className=" md:basis-2/6 lg:basis-1/3"
+                  className="max-xl:landscape:basis-3/6 md:basis-3/6 lg:basis-1/3"
                 >
                   <div className="lg:border-primaryLightGrey lg:border">
                     <Card className="border-none">
