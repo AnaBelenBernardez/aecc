@@ -68,7 +68,7 @@ const Sponsorships = () => {
               const imgSrc = `${process.env.NEXT_PUBLIC_BACK_URL}/uploads/${sponsor.logo}`
               return (
                 <article key={sponsor.id} className='flex flex-col gap-2 shadow-lg pb-6 md:max-w-[320px]'>
-                  <div className='w-80 h-40 px-4'>
+                  <div className='w-full h-40 px-4'>
                     <Link href={sponsor.link} target="_blank">
                       <Image width={150} height={150} alt='Logo patrocinador' src={imgSrc} className='w-80 h-40 object-contain'/>                    
                     </Link>
@@ -89,8 +89,8 @@ const Sponsorships = () => {
           ? <ul className='flex flex-col gap-4 md:flex-row md:flex-wrap md:justify-center'>
               <li className='outline outline-1 outline-secondGray md:max-w-[320px]'>
                 <article>
-                  <div className='bg-lightPink w-80 h-44'>
-                    <Image width={326} height={176} alt='Patrocina' src={'/image/patrocina.png'}/>
+                  <div className='bg-lightPink h-52'>
+                    <Image width={326} height={176} alt='Patrocina' src={'/image/patrocina.png'} className='min-w-full'/>
                   </div>
                   <h2 className='font-bold text-lg py-4 px-6'>Patrocina</h2>
                   <p className='pb-4 px-6'>Solidaridad, visiblidad, compromiso. Haz visible tu compromiso con la lucha contra el cáncer patrocinando uno de nuestros eventos solidarios.</p>
@@ -98,8 +98,8 @@ const Sponsorships = () => {
               </li>
               <li className='outline outline-1 outline-secondGray md:max-w-[320px]'>
                 <article>
-                  <div className='bg-blueSection w-80 h-44'>
-                    <Image width={326} height={176} alt='Patrocina' src={'/image/participa.png'}/>
+                  <div className='bg-blueSection h-52'>
+                    <Image width={326} height={176} alt='Patrocina' src={'/image/participa.png'} className='min-w-full'/>
                   </div>
                   <h2 className='font-bold text-lg py-4 px-6'>Participa</h2>
                   <p className='pb-4 px-6'>Ponte en marcha contra el cáncer. Ahora puedes comprar dorsales para tus empleados, tus clientes… tu empresa contra el cáncer.</p>
@@ -107,8 +107,8 @@ const Sponsorships = () => {
               </li>
               <li className='outline outline-1 outline-secondGray md:max-w-[320px]'>
                 <article>
-                  <div className='bg-yellowSection w-80 h-44'>
-                    <Image width={326} height={176} alt='Patrocina' src={'/image/aTuManera.png'}/>
+                  <div className='bg-yellowSection h-52'>
+                    <Image width={326} height={176} alt='Patrocina' src={'/image/aTuManera.png'} className='min-w-full'/>
                   </div>
                   <h2 className='font-bold text-lg py-4 px-6'>A tu manera</h2>
                   <p className='pb-4 px-6'>Hay muchas formas de sumarse a un evento solidario, con servicios pro-bono, cediendo espacios publicitarios… juntos encontraremos la tuya.</p>

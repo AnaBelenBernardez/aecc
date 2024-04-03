@@ -46,7 +46,7 @@ export const EventsCarousel = ({ filteredEvents }) => {
             ? filteredEvents.map((_, index) => (
                 <CarouselItem
                   key={index}
-                  className=" md:basis-3/6 lg:basis-1/3"
+                  className=" md:basis-2/6 lg:basis-1/3"
                 >
                   <div className="lg:border-primaryLightGrey lg:border">
                     <Card className="border-none">

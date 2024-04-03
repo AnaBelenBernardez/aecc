@@ -39,7 +39,7 @@ const Noticias = () => {
       return (
         <article
           key={event.id}
-          className="flex flex-col justify-between p-8 items-center shadow-md gap-10 lg:flex-row"
+          className="flex flex-col justify-between w-[90%] p-8 items-center shadow-md gap-2 lg:flex-row"
         >
           <h3 className="font-bold px-6">
             {language === "es" ? event.title : event.galician_title}
@@ -50,7 +50,7 @@ const Noticias = () => {
               : event.galician_warning_content}
           </p>
           <Link href={event.link} target="_blank">
-            <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mt-4 mb-4 hover:text-secondLightGray hover:bg-primaryGreen min-w-44">
+            <button className="border border-primaryGreen rounded-3xl text-sm font-bold px-10 py-2 mt-4 lg:mb-4 hover:text-secondLightGray hover:bg-primaryGreen min-w-44">
               VER EVENTO
             </button>
           </Link>
@@ -61,7 +61,7 @@ const Noticias = () => {
   if (loading || lodingEvents) return <Loading />;
 
   return (
-    <main className="flex flex-col gap-2 mx-auto mb-4 lg:w-3/4" id='top'>
+    <main className="flex flex-col items-center gap-2 mx-auto mb-4 lg:w-3/4" id='top'>
       {scroll ? (
         <Link href={"#top"}>
           <button className="rounded-full bg-primaryGreen w-11 h-11 flex items-center justify-center fixed bottom-12 right-12 z-[1]">
@@ -90,7 +90,7 @@ const Noticias = () => {
           const imgSrc =
             process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${newItem.photo}`;
           return (
-            <Link href={`${newItem.link}`} target="_blank" key={newItem.id}>
+            <Link href={`${newItem.link}`} target="_blank" key={newItem.id} className='w-[90%]'>
               <article className="flex justify-between p-8 items-center shadow-md">
                 <div className="flex items-center">
                   <p className="w-[52px] lg:w-28 text-center flex items-center text-primaryGreen font-bold">
