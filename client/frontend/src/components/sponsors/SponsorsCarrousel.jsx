@@ -39,7 +39,7 @@ const SponsorsCarrousel = () => {
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.play}
-        className="max-w-64 md:max-w-xl lg:max-w-7xl flex items-center"
+        className="max-w-64 md:max-w-xl lg:max-w-7xl flex items-center max-xl:landscape:max-w-[55rem] max-md:landscape:max-w-[34rem]"
       >
         <CarouselContent className="lg:flex">
           { !sponsors ? null 

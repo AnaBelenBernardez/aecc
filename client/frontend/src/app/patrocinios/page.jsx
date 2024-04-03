@@ -45,7 +45,7 @@ const Sponsorships = () => {
   if (loading) return <Loading/>;
 
   return (
-    <div className="mx-5 mb-4 lg:w-3/4 lg:mx-auto md:mx-[38.5px]" id='top'>
+    <div className="mx-5 mb-4 lg:w-3/4 lg:mx-auto md:mx-[38.5px] max-md:landscape:flex max-md:landscape:flex-col max-md:landscape:items-center" id='top'>
       {scroll ? (
         <Link href={"#top"}>
           <button className="rounded-full bg-primaryGreen w-11 h-11 flex items-center justify-center fixed bottom-12 right-12 z-[1]">
@@ -61,13 +61,13 @@ const Sponsorships = () => {
       <h1 className="font-bold text-primaryGreen text-2xl text-center py-4 md:text-3xl md:py-6 lg:text-left">
         {language === "es" ? "Nuestros patrocinadores" : "Os nosos patrocinadores"}
       </h1>
-      <section className='flex flex-col gap-6 md:flex-row md:flex-wrap md:justify-center'>
+      <section className='flex flex-col gap-6 md:flex-row md:flex-wrap md:justify-center max-md:landscape:items-center'>
         {
           sponsorsList.length > 0
             ? sponsorsList.map((sponsor) => {
               const imgSrc = `${process.env.NEXT_PUBLIC_BACK_URL}/uploads/${sponsor.logo}`
               return (
-                <article key={sponsor.id} className='flex flex-col gap-2 shadow-lg pb-6 md:max-w-[320px]'>
+                <article key={sponsor.id} className='flex flex-col gap-2 shadow-lg pb-6 md:max-w-[320px] max-md:landscape:max-w-[320px]'>
                   <div className='w-full h-40 px-4'>
                     <Link href={sponsor.link} target="_blank">
                       <Image width={150} height={150} alt='Logo patrocinador' src={imgSrc} className='w-80 h-40 object-contain'/>                    
@@ -81,7 +81,7 @@ const Sponsorships = () => {
             : null
         }
       </section>
-      <section>
+      <section className='max-md:landscape:max-w-[320px]'>
         <h2 className='text-2xl font-bold mt-16 mb-4 text-center md:text-3xl lg:mb-8'>
           {language === "es" ? "Ponte en Marcha Contra el Cáncer" : "Ponte en Marcha Contra o Cancro"}
         </h2>

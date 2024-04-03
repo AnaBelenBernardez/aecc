@@ -196,7 +196,7 @@ export default function Home() {
 
       {events.length > 0 ? (
         <>
-          <section className="bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10 md:w-full">
+          <section className="bg-blueBgSection flex flex-col gap-4 px-7 pb-6 lg:pb-10 md:w-full max-md:landscape:w-full">
             <h2 className="text-lg font-extrabold text-center pt-6 pb-2">
               {language === "es"
                 ? "Encuentra un evento en la provincia de A Coruña"
@@ -273,7 +273,7 @@ export default function Home() {
               <h2 className="text-2xl font-bold my-8 mb-10 md:text-5xl lg:flex lg:pl-12 lg:w-full lg:mt-20">
                 Calendario de eventos
               </h2>
-              <p className="mb-8 mr-5 ml-5 text-balance md:text-center lg:text-left lg:text.left lg:w-2/6 lg:ml-10">
+              <p className="mb-8 mr-5 ml-5 text-balance md:text-center lg:text-left lg:text.left lg:w-2/6 lg:ml-10 max-md:landscape:text-center">
                 {language === "es"
                   ? "Consulta todos los eventos solidarios En Marcha que tenemos planificados. Consulta nuestro calendario."
                   : "Consulta todos os eventos solidarios En Marcha que temos planificados. Consulta o noso calendario."}
@@ -288,7 +288,7 @@ export default function Home() {
                 </Link>
               </button>
             </div>
-            <div className="flex justify-center lg:absolute lg:top-[100px] lg:right-[30%]">
+            <div className="flex justify-center lg:absolute lg:top-[100px] lg:right-[30%] max-xl:landscape:right-4">
               <Calendar />
             </div>
           </section>
@@ -321,7 +321,7 @@ export default function Home() {
               {language === "es" ? "En primera persona" : "En primeira persoa"}
             </h3>
             {experiences.length > 0 ? (
-              <div className="flex lg:justify-center justify-start mb-16 w-[75%]">
+              <div className="flex lg:justify-center justify-start mb-16 w-[75%] max-md:landscape:w-full">
                 <PersonsCarousel />
               </div>
             ) : (
@@ -341,7 +341,7 @@ export default function Home() {
                 </div>
               </div>
             )}
-      {achievements ? (
+      {achievements && achievements.length > 0 ? (
         <>
           <h3 className="text-2xl font-bold mt-8 mb-10 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mb-14">
             {language === "es"
@@ -378,7 +378,7 @@ export default function Home() {
           </div>
         </>
         ) : null}
-        {sponsors ? (
+        {sponsors && sponsors.length > 0 ? (
           <>
             <h3 className="text-2xl font-bold mb-8 mt-12 md:text-5xl md:mb-14 lg:flex lg:pl-20 lg:w-full lg:mt-20">
               {language === "es"

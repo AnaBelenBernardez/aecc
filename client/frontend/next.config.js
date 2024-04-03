@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['api.corunaenmarchacontraocancro.com'],
     dangerouslyAllowSVG: true,
     remotePatterns: [
       {
@@ -10,6 +9,11 @@ const nextConfig = {
         port: "3001",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "corunaenmarchacontraocancro.com/",
+        pathname: "/uploads/**",
+      }
     ],
   },
 };

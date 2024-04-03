@@ -39,8 +39,8 @@ const EnMarcha = () => {
           </button>
         </Link>
       ) : null}
-      <div className='mt-8 flex flex-col gap-12 lg:flex-row' id='top'>
-        <section className='bg-primaryGreen text-secondLightGray p-4 flex flex-col gap-4 md:p-8 lg:w-4/5 lg:justify-evenly'>
+      <div className='mt-8 flex flex-col gap-12 lg:flex-row max-xl:landscape:flex-col' id='top'>
+        <section className='bg-primaryGreen text-secondLightGray p-4 flex flex-col gap-4 md:p-8 lg:w-4/5 lg:justify-evenly max-xl:landscape:w-full'>
           <h2 className="font-bold text-lg md:text-3xl lg:text-4xl">
             {language === "es"
               ? "Muévete contra el cáncer!"
@@ -106,8 +106,8 @@ const EnMarcha = () => {
           ? "Nuestra misión: apoyo, investigación y prevención"
           : "A nosa misión: apoio, investigación y prevención"}
       </h3>
-      <div className="grid grid-cols-1 items-center justify-center gap-10 sm:grid-cols-3 container  mb-16">
-        <div className="flex flex-col items-center gap-5 h-full">
+      <div className="grid grid-cols-1 items-center justify-center gap-10 sm:grid-cols-3 container mb-16 max-md:landscape:grid-cols-1 max-md:landscape:justify-items-center">
+        <div className="flex flex-col items-center gap-5 h-full max-md:landscape:w-[50%]">
           <div className="w-[120px] h-[120px] object-contain border-2 p-6 border-primaryGreen rounded-full flex items-center">
             <Image
               src={'/image/apoya.png'}
@@ -123,7 +123,7 @@ const EnMarcha = () => {
               : "Apoiar  e acompañar a pacientes e as súas familias mediante os nosos programas e servizos gratuítos de atención psicolóxica, social, logopedia, fisioterapia e nutrición."}
           </p>
         </div>
-        <div className="flex flex-col items-center gap-5 h-full">
+        <div className="flex flex-col items-center gap-5 h-full max-md:landscape:w-[50%]">
           <div className="w-[120px] h-[120px] object-contain border-2 p-6 border-primaryGreen rounded-full flex items-center">
             <Image
               src={'/image/habitos.png'}
@@ -139,7 +139,7 @@ const EnMarcha = () => {
               : "Educar en hábitos de vida saudables e prevención do cancro."}
           </p>
         </div>
-        <div className="flex flex-col items-center gap-5 h-full">
+        <div className="flex flex-col items-center gap-5 h-full max-md:landscape:w-[50%]">
           <div className="w-[120px] h-[120px] object-contain border-2 p-6 border-primaryGreen rounded-full flex items-center">
             <Image
               src={'/image/ciencia.png'}
