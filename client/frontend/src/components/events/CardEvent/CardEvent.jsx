@@ -16,7 +16,7 @@ export const CardEvent = ({
   const language = useLanguageStore((state) => state.language);
   const imgSrc = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${image}`;
   return (
-    <div className="min-w-[300px] md:max-w-[300px] h-[520px] shadow-xl bg-secondLightGray overflow-hidden fade-in relative md:mx-4 rounded-t-xl">
+    <div className="min-w-[300px] max-w-[300px] md:max-w-[300px] h-[520px] shadow-xl bg-secondLightGray overflow-hidden fade-in relative md:mx-4 rounded-t-xl">
       {warning ? (
         <Link className="cursor-pointer" href="/noticias">
         <div className="flex bg-[#FF3C37] py-2 px-4 gap-2 items-center justify-center absolute top-3 left-3 rounded-full">
