@@ -13,6 +13,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "corunaenmarchacontraocancro.com/",
         pathname: "/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "api.corunaenmarchacontraocancro.com",
+        pathname: "/uploads/**",
       }
     ],
   },
