@@ -254,6 +254,7 @@ export const ModalEvents = ({ token, refetch }) => {
                     Torneo Pádel contra el Cáncer
                   </option>
                   <option value="A Coruña Bike">A Coruña Bike</option>
+                  <option value="Comidas y cenas">Comidas y cenas</option>
                   <option value="Otros">Otros</option>
                 </select>
               </label>
