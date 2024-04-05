@@ -284,7 +284,6 @@ export const editNewService = async (formValuesEdit, idNew, token) => {
 };
 
 export const addEvent = async (token, formValues) => {
-  console.log(formValues);
   const editNewForm = new FormData();
   editNewForm.append("title", formValues.title);
   editNewForm.append("content", formValues.content);
