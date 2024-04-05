@@ -37,10 +37,10 @@ const eventSchema = Joi.object({
         'any.required': 'La localización del evento es obligatorio.',
         'any.only': 'La localización debe ser un municipio de A Coruña'
     }),
-    event_type: Joi.string().valid('Andainas y carreras', 'Travesía a nado de Ribeira', 'Torneo Pádel contra el Cáncer', 'A Coruña Bike', 'Otros').required().messages({
+    event_type: Joi.string().valid('Andainas y carreras', 'Travesía a nado de Ribeira', 'Torneo Pádel contra el Cáncer', 'A Coruña Bike', 'Comidas y cenas', 'Otros').required().messages({
       'string.empty': 'El tipo del evento no puede estar vacío.',
       'any.required': 'El tipo del evento es obligatorio.',
-      'any.only': 'El tipo del evento deber ser uno de los siguientes [Andainas y carreras, Travesía a nado de Ribeira, Torneo Pádel contra el Cáncer, A Coruña Bike, Otros]'
+      'any.only': 'El tipo del evento deber ser uno de los siguientes [Andainas y carreras, Travesía a nado de Ribeira, Torneo Pádel contra el Cáncer, A Coruña Bike, Comidas y cenas, Otros]'
     }),
     date_start: Joi.date().required().messages({
       'any.required': 'La fecha de inicio del evento es obligatoria.',

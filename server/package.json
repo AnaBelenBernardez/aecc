@@ -7,7 +7,8 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "initdb": "node src/database/scriptdb.js"
+    "initdb": "node src/database/scriptdb.js",
+    "updatedb": "node src/database/updatedb.js"
   },
   "author": "",
   "license": "ISC",
