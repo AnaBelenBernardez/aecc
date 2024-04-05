@@ -58,7 +58,6 @@ const EditBannerModal = ({ currentBanner, setEditBannerModalOpen, handleSubmitEd
   const previousDesktopImg = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${currentBanner?.desktop_photo}`;
   const previousTabletImg = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${currentBanner?.tablet_photo}`;
   const previousMobileImg = process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${currentBanner?.mobile_photo}`;
-  console.log(previousDesktopImg, previousTabletImg, previousMobileImg);
 
   const handleChange = (e) => {
     const newFormValuesEdit = e.target.value;

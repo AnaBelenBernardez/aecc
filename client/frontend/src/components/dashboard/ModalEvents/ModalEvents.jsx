@@ -20,10 +20,10 @@ export const ModalEvents = ({ token, refetch }) => {
     watch,
   } = useForm();
   const { toast } = useToast();
-
+  
   const photo = watch("photo");
   const [filePreview] = useFilePreview(photo);
-
+  
   const onSubmit = async (data) => {
     const eventData = await addEvent(token, data);
     try {
@@ -197,6 +197,7 @@ export const ModalEvents = ({ token, refetch }) => {
                       Torneo Pádel contra el Cáncer
                     </option>
                     <option value="A Coruña Bike">A Coruña Bike</option>
+                    <option value="Comidas y cenas">Comidas y cenas</option>
                     <option value="Otros">Otros</option>
                   </select>
                 </label>
