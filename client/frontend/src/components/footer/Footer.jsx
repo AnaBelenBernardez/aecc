@@ -26,7 +26,7 @@ const Footer = () => {
           alt="Logo Asociación Española Contra el Cáncer"
           width="180"
           height="47"
-          className="self-center mb-6 lg:self-start"
+          className="self-center mb-6"
         />
         <p className="font-extrabold mb-2">Dirección A Coruña</p>
         <p className="mb-4">Rúa Real, 1, 1°, 15003 A Coruña</p>

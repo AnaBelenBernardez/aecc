@@ -4,13 +4,13 @@ const newsSchema = Joi.object({
   title: Joi.string().min(2).max(500).required().messages({
     'string.empty': 'Tienes que escribir el título de la noticia.',
     'string.min': 'El título de la noticia debe tener mínimo 2 caracteres.',
-    'string.max': 'El título de la noticia no puede tener más de 300 caracteres.',
+    'string.max': 'El título de la noticia no puede tener más de 500 caracteres.',
     'any.required': 'El título de la noticia es obligatorio.'
   }),
   galician_title: Joi.string().min(2).max(500).required().messages({
     'string.empty': 'Tienes que escribir el título de la noticia.',
     'string.min': 'El título de la noticia debe tener mínimo 2 caracteres.',
-    'string.max': 'El título de la noticia no puede tener más de 300 caracteres.',
+    'string.max': 'El título de la noticia no puede tener más de 500 caracteres.',
     'any.required': 'El título de la noticia es obligatorio.'
   }),
   news_date: Joi.date().messages({
