@@ -130,10 +130,29 @@ const Footer = () => {
         <h2 className="font-extrabold mb-2">LEGAL</h2>
         <ul className="flex flex-col gap-2">
           <Link
-            href="/aviso-legal"
+            href="https://www.contraelcancer.es/es/aviso"
+            target='_blank'
             className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
           >
             <li>Aviso legal</li>
+          </Link>
+          <Link
+            href="https://www.contraelcancer.es/es/politica-de-privacidad?_ga=2.165314879.108701073.1712570960-1402091677.1712131350&_gac=1.153158474.1712166524.CjwKCAjw_LOwBhBFEiwAmSEQAQQ4OWNcPyE-0nNPUv1Rej-Cx10Bewb_7P3wisNypimIcftvDeETphoCOTUQAvD_BwE"
+            target="_blank"
+            className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+          >
+            <li>
+              {language === "es"
+                ? "Política de privacidad"
+                : "Política de privacidade"}
+            </li>
+          </Link>
+          <Link
+            href="https://www.contraelcancer.es/es/uso-de-cookies"
+            target="_blank"
+            className="hover:text-primaryGreen transition-all duration-300 ease-in-out"
+          >
+            <li>Uso de Cookies</li>
           </Link>
         </ul>
       </section>
