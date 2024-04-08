@@ -20,7 +20,15 @@ async function updateDB() {
           'Comidas y cenas'
         )
         NOT NULL AFTER location;`
-    )
+    );
+
+    await pool.query(
+      `
+        ALTER TABLE news
+        MODIFY COLUMN title VARCHAR(500) NOT NULL,
+        MODIFY COLUMN galician_title VARCHAR(500) NOT NULL;
+      `
+    );
 
     process.exit(0);
   } catch(e) {

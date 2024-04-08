@@ -70,7 +70,7 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
                 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                 placeholder:italic placeholder:text-slate-400 w-full font-medium resize-none'
-                defaultValue={currentNew.title} onChange={handleChange} required minLength={2} maxLength={300}
+                defaultValue={currentNew.title} onChange={handleChange} required minLength={2} maxLength={500}
             />
           </label>
           <label htmlFor="date" className='font-bold text-sm'>
@@ -123,7 +123,7 @@ const EditNewModal = ({currentNew, setEditNewModalOpen, handleSubmitEdit, setFor
               border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
               placeholder:italic placeholder:text-slate-400 w-full font-medium resize-none"
               id='galician_title' name='galician_title' defaultValue={currentNew.galician_title} onChange={handleChange}
-              required minLength={2} maxLength={300}
+              required minLength={2} maxLength={500}
             />
           </label>
           <div className='flex flex-col items-center lg:flex-row lg:gap-4 lg:self-end lg:mb-2 lg:mr-2'>

@@ -39,7 +39,7 @@ const AddNewModal = ({setAddNewModalOpen, formValues, setFormValues, handleSubmi
                 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                 border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                 placeholder:italic placeholder:text-slate-400 w-full font-medium resize-none"
-                id='title' name='title' minLength={2} maxLength={300} required
+                id='title' name='title' minLength={2} maxLength={500} required
                 onChange={handleChange}
                 placeholder='Escriba aquí el título de la noticia'
               />
@@ -94,7 +94,7 @@ const AddNewModal = ({setAddNewModalOpen, formValues, setFormValues, handleSubmi
                   focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                   border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
                   placeholder:italic placeholder:text-slate-400 w-full font-medium resize-none"
-                  id='galician_title' name='galician_title' required minLength={2} maxLength={300}
+                  id='galician_title' name='galician_title' required minLength={2} maxLength={500}
                   onChange={handleChange}
                   placeholder='Escriba aquí o título da noticia'
                 />
