@@ -56,9 +56,15 @@ Página web donde consultar eventos y actividades deportivas organizadas por la 
   </li>
 </ol>
 
-## 👩‍💻 Autores
-<a href="https://github.com/AnaBelenBernardez/aecc/graphs/contributors">
-  <img src="https://i.postimg.cc/J4Mw5Gmp/autores.png" />
+## 👩‍💻 Developers
+<a href="https://github.com/AlejandroPachec"><img src="https://i.postimg.cc/QdNvvq8j/Captura-de-pantalla-2024-04-13-133938.png" width="150" /></a>
+<a href="https://github.com/eysharis"><img src="https://i.postimg.cc/66dS3PT9/Captura-de-pantalla-2024-04-13-133910.png" width="150" /></a>
+<a href="https://github.com/Nannitta"><img src="https://i.postimg.cc/ZKHMPyr2/Captura-de-pantalla-2024-04-13-133854.png" width="150" /></a>
+<a href="https://github.com/m4x1-VF"><img src="https://i.postimg.cc/sX5nMBjn/Captura-de-pantalla-2024-04-13-134007.png" width="150" /></a>
+
+## 📅 Scrum Master
+<a href="https://github.com/AnaBelenBernardez">
+  <img src="https://i.postimg.cc/3rCS7DbN/Banner-Linked-In-1.png"  width="150"/>
 </a>
 
 <br/>
