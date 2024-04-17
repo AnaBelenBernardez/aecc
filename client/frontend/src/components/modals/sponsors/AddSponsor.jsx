@@ -113,7 +113,7 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
                 </label>
                 <label htmlFor='description' className='text-sm font-bold'>
                   Descripción
-                  <input onChange={handleChange} type="text" name="description" id="description" required minLength={5} maxLength={200} className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
+                  <input onChange={handleChange} type="text" name="description" id="description" required minLength={5} maxLength={500} className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
                     file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                     focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                     border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
@@ -138,7 +138,7 @@ function AddSponsor ({setClickedAdd, sponsorsList, setSponsorsList, setAddSucces
                 </label>
                 <label htmlFor='galician_description' className='text-sm font-bold'>
                   Descrición
-                  <input onChange={handleChange} type="text" name="galician_description" id="galician_description" required minLength={5} maxLength={300} className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
+                  <input onChange={handleChange} type="text" name="galician_description" id="galician_description" required minLength={5} maxLength={500} className="flex h-10 bg-background px-3 py-2 text-sm ring-offset-background 
                     file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none 
                     focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
                     border-0 rounded-none border-b-2 border-secondGray focus-visible:ring-0 focus:border-b-green-600 
