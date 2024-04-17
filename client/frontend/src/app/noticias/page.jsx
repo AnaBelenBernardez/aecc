@@ -90,6 +90,45 @@ const Noticias = () => {
           const imgSrc =
             process.env.NEXT_PUBLIC_BACK_URL + `/uploads/${newItem.photo}`;
           return (
+            newItem?.link === null ? (
+              <article className="flex justify-between p-8 items-center shadow-md">
+                <div className="flex items-center">
+                  <p className="w-[52px] lg:w-28 text-center flex items-center text-primaryGreen font-bold">
+                    {new Date(newItem.news_date || newItem.create_date)
+                      .toLocaleDateString("es-ES", {
+                        month: "short",
+                        day: "2-digit",
+                        year: "numeric",
+                      })
+                      .toLocaleUpperCase()}
+                  </p>
+                  <h2 className="font-bold px-6">
+                    {language === "es" ? newItem.title : newItem.galician_title}
+                  </h2>
+                </div>
+                {newItem.photo !== null ? (
+                  <div className="self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]">
+                    <Image
+                      src={imgSrc}
+                      width={150}
+                      height={72}
+                      alt="Imagen de la noticia"
+                      className="lg:max-w-[150px] lg:max-h-[72px] object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="self-center hidden lg:block lg:max-w-[150px] lg:max-h-[72px]">
+                    <Image
+                      src={"/image/newsDefault.png"}
+                      width={150}
+                      height={72}
+                      alt="Imagen de la noticia"
+                      className="lg:max-w-[150px] lg:max-h-[72px] object-cover"
+                    />
+                  </div>
+                )}
+              </article>
+            ) : (
             <Link href={`${newItem.link}`} target="_blank" key={newItem.id} className='w-[90%]'>
               <article className="flex justify-between p-8 items-center shadow-md">
                 <div className="flex items-center">
@@ -129,6 +168,7 @@ const Noticias = () => {
                 )}
               </article>
             </Link>
+            )
           );
         })
       ) : (
