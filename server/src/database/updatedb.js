@@ -30,6 +30,14 @@ async function updateDB() {
       `
     );
 
+    await pool.query(
+      `ALTER TABLE faqs
+        MODIFY COLUMN question VARCHAR(600),
+        MODIFY COLUMN galician_question VARCHAR(600),
+        MODIFY COLUMN answer VARCHAR(600),
+        MODIFY COLUMN galician_answer VARCHAR(600);`
+    )
+
     process.exit(0);
   } catch(e) {
     console.log(e);
